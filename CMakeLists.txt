@@ -92,6 +92,8 @@ SET(SRC_OTCurrent
         src/tinyxml.cpp
         src/tinyxmlparser.cpp
         src/tinyxmlerror.cpp
+        src/timectrl.cpp
+        src/timectrl.h	
 	)
 
 
