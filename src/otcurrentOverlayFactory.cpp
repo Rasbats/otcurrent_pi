@@ -1,7 +1,7 @@
 /******************************************************************************
  *
  * Project:  OpenCPN
- * Purpose:  OTCurrent Object
+ * Purpose:  otcurrent Object
  * Author:   David Register, Mike Rossiter
  *
  ***************************************************************************
@@ -35,9 +35,9 @@
 #include <wx/graphics.h>
 #include <wx/progdlg.h>
 
-#include "OTCurrentUIDialog.h"
-#include "OTCurrentUIDialogBase.h"
-#include "OTCurrentOverlayFactory.h"
+#include "otcurrentUIDialog.h"
+#include "otcurrentUIDialogBase.h"
+#include "otcurrentOverlayFactory.h"
 #include <vector>
 
 #include "dychart.h"
@@ -47,7 +47,7 @@
 using namespace std;
 
 class Position;
-class OTCurrentUIDialog;
+class otcurrentUIDialog;
 class PlugIn_ViewPort;
 class wxBoundingBox;
 //class TCMgr;
@@ -61,38 +61,38 @@ static wxPoint CurrentArrowArray[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), 
                                                              };
 
 //----------------------------------------------------------------------------------------------------------
-//    OTCurrent Overlay Factory Implementation
+//    otcurrent Overlay Factory Implementation
 //----------------------------------------------------------------------------------------------------------
-OTCurrentOverlayFactory::OTCurrentOverlayFactory( OTCurrentUIDialog &dlg )
+otcurrentOverlayFactory::otcurrentOverlayFactory( otcurrentUIDialog &dlg )
 	: m_dlg(dlg), m_Positions(dlg.my_positions), m_bool(dlg.mBool),m_fromHW(dlg.button_id) //, m_portXML2(dlg.m_portXML)
 {
     m_dFont_map = new wxFont( 10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL );
     m_dFont_war = new wxFont( 16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL );
 
-  //  m_pOTCurrentTimelineRecordSet = NULL;
+  //  m_potcurrentTimelineRecordSet = NULL;
     m_last_vp_scale = 0.;
 	m_bShowRate = m_dlg.m_bUseRate;
 	m_bShowDirection = m_dlg.m_bUseDirection;
 	m_bShowFillColour = m_dlg.m_bUseFillColour;
 
 	m_dtUseNew = m_dlg.m_dtNow;
-    //for(int i=0; i<OTCurrentOverlaySettings::SETTINGS_COUNT; i++)
+    //for(int i=0; i<otcurrentOverlaySettings::SETTINGS_COUNT; i++)
       //  m_pOverlay[i] = NULL;
 }
 
-OTCurrentOverlayFactory::~OTCurrentOverlayFactory()
+otcurrentOverlayFactory::~otcurrentOverlayFactory()
 {
   ///  ClearCachedData();
 }
 
-void OTCurrentOverlayFactory::Reset()
+void otcurrentOverlayFactory::Reset()
 {
-   // m_pOTCurrentTimelineRecordSet = NULL;
+   // m_potcurrentTimelineRecordSet = NULL;
 
   ///  ClearCachedData();
 }
 
-bool OTCurrentOverlayFactory::RenderGLOTCurrentOverlay( wxGLContext *pcontext, PlugIn_ViewPort *vp )
+bool otcurrentOverlayFactory::RenderGLotcurrentOverlay( wxGLContext *pcontext, PlugIn_ViewPort *vp )
 {
     m_pdc = NULL;  // inform lower layers that this is OpenGL render
 
@@ -102,10 +102,10 @@ bool OTCurrentOverlayFactory::RenderGLOTCurrentOverlay( wxGLContext *pcontext, P
     DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
     return true;
 	
-	//return DoRenderOTCurrentOverlay( vp );
+	//return DoRenderotcurrentOverlay( vp );
 }
 
-bool OTCurrentOverlayFactory::RenderOTCurrentOverlay( wxDC &dc, PlugIn_ViewPort *vp )
+bool otcurrentOverlayFactory::RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort *vp )
 {
 
 #if wxUSE_GRAPHICS_CONTEXT
@@ -124,7 +124,7 @@ bool OTCurrentOverlayFactory::RenderOTCurrentOverlay( wxDC &dc, PlugIn_ViewPort 
 	//wxDateTime dt = wxDateTime::Now(); 
 	DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
     return true;
-	//return DoRenderOTCurrentOverlay( vp );
+	//return DoRenderotcurrentOverlay( vp );
 
 	
 
@@ -133,7 +133,7 @@ bool OTCurrentOverlayFactory::RenderOTCurrentOverlay( wxDC &dc, PlugIn_ViewPort 
 
 
 
-bool OTCurrentOverlayFactory::DoRenderOTCurrentOverlay( PlugIn_ViewPort *vp )
+bool otcurrentOverlayFactory::DoRenderotcurrentOverlay( PlugIn_ViewPort *vp )
 {
     
 
@@ -155,7 +155,7 @@ bool OTCurrentOverlayFactory::DoRenderOTCurrentOverlay( PlugIn_ViewPort *vp )
 }
 
 
-void OTCurrentOverlayFactory::DrawMessageWindow( wxString msg, int x, int y , wxFont *mfont)
+void otcurrentOverlayFactory::DrawMessageWindow( wxString msg, int x, int y , wxFont *mfont)
 {
     if(msg.empty())
         return;
@@ -185,7 +185,7 @@ void OTCurrentOverlayFactory::DrawMessageWindow( wxString msg, int x, int y , wx
     DrawOLBitmap( sbm, 0, y - ( GetChartbarHeight() + h ), false );
 }
 
-wxColour OTCurrentOverlayFactory::GetSpeedColour(double my_speed){
+wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed){
 
 	wxColour c_blue = wxColour(128, 248, 248);
 	wxColour c_green = wxColour(0, 166, 80);
@@ -202,7 +202,7 @@ wxColour OTCurrentOverlayFactory::GetSpeedColour(double my_speed){
 	return wxColour(0, 0, 0);
 }
 
-void OTCurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate )
+void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate )
 {   	
 	
 	wxPoint p[9];
@@ -279,7 +279,7 @@ void OTCurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
     }
 }
 
-wxImage &OTCurrentOverlayFactory::DrawGLText( double value, int precision ){
+wxImage &otcurrentOverlayFactory::DrawGLText( double value, int precision ){
 
 	wxString labels;
 
@@ -347,7 +347,7 @@ wxImage &OTCurrentOverlayFactory::DrawGLText( double value, int precision ){
 		return m_labelCache[value];
 }
 
-wxImage &OTCurrentOverlayFactory::DrawGLTextDir( double value, int precision ){
+wxImage &otcurrentOverlayFactory::DrawGLTextDir( double value, int precision ){
 
 	wxString labels;
 
@@ -415,7 +415,7 @@ wxImage &OTCurrentOverlayFactory::DrawGLTextDir( double value, int precision ){
 		return m_labelCache[value];
 }
 
-wxImage &OTCurrentOverlayFactory::DrawGLTextString( wxString myText ){
+wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
 
 	wxString labels;
 	labels = myText;
@@ -477,7 +477,7 @@ wxImage &OTCurrentOverlayFactory::DrawGLTextString( wxString myText ){
 	return m_labelCacheText[myText];
 }
 
-void OTCurrentOverlayFactory::DrawGLLine( double x1, double y1, double x2, double y2, double width, wxColour myColour )
+void otcurrentOverlayFactory::DrawGLLine( double x1, double y1, double x2, double y2, double width, wxColour myColour )
 {
     {
         wxColour isoLineColor = myColour;
@@ -505,7 +505,7 @@ void OTCurrentOverlayFactory::DrawGLLine( double x1, double y1, double x2, doubl
         glPopAttrib();
     }
 }
-void OTCurrentOverlayFactory::DrawOLBitmap( const wxBitmap &bitmap, wxCoord x, wxCoord y, bool usemask )
+void otcurrentOverlayFactory::DrawOLBitmap( const wxBitmap &bitmap, wxCoord x, wxCoord y, bool usemask )
 {
     wxBitmap bmp;
     if( x < 0 || y < 0 ) {
@@ -575,7 +575,7 @@ void OTCurrentOverlayFactory::DrawOLBitmap( const wxBitmap &bitmap, wxCoord x, w
     }
 }
 
-void OTCurrentOverlayFactory::DrawGLLabels(OTCurrentOverlayFactory *pof, wxDC *dc,
+void otcurrentOverlayFactory::DrawGLLabels(otcurrentOverlayFactory *pof, wxDC *dc,
                                 PlugIn_ViewPort *vp,
                                 wxImage &imageLabel, double myLat, double myLon, int offset )
 {
@@ -650,7 +650,7 @@ void OTCurrentOverlayFactory::DrawGLLabels(OTCurrentOverlayFactory *pof, wxDC *d
 
 }
 
-wxImage &OTCurrentOverlayFactory::DrawGLPolygon(){
+wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
 
 	wxString labels;
 	labels = _T("");  // dummy label for drawing with
@@ -769,7 +769,7 @@ wxImage &OTCurrentOverlayFactory::DrawGLPolygon(){
 	*/
 
 }
-void OTCurrentOverlayFactory::drawGLPolygons(OTCurrentOverlayFactory *pof, wxDC *dc,
+void otcurrentOverlayFactory::drawGLPolygons(otcurrentOverlayFactory *pof, wxDC *dc,
                                 PlugIn_ViewPort *vp,
                                 wxImage &imageLabel, double myLat, double myLon, int offset )
 {
@@ -845,7 +845,7 @@ void OTCurrentOverlayFactory::drawGLPolygons(OTCurrentOverlayFactory *pof, wxDC 
 }
 
 
-void OTCurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
+void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
         bool bforce_redraw_currents, bool bdraw_mono_for_mask, wxDateTime myTime)
 {
 

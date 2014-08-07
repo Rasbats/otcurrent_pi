@@ -1,7 +1,7 @@
 /******************************************************************************
  *
  * Project:  OpenCPN
- * Purpose:  OTCurrent Plugin
+ * Purpose:  otcurrent Plugin
  * Author:   David Register, Mike Rossiter
  *
  ***************************************************************************
@@ -24,8 +24,8 @@
  ***************************************************************************
  */
 
-#ifndef _OTCurrentPI_H_
-#define _OTCurrentPI_H_
+#ifndef _otcurrentPI_H_
+#define _otcurrentPI_H_
 
 #include "wx/wxprec.h"
 
@@ -41,20 +41,20 @@
 #define     MY_API_VERSION_MINOR    7
 
 #include "../../../include/ocpn_plugin.h"
-#include "OTCurrentOverlayFactory.h"
-#include "OTCurrentUIDialog.h"
+#include "otcurrentOverlayFactory.h"
+#include "otcurrentUIDialog.h"
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
 //----------------------------------------------------------------------------------------------------------
 
-#define OTCurrent_TOOL_POSITION    -1          // Request default positioning of toolbar tool
+#define otcurrent_TOOL_POSITION    -1          // Request default positioning of toolbar tool
 
-class OTCurrent_pi : public opencpn_plugin_17
+class otcurrent_pi : public opencpn_plugin_17
 {
 public:
-      OTCurrent_pi(void *ppimgr);
-      ~OTCurrent_pi(void);
+      otcurrent_pi(void *ppimgr);
+      ~otcurrent_pi(void);
 
 //    The required PlugIn Methods
       int Init(void);
@@ -80,19 +80,19 @@ public:
       void OnToolbarToolCallback(int id);
 
 // Other public methods
-      void SetOTCurrentDialogX    (int x){ m_OTCurrent_dialog_x = x;};
-      void SetOTCurrentDialogY    (int x){ m_OTCurrent_dialog_y = x;}
-      void SetOTCurrentDialogSizeX(int x){ m_OTCurrent_dialog_sx = x;}
-      void SetOTCurrentDialogSizeY(int x){ m_OTCurrent_dialog_sy = x;}
+      void SetotcurrentDialogX    (int x){ m_otcurrent_dialog_x = x;};
+      void SetotcurrentDialogY    (int x){ m_otcurrent_dialog_y = x;}
+      void SetotcurrentDialogSizeX(int x){ m_otcurrent_dialog_sx = x;}
+      void SetotcurrentDialogSizeY(int x){ m_otcurrent_dialog_sy = x;}
       void SetColorScheme(PI_ColorScheme cs);
 
-      void OnOTCurrentDialogClose();
+      void OnotcurrentDialogClose();
 
       bool GetCopyRate() { return  m_bCopyUseRate; }
       bool GetCopyDirection() { return  m_bCopyUseDirection; }
-	  bool GetCopyColour() { return m_bOTCurrentUseHiDef ; }
+	  bool GetCopyColour() { return m_botcurrentUseHiDef ; }
      // wxString GetCopyPort() { return  m_bCopyusePort; }
-      OTCurrentOverlayFactory *GetOTCurrentOverlayFactory(){ return m_pOTCurrentOverlayFactory; }
+      otcurrentOverlayFactory *GetotcurrentOverlayFactory(){ return m_potcurrentOverlayFactory; }
 
 	  
      // wxString         myPort;
@@ -108,14 +108,14 @@ private:
       wxFileConfig     *m_pconfig;
       wxWindow         *m_parent_window;
 
-      OTCurrentUIDialog     *m_pOTCurrentDialog;
-      OTCurrentOverlayFactory *m_pOTCurrentOverlayFactory;
+      otcurrentUIDialog     *m_potcurrentDialog;
+      otcurrentOverlayFactory *m_potcurrentOverlayFactory;
 
       int              m_display_width, m_display_height;
       int              m_leftclick_tool_id;
 
-      int              m_OTCurrent_dialog_x, m_OTCurrent_dialog_y;
-      int              m_OTCurrent_dialog_sx, m_OTCurrent_dialog_sy;
+      int              m_otcurrent_dialog_x, m_otcurrent_dialog_y;
+      int              m_otcurrent_dialog_sx, m_otcurrent_dialog_sy;
 
 	  
 
@@ -125,14 +125,14 @@ private:
 	 // 
 
       //    Controls added to Preferences panel
-      wxCheckBox              *m_pOTCurrentUseHiDef;
-      wxCheckBox              *m_pOTCurrentUseGradualColors;
+      wxCheckBox              *m_potcurrentUseHiDef;
+      wxCheckBox              *m_potcurrentUseGradualColors;
 
-     // OTCurrentTimelineRecordSet *m_pLastTimelineSet;
+     // otcurrentTimelineRecordSet *m_pLastTimelineSet;
 
       // preference data
-      bool              m_bOTCurrentUseHiDef;
-      bool              m_bOTCurrentUseGradualColors;
+      bool              m_botcurrentUseHiDef;
+      bool              m_botcurrentUseGradualColors;
 	  bool              m_bCopyUseRate;
       bool              m_bCopyUseDirection;
 
@@ -144,23 +144,23 @@ private:
       wxString         m_RequestConfig;
      
       
-      bool             m_bOTCurrentShowIcon;
+      bool             m_botcurrentShowIcon;
 
       int              m_height;
 
-      bool        m_bShowOTCurrent;
+      bool        m_bShowotcurrent;
 };
 
 //----------------------------------------------------------------------------------------
 // Prefrence dialog definition
 //----------------------------------------------------------------------------------------
 
-class OTCurrentPreferencesDialog : public OTCurrentPreferencesDialogBase
+class otcurrentPreferencesDialog : public otcurrentPreferencesDialogBase
 {
 public:
-    OTCurrentPreferencesDialog( wxWindow *pparent)
-    : OTCurrentPreferencesDialogBase(pparent) {}
-    ~OTCurrentPreferencesDialog() {}
+    otcurrentPreferencesDialog( wxWindow *pparent)
+    : otcurrentPreferencesDialogBase(pparent) {}
+    ~otcurrentPreferencesDialog() {}
 
 private:
     

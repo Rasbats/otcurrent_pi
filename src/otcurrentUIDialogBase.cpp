@@ -5,11 +5,11 @@
 // PLEASE DO "NOT" EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
-#include "OTCurrentUIDialogBase.h"
+#include "otcurrentUIDialogBase.h"
 
 ///////////////////////////////////////////////////////////////////////////
 
-OTCurrentUIDialogBase::OTCurrentUIDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 	
@@ -155,39 +155,39 @@ OTCurrentUIDialogBase::OTCurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	this->Centre( wxBOTH );
 	
 	// Connect Events
-	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( OTCurrentUIDialogBase::OnClose ) );
-	this->Connect( wxEVT_SIZE, wxSizeEventHandler( OTCurrentUIDialogBase::OnSize ) );
+	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( otcurrentUIDialogBase::OnClose ) );
+	this->Connect( wxEVT_SIZE, wxSizeEventHandler( otcurrentUIDialogBase::OnSize ) );
 
-	m_bpNow->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( OTCurrentUIDialogBase::OnNow ), NULL, this );
- //	m_button33->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( OTCurrentUIDialogBase::About ), NULL, this );
-	m_button33->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( OTCurrentUIDialogBase::OnCalendarShow ), NULL, this );
+	m_bpNow->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNow ), NULL, this );
+ //	m_button33->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::About ), NULL, this );
+	m_button33->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnCalendarShow ), NULL, this );
 
-	m_bpPrev->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( OTCurrentUIDialogBase::OnPrev ), NULL, this );
-	m_bpNext->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( OTCurrentUIDialogBase::OnNext ), NULL, this );
+	m_bpPrev->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnPrev ), NULL, this );
+	m_bpNext->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNext ), NULL, this );
 
-	//m_choice1->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( OTCurrentUIDialogBase::SetInterval ), NULL, this );
+	//m_choice1->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( otcurrentUIDialogBase::SetInterval ), NULL, this );
 
 
 }
 
-OTCurrentUIDialogBase::~OTCurrentUIDialogBase()
+otcurrentUIDialogBase::~otcurrentUIDialogBase()
 {
 	// Disconnect Events
-	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( OTCurrentUIDialogBase::OnClose ) );
-	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( OTCurrentUIDialogBase::OnSize ) );
+	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( otcurrentUIDialogBase::OnClose ) );
+	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( otcurrentUIDialogBase::OnSize ) );
 	
 
-	m_bpNow->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( OTCurrentUIDialogBase::OnNow ), NULL, this );
-//	m_button33->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( OTCurrentUIDialogBase::About ), NULL, this );
-	m_button33->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( OTCurrentUIDialogBase::OnCalendarShow ), NULL, this );
-	m_bpPrev->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( OTCurrentUIDialogBase::OnPrev ), NULL, this );
-	m_bpNext->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( OTCurrentUIDialogBase::OnNext ), NULL, this );
+	m_bpNow->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNow ), NULL, this );
+//	m_button33->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::About ), NULL, this );
+	m_button33->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnCalendarShow ), NULL, this );
+	m_bpPrev->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnPrev ), NULL, this );
+	m_bpNext->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNext ), NULL, this );
 
-	//m_choice1->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( OTCurrentUIDialogBase::SetInterval ), NULL, this );
+	//m_choice1->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( otcurrentUIDialogBase::SetInterval ), NULL, this );
 
 }
 
-OTCurrentPreferencesDialogBase::OTCurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 	
@@ -234,7 +234,7 @@ OTCurrentPreferencesDialogBase::OTCurrentPreferencesDialogBase( wxWindow* parent
 	this->Centre( wxBOTH );
 }
 
-OTCurrentPreferencesDialogBase::~OTCurrentPreferencesDialogBase()
+otcurrentPreferencesDialogBase::~otcurrentPreferencesDialogBase()
 {
 	
 }

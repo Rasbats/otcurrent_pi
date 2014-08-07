@@ -5,8 +5,8 @@
 // PLEASE DO "NOT" EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
-#ifndef __OTCurrentUIDIALOGBASE_H__
-#define __OTCurrentUIDIALOGBASE_H__
+#ifndef __otcurrentUIDIALOGBASE_H__
+#define __otcurrentUIDIALOGBASE_H__
 
 #include <wx/artprov.h>
 #include <wx/xrc/xmlres.h>
@@ -49,9 +49,9 @@
 #define ID_CB_SEA_TEMPERATURE 1005
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class OTCurrentUIDialogBase
+/// Class otcurrentUIDialogBase
 ///////////////////////////////////////////////////////////////////////////////
-class OTCurrentUIDialogBase : public wxDialog 
+class otcurrentUIDialogBase : public wxDialog 
 {
 	private:
 	
@@ -125,15 +125,15 @@ class OTCurrentUIDialogBase : public wxDialog
 		wxChoice* m_choice1;
 		wxButton* m_button1;
 
-		OTCurrentUIDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Tidal Current Control"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxRESIZE_BORDER|wxSYSTEM_MENU ); 
-		~OTCurrentUIDialogBase();
+		otcurrentUIDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Tidal Current Control"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxRESIZE_BORDER|wxSYSTEM_MENU ); 
+		~otcurrentUIDialogBase();
 	
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class OTCurrentSettingsDialogBase
+/// Class otcurrentSettingsDialogBase
 ///////////////////////////////////////////////////////////////////////////////
-class OTCurrentSettingsDialogBase : public wxDialog 
+class otcurrentSettingsDialogBase : public wxDialog 
 {
 	private:
 	  
@@ -183,15 +183,15 @@ class OTCurrentSettingsDialogBase : public wxDialog
 		wxButton* m_sButtonApply;
 		wxButton* m_sButtonCancel;
 		
-		OTCurrentSettingsDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("OTCurrent Settings"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE ); 
-		~OTCurrentSettingsDialogBase();
+		otcurrentSettingsDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("otcurrent Settings"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE ); 
+		~otcurrentSettingsDialogBase();
 	
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class OTCurrentPreferencesDialogBase
+/// Class otcurrentPreferencesDialogBase
 ///////////////////////////////////////////////////////////////////////////////
-class OTCurrentPreferencesDialogBase : public wxDialog 
+class otcurrentPreferencesDialogBase : public wxDialog 
 {
 	private:
 	
@@ -212,10 +212,10 @@ class OTCurrentPreferencesDialogBase : public wxDialog
 		wxRadioBox* m_rbStartOptions;
 		wxRadioBox* m_rbTimeFormat;
 		
-		OTCurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE ); 
-		~OTCurrentPreferencesDialogBase();
+		otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE ); 
+		~otcurrentPreferencesDialogBase();
 	
 };
 
 
-#endif //__OTCurrentUIDIALOGBASE_H__
+#endif //__otcurrentUIDIALOGBASE_H__

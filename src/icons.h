@@ -9,8 +9,8 @@
 
 extern void initialize_images(void);
 
-extern wxBitmap *_img_OTCurrent_pi;
-extern wxBitmap *_img_OTCurrent;
+extern wxBitmap *_img_otcurrent_pi;
+extern wxBitmap *_img_otcurrent;
 extern wxBitmap *_img_Clock;
 
 #endif /* ICONS_H */

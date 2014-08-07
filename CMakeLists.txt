@@ -27,9 +27,9 @@ IF (COMMAND cmake_policy)
   CMAKE_POLICY(SET CMP0011 OLD)
 ENDIF (COMMAND cmake_policy)
 
-PROJECT(OTCurrent_pi)
+PROJECT(otcurrent_pi)
 
-SET(PACKAGE_NAME OTCurrent_pi)
+SET(PACKAGE_NAME otcurrent_pi)
 SET(PLUGIN_SOURCE_DIR .)
 MESSAGE (STATUS "*** Staging to build ${PACKAGE_NAME} ***")
 
@@ -73,31 +73,31 @@ FIND_PACKAGE(Gettext REQUIRED)
 # header files and cpp/c files and CMake will sort them out
 
 
-SET(SRC_OTCurrent
+SET(SRC_otcurrent
         src/bbox.cpp
 		src/bbox.h
-        src/OTCurrent_pi.h
-        src/OTCurrent_pi.cpp
-        src/OTCurrentOverlayFactory.cpp
-        src/OTCurrentOverlayFactory.h
-        src/OTCurrentUIDialogBase.cpp
-        src/OTCurrentUIDialogBase.h
-        src/OTCurrentUIDialog.cpp
-        src/OTCurrentUIDialog.h
+        src/otcurrent_pi.h
+        src/otcurrent_pi.cpp
+        src/otcurrentOverlayFactory.cpp
+        src/otcurrentOverlayFactory.h
+        src/otcurrentUIDialogBase.cpp
+        src/otcurrentUIDialogBase.h
+        src/otcurrentUIDialog.cpp
+        src/otcurrentUIDialog.h
         src/icons.h
         src/icons.cpp
         src/tcmgr.cpp
+		src/timectrl.cpp
+		src/timectrl.h
 	src/tcmgr.h			
 	src/tinyxml.h
         src/tinyxml.cpp
         src/tinyxmlparser.cpp
         src/tinyxmlerror.cpp
-        src/timectrl.cpp
-        src/timectrl.h	
 	)
 
 
-ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_OTCurrent})
+ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_otcurrent})
 
 
 
@@ -148,9 +148,9 @@ ADD_CUSTOM_COMMAND(
    COMMAND ${GETTEXT_XGETTEXT_EXECUTABLE} --force-po --package-name=${PACKAGE_NAME} --package-version="${PACKAGE_VERSION}" --output=po/${PACKAGE_NAME}.pot  --keyword=_ --width=80 --files-from=${CMAKE_CURRENT_SOURCE_DIR}/po/POTFILES.in
    DEPENDS po/POTFILES.in po/${PACKAGE_NAME}.pot
    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-   COMMENT "OTCurrent-pot-update [${PACKAGE_NAME}]: Generated pot file."
+   COMMENT "otcurrent-pot-update [${PACKAGE_NAME}]: Generated pot file."
 )
-ADD_CUSTOM_TARGET(OTCurrent-pot-update COMMENT "OTCurrent-pot-update: Done." DEPENDS po/${PACKAGE_NAME}.pot.dummy)
+ADD_CUSTOM_TARGET(otcurrent-pot-update COMMENT "otcurrent-pot-update: Done." DEPENDS po/${PACKAGE_NAME}.pot.dummy)
 
 ENDIF(GETTEXT_XGETTEXT_EXECUTABLE )
 
@@ -166,14 +166,14 @@ MACRO(GETTEXT_UPDATE_PO _potFile)
          OUTPUT ${_absFile}.dummy
          COMMAND ${GETTEXT_MSGMERGE_EXECUTABLE} --width=80 --strict --quiet --update --backup=none --no-location -s ${_absFile} ${_absPotFile}
          DEPENDS ${_absPotFile} ${_absFile}
-         COMMENT "OTCurrent-po-update [${_poBasename}]: Updated po file."
+         COMMENT "otcurrent-po-update [${_poBasename}]: Updated po file."
       )
 
       SET(_poFiles ${_poFiles} ${_absFile}.dummy)
 
    ENDFOREACH (_currentPoFile )
 
-   ADD_CUSTOM_TARGET(OTCurrent-po-update COMMENT "OTCurrent-po-update: Done." DEPENDS ${_poFiles})
+   ADD_CUSTOM_TARGET(otcurrent-po-update COMMENT "otcurrent-po-update: Done." DEPENDS ${_poFiles})
 ENDMACRO(GETTEXT_UPDATE_PO)
 
 IF (GETTEXT_MSGMERGE_EXECUTABLE)
@@ -192,7 +192,7 @@ MACRO(GETTEXT_BUILD_MO)
          OUTPUT ${_gmoFile}
          COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${_gmoFile} ${_absFile}
          DEPENDS ${_absFile}
-         COMMENT "OTCurrent-i18n [${_poBasename}]: Created mo file."
+         COMMENT "otcurrent-i18n [${_poBasename}]: Created mo file."
       )
 
 IF(APPLE)
@@ -209,9 +209,9 @@ ENDMACRO(GETTEXT_BUILD_MO)
 if(GETTEXT_MSGFMT_EXECUTABLE)
    FILE(GLOB PACKAGE_PO_FILES po/*.po)
    GETTEXT_BUILD_MO(${PACKAGE_PO_FILES})
-   ADD_CUSTOM_TARGET(OTCurrent-i18n COMMENT "OTCurrent-i18n: Done." DEPENDS ${_gmoFiles})
-   #ADD_DEPENDENCIES(OTCurrent-i18n ${PACKAGE_PO_FILES})
-   ADD_DEPENDENCIES(${PACKAGE_NAME} OTCurrent-i18n)
+   ADD_CUSTOM_TARGET(otcurrent-i18n COMMENT "otcurrent-i18n: Done." DEPENDS ${_gmoFiles})
+   #ADD_DEPENDENCIES(otcurrent-i18n ${PACKAGE_PO_FILES})
+   ADD_DEPENDENCIES(${PACKAGE_NAME} otcurrent-i18n)
 ENDIF(GETTEXT_MSGFMT_EXECUTABLE)
 
 

@@ -1,7 +1,7 @@
 /******************************************************************************
  *
  * Project:  OpenCPN
- * Purpose:  OTCurrent Plugin Friends
+ * Purpose:  otcurrent Plugin Friends
  * Author:   David Register, Mike Rossiter
  *
  ***************************************************************************
@@ -24,8 +24,8 @@
  ***************************************************************************
  */
 
-#ifndef __OTCurrentUIDIALOG_H__
-#define __OTCurrentUIDIALOG_H__
+#ifndef __otcurrentUIDIALOG_H__
+#define __otcurrentUIDIALOG_H__
 
 #include "wx/wxprec.h"
 
@@ -35,10 +35,10 @@
 #include <wx/fileconf.h>
 #include <wx/glcanvas.h>
 
-#include "OTCurrentUIDialogBase.h"
-//#include "OTCurrentSettingsDialog.h"
-//#include "OTCurrentReader.h"
-//#include "OTCurrentRecordSet.h"
+#include "otcurrentUIDialogBase.h"
+//#include "otcurrentSettingsDialog.h"
+//#include "otcurrentReader.h"
+//#include "otcurrentRecordSet.h"
 #include "tinyxml.h"
 #include <wx/progdlg.h>
 #include <list>
@@ -66,13 +66,13 @@ static const long long lNaN = 0xfff8000000000000;
 
 #define RT_RCDATA2           MAKEINTRESOURCE(999)
 
-class OTCurrentOverlayFactory;
+class otcurrentOverlayFactory;
 class PlugIn_ViewPort;
 class PositionRecordSet;
 
 
 class wxFileConfig;
-class OTCurrent_pi;
+class otcurrent_pi;
 class wxGraphicsContext;
 
 class Position
@@ -104,11 +104,11 @@ public:
 };
 
 
-class OTCurrentUIDialog: public OTCurrentUIDialogBase {
+class otcurrentUIDialog: public otcurrentUIDialogBase {
 public:
 
-    OTCurrentUIDialog(wxWindow *parent, OTCurrent_pi *ppi);
-    ~OTCurrentUIDialog();
+    otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi);
+    ~otcurrentUIDialog();
 
     void OpenFile( bool newestFile = false );
     
@@ -135,7 +135,7 @@ public:
 	double CalcCurrent(double m_spRange, double m_npRange, double m_spRateDiamond, double m_npRateDiamond, double m_rangeOnDay);
 	int CalcHoursFromHWNow();
 	wxString nearestHW[8];
-	int OTCurrentUIDialog::round(double c);
+	int otcurrentUIDialog::round(double c);
 
 	bool m_bUseRate;    
 	bool m_bUseDirection; 
@@ -154,7 +154,7 @@ public:
 
 	void OnCalendarShow( wxCommandEvent& event );
 	void OnNow( wxCommandEvent& event );
-	wxString OTCurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime);
+	wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime);
 
 private:
     void OnClose( wxCloseEvent& event );
@@ -186,7 +186,7 @@ private:
 
     //    Data
     wxWindow *pParent;
-    OTCurrent_pi *pPlugIn;
+    otcurrent_pi *pPlugIn;
 
     PlugIn_ViewPort  *m_vp;
     int m_lastdatatype;
