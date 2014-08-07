@@ -1,7 +1,7 @@
 /******************************************************************************
  *
  * Project:  OpenCPN
- * Purpose:  OTCurrent Object
+ * Purpose:  otcurrent Object
  * Author:   David Register, Mike Rossiter
  *
  ***************************************************************************
@@ -82,9 +82,9 @@ int round (double x) {
 
 #define FAIL(X) do { error = X; goto failed; } while(0)
 
-//WX_DEFINE_OBJARRAY( ArrayOfOTCurrentRecordSets );
+//WX_DEFINE_OBJARRAY( ArrayOfotcurrentRecordSets );
 
-enum { SAILDOCS,ZYOTCurrent };
+enum { SAILDOCS,ZYotcurrent };
 enum { GFS,COAMPS,RTOFS };
 
 
@@ -106,8 +106,8 @@ static wxString TToString( const wxDateTime date_time, const int time_zone )
 #endif
 
 
-OTCurrentUIDialog::OTCurrentUIDialog(wxWindow *parent, OTCurrent_pi *ppi)
-: OTCurrentUIDialogBase(parent)
+otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
+: otcurrentUIDialogBase(parent)
 {
     mBool = false;
 	pParent = parent;
@@ -116,13 +116,13 @@ OTCurrentUIDialog::OTCurrentUIDialog(wxWindow *parent, OTCurrent_pi *ppi)
     wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(pConf) {
-        pConf->SetPath ( _ ( "/Settings/OTCurrent" ) );
+        pConf->SetPath ( _ ( "/Settings/otcurrent" ) );
 
-		pConf->Read ( _ ( "OTCurrentUseRate" ), &m_bUseRate );
-        pConf->Read ( _ ( "OTCurrentUseDirection" ), &m_bUseDirection);
-		pConf->Read ( _ ( "OTCurrentUseFillColour" ), &m_bUseFillColour);
+		pConf->Read ( _ ( "otcurrentUseRate" ), &m_bUseRate );
+        pConf->Read ( _ ( "otcurrentUseDirection" ), &m_bUseDirection);
+		pConf->Read ( _ ( "otcurrentUseFillColour" ), &m_bUseFillColour);
 
-		pConf->Read ( _ ( "OTCurrentInterval" ), &m_IntervalSelected);
+		pConf->Read ( _ ( "otcurrentInterval" ), &m_IntervalSelected);
     }
 
     m_bpPrev->SetBitmap(wxBitmap( prev1 ));
@@ -131,7 +131,7 @@ OTCurrentUIDialog::OTCurrentUIDialog(wxWindow *parent, OTCurrent_pi *ppi)
 
 
 
-    this->Connect( wxEVT_MOVE, wxMoveEventHandler( OTCurrentUIDialog::OnMove ) );
+    this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
 
 	m_dtNow = wxDateTime::Now(); 
 	wxString d = MakeDateTimeLabel(m_dtNow);
@@ -149,32 +149,32 @@ OTCurrentUIDialog::OTCurrentUIDialog(wxWindow *parent, OTCurrent_pi *ppi)
 	
 }
 
-OTCurrentUIDialog::~OTCurrentUIDialog()
+otcurrentUIDialog::~otcurrentUIDialog()
 {
     wxFileConfig *pConf = GetOCPNConfigObject();;
 
     if(pConf) {
-        pConf->SetPath ( _ ( "/Settings/OTCurrent" ) );
+        pConf->SetPath ( _ ( "/Settings/otcurrent" ) );
 
-		pConf->Write ( _ ( "OTCurrentUseRate" ), m_bUseRate );
-		pConf->Write ( _ ( "OTCurrentUseDirection" ), m_bUseDirection );
-		pConf->Write ( _ ( "OTCurrentUseFillColour" ), m_bUseFillColour );
+		pConf->Write ( _ ( "otcurrentUseRate" ), m_bUseRate );
+		pConf->Write ( _ ( "otcurrentUseDirection" ), m_bUseDirection );
+		pConf->Write ( _ ( "otcurrentUseFillColour" ), m_bUseFillColour );
 
 		int c = m_choice1->GetSelection();
 		wxString myP = m_choice1->GetString(c);
-		pConf->Write ( _ ( "OTCurrentInterval" ), c );  
+		pConf->Write ( _ ( "otcurrentInterval" ), c );  
 
     }
 }
 
-void OTCurrentUIDialog::SetCursorLatLon( double lat, double lon )
+void otcurrentUIDialog::SetCursorLatLon( double lat, double lon )
 {
     m_cursor_lon = lon;
     m_cursor_lat = lat;
 
 }
 
-void OTCurrentUIDialog::SetViewPort( PlugIn_ViewPort *vp )
+void otcurrentUIDialog::SetViewPort( PlugIn_ViewPort *vp )
 {
     if(m_vp == vp)  return;
 
@@ -182,32 +182,32 @@ void OTCurrentUIDialog::SetViewPort( PlugIn_ViewPort *vp )
 
 }
 
-void OTCurrentUIDialog::OnClose( wxCloseEvent& event )
+void otcurrentUIDialog::OnClose( wxCloseEvent& event )
 {
-    pPlugIn->OnOTCurrentDialogClose();
+    pPlugIn->OnotcurrentDialogClose();
 }
 
-void OTCurrentUIDialog::OnMove( wxMoveEvent& event )
+void otcurrentUIDialog::OnMove( wxMoveEvent& event )
 {
     //    Record the dialog position
     wxPoint p = GetPosition();
-    pPlugIn->SetOTCurrentDialogX( p.x );
-    pPlugIn->SetOTCurrentDialogY( p.y );
+    pPlugIn->SetotcurrentDialogX( p.x );
+    pPlugIn->SetotcurrentDialogY( p.y );
 
     event.Skip();
 }
 
-void OTCurrentUIDialog::OnSize( wxSizeEvent& event )
+void otcurrentUIDialog::OnSize( wxSizeEvent& event )
 {
     //    Record the dialog size
     wxSize p = event.GetSize();
-    pPlugIn->SetOTCurrentDialogSizeX( p.x );
-    pPlugIn->SetOTCurrentDialogSizeY( p.y );
+    pPlugIn->SetotcurrentDialogSizeX( p.x );
+    pPlugIn->SetotcurrentDialogSizeY( p.y );
 
     event.Skip();
 }
 
-void OTCurrentUIDialog::OpenFile(bool newestFile)
+void otcurrentUIDialog::OpenFile(bool newestFile)
 {
 	m_bUseRate = pPlugIn->GetCopyRate();
 	m_bUseDirection = pPlugIn->GetCopyDirection();
@@ -218,7 +218,7 @@ void OTCurrentUIDialog::OpenFile(bool newestFile)
 }
 
 
-void OTCurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
+void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 {	
 
 	CalendarDialog CalDialog ( this, -1, _("START Date/Time"),
@@ -290,7 +290,7 @@ void OTCurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 	}
 }
 
-void OTCurrentUIDialog::OnNow( wxCommandEvent& event ){
+void otcurrentUIDialog::OnNow( wxCommandEvent& event ){
 	m_dtNow = wxDateTime::Now();
 	m_dInterval = 0;
 	wxString d = MakeDateTimeLabel(m_dtNow);
@@ -301,7 +301,7 @@ void OTCurrentUIDialog::OnNow( wxCommandEvent& event ){
 	onNext = false;
 }
 
-void OTCurrentUIDialog::OnPrev( wxCommandEvent& event ){
+void otcurrentUIDialog::OnPrev( wxCommandEvent& event ){
 		
 	//m_dInterval = 1;
 	int i = m_choice1->GetSelection();
@@ -320,7 +320,7 @@ void OTCurrentUIDialog::OnPrev( wxCommandEvent& event ){
 
 }
 
-void OTCurrentUIDialog::OnNext( wxCommandEvent& event ){
+void otcurrentUIDialog::OnNext( wxCommandEvent& event ){
 	
    int i = m_choice1->GetSelection();
 	wxString c = m_choice1->GetString(i);	
@@ -340,7 +340,7 @@ void OTCurrentUIDialog::OnNext( wxCommandEvent& event ){
 
 }
 
-void OTCurrentUIDialog::SetInterval( wxCommandEvent& event ){
+void otcurrentUIDialog::SetInterval( wxCommandEvent& event ){
 	int i = m_choice1->GetSelection();
 	wxString c = m_choice1->GetString(i);	
 	double value;
@@ -351,7 +351,7 @@ void OTCurrentUIDialog::SetInterval( wxCommandEvent& event ){
     //m_dInterval = 0.5;	
 }
 
-wxString OTCurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime)
+wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime)
 {			
 		wxDateTime dt = myDateTime;
 		//m_dtNow = dt;
@@ -402,7 +402,7 @@ wxString OTCurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime)
 
 
 
-void OTCurrentUIDialog::LoadHarmonics()
+void otcurrentUIDialog::LoadHarmonics()
 {
 	  //  Establish a "home" location
         
@@ -425,7 +425,7 @@ void OTCurrentUIDialog::LoadHarmonics()
 	  ptcmgr = new TCMgr(TCDir, cache_locn);     	
 }
 
-int OTCurrentUIDialog::FindPortID(wxString myPort)
+int otcurrentUIDialog::FindPortID(wxString myPort)
 {	
 	        for ( int i=1 ; i<ptcmgr->Get_max_IDX() +1 ; i++ )
             {				
@@ -444,7 +444,7 @@ int OTCurrentUIDialog::FindPortID(wxString myPort)
 			}
 			return 0;
 }
-void OTCurrentUIDialog::CalcHW(int PortCode)
+void otcurrentUIDialog::CalcHW(int PortCode)
 {
 	m_choice2->Clear();	
 
@@ -598,7 +598,7 @@ void OTCurrentUIDialog::CalcHW(int PortCode)
 						myRange = AddRanges/n;												
 }
 
-double OTCurrentUIDialog::CalcCurrent(double m_spRange, double m_npRange, double m_spRateDiamond, double m_npRateDiamond, double m_rangeOnDay)
+double otcurrentUIDialog::CalcCurrent(double m_spRange, double m_npRange, double m_spRateDiamond, double m_npRateDiamond, double m_rangeOnDay)
 {
 	if (m_spRateDiamond == m_npRateDiamond)
 		return m_spRateDiamond;
@@ -613,7 +613,7 @@ double OTCurrentUIDialog::CalcCurrent(double m_spRange, double m_npRange, double
 }
 
 
-int OTCurrentUIDialog::CalcHoursFromHWNow()
+int otcurrentUIDialog::CalcHoursFromHWNow()
 {
 	
 	wxDateTime myDateTime;
@@ -664,7 +664,7 @@ int OTCurrentUIDialog::CalcHoursFromHWNow()
     return f ;
 }
 
-int OTCurrentUIDialog::round(double c)
+int otcurrentUIDialog::round(double c)
 {   
 	// c = -0.52
 	int a = c; //a =  0
@@ -724,12 +724,12 @@ int OTCurrentUIDialog::round(double c)
 
 
 
-vector<Position> OTCurrentUIDialog::OnRecord()
+vector<Position> otcurrentUIDialog::OnRecord()
 {	
 return my_positions;
 }
 
-void OTCurrentUIDialog::SetFromHW(int fromHW) 
+void otcurrentUIDialog::SetFromHW(int fromHW) 
 {
 
  button_id = fromHW;
@@ -740,7 +740,7 @@ void OTCurrentUIDialog::SetFromHW(int fromHW)
 
 
 
-void OTCurrentUIDialog::About(wxCommandEvent& event)
+void otcurrentUIDialog::About(wxCommandEvent& event)
 {
 	
        wxMessageBox(

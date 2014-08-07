@@ -1,7 +1,7 @@
 /******************************************************************************
  *
  * Project:  OpenCPN
- * Purpose:  OTCurrent Plugin Freinds
+ * Purpose:  otcurrent Plugin Freinds
  * Author:   David Register
  *
  ***************************************************************************
@@ -35,18 +35,18 @@ using namespace std;
 
 
 //----------------------------------------------------------------------------------------------------------
-//    OTCurrent Overlay Specification
+//    otcurrent Overlay Specification
 //----------------------------------------------------------------------------------------------------------
 
-class OTCurrentOverlay {
+class otcurrentOverlay {
 public:
-    OTCurrentOverlay( void )
+    otcurrentOverlay( void )
     {
         m_iTexture = 0;
         m_pDCBitmap = NULL, m_pRGBA = NULL;
     }
 
-    ~OTCurrentOverlay( void )
+    ~otcurrentOverlay( void )
     {
         if(m_iTexture)
           glDeleteTextures( 1, &m_iTexture );
@@ -63,18 +63,18 @@ public:
 };
 
 //----------------------------------------------------------------------------------------------------------
-//    OTCurrent Overlay Factory Specification
+//    otcurrent Overlay Factory Specification
 //----------------------------------------------------------------------------------------------------------
 
-class OTCurrentUIDialog;
-//class OTCurrentRecord;
-//class OTCurrentTimelineRecordSet;
+class otcurrentUIDialog;
+//class otcurrentRecord;
+//class otcurrentTimelineRecordSet;
 class Position;
 
-class OTCurrentOverlayFactory {
+class otcurrentOverlayFactory {
 public:
-    OTCurrentOverlayFactory( OTCurrentUIDialog &dlg );
-    ~OTCurrentOverlayFactory();
+    otcurrentOverlayFactory( otcurrentUIDialog &dlg );
+    ~otcurrentOverlayFactory();
 
     void SetSettings( bool hiDefGraphics, bool GradualColors )
     {
@@ -85,8 +85,8 @@ public:
     void SetMessage( wxString message ) { m_Message = message; }
     void SetTimeZone( int TimeZone ) { m_TimeZone = TimeZone; }
     void SetParentSize( int w, int h ) { m_ParentSize.SetWidth(w) ; m_ParentSize.SetHeight(h) ;}
-	bool RenderGLOTCurrentOverlay( wxGLContext *pcontext, PlugIn_ViewPort *vp );
-    bool RenderOTCurrentOverlay( wxDC &dc, PlugIn_ViewPort *vp );
+	bool RenderGLotcurrentOverlay( wxGLContext *pcontext, PlugIn_ViewPort *vp );
+    bool RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort *vp );
 	/* USA Currents
 
 	
@@ -102,11 +102,11 @@ public:
 	wxImage &DrawGLTextString( wxString myText);
 	wxImage &DrawGLPolygon();
 
-	void DrawGLLabels(OTCurrentOverlayFactory *pof, wxDC *dc,
+	void DrawGLLabels(otcurrentOverlayFactory *pof, wxDC *dc,
                                PlugIn_ViewPort *vp,
                                wxImage &imageLabel, double myLat, double myLon, int offset);
 
-	void drawGLPolygons(OTCurrentOverlayFactory *pof, wxDC *dc,
+	void drawGLPolygons(otcurrentOverlayFactory *pof, wxDC *dc,
                                 PlugIn_ViewPort *vp, 
                                 wxImage &imageLabel, double myLat, double myLon, int offset );
 
@@ -122,7 +122,7 @@ private:
 	
 	bool inGL;
 	vector<Position> new_positions;
-    bool DoRenderOTCurrentOverlay( PlugIn_ViewPort *vp );
+    bool DoRenderotcurrentOverlay( PlugIn_ViewPort *vp );
 	void RenderMyArrows(PlugIn_ViewPort *vp );
 
     void DrawMessageWindow( wxString msg, int x, int y , wxFont *mfont);
@@ -166,8 +166,8 @@ private:
     std::map < double , wxImage > m_labelCache;
 	std::map < wxString , wxImage > m_labelCacheText;
 
-    OTCurrentUIDialog &m_dlg;
-  //  OTCurrentOverlaySettings &m_Settings;
+    otcurrentUIDialog &m_dlg;
+  //  otcurrentOverlaySettings &m_Settings;
 	vector<Position> &m_Positions;
 	bool m_bool;
 	int m_fromHW;
