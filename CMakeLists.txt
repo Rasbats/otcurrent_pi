@@ -76,14 +76,14 @@ FIND_PACKAGE(Gettext REQUIRED)
 SET(SRC_OTCurrent
         src/bbox.cpp
 		src/bbox.h
-        src/OTCurrent_pi.h
-        src/OTCurrent_pi.cpp
-        src/OTCurrentOverlayFactory.cpp
-        src/OTCurrentOverlayFactory.h
-        src/OTCurrentUIDialogBase.cpp
-        src/OTCurrentUIDialogBase.h
-        src/OTCurrentUIDialog.cpp
-        src/OTCurrentUIDialog.h
+        src/otcurrent_pi.h
+        src/otcurrent_pi.cpp
+        src/otcurrentOverlayFactory.cpp
+        src/otcurrentOverlayFactory.h
+        src/otcurrentUIDialogBase.cpp
+        src/otcurrentUIDialogBase.h
+        src/otcurrentUIDialog.cpp
+        src/otcurrentUIDialog.h
         src/icons.h
         src/icons.cpp
         src/tcmgr.cpp

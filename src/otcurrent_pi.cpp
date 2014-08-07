@@ -35,7 +35,7 @@
 #include <wx/fileconf.h>
 #include <wx/stdpaths.h>
 
-#include "OTCurrent_pi.h"
+#include "otcurrent_pi.h"
 
 // the class factories, used to create and destroy instances of the PlugIn
 

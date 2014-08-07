@@ -41,7 +41,7 @@
 #include <math.h>
 #include <time.h>
 
-#include "OTCurrent_pi.h"
+#include "otcurrent_pi.h"
 #include "folder.xpm"
 #include "icons.h"
 
@@ -50,7 +50,6 @@
 
 #include <iostream> 
 #include <fstream>
-#include <windows.h>
 #include <memory.h> 
 
 
@@ -67,7 +66,6 @@ enum
 };
 
                  // Handle to DLL
-HINSTANCE hinstDLL;
 using namespace std;
 
 

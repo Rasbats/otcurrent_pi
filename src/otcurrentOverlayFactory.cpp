@@ -35,9 +35,9 @@
 #include <wx/graphics.h>
 #include <wx/progdlg.h>
 
-#include "OTCurrentUIDialog.h"
-#include "OTCurrentUIDialogBase.h"
-#include "OTCurrentOverlayFactory.h"
+#include "otcurrentUIDialog.h"
+#include "otcurrentUIDialogBase.h"
+#include "otcurrentOverlayFactory.h"
 #include <vector>
 
 #include "dychart.h"
@@ -975,20 +975,16 @@ void OTCurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 						wxFont *pTCFont;
 						pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
 													   wxString( _T ( "Eurostile Extended" ) ) );
-						char sbuf[20];					 
-					
 						if( m_bShowRate && m_pdc ) 
 						{
 							m_pdc->SetFont( *pTCFont );
-							_snprintf( sbuf, 19, "%3.1f", abs(tcvalue) );
-							m_pdc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc );
+							m_pdc->DrawText( wxString::Format(_T("%3.1f"), abs(tcvalue)), pixxc, pixyc );
 							shift = 13;
 						}					 
 					
 						if ( m_bShowDirection && m_pdc)	
 						{	
-							_snprintf( sbuf, 19, "%03.0f", dir );
-							m_pdc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc + shift );
+							m_pdc->DrawText( wxString::Format(_T("%03.0f"), dir), pixxc, pixyc + shift );
 						}
 
 

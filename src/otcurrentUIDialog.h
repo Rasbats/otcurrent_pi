@@ -35,7 +35,7 @@
 #include <wx/fileconf.h>
 #include <wx/glcanvas.h>
 
-#include "OTCurrentUIDialogBase.h"
+#include "otcurrentUIDialogBase.h"
 //#include "OTCurrentSettingsDialog.h"
 //#include "OTCurrentReader.h"
 //#include "OTCurrentRecordSet.h"
@@ -135,7 +135,7 @@ public:
 	double CalcCurrent(double m_spRange, double m_npRange, double m_spRateDiamond, double m_npRateDiamond, double m_rangeOnDay);
 	int CalcHoursFromHWNow();
 	wxString nearestHW[8];
-	int OTCurrentUIDialog::round(double c);
+	int round(double c);
 
 	bool m_bUseRate;    
 	bool m_bUseDirection; 
@@ -154,7 +154,7 @@ public:
 
 	void OnCalendarShow( wxCommandEvent& event );
 	void OnNow( wxCommandEvent& event );
-	wxString OTCurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime);
+	wxString MakeDateTimeLabel(wxDateTime myDateTime);
 
 private:
     void OnClose( wxCloseEvent& event );

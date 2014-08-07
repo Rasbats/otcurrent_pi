@@ -41,8 +41,8 @@
 #define     MY_API_VERSION_MINOR    7
 
 #include "../../../include/ocpn_plugin.h"
-#include "OTCurrentOverlayFactory.h"
-#include "OTCurrentUIDialog.h"
+#include "otcurrentOverlayFactory.h"
+#include "otcurrentUIDialog.h"
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
