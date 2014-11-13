@@ -96,12 +96,12 @@ bool otcurrentOverlayFactory::RenderGLotcurrentOverlay( wxGLContext *pcontext, P
 {
     m_pdc = NULL;  // inform lower layers that this is OpenGL render
 
-	//int myTime = time(NULL);  
+	//int myTime = time(NULL);
 	//wxDateTime dt = wxDateTime::Now();
 	//m_dtUseNew.Add(wxTimeSpan::Hours(6));
     DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
     return true;
-	
+
 	//return DoRenderotcurrentOverlay( vp );
 }
 
@@ -117,16 +117,16 @@ bool otcurrentOverlayFactory::RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort 
 #else
     m_pdc = &dc;
 #endif
-	   
+
 	m_pdc = &dc;
-	
-	//int myTime = time(NULL); 
-	//wxDateTime dt = wxDateTime::Now(); 
+
+	//int myTime = time(NULL);
+	//wxDateTime dt = wxDateTime::Now();
 	DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
     return true;
 	//return DoRenderotcurrentOverlay( vp );
 
-	
+
 
 
 }
@@ -135,21 +135,21 @@ bool otcurrentOverlayFactory::RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort 
 
 bool otcurrentOverlayFactory::DoRenderotcurrentOverlay( PlugIn_ViewPort *vp )
 {
-    
+
 
     m_Message_Hiden.Empty();
 
 	    //    If the scale has changed, clear out the cached bitmaps
 
     m_last_vp_scale = vp->view_scale_ppm;
-	
+
 
 	//RenderMyArrows(vp);
 
     if( !m_Message_Hiden.IsEmpty() )
         DrawMessageWindow( m_Message_Hiden , vp->pix_width, vp->pix_height, m_dFont_map );
-	
-	
+
+
 	 DrawMessageWindow( m_Message_Hiden , vp->pix_width, vp->pix_height, m_dFont_map );
     return true;
 }
@@ -187,7 +187,7 @@ void otcurrentOverlayFactory::DrawMessageWindow( wxString msg, int x, int y , wx
 
 wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed){
 
-	wxColour c_blue = wxColour(128, 248, 248);
+	wxColour c_blue = wxColour(127, 0, 255);
 	wxColour c_green = wxColour(0, 166, 80);
 	wxColour c_yellow_orange = wxColour(253, 184, 19);
 	wxColour c_orange = wxColour(248, 128, 64);
@@ -203,13 +203,13 @@ wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed){
 }
 
 void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate )
-{   	
-	
+{
+
 	wxPoint p[9];
 
-    wxColour colour;	
+    wxColour colour;
 	colour = GetSpeedColour( rate );
-	
+
 	c_GLcolour = colour;  // for filling GL arrows
 
 	wxPen pen( colour, 2 );
@@ -220,7 +220,7 @@ void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
         m_pdc->SetBrush( brush);  //*wxTRANSPARENT_BRUSH);
     }
 
-   
+
 	if( scale > 1e-2 ) {
 
         float sin_rot = sin( rot_angle * PI / 180. );
@@ -261,11 +261,11 @@ void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 			else{
 				DrawGLLine(x1 + x, y1 + y, x2 + x, y2 + y , 2, colour);
 			}
-			p[ip].x = x1 + x; 
+			p[ip].x = x1 + x;
             p[ip].y = y1 + y;
 
 			x1 = x2;
-            y1 = y2;            			
+            y1 = y2;
          }
 
 		//p[9].x = x1;
@@ -286,7 +286,7 @@ wxImage &otcurrentOverlayFactory::DrawGLText( double value, int precision ){
 	int p = precision;
 
 	labels.Printf( _T("%.*f"), p, value );
-	
+
 	wxMemoryDC mdc(wxNullBitmap);
 
 	wxFont *pTCFont;
@@ -314,13 +314,13 @@ wxImage &otcurrentOverlayFactory::DrawGLText( double value, int precision ){
     mdc.SetBrush(*wxTRANSPARENT_BRUSH);
     mdc.SetTextForeground(text_color);
     mdc.SetTextBackground(wxTRANSPARENT);
-          
+
     int xd = 0;
     int yd = 0;
 //    mdc.DrawRoundedRectangle(xd, yd, w+(label_offset * 2), h+2, -.25);
     //mdc.DrawRectangle(xd, yd, w+(label_offset * 2), h+2);
     mdc.DrawText(labels, label_offset + xd, yd+1);
-          
+
     mdc.SelectObject(wxNullBitmap);
 
     m_labelCache[value] = bm.ConvertToImage();
@@ -343,7 +343,7 @@ wxImage &otcurrentOverlayFactory::DrawGLText( double value, int precision ){
 
             a[ioff] = 255-(r+g+b)/3;
         }
-		
+
 		return m_labelCache[value];
 }
 
@@ -354,7 +354,7 @@ wxImage &otcurrentOverlayFactory::DrawGLTextDir( double value, int precision ){
 	int p = precision;
 
 	labels.Printf( _T("%03.*f"), p, value );
-	
+
 	wxMemoryDC mdc(wxNullBitmap);
 
 	wxFont *pTCFont;
@@ -382,13 +382,13 @@ wxImage &otcurrentOverlayFactory::DrawGLTextDir( double value, int precision ){
     mdc.SetBrush(*wxTRANSPARENT_BRUSH);
     mdc.SetTextForeground(text_color);
     mdc.SetTextBackground(wxTRANSPARENT);
-          
+
     int xd = 0;
     int yd = 0;
 //    mdc.DrawRoundedRectangle(xd, yd, w+(label_offset * 2), h+2, -.25);
     //mdc.DrawRectangle(xd, yd, w+(label_offset * 2), h+2);
     mdc.DrawText(labels, label_offset + xd, yd+1);
-          
+
     mdc.SelectObject(wxNullBitmap);
 
     m_labelCache[value] = bm.ConvertToImage();
@@ -411,7 +411,7 @@ wxImage &otcurrentOverlayFactory::DrawGLTextDir( double value, int precision ){
 
             a[ioff] = 255-(r+g+b)/3;
         }
-		
+
 		return m_labelCache[value];
 }
 
@@ -419,13 +419,13 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
 
 	wxString labels;
 	labels = myText;
-		
+
 	wxMemoryDC mdc(wxNullBitmap);
 
     //wxFont mfont( 12, wxDEFAULT, wxNORMAL, wxBOLD );
 	wxFont *pTCFont;
 					pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
-                                                   wxString( _T ( "Eurostile Extended" ) ) );	
+                                                   wxString( _T ( "Eurostile Extended" ) ) );
     mdc.SetFont( *pTCFont);
 
     int w, h;
@@ -446,11 +446,11 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
     mdc.SetBrush(*wxTRANSPARENT_BRUSH);
     mdc.SetTextForeground(text_color);
     mdc.SetTextBackground(wxTRANSPARENT);
-          
+
     int xd = 0;
     int yd = 0;
 
-    mdc.DrawText(labels, label_offset + xd, yd+1);          
+    mdc.DrawText(labels, label_offset + xd, yd+1);
     mdc.SelectObject(wxNullBitmap);
 
     m_labelCacheText[myText] = bm.ConvertToImage();
@@ -473,7 +473,7 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
 
             a[ioff] = 255-(r+g+b)/3;
         }
-	
+
 	return m_labelCacheText[myText];
 }
 
@@ -583,28 +583,28 @@ void otcurrentOverlayFactory::DrawGLLabels(otcurrentOverlayFactory *pof, wxDC *d
     //---------------------------------------------------------
     // Ecrit les labels
     //---------------------------------------------------------
-        
+
          wxPoint ab;
          GetCanvasPixLL(vp, &ab, myLat, myLon);
-                 
+
 	     wxPoint cd;
          GetCanvasPixLL(vp, &cd,myLat, myLon);
-                
+
          int w = imageLabel.GetWidth();
          int h = imageLabel.GetHeight();
 
          int label_offset = 0;
          int xd = (ab.x + cd.x-(w+label_offset * 2))/2;
          int yd = (ab.y + cd.y - h)/2 + offset;
-                
+
          if(dc) {
                     /* don't use alpha for isobars, for some reason draw bitmap ignores
                        the 4th argument (true or false has same result) */
                     wxImage img(w, h, imageLabel.GetData(), true);
                     dc->DrawBitmap(img, xd, yd, false);
-         } 
+         }
 		 else { /* opengl */
-                  
+
 			int w = imageLabel.GetWidth(), h = imageLabel.GetHeight();
 
             unsigned char *d = imageLabel.GetData();
@@ -612,7 +612,7 @@ void otcurrentOverlayFactory::DrawGLLabels(otcurrentOverlayFactory *pof, wxDC *d
 
             unsigned char mr, mg, mb;
             if( !imageLabel.GetOrFindMaskColour( &mr, &mg, &mb ) && !a ) wxMessageBox(_T(
-                    "trying to use mask to draw a bitmap without alpha or mask\n" ));
+                    "trying to use a mask to draw a bitmap without alpha or mask\n" ));
 
             unsigned char *e = new unsigned char[4 * w * h];
             {
@@ -654,7 +654,7 @@ wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
 
 	wxString labels;
 	labels = _T("");  // dummy label for drawing with
-	
+
 	wxColour c_orange = c_GLcolour;
 
     wxPen penText(c_orange);
@@ -667,7 +667,7 @@ wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
 
     int w, h;
     mdc.GetTextExtent(labels, &w, &h);
-	
+
 	w = 200;
 	h = 200;
 
@@ -679,13 +679,13 @@ wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
     mdc.SetBrush(backBrush);
     mdc.SetTextForeground(c_orange);
     mdc.SetTextBackground(c_orange);
-          
+
     int xd = 0;
     int yd = 0;
    // mdc.DrawRoundedRectangle(xd, yd, w+(label_offset * 2), h+2, -.25);
 /*
-		
-	                wxPoint p2;  
+
+	                wxPoint p2;
 					p2.x = 100;
 					p2.y = 100 ;
 
@@ -710,11 +710,11 @@ wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
                     z[8].y = p2.y;
 
 	*/
-    
+
 	mdc.DrawPolygon(9,p_basic,0);
     //mdc.DrawRectangle(xd, yd, w+(label_offset * 2), h+2);
     //mdc.DrawText(labels, label_offset + xd, yd+1);
-          
+
     mdc.SelectObject(wxNullBitmap);
 
     m_labelCacheText[labels] = bm.ConvertToImage();
@@ -740,7 +740,7 @@ wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
 
     return m_labelCacheText[labels];
 	/*
-	                wxPoint p;  
+	                wxPoint p;
 					p.x = 200;
 					p.y = 200;
 
@@ -764,8 +764,8 @@ wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
 					z[8].x = p.x;
                     z[8].y = p.y;
 
-	
-    
+
+
 	*/
 
 }
@@ -777,28 +777,28 @@ void otcurrentOverlayFactory::drawGLPolygons(otcurrentOverlayFactory *pof, wxDC 
     //---------------------------------------------------------
     // Ecrit les labels
     //---------------------------------------------------------
-        
+
          wxPoint ab;
          GetCanvasPixLL(vp, &ab, myLat, myLon);
-                 
+
 	     wxPoint cd;
          GetCanvasPixLL(vp, &cd,myLat, myLon);
-                
+
          int w = imageLabel.GetWidth();
          int h = imageLabel.GetHeight();
 
          int label_offset = 0;
          int xd = (ab.x + cd.x-(w+label_offset * 2))/2;
          int yd = (ab.y + cd.y - h)/2 + offset;
-                
+
          if(dc) {
                     /* don't use alpha for isobars, for some reason draw bitmap ignores
                        the 4th argument (true or false has same result) */
                     wxImage img(w, h, imageLabel.GetData(), true);
                     dc->DrawBitmap(img, xd, yd, false);
-         } 
+         }
 		 else { /* opengl */
-                  
+
 			int w = imageLabel.GetWidth(), h = imageLabel.GetHeight();
 
             unsigned char *d = imageLabel.GetData();
@@ -826,7 +826,7 @@ void otcurrentOverlayFactory::drawGLPolygons(otcurrentOverlayFactory *pof, wxDC 
                                 a ? a[off] : ( ( r == mr ) && ( g == mg ) && ( b == mb ) ? 0 : 255 );
                     }
             }
-			
+
             glColor4f( 1, 1, 1, 1 );
 
             glEnable( GL_BLEND );
@@ -870,37 +870,37 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
     float tcvalue, dir;
     bool bnew_val = true;
     double lon_last = 0.;
-    
+
 	//  Establish a "home" location
-        
+
 	wxString g_SData_Locn = *GetpSharedDataLocation();
 
     // Establish location of Tide and Current data
     pTC_Dir = new wxString(_T("tcdata"));
     pTC_Dir->Prepend(g_SData_Locn);
-    pTC_Dir->Append(wxFileName::GetPathSeparator());  
+    pTC_Dir->Append(wxFileName::GetPathSeparator());
 
 	wxString TCDir;
     TCDir = *pTC_Dir;
-      
+
     wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
-	wxString cache_locn = TCDir; 
-	
+	wxString cache_locn = TCDir;
+
 	double lat_last = 0.;
 	ctcmgr = new TCMgr(TCDir, cache_locn);
 
 
-	wxDateTime yn = m_dlg.m_dtNow; 
+	wxDateTime yn = m_dlg.m_dtNow;
 
         for( int i = 1; i <  ctcmgr->Get_max_IDX() + 1; i++ ) {
             IDX_entry *pIDX = ctcmgr->GetIDX_entry( i );
             double lon = pIDX->IDX_lon;
             double lat = pIDX->IDX_lat;
 
-			
+
 
             char type = pIDX->IDX_type;             // Entry "TCtcIUu" identifier
-            
+
 			if( ( ( type == 'c' ) || ( type == 'C' ) ) && ( 1/*pIDX->IDX_Useable*/) ) {
 
 //  TODO This is a ---HACK---
@@ -908,10 +908,10 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 //  Proper fix is to correct the TCDATA index file for depth indication
                 bool b_dup = false;
                 if( ( type == 'c' ) && ( lat == lat_last ) && ( lon == lon_last ) ) b_dup = true;
-				
+
 				myLLBox = new LLBBox;
 				wxBoundingBox LLBBox( BBox->lon_min, BBox->lat_min , BBox->lon_max, BBox->lat_max );
-							
+
 				if( !b_dup && LLBBox.PointInBox( lon, lat, 0 )   )  {
 
 					double myLat = LLBBox.GetMaxY();
@@ -930,17 +930,17 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
                     d[2].y = r.y - dd;
                     d[3].x = r.x - dd;
                     d[3].y = r.y;
-					 
+
 					if( ctcmgr->GetTideOrCurrent15( yn, i, tcvalue, dir, bnew_val) ) {
 
 					  if( type == 'c' ) {
-                        									
+
 						int pixxc, pixyc;
 						wxPoint cpoint;
                         GetCanvasPixLL(BBox,&cpoint, lat, lon);
                         pixxc = cpoint.x;
-                        pixyc = cpoint.y;  
-                          
+                        pixyc = cpoint.y;
+
 
 						//    Adjust drawing size using logarithmic scale
                         double a1 = fabs( tcvalue ) * 10;
@@ -950,7 +950,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
                         double scale = current_draw_scaler * a2;
 
 						drawCurrentArrow( pixxc, pixyc,	dir - 90 , scale/100, tcvalue );
-                               
+
 						int shift = 0;
 
 						if(!m_pdc && m_bShowFillColour){
@@ -960,44 +960,44 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 
 					   if (!m_pdc){
 						   if( m_bShowRate){
-                          
-							  DrawGLLabels( this, m_pdc, BBox, 
+
+							  DrawGLLabels( this, m_pdc, BBox,
 									  DrawGLText( abs(tcvalue), 1), lat, lon, 0 ) ;
 							  shift = 13;
 						   }
 						   if( m_bShowDirection){
-						  
-								DrawGLLabels( this, m_pdc, BBox, 
+
+								DrawGLLabels( this, m_pdc, BBox,
 											DrawGLTextDir(dir, 0), lat, lon, shift) ;
 						   }
-					   }			
+					   }
 
 						wxFont *pTCFont;
 						pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
 													   wxString( _T ( "Eurostile Extended" ) ) );
-						if( m_bShowRate && m_pdc ) 
+						if( m_bShowRate && m_pdc )
 						{
 							m_pdc->SetFont( *pTCFont );
 							m_pdc->DrawText( wxString::Format(_T("%3.1f"), abs(tcvalue)), pixxc, pixyc );
 							shift = 13;
-						}					 
-					
-						if ( m_bShowDirection && m_pdc)	
-						{	
+						}
+
+						if ( m_bShowDirection && m_pdc)
+						{
 							m_pdc->DrawText( wxString::Format(_T("%03.0f"), dir), pixxc, pixyc + shift );
 						}
 
 
                     }
-                      
+
                   }
 
                 }
 
-			
+
                 lon_last = lon;
                 lat_last = lat;
 
             }
         }
-}        
+}
