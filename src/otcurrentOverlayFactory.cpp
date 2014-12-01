@@ -40,7 +40,7 @@
 #include "otcurrentOverlayFactory.h"
 #include <vector>
 
-#include "dychart.h"
+//#include "dychart.h"
 #include "bbox.h"
 //#include "cutil.h"
 
