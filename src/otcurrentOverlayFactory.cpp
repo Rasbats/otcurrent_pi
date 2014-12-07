@@ -204,11 +204,11 @@ wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed){
 
 void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate )
 {
-
+	double m_rate = abs(rate);
 	wxPoint p[9];
 
     wxColour colour;
-	colour = GetSpeedColour( rate );
+	colour = GetSpeedColour( m_rate );
 
 	c_GLcolour = colour;  // for filling GL arrows
 
