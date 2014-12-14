@@ -37,6 +37,8 @@
 #include "wx/dateevt.h"
 #include <wx/event.h>
 #include <wx/listbox.h>
+#include <colordlg.h>
+#include <wx/clrpicker.h>
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -51,20 +53,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// Class otcurrentUIDialogBase
 ///////////////////////////////////////////////////////////////////////////////
-class otcurrentUIDialogBase : public wxDialog
+class otcurrentUIDialogBase : public wxDialog 
 {
 	private:
-
+	
 	protected:
 		//wxBitmapButton* m_bpStart;
 		wxBitmapButton* m_bpPrev;
 		//wxStaticText* m_staticText24;
 		wxChoice* m_choice2;
+		
 		wxDatePickerCtrl* m_datePicker1;
 
+		
 		//wxComboBox* m_cRecordForecast;
 		wxBitmapButton* m_bpNext;
-		//wxStaticText* m_staticText21;
+		//wxStaticText* m_staticText21; 
 		wxBitmapButton* m_bpNow;
 		wxBitmapButton* m_bpPlay;
 
@@ -93,10 +97,10 @@ class otcurrentUIDialogBase : public wxDialog
 		wxTextCtrl* m_tcAirTemperature;
 		wxTextCtrl* m_tcSeaTemperature;
 		wxTextCtrl* m_tcCAPE;
-
-
-
-
+		
+		
+		wxTextCtrl* m_textCtrl1;
+		 
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnSize( wxSizeEvent& event ) { event.Skip(); }
@@ -109,7 +113,11 @@ class otcurrentUIDialogBase : public wxDialog
 		virtual void OnNext( wxCommandEvent& event ) { event.Skip(); }
 		virtual void SetInterval( wxCommandEvent& event ) { event.Skip(); }
 
+		
+
 	public:
+		//virtual void ChangeColour1( wxCommandEvent& event ) { event.Skip(); }
+		
 		wxSlider* m_sTimeline;
 		wxCheckBox* m_cbWind;
 		wxCheckBox* m_cbWave;
@@ -121,25 +129,25 @@ class otcurrentUIDialogBase : public wxDialog
 		wxCheckBox* m_cbAirTemperature;
 		wxCheckBox* m_cbSeaTemperature;
 		wxCheckBox* m_cbCAPE;
-
+	
 		wxChoice* m_choice1;
 		wxButton* m_button1;
 
-         wxTextCtrl* m_textCtrl1;
+		
 
-		otcurrentUIDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Tidal Current Control"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxRESIZE_BORDER|wxSYSTEM_MENU );
+		otcurrentUIDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Tidal Current Control"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxRESIZE_BORDER|wxSYSTEM_MENU ); 
 		~otcurrentUIDialogBase();
-
+	
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class otcurrentSettingsDialogBase
 ///////////////////////////////////////////////////////////////////////////////
-class otcurrentSettingsDialogBase : public wxDialog
+class otcurrentSettingsDialogBase : public wxDialog 
 {
 	private:
-
-
+	  
+	
 	protected:
 		wxSpinCtrl* m_sUpdatesPerSecond;
 		wxStaticText* m_tSlicesPerUpdate;
@@ -167,15 +175,16 @@ class otcurrentSettingsDialogBase : public wxDialog
 		wxStaticText* m_staticText24;
 		wxSlider* m_sTransparency;
 
-
-
+		
+		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnIntepolateChange( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDataTypeChoice( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnTransparencyChange( wxScrollEvent& event ) { event.Skip(); }
 		virtual void OnApply( wxCommandEvent& event ) { event.Skip(); }
-
-
+		
+		
+	
 	public:
 		wxCheckBox* m_cLoopMode;
 		wxCheckBox* m_cInterpolate;
@@ -184,39 +193,62 @@ class otcurrentSettingsDialogBase : public wxDialog
 		wxButton* m_sButtonOK;
 		wxButton* m_sButtonApply;
 		wxButton* m_sButtonCancel;
-
-		otcurrentSettingsDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("otcurrent Settings"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE );
+		
+		otcurrentSettingsDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("otcurrent Settings"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE ); 
 		~otcurrentSettingsDialogBase();
-
+	
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class otcurrentPreferencesDialogBase
 ///////////////////////////////////////////////////////////////////////////////
-class otcurrentPreferencesDialogBase : public wxDialog
+class otcurrentPreferencesDialogBase : public wxDialog 
 {
 	private:
-
+	
 	protected:
-
+		
 		// Virtual event handlers, overide them in your derived class
+		
+		
 
-
-
+		
+	
 	public:
+		
+
 		wxCheckBox* m_cbUseRate;
 		wxCheckBox* m_cbUseDirection;
 		wxCheckBox* m_cbFillColour;
+
+		wxStaticText* m_staticText4;
+		wxStaticText* m_staticText41;
+		wxStaticText* m_staticText42;
+		wxStaticText* m_staticText43;
+		wxStaticText* m_staticText44;
+
+
+		wxButton* m_button111;
+		wxButton* m_button2;
+		wxButton* m_button3;
+		wxButton* m_button4;
+		wxButton* m_button5;
+
+		wxColourPickerCtrl* myColourPicker0; 		
+		wxColourPickerCtrl* myColourPicker1; 
+		wxColourPickerCtrl* myColourPicker2; 
+		wxColourPickerCtrl* myColourPicker3; 
+		wxColourPickerCtrl* myColourPicker4; 
 
 		wxCheckBox* m_cbCopyFirstCumulativeRecord;
 		wxCheckBox* m_cbCopyMissingWaveRecord;
 		wxRadioBox* m_rbLoadOptions;
 		wxRadioBox* m_rbStartOptions;
 		wxRadioBox* m_rbTimeFormat;
-
-		otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+		
+		otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE ); 
 		~otcurrentPreferencesDialogBase();
-
+	
 };
 
 

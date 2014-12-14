@@ -48,12 +48,15 @@
 #include <wx/arrimpl.cpp>
 #include <vector>
 
-#include <iostream>
+#include <iostream> 
 #include <fstream>
-#include <memory.h>
+#include <windows.h>
+#include <memory.h> 
 
+#include <colordlg.h>
+#include <event.h>
 
-
+#include "otcurrent_pi.h"
 
 enum
 {
@@ -66,6 +69,7 @@ enum
 };
 
                  // Handle to DLL
+HINSTANCE hinstDLL;
 using namespace std;
 
 
@@ -82,7 +86,6 @@ int round (double x) {
 
 #define FAIL(X) do { error = X; goto failed; } while(0)
 
-//WX_DEFINE_OBJARRAY( ArrayOfotcurrentRecordSets );
 
 enum { SAILDOCS,ZYotcurrent };
 enum { GFS,COAMPS,RTOFS };
@@ -123,6 +126,21 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 		pConf->Read ( _ ( "otcurrentUseFillColour" ), &m_bUseFillColour);
 
 		pConf->Read ( _ ( "otcurrentInterval" ), &m_IntervalSelected);
+
+		pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
+		pConf->Read( _T("VColour1"), &myVColour[1], myVColour[1] );
+		pConf->Read( _T("VColour2"), &myVColour[2], myVColour[2] );
+		pConf->Read( _T("VColour3"), &myVColour[3], myVColour[3] );
+		pConf->Read( _T("VColour4"), &myVColour[4], myVColour[4] );
+		
+		myUseColour[0] = myVColour[0];
+		myUseColour[1] = myVColour[1];
+		myUseColour[2] = myVColour[2];
+		myUseColour[3] = myVColour[3];
+		myUseColour[4] = myVColour[4];
+		
+
+
     }
 
     m_bpPrev->SetBitmap(wxBitmap( prev1 ));
@@ -130,24 +148,19 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
     m_bpNow->SetBitmap(*_img_Clock );
 
 
-
     this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
 
-	m_dtNow = wxDateTime::Now();
-
-	wxString d =  MakeDateTimeLabel(m_dtNow);
-	m_textCtrl1->SetValue(d);
-
-
+	m_dtNow = wxDateTime::Now(); 
+	wxString d = MakeDateTimeLabel(m_dtNow);
+	m_textCtrl1->SetLabel(d);
+	
+	
 	m_dInterval = 0;
-	//onPrev = false;
-	//onNext = false;
 
-    DimeWindow( this );
+	DimeWindow( this );
 
     Fit();
-    SetMinSize( GetBestSize() );
-
+    SetMinSize( GetBestSize() );	
 }
 
 otcurrentUIDialog::~otcurrentUIDialog()
@@ -161,9 +174,17 @@ otcurrentUIDialog::~otcurrentUIDialog()
 		pConf->Write ( _ ( "otcurrentUseDirection" ), m_bUseDirection );
 		pConf->Write ( _ ( "otcurrentUseFillColour" ), m_bUseFillColour );
 
+		pConf->Write( _T("VColour0"), myVColour[0] );
+		pConf->Write( _T("VColour1"), myVColour[1] );
+		pConf->Write( _T("VColour2"), myVColour[2] );
+		pConf->Write( _T("VColour3"), myVColour[3] );
+		pConf->Write( _T("VColour4"), myVColour[4] );
+
 		int c = m_choice1->GetSelection();
 		wxString myP = m_choice1->GetString(c);
-		pConf->Write ( _ ( "otcurrentInterval" ), c );
+		pConf->Write ( _ ( "otcurrentInterval" ), c ); 
+
+
 
     }
 }
@@ -213,19 +234,17 @@ void otcurrentUIDialog::OpenFile(bool newestFile)
 	m_bUseRate = pPlugIn->GetCopyRate();
 	m_bUseDirection = pPlugIn->GetCopyDirection();
 	m_bUseFillColour = pPlugIn->GetCopyColour();
-
-
-
+	
 }
 
 
 void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
-{
+{	
 
 	CalendarDialog CalDialog ( this, -1, _("START Date/Time"),
 	                          wxPoint(100, 100), wxSize(200, 250) );
 	if ( CalDialog.ShowModal() == wxID_OK ){
-
+		
 		wxDateTime dm = CalDialog.dialogCalendar->GetDate();
 		wxString myTime = CalDialog._timeText->GetValue();
         wxString val = myTime.Mid(0,1);
@@ -233,170 +252,106 @@ void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 		if ( val == wxT(" ")){
 			myTime = wxT("0") + myTime.Mid(1,5);
 		}
-
+	
 		wxDateTime dt;
 		dt.ParseTime(myTime);
-
+		
 		wxString s2;
 		s2.Printf(dm.Format ( _T( "%A %d %B %Y")));
 
 
 		wxString todayHours = dt.Format(_T("%H"));
 		wxString todayMinutes = dt.Format(_T("%M"));
-
+	
 		wxString s;
 		s.Printf(dt.Format(_T("%H:%M  ")));
-		wxString dateLabel = s2 + _T(" ") + s;
+		wxString dateLabel = s2 + _T(" ") + s;	
 
-		m_textCtrl1->SetValue(dateLabel);
-
+		m_textCtrl1->SetLabel(dateLabel);				
+		
 		double h;
 		double m;
 
 		todayHours.ToDouble(&h);
 		todayMinutes.ToDouble(&m);
-		myTimeOfDay = wxTimeSpan(h,m,0,0);
+		myTimeOfDay = wxTimeSpan(h,m,0,0);	
 
 		dm = CalDialog.dialogCalendar->GetDate();
-
+		
 		m_dtNow = dm + myTimeOfDay;
-
+		
 		RequestRefresh(pParent);
-
-		//m_dtNow = dm.Add(myTimeOfDay);
-		//wxDateTime yn = wxDateTime::Now();
-		//int mdm = dm.GetYear();
-		//int myn = yn.GetYear();
-		//if(mdm != myn){
-		//wxMessageBox(wxT("Sorry, only the current year will work!"),wxT("Out of current year"));
-		//dm = yn;
-    //}
-		/*
-		m_graphday = dm + myTimeOfDay;
-
-		wxDateTime graphday_00 = dm.ResetTime();
-
-		if(graphday_00.GetYear() == 2013)
-			int yyp = 4;
-
-		time_t t_graphday_00 = graphday_00.GetTicks();
-		if( !graphday_00.IsDST() && m_graphday.IsDST() ) t_graphday_00 -= 3600;
-		if( graphday_00.IsDST() && !m_graphday.IsDST() ) t_graphday_00 += 3600;
-		m_t_graphday_00_at_station = t_graphday_00 - ( m_corr_mins * 60 );
-
-		myCurrentTime = m_t_graphday_00_at_station;
-
-		btc_valid = false;
-		*/
 	}
 }
 
 void otcurrentUIDialog::OnNow( wxCommandEvent& event ){
+	
 	m_dtNow = wxDateTime::Now();
 	m_dInterval = 0;
 	wxString d = MakeDateTimeLabel(m_dtNow);
-	m_textCtrl1->SetValue(d);
+	m_textCtrl1->SetLabel(d);
 
 	RequestRefresh( pParent );
 	onPrev = false;
 	onNext = false;
+
+	
 }
 
 void otcurrentUIDialog::OnPrev( wxCommandEvent& event ){
 
-	//m_dInterval = 1;
 	int i = m_choice1->GetSelection();
-	wxString c = m_choice1->GetString(i);
+	wxString c = m_choice1->GetString(i);	
 	double value;
     c.ToDouble(&value);
 	m_dInterval = value;
-    //onPrev = true;
+
 	wxTimeSpan m_ts = wxTimeSpan::Minutes(m_dInterval) ;
 	m_dtNow.Subtract(m_ts);
 	wxString d = MakeDateTimeLabel(m_dtNow);
-	//m_dtNow.Add(m_ts);
 
-	m_textCtrl1->SetValue(d);
+	m_textCtrl1->SetLabel(d);
 	RequestRefresh( pParent );
 
 }
 
 void otcurrentUIDialog::OnNext( wxCommandEvent& event ){
-
+	
    int i = m_choice1->GetSelection();
-	wxString c = m_choice1->GetString(i);
-	//wxMessageBox(c);
+	wxString c = m_choice1->GetString(i);	
+
 	double value;
 	c.ToDouble(&value);
 	m_dInterval = value;
-	//double nm_dInterval = 1;
-	//onNext = true;
+
 	wxTimeSpan m_ts = wxTimeSpan::Minutes(m_dInterval) ;
 	m_dtNow.Add(m_ts);
 	wxString d = MakeDateTimeLabel(m_dtNow);
-	//m_dtNow.Subtract(m_ts);
 
-	m_textCtrl1->SetValue(d);
+	m_textCtrl1->SetLabel(d);
 	RequestRefresh( pParent );
 
 }
 
 void otcurrentUIDialog::SetInterval( wxCommandEvent& event ){
 	int i = m_choice1->GetSelection();
-	wxString c = m_choice1->GetString(i);
+	wxString c = m_choice1->GetString(i);	
 	double value;
 	c.ToDouble(&value);
 	m_dInterval = value;
-
-	//RequestRefresh( pParent );
-    //m_dInterval = 0.5;
 }
 
 wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime)
-{
+{			
 		wxDateTime dt = myDateTime;
-		//m_dtNow = dt;
 
 		wxString s2 = dt.Format ( _T( "%A %d %B %Y"));
+		wxString s = dt.Format(_T("%H:%M")); 
+		wxString dateLabel = s2 + _T(" ") + s;	
 
-		//wxString todayHours = dt.Format(_T("%H"));
-		//wxString todayMinutes = dt.Format(_T("%M"));
+		m_textCtrl1->SetLabel(dateLabel);				
 
-		wxString s = dt.Format(_T("%H:%M"));
-		wxString dateLabel = s2 + _T(" ") + s;
-
-		m_textCtrl1->SetValue(s);
-		/*
-		double h;
-		double m;
-
-		todayHours.ToDouble(&h);
-		todayMinutes.ToDouble(&m);
-		myTimeOfDay = wxTimeSpan(h,m,0,0);
-
-		wxDateTime dm = dt;
-		wxDateTime yn = wxDateTime::Now();
-		int mdm = dm.GetYear();
-		int myn = yn.GetYear();
-
-		m_graphday = dm + myTimeOfDay;
-
-		wxDateTime graphday_00 = dm.ResetTime();
-
-		if(graphday_00.GetYear() == 2013)
-			int yyp = 4;
-
-		time_t t_graphday_00 = graphday_00.GetTicks();
-		if( !graphday_00.IsDST() && m_graphday.IsDST() ) t_graphday_00 -= 3600;
-		if( graphday_00.IsDST() && !m_graphday.IsDST() ) t_graphday_00 += 3600;
-		m_t_graphday_00_at_station = t_graphday_00 - ( m_corr_mins * 60 );
-
-		myCurrentTime = m_t_graphday_00_at_station;
-
-		btc_valid = false;
-		*/
-		return dateLabel;
-
+		return dateLabel;	
 }
 
 
@@ -406,40 +361,40 @@ wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime)
 void otcurrentUIDialog::LoadHarmonics()
 {
 	  //  Establish a "home" location
-
+        
 	  g_SData_Locn = *GetpSharedDataLocation();
 
       // Establish location of Tide and Current data
       pTC_Dir = new wxString(_T("tcdata"));
       pTC_Dir->Prepend(g_SData_Locn);
-      pTC_Dir->Append(wxFileName::GetPathSeparator());
-
+      pTC_Dir->Append(wxFileName::GetPathSeparator());  
+	
       wxString TCDir;
       TCDir = *pTC_Dir;
-
+      
       wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
-	  wxString cache_locn = TCDir;
+	  wxString cache_locn = TCDir; 
 
 	  wxString harm2test = TCDir;
       harm2test.Append( _("HARMONIC") );
-
-	  ptcmgr = new TCMgr(TCDir, cache_locn);
+	
+	  ptcmgr = new TCMgr(TCDir, cache_locn);     	
 }
 
 int otcurrentUIDialog::FindPortID(wxString myPort)
-{
+{	
 	        for ( int i=1 ; i<ptcmgr->Get_max_IDX() +1 ; i++ )
-            {
+            {				
 						IDX_entry *pIDX = ptcmgr->GetIDX_entry (i);
 
                         char type = pIDX->IDX_type;             // Entry "TCtcIUu" identifier
                         if ( ( type == 't' ) ||  ( type == 'T' ) )  // only Tides
-                        {
-							  wxString s = wxString(pIDX->IDX_reference_name,wxConvUTF8);
+                        {                              
+							  wxString s = wxString(pIDX->IDX_reference_name,wxConvUTF8); 
 							  if ( s == myPort)
-							  {
+							  {								  
 								  return i;
-							  }
+							  }							  
 						}
 
 			}
@@ -447,7 +402,7 @@ int otcurrentUIDialog::FindPortID(wxString myPort)
 }
 void otcurrentUIDialog::CalcHW(int PortCode)
 {
-	m_choice2->Clear();
+	m_choice2->Clear();	
 
 	if (PortCode == 0)
 	{
@@ -462,16 +417,16 @@ void otcurrentUIDialog::CalcHW(int PortCode)
         wxTimeSpan diff = this_now.Subtract ( this_gmt );
 #else
         wxTimeSpan diff = this_gmt.Subtract ( this_now );
-#endif
-		int diff_mins = diff.GetMinutes();
+#endif		        
+		int diff_mins = diff.GetMinutes();	
 
 		IDX_entry *pIDX = ptcmgr->GetIDX_entry ( PortCode );
 		int station_offset = ptcmgr->GetStationTimeOffset(pIDX); //-60 for French Harmonics_V7.zip
 
         m_corr_mins = station_offset - diff_mins;
         if ( this_now.IsDST() )
-              m_corr_mins += 60;
-
+              m_corr_mins += 60;				
+		
 
 		//    Establish the inital drawing day as today
         m_graphday = m_datePicker1->GetValue();
@@ -502,10 +457,10 @@ void otcurrentUIDialog::CalcHW(int PortCode)
 
 		float tcmax, tcmin;
 		float dir;
-
+                        
 		tcmax = -10;
         tcmin = 10;
-
+        
 		float val = 0;
 		int list_index = 0 ;
 		int array_index = 0;
@@ -515,19 +470,19 @@ void otcurrentUIDialog::CalcHW(int PortCode)
 		wxString sHWLW = _T("");
 
                         // get tide flow sens ( flood or ebb ? )
-
+						
                         ptcmgr->GetTideFlowSens(m_t_graphday_00_at_station, BACKWARD_ONE_HOUR_STEP, pIDX->IDX_rec_num, tcv[0], val, wt);
-
+		
 						for ( i=0 ; i<26 ; i++ )
                         {
                                 int tt = m_t_graphday_00_at_station + ( i * FORWARD_ONE_HOUR_STEP );
                                 ptcmgr->GetTideOrCurrent ( tt, pIDX->IDX_rec_num, tcv[i], dir );
-
+								
                                 if ( tcv[i] > tcmax )
                                         tcmax = tcv[i];
 
                                                 if ( tcv[i] < tcmin )
-                                                   tcmin = tcv[i];
+                                                   tcmin = tcv[i];                                                
                                                     if ( ! ((tcv[i] > val) == wt) )                // if tide flow sens change
                                                     {
                                                       float tcvalue;                                        //look backward for HW or LW
@@ -539,38 +494,38 @@ void otcurrentUIDialog::CalcHW(int PortCode)
                                                       tcd.Set( tctime + ( m_corr_mins * 60 ) ) ;
 
 													  s2 = tcd.Format ( _T( "%A %d %B %Y"));
-                                                      s.Printf(tcd.Format(_T("%H:%M  ")));
+                                                      s.Printf(tcd.Format(_T("%H:%M  ")));													 
 
-                                                      s1.Printf( _T("%05.2f "),tcvalue);
-
+                                                      s1.Printf( _T("%05.2f "),tcvalue);    												  
+	
 													  Station_Data *pmsd = pIDX->pref_sta_data;                         //write unit
-
-
-													  ( wt )? sHWLW = _("HW") : sHWLW = _("LW");
-
+ 													  
+													  
+													  ( wt )? sHWLW = _("HW") : sHWLW = _("LW"); 
+													 											                                                        
 													  // Fill the array with tide data
-													  euTC[array_index][0] = s2 + _T(" ") + s;
+													  euTC[array_index][0] = s2 + _T(" ") + s;													  													
 													  euTC[array_index][1] = s1;
 													  euTC[array_index][2] = wxString(pmsd->units_abbrv ,wxConvUTF8);
 													  euTC[array_index][3] = sHWLW;
 
-													  if (euTC[array_index][3] == _("LW"))
-													  {
+													  if (euTC[array_index][3] == _("LW")) 
+													  {									
 														myLW = tcvalue;
 													  }
-
-													  if (euTC[array_index][3] == _("HW"))
+													  
+													  if (euTC[array_index][3] == _("HW")) 
 													  {
 														myHW = tcvalue;
-														m_choice2->Insert(euTC[array_index][0],list_index);
+														m_choice2->Insert(euTC[array_index][0],list_index); 
 														// nearestHW for the now button
 														nearestHW[e] = euTC[array_index][0];
-														e++;
+														e++;														
 														list_index++;
-													  }
+													  }  
 
 													   myRange = myHW - myLW;
-
+													 
 													  if ((abs(myRange) == myHW) || (abs(myRange) == myLW))
 													  {
 															// out of range
@@ -580,14 +535,14 @@ void otcurrentUIDialog::CalcHW(int PortCode)
 														  myArrayOfRanges[c] = myRange;
 														  c++;
 													  }
-
+														
 													  array_index++;
-
+													  
                                                       wt = !wt ;     //change tide flow sens
 
                                                     }
 
-													val = tcv[i];
+													val = tcv[i];                                                                                                
                         }
 						c--;
 						n = 0;
@@ -596,7 +551,7 @@ void otcurrentUIDialog::CalcHW(int PortCode)
 						   AddRanges = AddRanges + myArrayOfRanges[n];
 						}
 						// myRange for the speed of current calculation
-						myRange = AddRanges/n;
+						myRange = AddRanges/n;												
 }
 
 double otcurrentUIDialog::CalcCurrent(double m_spRange, double m_npRange, double m_spRateDiamond, double m_npRateDiamond, double m_rangeOnDay)
@@ -605,10 +560,10 @@ double otcurrentUIDialog::CalcCurrent(double m_spRange, double m_npRange, double
 		return m_spRateDiamond;
 	else {
 		// y = mx + c
-		double m,c,x;
+		double m,c,x; 
 		m = (m_spRange - m_npRange) / (m_spRateDiamond - m_npRateDiamond);
 		c = m_spRange - (m * m_spRateDiamond);
-		x = (m_rangeOnDay - c)/m ;
+		x = (m_rangeOnDay - c)/m ;	
 		return x;
 	}
 }
@@ -616,32 +571,32 @@ double otcurrentUIDialog::CalcCurrent(double m_spRange, double m_npRange, double
 
 int otcurrentUIDialog::CalcHoursFromHWNow()
 {
-
+	
 	wxDateTime myDateTime;
 	wxTimeSpan diff;
 	double myDiff, myTest;
 
 	myTest = 26;
-
+	
 	wxDateTime this_now = wxDateTime::Now();
 	int t = this_now.GetTicks();
 	int i = 0;
-	int m;
+	int m; 		
 	double d;
 
 	for (i; i<8;i++)
 	{
 		myDateTime.ParseDateTime(nearestHW[i]);
-		m = myDateTime.GetTicks();
+		m = myDateTime.GetTicks(); 
 
 		d = t - m;
-		myDiff = (d/60)/60;
-
+		myDiff = (d/60)/60;  
+		
 		if (abs(myDiff) < abs(myTest))
 		{
 			myTest = myDiff;
 		}
-	}
+	}		
 
 	int c = m_choice2->GetCount();
 	for  (c=0; c<8; c++)
@@ -654,19 +609,13 @@ int otcurrentUIDialog::CalcHoursFromHWNow()
 			}
 		}
 	}
-	//m_myChoice = c;
 
-	//wxString str_countPts =  wxString::Format(wxT("%f"), (double)myDiff);
-    // wxMessageBox(str_countPts,_("count_hours"));
-	int f = round( myTest);
-
-
-
+	int f = round( myTest);   
     return f ;
 }
 
 int otcurrentUIDialog::round(double c)
-{
+{   
 	// c = -0.52
 	int a = c; //a =  0
 	int b = 0;
@@ -676,9 +625,9 @@ int otcurrentUIDialog::round(double c)
 	{
 	  if (c < 0)
 	  {
-	  c = c + a;   // -0.52
+	  c = c + a;   // -0.52  
 	  }
-	  else
+	  else	
 	  {
 		c = c - a;   //
 	  }
@@ -687,8 +636,8 @@ int otcurrentUIDialog::round(double c)
 	{
 	c = c - a; //-2.6 --2 c = -0.6
 	}
-
-	if ( abs(c) > 0.5)
+	
+	if ( abs(c) > 0.5) 
 	{
 		b = 1;  //1
 	}
@@ -696,27 +645,26 @@ int otcurrentUIDialog::round(double c)
 	{
 		b = 0;
 	}
-
+	
 	if ( a > 0) //a -2
 	{
 		c = a + b;
 	}
 	else{
-		if (a == 0){
-
+		if (a == 0){  
+			
 			if (input >= 0){
 				c = b;
 			}
-			else{
+			else{				
 				c -= b;
-			}
+			}   
 		}
-		else{
+		else{		
 			c = a - b;
 		}
 	}
-	//wxString str_countPts =  wxString::Format(wxT("%d"), (int)c);
-    // wxMessageBox(str_countPts,_("count_hours"));
+
 	return c;
 }
 
@@ -726,11 +674,11 @@ int otcurrentUIDialog::round(double c)
 
 
 vector<Position> otcurrentUIDialog::OnRecord()
-{
+{	
 return my_positions;
 }
 
-void otcurrentUIDialog::SetFromHW(int fromHW)
+void otcurrentUIDialog::SetFromHW(int fromHW) 
 {
 
  button_id = fromHW;
@@ -743,7 +691,7 @@ void otcurrentUIDialog::SetFromHW(int fromHW)
 
 void otcurrentUIDialog::About(wxCommandEvent& event)
 {
-
+	
        wxMessageBox(
 _("Tidal Data for UKHO Tidal Diamonds\n--------------------------------------------------------------\nThe standard OpenCPN distribution has tidal data for the\nfollowing ports, which this plugin uses:\n\nPLYMOUTH (DEVONPORT)\nPORTSMOUTH\nDOVER\nSHEERNESS\nLOWESTOFT\nIMMINGHAM\nLEITH\nABERDEEN\nWICK\nLERWICK\nULLAPOOL\nLIVERPOOL (GLADSTONE DOCK)\nHOLYHEAD\nMILFORD HAVEN\nPORT OF BRISTOL (AVONMOUTH)\nST. HELIER\n\nUse this data with caution.\nUse in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n\n--------------------------------------------------------------------\n\nNote: 1 Rates shown are for a position corresponding to the centre\nof the base of the arrow. Tidal rate is shown as knots.\nNote: 2 Rates are calculated by using the method shown in UKHO Tidal\nStream Atlases. This is based on the average range for the day\n")
      , _("About Tidal Arrows"), wxOK | wxICON_INFORMATION, this);
@@ -754,24 +702,23 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
                            const wxPoint & position, const wxSize & size, long style )
 : wxDialog( parent, id, title, position, size, style)
 {
-
+		
 	wxString dimensions = wxT(""), s;
 	wxPoint p;
 	wxSize  sz;
-
+ 
 	sz.SetWidth(180);
 	sz.SetHeight(150);
-
+	
 	p.x = 6; p.y = 2;
 	s.Printf(_(" x = %d y = %d\n"), p.x, p.y);
 	dimensions.append(s);
 	s.Printf(_(" width = %d height = %d\n"), sz.GetWidth(), sz.GetHeight());
 	dimensions.append(s);
 	dimensions.append(wxT("here"));
-
-	//dialogText = new wxTextCtrl ( this, -1, dimensions, p, sz, wxTE_MULTILINE );
-    dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, sz, wxCAL_SHOW_HOLIDAYS ,wxT("Tide Calendar"));
-
+ 
+	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, sz, wxCAL_SHOW_HOLIDAYS ,wxT("Tide Calendar"));
+	
 	wxWindowID text, spinner;
 
 	m_staticText = new wxStaticText(this,text,wxT("Time:"),wxPoint(15,155),wxSize(60,21));
@@ -781,30 +728,25 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
     _spinCtrl=new wxSpinButton(this,spinner,wxPoint(136,155),wxSize(20,21),wxSP_VERTICAL|wxSP_ARROW_KEYS);
 	_spinCtrl->Connect( wxEVT_SCROLL_LINEUP, wxSpinEventHandler( CalendarDialog::spinUp ), NULL, this );
 	_spinCtrl->Connect( wxEVT_SCROLL_LINEDOWN, wxSpinEventHandler( CalendarDialog::spinDown ), NULL, this );
-
+	
 	p.y += sz.GetHeight() + 30;
 	wxButton * b = new wxButton( this, wxID_OK, _("OK"), p, wxDefaultSize );
 	p.x += 110;
 	wxButton * c = new wxButton( this, wxID_CANCEL, _("Cancel"), p, wxDefaultSize );
-
+    
 }
 
 
 
 void CalendarDialog::spinUp(wxSpinEvent& event)
 {
-       // wxMessageBox(wxT("here"));
 		_timeText->OnArrowUp();
-        //event.Skip();
 }
 
 void CalendarDialog::spinDown(wxSpinEvent& event)
 {
          _timeText->OnArrowDown();
-         //event.Skip();
 }
-
-
-
+	
 
 

@@ -36,6 +36,10 @@
 #include <wx/stdpaths.h>
 
 #include "otcurrent_pi.h"
+#include "otcurrentUIDialogBase.h"
+#include "otcurrentUIDialog.h"
+
+wxString myVColour[] = {_T("127, 0, 255"), _T("0, 166, 80"),  _T("253, 184, 19"),  _T("248, 128, 64"),  _T("248, 0, 0")};
 
 // the class factories, used to create and destroy instances of the PlugIn
 
@@ -48,6 +52,8 @@ extern "C" DECL_EXP void destroy_pi(opencpn_plugin* p)
 {
     delete p;
 }
+
+
 
 //---------------------------------------------------------------------------------------------------------
 //
@@ -70,6 +76,9 @@ otcurrent_pi::otcurrent_pi(void *ppimgr)
       // Create the PlugIn icons
       initialize_images();
       m_bShowotcurrent = false;
+	  
+     
+
 }
 
 otcurrent_pi::~otcurrent_pi(void)
@@ -98,8 +107,12 @@ int otcurrent_pi::Init(void)
       //    And load the configuration items
       LoadConfig();
 
+
+
       // Get a pointer to the opencpn display canvas, to use as a parent for the otcurrent dialog
       m_parent_window = GetOCPNCanvasWindow();
+
+	
 
       //    This PlugIn needs a toolbar icon, so request its insertion if enabled locally
       if(m_botcurrentShowIcon)
@@ -193,9 +206,31 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
     Pref->m_cbUseDirection->SetValue(m_bCopyUseDirection);
 	Pref->m_cbFillColour->SetValue(m_botcurrentUseHiDef);
 
+	wxColour myC0 = wxColour(myVColour[0]);
+	Pref->myColourPicker0->SetColour(myC0);
+    
+	wxColour myC1 = wxColour(myVColour[1]);
+	Pref->myColourPicker1->SetColour(myC1);
+
+	wxColour myC2 = wxColour(myVColour[2]);
+	Pref->myColourPicker2->SetColour(myC2);
+
+	wxColour myC3 = wxColour(myVColour[3]);
+	Pref->myColourPicker3->SetColour(myC3);
+
+	wxColour myC4 = wxColour(myVColour[4]);
+	Pref->myColourPicker4->SetColour(myC4);
+
+
  if( Pref->ShowModal() == wxID_OK ) {
 
 	 //bool copyFillColour = true;
+    
+	 myVColour[0] = Pref->myColourPicker0->GetColour().GetAsString();
+	 myVColour[1] = Pref->myColourPicker1->GetColour().GetAsString();
+	 myVColour[2] = Pref->myColourPicker2->GetColour().GetAsString();
+	 myVColour[3] = Pref->myColourPicker3->GetColour().GetAsString();
+	 myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
 
 
      bool copyrate = Pref->m_cbUseRate->GetValue();
@@ -218,6 +253,13 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 			 m_potcurrentDialog->m_bUseRate = m_bCopyUseRate;
 			 m_potcurrentDialog->m_bUseDirection = m_bCopyUseDirection;	
 			 m_potcurrentDialog->m_bUseFillColour = m_botcurrentUseHiDef;
+
+			 m_potcurrentDialog->myUseColour[0] = myVColour[0];
+ 			 m_potcurrentDialog->myUseColour[1] = myVColour[1];
+ 			 m_potcurrentDialog->myUseColour[2] = myVColour[2];
+ 			 m_potcurrentDialog->myUseColour[3] = myVColour[3];
+ 			 m_potcurrentDialog->myUseColour[4] = myVColour[4];
+
 		 }
 
 		 if (m_potcurrentOverlayFactory)
@@ -371,6 +413,13 @@ bool otcurrent_pi::LoadConfig(void)
     m_otcurrent_dialog_x =  pConf->Read ( _T ( "otcurrentDialogPosX" ), 20L );
     m_otcurrent_dialog_y =  pConf->Read ( _T ( "otcurrentDialogPosY" ), 170L );
 
+	  
+    //wxString DisplayString = _T("read test");
+    pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
+    pConf->Read( _T("VColour1"), &myVColour[1], myVColour[1] );
+	pConf->Read( _T("VColour2"), &myVColour[2], myVColour[2] );
+	pConf->Read( _T("VColour3"), &myVColour[3], myVColour[3] );
+	pConf->Read( _T("VColour4"), &myVColour[4], myVColour[4] );
 
 	
     return true;
@@ -393,7 +442,13 @@ bool otcurrent_pi::SaveConfig(void)
     pConf->Write ( _T ( "otcurrentDialogPosX" ),   m_otcurrent_dialog_x );
     pConf->Write ( _T ( "otcurrentDialogPosY" ),   m_otcurrent_dialog_y );
 
-	
+	pConf->Write( _T("VColour0"), myVColour[0] );
+	pConf->Write( _T("VColour1"), myVColour[1] );
+	pConf->Write( _T("VColour2"), myVColour[2] );
+	pConf->Write( _T("VColour3"), myVColour[3] );
+	pConf->Write( _T("VColour4"), myVColour[4] );
+
+
     return true;
 }
 
@@ -401,4 +456,6 @@ void otcurrent_pi::SetColorScheme(PI_ColorScheme cs)
 {
     DimeWindow(m_potcurrentDialog);
 }
+
+
 

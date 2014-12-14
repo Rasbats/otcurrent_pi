@@ -30,6 +30,7 @@
 #include "bbox.h"
 #include "tcmgr.h"
 
+
 using namespace std;
 
 
@@ -93,7 +94,7 @@ public:
 
 	*/
 	
-    void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
+    void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
         bool bforce_redraw_currents, bool bdraw_mono_for_mask, wxDateTime myTime);
 
     void Reset();

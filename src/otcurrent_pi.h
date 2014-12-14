@@ -34,14 +34,19 @@
   #include <wx/glcanvas.h>
 #endif //precompiled headers
 
-#include "version.h"
+#define     PLUGIN_VERSION_MAJOR    1
+#define     PLUGIN_VERSION_MINOR    0
 
 #define     MY_API_VERSION_MAJOR    1
 #define     MY_API_VERSION_MINOR    7
 
-#include "ocpn_plugin.h"
+#include "../../../include/ocpn_plugin.h"
 #include "otcurrentOverlayFactory.h"
 #include "otcurrentUIDialog.h"
+
+extern wxString myVColour[5]; 
+
+
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
@@ -94,11 +99,11 @@ public:
       otcurrentOverlayFactory *GetotcurrentOverlayFactory(){ return m_potcurrentOverlayFactory; }
 
 	  
-     // wxString         myPort;
+     
 	 //wxString SetPort(){ return myPort;}
 	 // wxString myNewPort; 
 	 // void SetKMLDir(wxString KML_dir){ m_KML_dir = KML_dir;};
-	
+
 
 private:
       bool LoadConfig(void);
@@ -148,6 +153,9 @@ private:
       int              m_height;
 
       bool        m_bShowotcurrent;
+
+	
+
 };
 
 //----------------------------------------------------------------------------------------
@@ -157,7 +165,10 @@ private:
 class otcurrentPreferencesDialog : public otcurrentPreferencesDialogBase
 {
 public:
-    otcurrentPreferencesDialog( wxWindow *pparent)
+	
+    
+	
+	otcurrentPreferencesDialog( wxWindow *pparent)
     : otcurrentPreferencesDialogBase(pparent) {}
     ~otcurrentPreferencesDialog() {}
 

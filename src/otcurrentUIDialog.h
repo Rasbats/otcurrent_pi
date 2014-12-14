@@ -32,10 +32,12 @@
 #ifndef  WX_PRECOMP
 #include "wx/wx.h"
 #endif //precompiled headers
+
 #include <wx/fileconf.h>
 #include <wx/glcanvas.h>
 
 #include "otcurrentUIDialogBase.h"
+
 #include "tinyxml.h"
 #include <wx/progdlg.h>
 #include <list>
@@ -49,6 +51,10 @@
 #include <wx/calctrl.h>
 #include "wx/window.h"
 #include "timectrl.h"
+#include <wx/colordlg.h>
+#include <wx/event.h>
+
+
 
 using namespace std;
 
@@ -77,9 +83,8 @@ class Position
 public:
 	double latD, lonD;
     wxString lat, lon;
-	wxString stat_num, port_num;
-	wxString minus_plus[12];
-		
+	wxString port_num;
+
 	wxString minus_6, minus_5, minus_4, minus_3 ,minus_2, minus_1, zero;
 	wxString plus_1, plus_2,  plus_3, plus_4, plus_5, plus_6;
     Position *prev, *next; /* doubly linked circular list of positions */
@@ -132,28 +137,32 @@ public:
 	double CalcCurrent(double m_spRange, double m_npRange, double m_spRateDiamond, double m_npRateDiamond, double m_rangeOnDay);
 	int CalcHoursFromHWNow();
 	wxString nearestHW[8];
-	int round(double c);
+	int otcurrentUIDialog::round(double c);
 
 	bool m_bUseRate;    
 	bool m_bUseDirection; 
 	bool m_bUseFillColour;
 
+	wxString myUseColour[5];
+
 	wxDateTime m_dtNow;
 	double m_dInterval;
+
 	bool onNext;
 	bool onPrev;
 	
-
 	wxString m_PortSelected;
 	wxString m_IntervalSelected;
 	time_t myCurrentTime; 
 
-
 	void OnCalendarShow( wxCommandEvent& event );
 	void OnNow( wxCommandEvent& event );
-	wxString MakeDateTimeLabel(wxDateTime myDateTime);
+	wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime);
 
 private:
+
+    
+
     void OnClose( wxCloseEvent& event );
     void OnMove( wxMoveEvent& event );
     void OnSize( wxSizeEvent& event );

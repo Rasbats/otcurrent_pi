@@ -200,7 +200,7 @@ TCMgr::TCMgr(const wxString &data_dir, const wxString &home_dir)
       {
             next_line (fp, linrec, 0);
             sscanf (linrec, "%s %lf", junk, &(cst_speeds[a]));
-            cst_speeds[a] *= M_PI / 648000.0; /* Convert to radians per second */
+            cst_speeds[a] *= M_PI / 648000; /* Convert to radians per second */
           /*   M_PI / 180 to get radians, / 3600 to get seconds */
       }
 
