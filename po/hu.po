@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 2.6.1718\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 07:09+0100\n"
+"POT-Creation-Date: 2014-12-16 13:10+0000\n"
 "PO-Revision-Date: 2012-12-29 13:16+0100\n"
 "Last-Translator: Szabolcs SZIGETI <szigi@ik.bme.hu>\n"
 "Language-Team: \n"
@@ -17,20 +17,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 #
-#, fuzzy
-msgid "/Settings/tcurrent"
-msgstr "Áramlat sebessége, csomó."
-#
-msgid "???"
+#, c-format
+msgid " width = %d height = %d\n"
 msgstr ""
+#
+#, c-format
+msgid " x = %d y = %d\n"
+msgstr ""
+#
+#, fuzzy
+msgid "/Settings/otcurrent"
+msgstr "Áramlat sebessége, csomó."
 #
 msgid "About Tidal Arrows"
 msgstr ""
 #
-msgid "About these Tidal Arrows"
+msgid "Cancel"
 msgstr ""
 #
-msgid "Choose Date/Time"
+msgid "Date/Time"
 msgstr ""
 #
 msgid "Display tidal direction"
@@ -48,51 +53,6 @@ msgstr ""
 msgid "HW"
 msgstr ""
 #
-msgid "HW +6"
-msgstr ""
-#
-msgid "HW -6"
-msgstr ""
-#
-msgid "HW+1"
-msgstr ""
-#
-msgid "HW+2"
-msgstr ""
-#
-msgid "HW+3"
-msgstr ""
-#
-msgid "HW+4"
-msgstr ""
-#
-msgid "HW+5"
-msgstr ""
-#
-msgid "HW+6"
-msgstr ""
-#
-msgid "HW-1"
-msgstr ""
-#
-msgid "HW-2"
-msgstr ""
-#
-msgid "HW-3"
-msgstr ""
-#
-msgid "HW-4"
-msgstr ""
-#
-msgid "HW-5"
-msgstr ""
-#
-msgid "HW-6"
-msgstr ""
-#
-msgid "High Water"
-msgstr ""
-#
 msgid "LOC"
 msgstr ""
 #
@@ -105,28 +65,13 @@ msgstr ""
 msgid "No Tidal Data"
 msgstr ""
 #
-msgid "No tidal data"
-msgstr ""
-#
 msgid "No tidal data for this port"
-msgstr ""
-#
-msgid "No tidal data found"
-msgstr ""
-#
-msgid "None"
 msgstr ""
 #
 msgid "Now"
 msgstr ""
 #
-msgid "Please choose a new date"
-msgstr ""
-#
-msgid "Port finder"
-msgstr ""
-#
-msgid "Port not found"
+msgid "OK"
 msgstr ""
 #
 #
@@ -137,18 +82,21 @@ msgstr "BRIB beállítások"
 msgid "Previous"
 msgstr ""
 #
-msgid "Select High Water"
+msgid "START Date/Time"
 msgstr ""
 #
-msgid "Standard Port"
+msgid "Select"
+msgstr ""
+#
+msgid "Select date/time for current prediction"
+msgstr ""
+#
+msgid "Step (Minutes)"
 msgstr ""
 #
 #, fuzzy
 msgid "Tidal Current Control"
 msgstr "GRIB kijelzés vezérlés"
-#
-msgid "Tidal Data"
-msgstr ""
 #
 msgid ""
 "Tidal Data for UKHO Tidal Diamonds\n"
@@ -191,27 +139,20 @@ msgid "Using Tide/Current data from:  "
 msgstr ""
 #
 #, fuzzy
-msgid "tcurrent"
+msgid "otcurrent"
 msgstr "Áramlat sebessége, csomó."
 #
 #, fuzzy
-msgid "tcurrent PlugIn for OpenCPN"
+msgid "otcurrent PlugIn for OpenCPN"
 msgstr "OpenCPN GRIB modul"
 #
 msgid ""
-"tcurrent PlugIn for OpenCPN\n"
+"otcurrent PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n"
 "\n"
 "\t\t\t   "
 msgstr ""
 #
-msgid "tcurrent Settings"
-msgstr ""
-#
-#, fuzzy
-msgid "tcurrentPort"
-msgstr "Áramlat sebessége, csomó."
-#
 #
 #
 #
@@ -230,15 +171,60 @@ msgstr "Áramlat sebessége, csomó."
 #
 #
 #, fuzzy
-msgid "tcurrentUseDirection"
+msgid "otcurrent Settings"
 msgstr "BRIB beállítások"
 #
-msgid "tcurrentUseFillColour"
-msgstr ""
+#, fuzzy
+msgid "otcurrentInterval"
+msgstr "Áramlat sebessége, csomó."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #, fuzzy
-msgid "tcurrentUseRate"
+msgid "otcurrentUseDirection"
+msgstr "BRIB beállítások"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "otcurrentUseFillColour"
+msgstr "BRIB beállítások"
+#
+#, fuzzy
+msgid "otcurrentUseRate"
 msgstr "Áramlat sebessége, csomó."
+#
+#
 #
 #
 #
@@ -278,9 +264,13 @@ msgstr "Áramlat sebessége, csomó."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Áramlat sebessége, csomó."
+#
+#
 #
 #
 #
@@ -330,8 +320,12 @@ msgstr "Áramlat sebessége, csomó."
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "GRIB fájl könyvtár"
+#
+#
 #
 #
 #
@@ -344,6 +338,8 @@ msgstr "Áramlat sebessége, csomó."
 #~ msgstr ""
 #~ "Zoomolj, vagy válts nagyobb méretarányra az elnyomott HTSGW GRIB "
 #~ "megjelenítéséhez"
+#
+#
 #
 #
 #
@@ -373,11 +369,15 @@ msgstr "Áramlat sebessége, csomó."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
 #~ msgstr ""
 #~ "Zoomolj, vagy válts nagyobb méretarányra az elnyomott CRAIN GRIB "
 #~ "megjelenítéséhez"
+#
+#
 #
 #
 #
@@ -407,11 +407,15 @@ msgstr "Áramlat sebessége, csomó."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
 #~ msgstr ""
 #~ "Zoomolj, vagy válts nagyobb méretarányra az elnyomott SEATEMP GRIB "
 #~ "megjelenítéséhez"
+#
+#
 #
 #
 #
@@ -436,9 +440,13 @@ msgstr "Áramlat sebessége, csomó."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Légnyomás, mBar"
+#
+#
 #
 #
 #
@@ -469,6 +477,8 @@ msgstr "Áramlat sebessége, csomó."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Tenger felszín hőmérséklete, C"
@@ -479,9 +489,13 @@ msgstr "Áramlat sebessége, csomó."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "GRIB könyvtár kiválasztása"
+#
+#
 #
 #
 #
@@ -552,8 +566,12 @@ msgstr "Áramlat sebessége, csomó."
 #
 #
 #
+#
+#
 #~ msgid "Show metres/sec for Wind Speed"
 #~ msgstr "Szélsebesség méter/sec-ben mutatása"
+#
+#
 #
 #
 #
@@ -576,8 +594,12 @@ msgstr "Áramlat sebessége, csomó."
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Nagyfelbontású grafika használata"
+#
+#
 #
 #
 #
@@ -605,9 +627,13 @@ msgstr "Áramlat sebessége, csomó."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Szél irány"
+#
+#
 #
 #
 #
@@ -657,8 +683,17 @@ msgstr "Áramlat sebessége, csomó."
 #
 #
 #
+#
+#
 #~ msgid "Wind Speed, Kts."
 #~ msgstr "Szél sebesség, csomó."
+#
+#
+#, fuzzy
+#~ msgid "otcurrentPort"
+#~ msgstr "Áramlat sebessége, csomó."
+#
+#
 #
 #
 #
@@ -681,6 +716,8 @@ msgstr "Áramlat sebessége, csomó."
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "GRIB adat"
+#
+#
 #
 #
 #

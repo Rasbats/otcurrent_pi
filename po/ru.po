@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 1.3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 07:09+0100\n"
+"POT-Creation-Date: 2014-12-16 13:10+0000\n"
 "PO-Revision-Date: 2010-03-31 01:12+0300\n"
 "Last-Translator: \n"
 "Language-Team: Eugene Polyan <epolyan@gmail.com>\n"
@@ -19,19 +19,24 @@ msgstr ""
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "X-Poedit-SourceCharset: utf-8\n"
 #
-msgid "/Settings/tcurrent"
+#, c-format
+msgid " width = %d height = %d\n"
 msgstr ""
 #
-msgid "???"
+#, c-format
+msgid " x = %d y = %d\n"
+msgstr ""
+#
+msgid "/Settings/otcurrent"
 msgstr ""
 #
 msgid "About Tidal Arrows"
 msgstr ""
 #
-msgid "About these Tidal Arrows"
+msgid "Cancel"
 msgstr ""
 #
-msgid "Choose Date/Time"
+msgid "Date/Time"
 msgstr ""
 #
 msgid "Display tidal direction"
@@ -49,51 +54,6 @@ msgstr ""
 msgid "HW"
 msgstr ""
 #
-msgid "HW +6"
-msgstr ""
-#
-msgid "HW -6"
-msgstr ""
-#
-msgid "HW+1"
-msgstr ""
-#
-msgid "HW+2"
-msgstr ""
-#
-msgid "HW+3"
-msgstr ""
-#
-msgid "HW+4"
-msgstr ""
-#
-msgid "HW+5"
-msgstr ""
-#
-msgid "HW+6"
-msgstr ""
-#
-msgid "HW-1"
-msgstr ""
-#
-msgid "HW-2"
-msgstr ""
-#
-msgid "HW-3"
-msgstr ""
-#
-msgid "HW-4"
-msgstr ""
-#
-msgid "HW-5"
-msgstr ""
-#
-msgid "HW-6"
-msgstr ""
-#
-msgid "High Water"
-msgstr ""
-#
 msgid "LOC"
 msgstr ""
 #
@@ -106,28 +66,13 @@ msgstr ""
 msgid "No Tidal Data"
 msgstr ""
 #
-msgid "No tidal data"
-msgstr ""
-#
 msgid "No tidal data for this port"
-msgstr ""
-#
-msgid "No tidal data found"
-msgstr ""
-#
-msgid "None"
 msgstr ""
 #
 msgid "Now"
 msgstr ""
 #
-msgid "Please choose a new date"
-msgstr ""
-#
-msgid "Port finder"
-msgstr ""
-#
-msgid "Port not found"
+msgid "OK"
 msgstr ""
 #
 msgid "Preferences"
@@ -136,10 +81,16 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 #
-msgid "Select High Water"
+msgid "START Date/Time"
 msgstr ""
 #
-msgid "Standard Port"
+msgid "Select"
+msgstr ""
+#
+msgid "Select date/time for current prediction"
+msgstr ""
+#
+msgid "Step (Minutes)"
 msgstr ""
 #
 #
@@ -149,9 +100,6 @@ msgstr ""
 #, fuzzy
 msgid "Tidal Current Control"
 msgstr "Настройки отображения информации GRIB"
-#
-msgid "Tidal Data"
-msgstr ""
 #
 msgid ""
 "Tidal Data for UKHO Tidal Diamonds\n"
@@ -193,33 +141,35 @@ msgstr ""
 msgid "Using Tide/Current data from:  "
 msgstr ""
 #
-msgid "tcurrent"
+msgid "otcurrent"
 msgstr ""
 #
-msgid "tcurrent PlugIn for OpenCPN"
+msgid "otcurrent PlugIn for OpenCPN"
 msgstr ""
 #
 msgid ""
-"tcurrent PlugIn for OpenCPN\n"
+"otcurrent PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n"
 "\n"
 "\t\t\t   "
 msgstr ""
 #
-msgid "tcurrent Settings"
+msgid "otcurrent Settings"
 msgstr ""
 #
-msgid "tcurrentPort"
+msgid "otcurrentInterval"
 msgstr ""
 #
-msgid "tcurrentUseDirection"
+msgid "otcurrentUseDirection"
 msgstr ""
 #
-msgid "tcurrentUseFillColour"
+msgid "otcurrentUseFillColour"
 msgstr ""
 #
-msgid "tcurrentUseRate"
+msgid "otcurrentUseRate"
 msgstr ""
+#
+#
 #
 #
 #
@@ -256,6 +206,8 @@ msgstr ""
 #, fuzzy
 #~ msgid "Colors"
 #~ msgstr "Закрыть"
+#
+#
 #
 #
 #
@@ -309,8 +261,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "Каталог файлов GRIB"
+#
+#
 #
 #
 #
@@ -340,9 +296,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Уменьшите масштаб для просмотра скртых меток HTSGW GRIB"
+#
+#
 #
 #
 #
@@ -378,9 +338,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "Уменьшите масштаб для просмотра скртых меток CRAIN GRIB"
+#
+#
 #
 #
 #
@@ -414,9 +378,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Уменьшите масштаб для просмотра скртых меток CRAIN GRIB"
+#
+#
 #
 #
 #
@@ -446,6 +414,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure (MSL)"
 #~ msgstr "Давление, мБар"
@@ -460,9 +430,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Каталог файлов GRIB"
+#
+#
 #
 #
 #
@@ -517,6 +491,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Характерная высота волны, м"
@@ -531,8 +507,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Использовать графику с высоким разрешением"
+#
+#
 #
 #
 #
@@ -588,6 +568,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Направление ветра"
@@ -606,9 +588,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Направление ветра"
+#
+#
 #
 #
 #
@@ -664,8 +650,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind Speed, Kts."
 #~ msgstr "Скорость ветра, узл."
+#
+#
 #
 #
 #

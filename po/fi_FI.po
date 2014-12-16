@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 2.2.1111\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 07:09+0100\n"
+"POT-Creation-Date: 2014-12-16 13:10+0000\n"
 "PO-Revision-Date: 2010-12-09 22:34+0200\n"
 "Last-Translator: Asko Laite <alaite@netti.fi>\n"
 "Language-Team: Asko Laite <alaite@netti.fi>\n"
@@ -18,20 +18,25 @@ msgstr ""
 "X-Poedit-Language: Finnish\n"
 "X-Poedit-Country: FINLAND\n"
 #
-#, fuzzy
-msgid "/Settings/tcurrent"
-msgstr "Virran nopeus, solmua"
-#
-msgid "???"
+#, c-format
+msgid " width = %d height = %d\n"
 msgstr ""
+#
+#, c-format
+msgid " x = %d y = %d\n"
+msgstr ""
+#
+#, fuzzy
+msgid "/Settings/otcurrent"
+msgstr "Virran nopeus, solmua"
 #
 msgid "About Tidal Arrows"
 msgstr ""
 #
-msgid "About these Tidal Arrows"
+msgid "Cancel"
 msgstr ""
 #
-msgid "Choose Date/Time"
+msgid "Date/Time"
 msgstr ""
 #
 msgid "Display tidal direction"
@@ -49,51 +54,6 @@ msgstr ""
 msgid "HW"
 msgstr ""
 #
-msgid "HW +6"
-msgstr ""
-#
-msgid "HW -6"
-msgstr ""
-#
-msgid "HW+1"
-msgstr ""
-#
-msgid "HW+2"
-msgstr ""
-#
-msgid "HW+3"
-msgstr ""
-#
-msgid "HW+4"
-msgstr ""
-#
-msgid "HW+5"
-msgstr ""
-#
-msgid "HW+6"
-msgstr ""
-#
-msgid "HW-1"
-msgstr ""
-#
-msgid "HW-2"
-msgstr ""
-#
-msgid "HW-3"
-msgstr ""
-#
-msgid "HW-4"
-msgstr ""
-#
-msgid "HW-5"
-msgstr ""
-#
-msgid "HW-6"
-msgstr ""
-#
-msgid "High Water"
-msgstr ""
-#
 msgid "LOC"
 msgstr ""
 #
@@ -106,28 +66,13 @@ msgstr ""
 msgid "No Tidal Data"
 msgstr ""
 #
-msgid "No tidal data"
-msgstr ""
-#
 msgid "No tidal data for this port"
-msgstr ""
-#
-msgid "No tidal data found"
-msgstr ""
-#
-msgid "None"
 msgstr ""
 #
 msgid "Now"
 msgstr ""
 #
-msgid "Please choose a new date"
-msgstr ""
-#
-msgid "Port finder"
-msgstr ""
-#
-msgid "Port not found"
+msgid "OK"
 msgstr ""
 #
 #
@@ -138,18 +83,21 @@ msgstr "GRIB asetukset"
 msgid "Previous"
 msgstr ""
 #
-msgid "Select High Water"
+msgid "START Date/Time"
 msgstr ""
 #
-msgid "Standard Port"
+msgid "Select"
+msgstr ""
+#
+msgid "Select date/time for current prediction"
+msgstr ""
+#
+msgid "Step (Minutes)"
 msgstr ""
 #
 #, fuzzy
 msgid "Tidal Current Control"
 msgstr "GRIB Näyttöohjaus"
-#
-msgid "Tidal Data"
-msgstr ""
 #
 msgid ""
 "Tidal Data for UKHO Tidal Diamonds\n"
@@ -192,27 +140,20 @@ msgid "Using Tide/Current data from:  "
 msgstr ""
 #
 #, fuzzy
-msgid "tcurrent"
+msgid "otcurrent"
 msgstr "Virran nopeus, solmua"
 #
 #, fuzzy
-msgid "tcurrent PlugIn for OpenCPN"
+msgid "otcurrent PlugIn for OpenCPN"
 msgstr "GRIB moduuli OpenCPN:lle"
 #
 msgid ""
-"tcurrent PlugIn for OpenCPN\n"
+"otcurrent PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n"
 "\n"
 "\t\t\t   "
 msgstr ""
 #
-msgid "tcurrent Settings"
-msgstr ""
-#
-#, fuzzy
-msgid "tcurrentPort"
-msgstr "Virran nopeus, solmua"
-#
 #
 #
 #
@@ -231,15 +172,60 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #, fuzzy
-msgid "tcurrentUseDirection"
+msgid "otcurrent Settings"
 msgstr "GRIB asetukset"
 #
-msgid "tcurrentUseFillColour"
-msgstr ""
+#, fuzzy
+msgid "otcurrentInterval"
+msgstr "Virran nopeus, solmua"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #, fuzzy
-msgid "tcurrentUseRate"
+msgid "otcurrentUseDirection"
+msgstr "GRIB asetukset"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "otcurrentUseFillColour"
+msgstr "GRIB asetukset"
+#
+#, fuzzy
+msgid "otcurrentUseRate"
 msgstr "Virran nopeus, solmua"
+#
+#
 #
 #
 #
@@ -279,6 +265,8 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Virran nopeus, solmua"
@@ -294,9 +282,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Data Display Preferences"
 #~ msgstr "GRIB asetukset"
+#
+#
 #
 #
 #
@@ -343,6 +335,8 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "GRIB-tiedostohakemisto"
 #
@@ -353,8 +347,12 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #~ msgid "Grib"
 #~ msgstr "Grib"
+#
+#
 #
 #
 #
@@ -377,9 +375,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Zoomaa ulos nähdäksesi GRIB pintalämpötilan"
+#
+#
 #
 #
 #
@@ -409,9 +411,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "Zoomaa ulos nähdäksesi GRIB virtatiedot"
+#
+#
 #
 #
 #
@@ -439,6 +445,8 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Zoomaa ulos nähdäksesi GRIB sadetiedon"
@@ -449,9 +457,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Ilampaine, mbar"
+#
+#
 #
 #
 #
@@ -482,6 +494,8 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Meriveden pintalämpötila, C"
@@ -492,9 +506,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Valitse GRIB-hakemisto"
+#
+#
 #
 #
 #
@@ -543,6 +561,8 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Merkitsevä aallonkorkeus, m"
@@ -553,8 +573,12 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Käytä tarkkuusgrafiikkaa"
+#
+#
 #
 #
 #
@@ -604,6 +628,8 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Tuulen suunta"
@@ -619,9 +645,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Tuulen suunta"
+#
+#
 #
 #
 #
@@ -671,8 +701,17 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #~ msgid "Wind Speed, Kts."
 #~ msgstr "Tuulen nopeus, solmua"
+#
+#
+#, fuzzy
+#~ msgid "otcurrentPort"
+#~ msgstr "Virran nopeus, solmua"
+#
+#
 #
 #
 #
@@ -695,6 +734,8 @@ msgstr "Virran nopeus, solmua"
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "GRIB Data"
+#
+#
 #
 #
 #

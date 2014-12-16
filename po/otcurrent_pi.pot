@@ -1,0 +1,199 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: otcurrent_pi 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-16 13:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/otcurrentOverlayFactory.cpp:890 src/otcurrentUIDialog.cpp:375
+msgid "Using Tide/Current data from:  "
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:101
+msgid "LOC"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:103
+msgid "UTC"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:122 src/otcurrentUIDialog.cpp:171
+msgid "/Settings/otcurrent"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:124 src/otcurrentUIDialog.cpp:173
+msgid "otcurrentUseRate"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:125 src/otcurrentUIDialog.cpp:174
+msgid "otcurrentUseDirection"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:126 src/otcurrentUIDialog.cpp:175
+msgid "otcurrentUseFillColour"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:128 src/otcurrentUIDialog.cpp:185
+msgid "otcurrentInterval"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:244
+msgid "START Date/Time"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:379
+msgid "HARMONIC"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:409
+msgid "No tidal data for this port"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:409
+msgid "No Tidal Data"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:504 src/otcurrentUIDialog.cpp:517
+msgid "HW"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:504 src/otcurrentUIDialog.cpp:512
+msgid "LW"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:696
+msgid ""
+"Tidal Data for UKHO Tidal Diamonds\n"
+"--------------------------------------------------------------\n"
+"The standard OpenCPN distribution has tidal data for the\n"
+"following ports, which this plugin uses:\n"
+"\n"
+"PLYMOUTH (DEVONPORT)\n"
+"PORTSMOUTH\n"
+"DOVER\n"
+"SHEERNESS\n"
+"LOWESTOFT\n"
+"IMMINGHAM\n"
+"LEITH\n"
+"ABERDEEN\n"
+"WICK\n"
+"LERWICK\n"
+"ULLAPOOL\n"
+"LIVERPOOL (GLADSTONE DOCK)\n"
+"HOLYHEAD\n"
+"MILFORD HAVEN\n"
+"PORT OF BRISTOL (AVONMOUTH)\n"
+"ST. HELIER\n"
+"\n"
+"Use this data with caution.\n"
+"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
+"\n"
+"--------------------------------------------------------------------\n"
+"\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n"
+"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
+"Stream Atlases. This is based on the average range for the day\n"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:697
+msgid "About Tidal Arrows"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:714
+#, c-format
+msgid " x = %d y = %d\n"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:716
+#, c-format
+msgid " width = %d height = %d\n"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:733
+msgid "OK"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:735
+msgid "Cancel"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:21
+msgid "Date/Time"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:32
+msgid "Select"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:33
+msgid "Select date/time for current prediction"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:43
+msgid "Now"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:50
+msgid "Step (Minutes)"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:69
+msgid "Previous"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:75
+msgid "Next"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:206
+msgid "Display tidal rates (knots)"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:209
+msgid "Display tidal direction"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "Fill Colour"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.h:138
+msgid "Tidal Current Control"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.h:197
+msgid "otcurrent Settings"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.h:249
+msgid "Preferences"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:120
+msgid "otcurrent"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:181
+msgid "otcurrent PlugIn for OpenCPN"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:187
+msgid ""
+"otcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n"
+"\n"
+"\t\t\t   "
+msgstr ""

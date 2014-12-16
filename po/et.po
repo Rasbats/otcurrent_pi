@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.1.622\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 07:09+0100\n"
+"POT-Creation-Date: 2014-12-16 13:10+0000\n"
 "PO-Revision-Date: 2011-01-09 19:25+0200\n"
 "Last-Translator: Peep Prants <peep@prants.ee>\n"
 "Language-Team: OpenCPN ET <LL@li.org>\n"
@@ -16,21 +16,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 #
+#, c-format
+msgid " width = %d height = %d\n"
+msgstr ""
+#
+#, c-format
+msgid " x = %d y = %d\n"
+msgstr ""
+#
 #
 #, fuzzy
-msgid "/Settings/tcurrent"
+msgid "/Settings/otcurrent"
 msgstr "Praegune kiirus, sõlme"
-#
-msgid "???"
-msgstr ""
 #
 msgid "About Tidal Arrows"
 msgstr ""
 #
-msgid "About these Tidal Arrows"
+msgid "Cancel"
 msgstr ""
 #
-msgid "Choose Date/Time"
+msgid "Date/Time"
 msgstr ""
 #
 msgid "Display tidal direction"
@@ -48,51 +53,6 @@ msgstr ""
 msgid "HW"
 msgstr ""
 #
-msgid "HW +6"
-msgstr ""
-#
-msgid "HW -6"
-msgstr ""
-#
-msgid "HW+1"
-msgstr ""
-#
-msgid "HW+2"
-msgstr ""
-#
-msgid "HW+3"
-msgstr ""
-#
-msgid "HW+4"
-msgstr ""
-#
-msgid "HW+5"
-msgstr ""
-#
-msgid "HW+6"
-msgstr ""
-#
-msgid "HW-1"
-msgstr ""
-#
-msgid "HW-2"
-msgstr ""
-#
-msgid "HW-3"
-msgstr ""
-#
-msgid "HW-4"
-msgstr ""
-#
-msgid "HW-5"
-msgstr ""
-#
-msgid "HW-6"
-msgstr ""
-#
-msgid "High Water"
-msgstr ""
-#
 msgid "LOC"
 msgstr ""
 #
@@ -105,28 +65,13 @@ msgstr ""
 msgid "No Tidal Data"
 msgstr ""
 #
-msgid "No tidal data"
-msgstr ""
-#
 msgid "No tidal data for this port"
-msgstr ""
-#
-msgid "No tidal data found"
-msgstr ""
-#
-msgid "None"
 msgstr ""
 #
 msgid "Now"
 msgstr ""
 #
-msgid "Please choose a new date"
-msgstr ""
-#
-msgid "Port finder"
-msgstr ""
-#
-msgid "Port not found"
+msgid "OK"
 msgstr ""
 #
 #
@@ -137,19 +82,22 @@ msgstr "GRIP Seaded"
 msgid "Previous"
 msgstr ""
 #
-msgid "Select High Water"
+msgid "START Date/Time"
 msgstr ""
 #
-msgid "Standard Port"
+msgid "Select"
+msgstr ""
+#
+msgid "Select date/time for current prediction"
+msgstr ""
+#
+msgid "Step (Minutes)"
 msgstr ""
 #
 #
 #, fuzzy
 msgid "Tidal Current Control"
 msgstr "GRIB-i ekraani kontroll"
-#
-msgid "Tidal Data"
-msgstr ""
 #
 msgid ""
 "Tidal Data for UKHO Tidal Diamonds\n"
@@ -193,28 +141,20 @@ msgstr ""
 #
 #
 #, fuzzy
-msgid "tcurrent"
+msgid "otcurrent"
 msgstr "Praegune kiirus, sõlme"
 #
 #, fuzzy
-msgid "tcurrent PlugIn for OpenCPN"
+msgid "otcurrent PlugIn for OpenCPN"
 msgstr "GRIB lisa OpenCPN-ile"
 #
 msgid ""
-"tcurrent PlugIn for OpenCPN\n"
+"otcurrent PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n"
 "\n"
 "\t\t\t   "
 msgstr ""
 #
-msgid "tcurrent Settings"
-msgstr ""
-#
-#
-#, fuzzy
-msgid "tcurrentPort"
-msgstr "Praegune kiirus, sõlme"
-#
 #
 #
 #
@@ -233,16 +173,62 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #, fuzzy
-msgid "tcurrentUseDirection"
+msgid "otcurrent Settings"
 msgstr "GRIP Seaded"
 #
-msgid "tcurrentUseFillColour"
-msgstr ""
+#
+#, fuzzy
+msgid "otcurrentInterval"
+msgstr "Praegune kiirus, sõlme"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #, fuzzy
-msgid "tcurrentUseRate"
+msgid "otcurrentUseDirection"
+msgstr "GRIP Seaded"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "otcurrentUseFillColour"
+msgstr "GRIP Seaded"
+#
+#
+#, fuzzy
+msgid "otcurrentUseRate"
 msgstr "Praegune kiirus, sõlme"
+#
+#
 #
 #
 #
@@ -284,6 +270,8 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Praegune kiirus, sõlme"
@@ -299,9 +287,13 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Data Display Preferences"
 #~ msgstr "GRIP Seaded"
+#
+#
 #
 #
 #
@@ -350,6 +342,8 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "GRIB faili asukoht"
 #
@@ -360,8 +354,12 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #~ msgid "Grib"
 #~ msgstr "Grib"
+#
+#
 #
 #
 #
@@ -386,9 +384,13 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Palun vähenda mõõtkava nägemaks peidetud MERETEMPERATUURI"
+#
+#
 #
 #
 #
@@ -420,9 +422,13 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "Palun vähenda mõõtkava nägemaks peidetud OOKEANI MOMENDI ILMA"
+#
+#
 #
 #
 #
@@ -452,6 +458,8 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Palun vähenda mõõtkava nägemaks peidetud CRAIN ILMA"
@@ -463,9 +471,13 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Õhurõhk, mBar"
+#
+#
 #
 #
 #
@@ -498,6 +510,8 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Veepinna temperatuur, C"
@@ -509,9 +523,13 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Vali GRIB-i asukoht"
+#
+#
 #
 #
 #
@@ -562,6 +580,8 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Oluline laine kõrgus, m"
@@ -573,8 +593,12 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Kasuta kõrgresulutsioonil graafikat"
+#
+#
 #
 #
 #
@@ -626,6 +650,8 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Tuule suund"
@@ -642,9 +668,13 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Tuule suund"
+#
+#
 #
 #
 #
@@ -696,8 +726,18 @@ msgstr "Praegune kiirus, sõlme"
 #
 #
 #
+#
+#
 #~ msgid "Wind Speed, Kts."
 #~ msgstr "Tuule kiirus, sõlmedes"
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentPort"
+#~ msgstr "Praegune kiirus, sõlme"
+#
+#
 #
 #
 #
@@ -721,6 +761,8 @@ msgstr "Praegune kiirus, sõlme"
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "GRIB-i andmed"
+#
+#
 #
 #
 #

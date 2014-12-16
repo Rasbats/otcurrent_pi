@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 07:09+0100\n"
+"POT-Creation-Date: 2014-12-16 13:10+0000\n"
 "PO-Revision-Date: 2010-03-29 20:29+0100\n"
 "Last-Translator: Piotr Carlson <pjotrc@interia.pl>\n"
 "Language-Team: Wladyslaw Stolle <stollew@poczta.onet.pl>\n"
@@ -16,19 +16,24 @@ msgstr ""
 "X-Poedit-Country: POLAND\n"
 "X-Poedit-SourceCharset: utf-8\n"
 #
-msgid "/Settings/tcurrent"
+#, c-format
+msgid " width = %d height = %d\n"
 msgstr ""
 #
-msgid "???"
+#, c-format
+msgid " x = %d y = %d\n"
+msgstr ""
+#
+msgid "/Settings/otcurrent"
 msgstr ""
 #
 msgid "About Tidal Arrows"
 msgstr ""
 #
-msgid "About these Tidal Arrows"
+msgid "Cancel"
 msgstr ""
 #
-msgid "Choose Date/Time"
+msgid "Date/Time"
 msgstr ""
 #
 msgid "Display tidal direction"
@@ -46,51 +51,6 @@ msgstr ""
 msgid "HW"
 msgstr ""
 #
-msgid "HW +6"
-msgstr ""
-#
-msgid "HW -6"
-msgstr ""
-#
-msgid "HW+1"
-msgstr ""
-#
-msgid "HW+2"
-msgstr ""
-#
-msgid "HW+3"
-msgstr ""
-#
-msgid "HW+4"
-msgstr ""
-#
-msgid "HW+5"
-msgstr ""
-#
-msgid "HW+6"
-msgstr ""
-#
-msgid "HW-1"
-msgstr ""
-#
-msgid "HW-2"
-msgstr ""
-#
-msgid "HW-3"
-msgstr ""
-#
-msgid "HW-4"
-msgstr ""
-#
-msgid "HW-5"
-msgstr ""
-#
-msgid "HW-6"
-msgstr ""
-#
-msgid "High Water"
-msgstr ""
-#
 msgid "LOC"
 msgstr ""
 #
@@ -103,28 +63,13 @@ msgstr ""
 msgid "No Tidal Data"
 msgstr ""
 #
-msgid "No tidal data"
-msgstr ""
-#
 msgid "No tidal data for this port"
-msgstr ""
-#
-msgid "No tidal data found"
-msgstr ""
-#
-msgid "None"
 msgstr ""
 #
 msgid "Now"
 msgstr ""
 #
-msgid "Please choose a new date"
-msgstr ""
-#
-msgid "Port finder"
-msgstr ""
-#
-msgid "Port not found"
+msgid "OK"
 msgstr ""
 #
 msgid "Preferences"
@@ -133,10 +78,16 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 #
-msgid "Select High Water"
+msgid "START Date/Time"
 msgstr ""
 #
-msgid "Standard Port"
+msgid "Select"
+msgstr ""
+#
+msgid "Select date/time for current prediction"
+msgstr ""
+#
+msgid "Step (Minutes)"
 msgstr ""
 #
 #
@@ -146,9 +97,6 @@ msgstr ""
 #, fuzzy
 msgid "Tidal Current Control"
 msgstr "Ustawienia prezentacji GRIB"
-#
-msgid "Tidal Data"
-msgstr ""
 #
 msgid ""
 "Tidal Data for UKHO Tidal Diamonds\n"
@@ -190,33 +138,35 @@ msgstr ""
 msgid "Using Tide/Current data from:  "
 msgstr ""
 #
-msgid "tcurrent"
+msgid "otcurrent"
 msgstr ""
 #
-msgid "tcurrent PlugIn for OpenCPN"
+msgid "otcurrent PlugIn for OpenCPN"
 msgstr ""
 #
 msgid ""
-"tcurrent PlugIn for OpenCPN\n"
+"otcurrent PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n"
 "\n"
 "\t\t\t   "
 msgstr ""
 #
-msgid "tcurrent Settings"
+msgid "otcurrent Settings"
 msgstr ""
 #
-msgid "tcurrentPort"
+msgid "otcurrentInterval"
 msgstr ""
 #
-msgid "tcurrentUseDirection"
+msgid "otcurrentUseDirection"
 msgstr ""
 #
-msgid "tcurrentUseFillColour"
+msgid "otcurrentUseFillColour"
 msgstr ""
 #
-msgid "tcurrentUseRate"
+msgid "otcurrentUseRate"
 msgstr ""
+#
+#
 #
 #
 #
@@ -253,6 +203,8 @@ msgstr ""
 #, fuzzy
 #~ msgid "Colors"
 #~ msgstr "Zamknij"
+#
+#
 #
 #
 #
@@ -306,8 +258,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "Katalog plików GRIB"
+#
+#
 #
 #
 #
@@ -339,11 +295,15 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr ""
 #~ "Proszę zmniejszyć powiększenie lub skalę aby wyświetlić dane GRIB dot."
 #~ "wysokości fali znacznej"
+#
+#
 #
 #
 #
@@ -381,11 +341,15 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr ""
 #~ "Proszę zmniejszyć powiększenie lub skalę aby wyświetlić dane GRIB dot. "
 #~ "opadów deszczu"
+#
+#
 #
 #
 #
@@ -421,11 +385,15 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr ""
 #~ "Proszę zmniejszyć powiększenie lub skalę aby wyświetlić dane GRIB dot. "
 #~ "opadów deszczu"
+#
+#
 #
 #
 #
@@ -455,6 +423,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure (MSL)"
 #~ msgstr "Ciśnienie, mBar"
@@ -469,9 +439,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Katalog plików GRIB"
+#
+#
 #
 #
 #
@@ -526,6 +500,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Wysokość fali znacznej, m"
@@ -540,8 +516,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Użyj grafiki wysokiej rozdzielczości"
+#
+#
 #
 #
 #
@@ -597,6 +577,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Kierunek wiatru"
@@ -615,9 +597,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Kierunek wiatru"
+#
+#
 #
 #
 #
@@ -673,8 +659,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind Speed, Kts."
 #~ msgstr "Prędkość wiatru, w."
+#
+#
 #
 #
 #

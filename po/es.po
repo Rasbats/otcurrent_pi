@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 2.6.1718\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 07:09+0100\n"
+"POT-Creation-Date: 2014-12-16 13:10+0000\n"
 "PO-Revision-Date: 2013-01-10 15:09+0100\n"
 "Last-Translator: opencpn.es <opencpn.es@gmx.com>\n"
 "Language-Team: SpanishTeam LaTabernadelPuerto.com <opencpn.es@gmx.com>\n"
@@ -17,22 +17,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 #
+#, c-format
+msgid " width = %d height = %d\n"
+msgstr ""
+#
+#, c-format
+msgid " x = %d y = %d\n"
+msgstr ""
+#
 #
 #
 #, fuzzy
-msgid "/Settings/tcurrent"
+msgid "/Settings/otcurrent"
 msgstr "Velocidad Actual, Nds."
-#
-msgid "???"
-msgstr ""
 #
 msgid "About Tidal Arrows"
 msgstr ""
 #
-msgid "About these Tidal Arrows"
+msgid "Cancel"
 msgstr ""
 #
-msgid "Choose Date/Time"
+msgid "Date/Time"
 msgstr ""
 #
 msgid "Display tidal direction"
@@ -50,51 +55,6 @@ msgstr ""
 msgid "HW"
 msgstr ""
 #
-msgid "HW +6"
-msgstr ""
-#
-msgid "HW -6"
-msgstr ""
-#
-msgid "HW+1"
-msgstr ""
-#
-msgid "HW+2"
-msgstr ""
-#
-msgid "HW+3"
-msgstr ""
-#
-msgid "HW+4"
-msgstr ""
-#
-msgid "HW+5"
-msgstr ""
-#
-msgid "HW+6"
-msgstr ""
-#
-msgid "HW-1"
-msgstr ""
-#
-msgid "HW-2"
-msgstr ""
-#
-msgid "HW-3"
-msgstr ""
-#
-msgid "HW-4"
-msgstr ""
-#
-msgid "HW-5"
-msgstr ""
-#
-msgid "HW-6"
-msgstr ""
-#
-msgid "High Water"
-msgstr ""
-#
 msgid "LOC"
 msgstr ""
 #
@@ -107,28 +67,13 @@ msgstr ""
 msgid "No Tidal Data"
 msgstr ""
 #
-msgid "No tidal data"
-msgstr ""
-#
 msgid "No tidal data for this port"
-msgstr ""
-#
-msgid "No tidal data found"
-msgstr ""
-#
-msgid "None"
 msgstr ""
 #
 msgid "Now"
 msgstr ""
 #
-msgid "Please choose a new date"
-msgstr ""
-#
-msgid "Port finder"
-msgstr ""
-#
-msgid "Port not found"
+msgid "OK"
 msgstr ""
 #
 #
@@ -139,10 +84,16 @@ msgstr "Preferencias GRIB"
 msgid "Previous"
 msgstr ""
 #
-msgid "Select High Water"
+msgid "START Date/Time"
 msgstr ""
 #
-msgid "Standard Port"
+msgid "Select"
+msgstr ""
+#
+msgid "Select date/time for current prediction"
+msgstr ""
+#
+msgid "Step (Minutes)"
 msgstr ""
 #
 #
@@ -150,9 +101,6 @@ msgstr ""
 #, fuzzy
 msgid "Tidal Current Control"
 msgstr "Control Visualización GRIB"
-#
-msgid "Tidal Data"
-msgstr ""
 #
 msgid ""
 "Tidal Data for UKHO Tidal Diamonds\n"
@@ -197,29 +145,20 @@ msgstr ""
 #
 #
 #, fuzzy
-msgid "tcurrent"
+msgid "otcurrent"
 msgstr "Velocidad Actual, Nds."
 #
 #, fuzzy
-msgid "tcurrent PlugIn for OpenCPN"
+msgid "otcurrent PlugIn for OpenCPN"
 msgstr "PlugIn GRIB para OpenCPN"
 #
 msgid ""
-"tcurrent PlugIn for OpenCPN\n"
+"otcurrent PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n"
 "\n"
 "\t\t\t   "
 msgstr ""
 #
-msgid "tcurrent Settings"
-msgstr ""
-#
-#
-#
-#, fuzzy
-msgid "tcurrentPort"
-msgstr "Velocidad Actual, Nds."
-#
 #
 #
 #
@@ -238,17 +177,64 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #, fuzzy
-msgid "tcurrentUseDirection"
+msgid "otcurrent Settings"
 msgstr "Preferencias GRIB"
 #
-msgid "tcurrentUseFillColour"
-msgstr ""
+#
+#
+#, fuzzy
+msgid "otcurrentInterval"
+msgstr "Velocidad Actual, Nds."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #, fuzzy
-msgid "tcurrentUseRate"
+msgid "otcurrentUseDirection"
+msgstr "Preferencias GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "otcurrentUseFillColour"
+msgstr "Preferencias GRIB"
+#
+#
+#
+#, fuzzy
+msgid "otcurrentUseRate"
 msgstr "Velocidad Actual, Nds."
+#
+#
 #
 #
 #
@@ -292,6 +278,8 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Velocidad Actual, Nds."
@@ -307,9 +295,13 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Data Display Preferences"
 #~ msgstr "Preferencias GRIB"
+#
+#
 #
 #
 #
@@ -360,8 +352,12 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "Carpeta Ficheros GRIB"
+#
+#
 #
 #
 #
@@ -381,9 +377,13 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view invisible overlays:"
 #~ msgstr "Ajuste Zoom o Escala para ver HTSGW GRIB eliminado"
+#
+#
 #
 #
 #
@@ -415,9 +415,13 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
 #~ msgstr "Ajuste Zoom o Escala para ver CRAIN GRIB eliminado"
+#
+#
 #
 #
 #
@@ -449,9 +453,13 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
 #~ msgstr "Ajuste Zoom o Escala para ver SEATEMP GRIB eliminado"
+#
+#
 #
 #
 #
@@ -478,9 +486,13 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Presión, mBar"
+#
+#
 #
 #
 #
@@ -515,6 +527,8 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Temperatura Superficie Mar, C"
@@ -527,9 +541,13 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Seleccionar Carpeta GRIB"
+#
+#
 #
 #
 #
@@ -602,8 +620,12 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #~ msgid "Show metres/sec for Wind Speed"
 #~ msgstr "Mostrar metros/seg para Velocidad Viento"
+#
+#
 #
 #
 #
@@ -630,8 +652,12 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Usar Gráficos Alta Definición"
+#
+#
 #
 #
 #
@@ -663,9 +689,13 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Dirección Viento"
+#
+#
 #
 #
 #
@@ -719,8 +749,19 @@ msgstr "Velocidad Actual, Nds."
 #
 #
 #
+#
+#
 #~ msgid "Wind Speed, Kts."
 #~ msgstr "Velocidad Viento, Kts."
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentPort"
+#~ msgstr "Velocidad Actual, Nds."
+#
+#
 #
 #
 #
@@ -745,6 +786,8 @@ msgstr "Velocidad Actual, Nds."
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "Datos GRIB"
+#
+#
 #
 #
 #
