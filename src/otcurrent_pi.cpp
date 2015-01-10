@@ -98,6 +98,7 @@ int otcurrent_pi::Init(void)
       m_otcurrent_dialog_sy = 400;
       m_potcurrentDialog = NULL;
       m_potcurrentOverlayFactory = NULL;
+      m_botcurrentShowIcon = true;
 
       ::wxDisplaySize(&m_display_width, &m_display_height);
 
