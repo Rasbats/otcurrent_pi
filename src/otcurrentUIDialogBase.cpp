@@ -23,7 +23,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	//sbSizer2->SetMinSize( wxSize( 215, -1 ) ); 
 
 	
-	m_textCtrl1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( 170,20 ), 0|wxSIMPLE_BORDER );
+	m_textCtrl1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( 170,20 ), wxTE_READONLY|wxSIMPLE_BORDER );
 	//m_textCtrl1->SetMinSize( wxSize( 400,10 ) );
 	sbSizer2->Add( m_textCtrl1, 0, wxALL, 5 );
 	

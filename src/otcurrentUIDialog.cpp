@@ -152,7 +152,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 
 	m_dtNow = wxDateTime::Now(); 
 	wxString d = MakeDateTimeLabel(m_dtNow);
-	m_textCtrl1->SetLabel(d);
+	m_textCtrl1->SetValue(d);
 	
 	
 	m_dInterval = 0;
@@ -267,7 +267,7 @@ void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 		s.Printf(dt.Format(_T("%H:%M  ")));
 		wxString dateLabel = s2 + _T(" ") + s;	
 
-		m_textCtrl1->SetLabel(dateLabel);				
+		m_textCtrl1->SetValue(dateLabel);				
 		
 		double h;
 		double m;
@@ -289,7 +289,7 @@ void otcurrentUIDialog::OnNow( wxCommandEvent& event ){
 	m_dtNow = wxDateTime::Now();
 	m_dInterval = 0;
 	wxString d = MakeDateTimeLabel(m_dtNow);
-	m_textCtrl1->SetLabel(d);
+	m_textCtrl1->SetValue(d);
 
 	RequestRefresh( pParent );
 	onPrev = false;
@@ -310,7 +310,7 @@ void otcurrentUIDialog::OnPrev( wxCommandEvent& event ){
 	m_dtNow.Subtract(m_ts);
 	wxString d = MakeDateTimeLabel(m_dtNow);
 
-	m_textCtrl1->SetLabel(d);
+	m_textCtrl1->SetValue(d);
 	RequestRefresh( pParent );
 
 }
@@ -328,7 +328,7 @@ void otcurrentUIDialog::OnNext( wxCommandEvent& event ){
 	m_dtNow.Add(m_ts);
 	wxString d = MakeDateTimeLabel(m_dtNow);
 
-	m_textCtrl1->SetLabel(d);
+	m_textCtrl1->SetValue(d);
 	RequestRefresh( pParent );
 
 }
@@ -349,7 +349,7 @@ wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime)
 		wxString s = dt.Format(_T("%H:%M")); 
 		wxString dateLabel = s2 + _T(" ") + s;	
 
-		m_textCtrl1->SetLabel(dateLabel);				
+		m_textCtrl1->SetValue(dateLabel);				
 
 		return dateLabel;	
 }
