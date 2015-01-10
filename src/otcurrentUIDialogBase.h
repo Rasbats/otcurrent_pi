@@ -37,7 +37,7 @@
 #include "wx/dateevt.h"
 #include <wx/event.h>
 #include <wx/listbox.h>
-#include <colordlg.h>
+#include <wx/colordlg.h>
 #include <wx/clrpicker.h>
 
 

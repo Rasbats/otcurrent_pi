@@ -984,14 +984,14 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 						if( m_bShowRate && m_pdc ) 
 						{
 							m_pdc->SetFont( *pTCFont );
-							_snprintf( sbuf, 19, "%3.1f", abs(tcvalue) );
+							snprintf( sbuf, 19, "%3.1f", abs(tcvalue) );
 							m_pdc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc );
 							shift = 13;
 						}					 
 					
 						if ( m_bShowDirection && m_pdc)	
 						{	
-							_snprintf( sbuf, 19, "%03.0f", dir );
+							snprintf( sbuf, 19, "%03.0f", dir );
 							m_pdc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc + shift );
 						}
 

@@ -50,11 +50,13 @@
 
 #include <iostream> 
 #include <fstream>
+#ifdef __WXMSW--
 #include <windows.h>
+#endif
 #include <memory.h> 
 
-#include <colordlg.h>
-#include <event.h>
+#include <wx/colordlg.h>
+#include <wx/event.h>
 
 #include "otcurrent_pi.h"
 
@@ -68,8 +70,6 @@ enum
             BACKWARD_ONE_MINUTES_STEP =-60
 };
 
-                 // Handle to DLL
-HINSTANCE hinstDLL;
 using namespace std;
 
 
