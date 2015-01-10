@@ -452,7 +452,7 @@ void otcurrentUIDialog::CalcHW(int PortCode)
 		int list_index = 0 ;
 		int array_index = 0;
         bool  wt = 0;
-		float myLW, myHW;
+		float myLW = 0.0, myHW = 0.0;
 
 		wxString sHWLW = _T("");
 
@@ -705,14 +705,12 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	dimensions.append(wxT("here"));
  
 	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, sz, wxCAL_SHOW_HOLIDAYS ,wxT("Tide Calendar"));
-	
-	wxWindowID text, spinner;
 
-	m_staticText = new wxStaticText(this,text,wxT("Time:"),wxPoint(15,155),wxSize(60,21));
+	m_staticText = new wxStaticText(this,wxID_ANY,wxT("Time:"),wxPoint(15,155),wxSize(60,21));
 
-	_timeText = new wxTimeTextCtrl(this,text,wxT("12:00"),wxPoint(75,155),wxSize(60,21));
+	_timeText = new wxTimeTextCtrl(this,wxID_ANY,wxT("12:00"),wxPoint(75,155),wxSize(60,21));
 
-    _spinCtrl=new wxSpinButton(this,spinner,wxPoint(136,155),wxSize(20,21),wxSP_VERTICAL|wxSP_ARROW_KEYS);
+    _spinCtrl=new wxSpinButton(this,wxID_ANY,wxPoint(136,155),wxSize(20,21),wxSP_VERTICAL|wxSP_ARROW_KEYS);
 	_spinCtrl->Connect( wxEVT_SCROLL_LINEUP, wxSpinEventHandler( CalendarDialog::spinUp ), NULL, this );
 	_spinCtrl->Connect( wxEVT_SCROLL_LINEDOWN, wxSpinEventHandler( CalendarDialog::spinDown ), NULL, this );
 	

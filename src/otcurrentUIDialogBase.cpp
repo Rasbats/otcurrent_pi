@@ -218,35 +218,7 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent
 	bSizer2 = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizer1;
-	sbSizer1 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, wxT("Tidal Current") ), wxVERTICAL );
-	
-	m_staticText4 = new wxStaticText( this, wxID_ANY, wxT("      < 0.5 knots"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText4->Wrap( -1 );
-	sbSizer1->Add( m_staticText4, 0, wxALL, 5 );
-	
-	m_staticText41 = new wxStaticText( this, wxID_ANY, wxT(">= 0.5 and < 1.5"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText41->Wrap( -1 );
-	sbSizer1->Add( m_staticText41, 0, wxALL, 5 );
-	
-	m_staticText42 = new wxStaticText( this, wxID_ANY, wxT(">= 1.5 and < 2.5"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText42->Wrap( -1 );
-	sbSizer1->Add( m_staticText42, 0, wxALL, 5 );
-	
-	m_staticText43 = new wxStaticText( this, wxID_ANY, wxT(">= 2.5 and < 3.5"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText43->Wrap( -1 );
-	sbSizer1->Add( m_staticText43, 0, wxALL, 5 );
-	
-	m_staticText44 = new wxStaticText( this, wxID_ANY, wxT(">= 3.5 knots    "), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText44->Wrap( -1 );
-	sbSizer1->Add( m_staticText44, 0, wxALL, 5 );
-	
-	
-	bSizer2->Add( sbSizer1, 1, wxEXPAND, 5 );
-	
-	wxStaticBoxSizer* sbSizer2;
-	sbSizer2 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, wxT("Arrow Colour") ), wxVERTICAL );
-	
-	sbSizer2->SetMinSize( wxSize( 20,20 ) ); 
+	sbSizer1 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, wxT("Tidal Current Arrow Colour") ), wxVERTICAL );
 	
 	myColourPicker0 = new wxColourPickerCtrl(this, wxID_ANY, *wxRED,
     wxDefaultPosition, wxDefaultSize, 0);
@@ -262,17 +234,39 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent
 
 	myColourPicker4 = new wxColourPickerCtrl(this, wxID_ANY, *wxRED,
     wxDefaultPosition, wxDefaultSize, 0);
-
-	sbSizer2->Add( myColourPicker0, 0, wxALL, 5 );	
-	sbSizer2->Add( myColourPicker1, 0, wxALL, 5 );
-	sbSizer2->Add( myColourPicker2, 0, wxALL, 5 );	
-	sbSizer2->Add( myColourPicker3, 0, wxALL, 5 );
-	sbSizer2->Add( myColourPicker4, 0, wxALL, 5 );
-
-	bSizer2->Add( sbSizer2, 1, wxEXPAND, 5 );
 	
+	wxGridSizer* gSizer1;
+	gSizer1 = new wxGridSizer( 0, 2, 0, 0 );
+	
+	m_staticText4 = new wxStaticText( this, wxID_ANY, wxT("      < 0.5 knots"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText4->Wrap( -1 );
+	gSizer1->Add( m_staticText4, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	gSizer1->Add( myColourPicker0, 0, wxALL, 5 );	
+	
+	m_staticText41 = new wxStaticText( this, wxID_ANY, wxT(">= 0.5 and < 1.5"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText41->Wrap( -1 );
+	gSizer1->Add( m_staticText41, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	gSizer1->Add( myColourPicker1, 0, wxALL, 5 );
+	
+	m_staticText42 = new wxStaticText( this, wxID_ANY, wxT(">= 1.5 and < 2.5"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText42->Wrap( -1 );
+	gSizer1->Add( m_staticText42, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	gSizer1->Add( myColourPicker2, 0, wxALL, 5 );
+	
+	m_staticText43 = new wxStaticText( this, wxID_ANY, wxT(">= 2.5 and < 3.5"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText43->Wrap( -1 );
+    gSizer1->Add( m_staticText43, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    gSizer1->Add( myColourPicker3, 0, wxALL, 5 );
+	
+	m_staticText44 = new wxStaticText( this, wxID_ANY, wxT(">= 3.5 knots    "), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText44->Wrap( -1 );
+	gSizer1->Add( m_staticText44, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	gSizer1->Add( myColourPicker4, 0, wxALL, 5 );
+	
+    sbSizer1->Add( gSizer1, 1, wxEXPAND, 5 );
+	bSizer2->Add( sbSizer1, 1, wxEXPAND, 5 );
 
-	fgSizer8->Add(bSizer2, 1, wxEXPAND, 5 );
+	fgSizer8->Add(bSizer2, 1, wxALL|wxEXPAND, 5 );
 
 	wxStdDialogButtonSizer* m_sdbSizer2;
 	
@@ -285,7 +279,7 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent
 	m_sdbSizer2->AddButton( m_sdbSizer2Cancel );
 	m_sdbSizer2->Realize();
 	
-	fgSizer8->Add( m_sdbSizer2, 1, wxEXPAND, 5 );
+	fgSizer8->Add( m_sdbSizer2, 1, wxALL|wxEXPAND, 5 );
 	
 	this->SetSizer( fgSizer8 );
 	this->Layout();
