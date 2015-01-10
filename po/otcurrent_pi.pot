@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: otcurrent_pi 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-10 16:51-0600\n"
+"POT-Creation-Date: 2015-01-10 17:25-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,26 +19,6 @@ msgstr ""
 
 #: src/otcurrentOverlayFactory.cpp:894 src/otcurrentUIDialog.cpp:362
 msgid "Using Tide/Current data from:  "
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:122 src/otcurrentUIDialog.cpp:169
-msgid "/Settings/otcurrent"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:124 src/otcurrentUIDialog.cpp:171
-msgid "otcurrentUseRate"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:125 src/otcurrentUIDialog.cpp:172
-msgid "otcurrentUseDirection"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:126 src/otcurrentUIDialog.cpp:173
-msgid "otcurrentUseFillColour"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:128 src/otcurrentUIDialog.cpp:183
-msgid "otcurrentInterval"
 msgstr ""
 
 #: src/otcurrentUIDialog.cpp:242

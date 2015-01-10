@@ -119,13 +119,13 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
     wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(pConf) {
-        pConf->SetPath ( _ ( "/Settings/otcurrent" ) );
+        pConf->SetPath ( _T ( "/Settings/otcurrent" ) );
 
-		pConf->Read ( _ ( "otcurrentUseRate" ), &m_bUseRate );
-        pConf->Read ( _ ( "otcurrentUseDirection" ), &m_bUseDirection);
-		pConf->Read ( _ ( "otcurrentUseFillColour" ), &m_bUseFillColour);
+		pConf->Read ( _T ( "otcurrentUseRate" ), &m_bUseRate );
+        pConf->Read ( _T ( "otcurrentUseDirection" ), &m_bUseDirection);
+		pConf->Read ( _T ( "otcurrentUseFillColour" ), &m_bUseFillColour);
 
-		pConf->Read ( _ ( "otcurrentInterval" ), &m_IntervalSelected);
+		pConf->Read ( _T ( "otcurrentInterval" ), &m_IntervalSelected);
 
 		pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
 		pConf->Read( _T("VColour1"), &myVColour[1], myVColour[1] );
@@ -166,11 +166,11 @@ otcurrentUIDialog::~otcurrentUIDialog()
     wxFileConfig *pConf = GetOCPNConfigObject();;
 
     if(pConf) {
-        pConf->SetPath ( _ ( "/Settings/otcurrent" ) );
+        pConf->SetPath ( _T ( "/Settings/otcurrent" ) );
 
-		pConf->Write ( _ ( "otcurrentUseRate" ), m_bUseRate );
-		pConf->Write ( _ ( "otcurrentUseDirection" ), m_bUseDirection );
-		pConf->Write ( _ ( "otcurrentUseFillColour" ), m_bUseFillColour );
+		pConf->Write ( _T ( "otcurrentUseRate" ), m_bUseRate );
+		pConf->Write ( _T ( "otcurrentUseDirection" ), m_bUseDirection );
+		pConf->Write ( _T ( "otcurrentUseFillColour" ), m_bUseFillColour );
 
 		pConf->Write( _T("VColour0"), myVColour[0] );
 		pConf->Write( _T("VColour1"), myVColour[1] );
@@ -180,7 +180,7 @@ otcurrentUIDialog::~otcurrentUIDialog()
 
 		int c = m_choice1->GetSelection();
 		wxString myP = m_choice1->GetString(c);
-		pConf->Write ( _ ( "otcurrentInterval" ), c ); 
+		pConf->Write ( _T ( "otcurrentInterval" ), c ); 
 
 
 
