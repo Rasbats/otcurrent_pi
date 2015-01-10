@@ -98,9 +98,9 @@ static wxString TToString( const wxDateTime date_time, const int time_zone )
     t.MakeFromTimezone( wxDateTime::UTC );
     if( t.IsDST() ) t.Subtract( wxTimeSpan( 1, 0, 0, 0 ) );
     switch( time_zone ) {
-        case 0: return t.Format( _T(" %a %d-%b-%Y  %H:%M "), wxDateTime::Local ) + _("LOC");//:%S
+        case 0: return t.Format( _T(" %a %d-%b-%Y  %H:%M LOC"), wxDateTime::Local );
         case 1:
-        default: return t.Format( _T(" %a %d-%b-%Y %H:%M  "), wxDateTime::UTC ) + _("UTC");
+        default: return t.Format( _T(" %a %d-%b-%Y %H:%M  UTC"), wxDateTime::UTC );
     }
 }
 
@@ -151,9 +151,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
     this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
 
 	m_dtNow = wxDateTime::Now(); 
-	wxString d = MakeDateTimeLabel(m_dtNow);
-	m_textCtrl1->SetValue(d);
-	
+	MakeDateTimeLabel(m_dtNow);
 	
 	m_dInterval = 0;
 
@@ -256,18 +254,10 @@ void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 		wxDateTime dt;
 		dt.ParseTime(myTime);
 		
-		wxString s2;
-		s2.Printf(dm.Format ( _T( "%A %d %B %Y")));
-
-
+		MakeDateTimeLabel(dt);
+		
 		wxString todayHours = dt.Format(_T("%H"));
-		wxString todayMinutes = dt.Format(_T("%M"));
-	
-		wxString s;
-		s.Printf(dt.Format(_T("%H:%M  ")));
-		wxString dateLabel = s2 + _T(" ") + s;	
-
-		m_textCtrl1->SetValue(dateLabel);				
+        wxString todayMinutes = dt.Format(_T("%M"));
 		
 		double h;
 		double m;
@@ -288,8 +278,7 @@ void otcurrentUIDialog::OnNow( wxCommandEvent& event ){
 	
 	m_dtNow = wxDateTime::Now();
 	m_dInterval = 0;
-	wxString d = MakeDateTimeLabel(m_dtNow);
-	m_textCtrl1->SetValue(d);
+	MakeDateTimeLabel(m_dtNow);
 
 	RequestRefresh( pParent );
 	onPrev = false;
@@ -308,9 +297,8 @@ void otcurrentUIDialog::OnPrev( wxCommandEvent& event ){
 
 	wxTimeSpan m_ts = wxTimeSpan::Minutes(m_dInterval) ;
 	m_dtNow.Subtract(m_ts);
-	wxString d = MakeDateTimeLabel(m_dtNow);
+	MakeDateTimeLabel(m_dtNow);
 
-	m_textCtrl1->SetValue(d);
 	RequestRefresh( pParent );
 
 }
@@ -326,9 +314,8 @@ void otcurrentUIDialog::OnNext( wxCommandEvent& event ){
 
 	wxTimeSpan m_ts = wxTimeSpan::Minutes(m_dInterval) ;
 	m_dtNow.Add(m_ts);
-	wxString d = MakeDateTimeLabel(m_dtNow);
+	MakeDateTimeLabel(m_dtNow);
 
-	m_textCtrl1->SetValue(d);
 	RequestRefresh( pParent );
 
 }
@@ -345,7 +332,7 @@ wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime)
 {			
 		wxDateTime dt = myDateTime;
 
-		wxString s2 = dt.Format ( _T( "%A %d %B %Y"));
+		wxString s2 = dt.Format ( _T( "%a %d %b %Y"));
 		wxString s = dt.Format(_T("%H:%M")); 
 		wxString dateLabel = s2 + _T(" ") + s;	
 
