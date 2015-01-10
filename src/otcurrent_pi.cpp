@@ -39,7 +39,7 @@
 #include "otcurrentUIDialogBase.h"
 #include "otcurrentUIDialog.h"
 
-wxString myVColour[] = {_T("127, 0, 255"), _T("0, 166, 80"),  _T("253, 184, 19"),  _T("248, 128, 64"),  _T("248, 0, 0")};
+wxString myVColour[] = {_T("rgb(127, 0, 255)"), _T("rgb(0, 166, 80)"),  _T("rgb(253, 184, 19)"),  _T("rgb(248, 128, 64)"),  _T("rgb(248, 0, 0)")};
 
 // the class factories, used to create and destroy instances of the PlugIn
 

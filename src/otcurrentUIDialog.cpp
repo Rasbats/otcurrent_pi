@@ -50,7 +50,7 @@
 
 #include <iostream> 
 #include <fstream>
-#ifdef __WXMSW--
+#ifdef __WXMSW__
 #include <windows.h>
 #endif
 #include <memory.h> 
