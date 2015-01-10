@@ -218,7 +218,7 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent
 	bSizer2 = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizer1;
-	sbSizer1 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, wxT("Tidal Current Arrow Colour") ), wxVERTICAL );
+	sbSizer1 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Current Arrow Colour") ), wxVERTICAL );
 	
 	myColourPicker0 = new wxColourPickerCtrl(this, wxID_ANY, *wxRED,
     wxDefaultPosition, wxDefaultSize, 0);
@@ -238,27 +238,27 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent
 	wxGridSizer* gSizer1;
 	gSizer1 = new wxGridSizer( 0, 2, 0, 0 );
 	
-	m_staticText4 = new wxStaticText( this, wxID_ANY, wxT("      < 0.5 knots"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText4 = new wxStaticText( this, wxID_ANY, _("      < 0.5 knots"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText4->Wrap( -1 );
 	gSizer1->Add( m_staticText4, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	gSizer1->Add( myColourPicker0, 0, wxALL, 5 );	
 	
-	m_staticText41 = new wxStaticText( this, wxID_ANY, wxT(">= 0.5 and < 1.5"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText41 = new wxStaticText( this, wxID_ANY, _(">= 0.5 and < 1.5"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText41->Wrap( -1 );
 	gSizer1->Add( m_staticText41, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	gSizer1->Add( myColourPicker1, 0, wxALL, 5 );
 	
-	m_staticText42 = new wxStaticText( this, wxID_ANY, wxT(">= 1.5 and < 2.5"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText42 = new wxStaticText( this, wxID_ANY, _(">= 1.5 and < 2.5"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText42->Wrap( -1 );
 	gSizer1->Add( m_staticText42, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	gSizer1->Add( myColourPicker2, 0, wxALL, 5 );
 	
-	m_staticText43 = new wxStaticText( this, wxID_ANY, wxT(">= 2.5 and < 3.5"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText43 = new wxStaticText( this, wxID_ANY, _(">= 2.5 and < 3.5"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText43->Wrap( -1 );
     gSizer1->Add( m_staticText43, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
     gSizer1->Add( myColourPicker3, 0, wxALL, 5 );
 	
-	m_staticText44 = new wxStaticText( this, wxID_ANY, wxT(">= 3.5 knots    "), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText44 = new wxStaticText( this, wxID_ANY, _(">= 3.5 knots    "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText44->Wrap( -1 );
 	gSizer1->Add( m_staticText44, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	gSizer1->Add( myColourPicker4, 0, wxALL, 5 );
