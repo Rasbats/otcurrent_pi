@@ -46,6 +46,10 @@
 #include "bbox.h"
 //#include "cutil.h"
 
+#ifdef __WXMSW__
+#define snprintf _snprintf
+#endif // __WXMSW__
+
 using namespace std;
 
 class Position;
