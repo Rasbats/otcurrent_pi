@@ -50,11 +50,13 @@
 
 #include <iostream> 
 #include <fstream>
+#ifdef __WXMSW__
 #include <windows.h>
+#endif
 #include <memory.h> 
 
-#include <colordlg.h>
-#include <event.h>
+#include <wx/colordlg.h>
+#include <wx/event.h>
 
 #include "otcurrent_pi.h"
 
@@ -68,8 +70,6 @@ enum
             BACKWARD_ONE_MINUTES_STEP =-60
 };
 
-                 // Handle to DLL
-HINSTANCE hinstDLL;
 using namespace std;
 
 
@@ -98,9 +98,9 @@ static wxString TToString( const wxDateTime date_time, const int time_zone )
     t.MakeFromTimezone( wxDateTime::UTC );
     if( t.IsDST() ) t.Subtract( wxTimeSpan( 1, 0, 0, 0 ) );
     switch( time_zone ) {
-        case 0: return t.Format( _T(" %a %d-%b-%Y  %H:%M "), wxDateTime::Local ) + _("LOC");//:%S
+        case 0: return t.Format( _T(" %a %d-%b-%Y  %H:%M LOC"), wxDateTime::Local );
         case 1:
-        default: return t.Format( _T(" %a %d-%b-%Y %H:%M  "), wxDateTime::UTC ) + _("UTC");
+        default: return t.Format( _T(" %a %d-%b-%Y %H:%M  UTC"), wxDateTime::UTC );
     }
 }
 
@@ -119,13 +119,13 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
     wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(pConf) {
-        pConf->SetPath ( _ ( "/Settings/otcurrent" ) );
+        pConf->SetPath ( _T ( "/Settings/otcurrent" ) );
 
-		pConf->Read ( _ ( "otcurrentUseRate" ), &m_bUseRate );
-        pConf->Read ( _ ( "otcurrentUseDirection" ), &m_bUseDirection);
-		pConf->Read ( _ ( "otcurrentUseFillColour" ), &m_bUseFillColour);
+		pConf->Read ( _T ( "otcurrentUseRate" ), &m_bUseRate );
+        pConf->Read ( _T ( "otcurrentUseDirection" ), &m_bUseDirection);
+		pConf->Read ( _T ( "otcurrentUseFillColour" ), &m_bUseFillColour);
 
-		pConf->Read ( _ ( "otcurrentInterval" ), &m_IntervalSelected);
+		pConf->Read ( _T ( "otcurrentInterval" ), &m_IntervalSelected);
 
 		pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
 		pConf->Read( _T("VColour1"), &myVColour[1], myVColour[1] );
@@ -151,9 +151,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
     this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
 
 	m_dtNow = wxDateTime::Now(); 
-	wxString d = MakeDateTimeLabel(m_dtNow);
-	m_textCtrl1->SetLabel(d);
-	
+	MakeDateTimeLabel(m_dtNow);
 	
 	m_dInterval = 0;
 
@@ -168,11 +166,11 @@ otcurrentUIDialog::~otcurrentUIDialog()
     wxFileConfig *pConf = GetOCPNConfigObject();;
 
     if(pConf) {
-        pConf->SetPath ( _ ( "/Settings/otcurrent" ) );
+        pConf->SetPath ( _T ( "/Settings/otcurrent" ) );
 
-		pConf->Write ( _ ( "otcurrentUseRate" ), m_bUseRate );
-		pConf->Write ( _ ( "otcurrentUseDirection" ), m_bUseDirection );
-		pConf->Write ( _ ( "otcurrentUseFillColour" ), m_bUseFillColour );
+		pConf->Write ( _T ( "otcurrentUseRate" ), m_bUseRate );
+		pConf->Write ( _T ( "otcurrentUseDirection" ), m_bUseDirection );
+		pConf->Write ( _T ( "otcurrentUseFillColour" ), m_bUseFillColour );
 
 		pConf->Write( _T("VColour0"), myVColour[0] );
 		pConf->Write( _T("VColour1"), myVColour[1] );
@@ -182,7 +180,7 @@ otcurrentUIDialog::~otcurrentUIDialog()
 
 		int c = m_choice1->GetSelection();
 		wxString myP = m_choice1->GetString(c);
-		pConf->Write ( _ ( "otcurrentInterval" ), c ); 
+		pConf->Write ( _T ( "otcurrentInterval" ), c ); 
 
 
 
@@ -256,18 +254,10 @@ void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 		wxDateTime dt;
 		dt.ParseTime(myTime);
 		
-		wxString s2;
-		s2.Printf(dm.Format ( _T( "%A %d %B %Y")));
-
-
+		MakeDateTimeLabel(dt);
+		
 		wxString todayHours = dt.Format(_T("%H"));
-		wxString todayMinutes = dt.Format(_T("%M"));
-	
-		wxString s;
-		s.Printf(dt.Format(_T("%H:%M  ")));
-		wxString dateLabel = s2 + _T(" ") + s;	
-
-		m_textCtrl1->SetLabel(dateLabel);				
+        wxString todayMinutes = dt.Format(_T("%M"));
 		
 		double h;
 		double m;
@@ -288,8 +278,7 @@ void otcurrentUIDialog::OnNow( wxCommandEvent& event ){
 	
 	m_dtNow = wxDateTime::Now();
 	m_dInterval = 0;
-	wxString d = MakeDateTimeLabel(m_dtNow);
-	m_textCtrl1->SetLabel(d);
+	MakeDateTimeLabel(m_dtNow);
 
 	RequestRefresh( pParent );
 	onPrev = false;
@@ -308,9 +297,8 @@ void otcurrentUIDialog::OnPrev( wxCommandEvent& event ){
 
 	wxTimeSpan m_ts = wxTimeSpan::Minutes(m_dInterval) ;
 	m_dtNow.Subtract(m_ts);
-	wxString d = MakeDateTimeLabel(m_dtNow);
+	MakeDateTimeLabel(m_dtNow);
 
-	m_textCtrl1->SetLabel(d);
 	RequestRefresh( pParent );
 
 }
@@ -326,9 +314,8 @@ void otcurrentUIDialog::OnNext( wxCommandEvent& event ){
 
 	wxTimeSpan m_ts = wxTimeSpan::Minutes(m_dInterval) ;
 	m_dtNow.Add(m_ts);
-	wxString d = MakeDateTimeLabel(m_dtNow);
+	MakeDateTimeLabel(m_dtNow);
 
-	m_textCtrl1->SetLabel(d);
 	RequestRefresh( pParent );
 
 }
@@ -345,11 +332,11 @@ wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime)
 {			
 		wxDateTime dt = myDateTime;
 
-		wxString s2 = dt.Format ( _T( "%A %d %B %Y"));
+		wxString s2 = dt.Format ( _T( "%a %d %b %Y"));
 		wxString s = dt.Format(_T("%H:%M")); 
 		wxString dateLabel = s2 + _T(" ") + s;	
 
-		m_textCtrl1->SetLabel(dateLabel);				
+		m_textCtrl1->SetValue(dateLabel);				
 
 		return dateLabel;	
 }
@@ -465,7 +452,7 @@ void otcurrentUIDialog::CalcHW(int PortCode)
 		int list_index = 0 ;
 		int array_index = 0;
         bool  wt = 0;
-		float myLW, myHW;
+		float myLW = 0.0, myHW = 0.0;
 
 		wxString sHWLW = _T("");
 
@@ -526,7 +513,7 @@ void otcurrentUIDialog::CalcHW(int PortCode)
 
 													   myRange = myHW - myLW;
 													 
-													  if ((abs(myRange) == myHW) || (abs(myRange) == myLW))
+													  if ((fabs(myRange) == myHW) || (fabs(myRange) == myLW))
 													  {
 															// out of range
 													  }
@@ -592,7 +579,7 @@ int otcurrentUIDialog::CalcHoursFromHWNow()
 		d = t - m;
 		myDiff = (d/60)/60;  
 		
-		if (abs(myDiff) < abs(myTest))
+		if (fabs(myDiff) < fabs(myTest))
 		{
 			myTest = myDiff;
 		}
@@ -637,7 +624,7 @@ int otcurrentUIDialog::round(double c)
 	c = c - a; //-2.6 --2 c = -0.6
 	}
 	
-	if ( abs(c) > 0.5) 
+	if ( fabs(c) > 0.5) 
 	{
 		b = 1;  //1
 	}
@@ -718,14 +705,12 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	dimensions.append(wxT("here"));
  
 	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, sz, wxCAL_SHOW_HOLIDAYS ,wxT("Tide Calendar"));
-	
-	wxWindowID text, spinner;
 
-	m_staticText = new wxStaticText(this,text,wxT("Time:"),wxPoint(15,155),wxSize(60,21));
+	m_staticText = new wxStaticText(this,wxID_ANY,wxT("Time:"),wxPoint(15,155),wxSize(60,21));
 
-	_timeText = new wxTimeTextCtrl(this,text,wxT("12:00"),wxPoint(75,155),wxSize(60,21));
+	_timeText = new wxTimeTextCtrl(this,wxID_ANY,wxT("12:00"),wxPoint(75,155),wxSize(60,21));
 
-    _spinCtrl=new wxSpinButton(this,spinner,wxPoint(136,155),wxSize(20,21),wxSP_VERTICAL|wxSP_ARROW_KEYS);
+    _spinCtrl=new wxSpinButton(this,wxID_ANY,wxPoint(136,155),wxSize(20,21),wxSP_VERTICAL|wxSP_ARROW_KEYS);
 	_spinCtrl->Connect( wxEVT_SCROLL_LINEUP, wxSpinEventHandler( CalendarDialog::spinUp ), NULL, this );
 	_spinCtrl->Connect( wxEVT_SCROLL_LINEDOWN, wxSpinEventHandler( CalendarDialog::spinDown ), NULL, this );
 	

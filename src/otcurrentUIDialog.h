@@ -137,7 +137,7 @@ public:
 	double CalcCurrent(double m_spRange, double m_npRange, double m_spRateDiamond, double m_npRateDiamond, double m_rangeOnDay);
 	int CalcHoursFromHWNow();
 	wxString nearestHW[8];
-	int otcurrentUIDialog::round(double c);
+	int round(double c);
 
 	bool m_bUseRate;    
 	bool m_bUseDirection; 
@@ -157,7 +157,7 @@ public:
 
 	void OnCalendarShow( wxCommandEvent& event );
 	void OnNow( wxCommandEvent& event );
-	wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime);
+	wxString MakeDateTimeLabel(wxDateTime myDateTime);
 
 private:
 

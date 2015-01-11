@@ -1,807 +1,159 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: opencpn 1.3.6\n"
+"Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-16 13:10+0000\n"
-"PO-Revision-Date: 2012-05-23 07:03+0100\n"
-"Last-Translator: Pavel Kalian <pavel@kalian.cz>\n"
-"Language-Team: OpenCPN CZ <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2015-01-10 17:25-0600\n"
+"PO-Revision-Date: 2015-01-10 18:27-0500\n"
+"Last-Translator: nohal <pavel@kalian.cz>\n"
+"Language-Team: Czech\n"
+"Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Czech\n"
-"X-Poedit-Country: CZECH REPUBLIC\n"
-#
-#, c-format
-msgid " width = %d height = %d\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
+
+#: src/otcurrentOverlayFactory.cpp:894 src/otcurrentUIDialog.cpp:362
+msgid "Using Tide/Current data from:  "
 msgstr ""
-#
+
+#: src/otcurrentUIDialog.cpp:242
+msgid "START Date/Time"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:366
+msgid "HARMONIC"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:396
+msgid "No tidal data for this port"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:396
+msgid "No Tidal Data"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:491 src/otcurrentUIDialog.cpp:504
+msgid "HW"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:491 src/otcurrentUIDialog.cpp:499
+msgid "LW"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:683
+msgid "Tidal Data for UKHO Tidal Diamonds\n--------------------------------------------------------------\nThe standard OpenCPN distribution has tidal data for the\nfollowing ports, which this plugin uses:\n\nPLYMOUTH (DEVONPORT)\nPORTSMOUTH\nDOVER\nSHEERNESS\nLOWESTOFT\nIMMINGHAM\nLEITH\nABERDEEN\nWICK\nLERWICK\nULLAPOOL\nLIVERPOOL (GLADSTONE DOCK)\nHOLYHEAD\nMILFORD HAVEN\nPORT OF BRISTOL (AVONMOUTH)\nST. HELIER\n\nUse this data with caution.\nUse in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n\n--------------------------------------------------------------------\n\nNote: 1 Rates shown are for a position corresponding to the centre\nof the base of the arrow. Tidal rate is shown as knots.\nNote: 2 Rates are calculated by using the method shown in UKHO Tidal\nStream Atlases. This is based on the average range for the day\n"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:684
+msgid "About Tidal Arrows"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:701
 #, c-format
 msgid " x = %d y = %d\n"
 msgstr ""
-#
-#
-#
-#, fuzzy
-msgid "/Settings/otcurrent"
-msgstr "Rychlost proudu, Kts."
-#
-msgid "About Tidal Arrows"
+
+#: src/otcurrentUIDialog.cpp:703
+#, c-format
+msgid " width = %d height = %d\n"
 msgstr ""
-#
-msgid "Cancel"
-msgstr ""
-#
-msgid "Date/Time"
-msgstr ""
-#
-msgid "Display tidal direction"
-msgstr ""
-#
-msgid "Display tidal rates (knots)"
-msgstr ""
-#
-msgid "Fill Colour"
-msgstr ""
-#
-msgid "HARMONIC"
-msgstr ""
-#
-msgid "HW"
-msgstr ""
-#
-msgid "LOC"
-msgstr ""
-#
-msgid "LW"
-msgstr ""
-#
-msgid "Next"
-msgstr ""
-#
-msgid "No Tidal Data"
-msgstr ""
-#
-msgid "No tidal data for this port"
-msgstr ""
-#
-msgid "Now"
-msgstr ""
-#
+
+#: src/otcurrentUIDialog.cpp:718
 msgid "OK"
 msgstr ""
-#
-#
-#, fuzzy
-msgid "Preferences"
-msgstr "Nastavení GRIBu"
-#
-msgid "Previous"
+
+#: src/otcurrentUIDialog.cpp:720
+msgid "Cancel"
 msgstr ""
-#
-msgid "START Date/Time"
+
+#: src/otcurrentUIDialogBase.cpp:21
+msgid "Date/Time"
 msgstr ""
-#
+
+#: src/otcurrentUIDialogBase.cpp:32
 msgid "Select"
 msgstr ""
-#
+
+#: src/otcurrentUIDialogBase.cpp:33
 msgid "Select date/time for current prediction"
 msgstr ""
-#
+
+#: src/otcurrentUIDialogBase.cpp:43
+msgid "Now"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:50
 msgid "Step (Minutes)"
 msgstr ""
-#
-#
-#
-#, fuzzy
+
+#: src/otcurrentUIDialogBase.cpp:69
+msgid "Previous"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:75
+msgid "Next"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:206
+msgid "Display tidal rates (knots)"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:209
+msgid "Display tidal direction"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "Fill Colour"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:221
+msgid "Tidal Current Arrow Colour"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:241
+msgid "      < 0.5 knots"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:246
+msgid ">= 0.5 and < 1.5"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:251
+msgid ">= 1.5 and < 2.5"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:256
+msgid ">= 2.5 and < 3.5"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:261
+msgid ">= 3.5 knots    "
+msgstr ""
+
+#: src/otcurrentUIDialogBase.h:138
 msgid "Tidal Current Control"
-msgstr "Ovládání zobrazení GRIB"
-#
-msgid ""
-"Tidal Data for UKHO Tidal Diamonds\n"
-"--------------------------------------------------------------\n"
-"The standard OpenCPN distribution has tidal data for the\n"
-"following ports, which this plugin uses:\n"
-"\n"
-"PLYMOUTH (DEVONPORT)\n"
-"PORTSMOUTH\n"
-"DOVER\n"
-"SHEERNESS\n"
-"LOWESTOFT\n"
-"IMMINGHAM\n"
-"LEITH\n"
-"ABERDEEN\n"
-"WICK\n"
-"LERWICK\n"
-"ULLAPOOL\n"
-"LIVERPOOL (GLADSTONE DOCK)\n"
-"HOLYHEAD\n"
-"MILFORD HAVEN\n"
-"PORT OF BRISTOL (AVONMOUTH)\n"
-"ST. HELIER\n"
-"\n"
-"Use this data with caution.\n"
-"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
-"\n"
-"--------------------------------------------------------------------\n"
-"\n"
-"Note: 1 Rates shown are for a position corresponding to the centre\n"
-"of the base of the arrow. Tidal rate is shown as knots.\n"
-"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
-"Stream Atlases. This is based on the average range for the day\n"
 msgstr ""
-#
-msgid "UTC"
-msgstr ""
-#
-msgid "Using Tide/Current data from:  "
-msgstr ""
-#
-#
-#
-#, fuzzy
-msgid "otcurrent"
-msgstr "Rychlost proudu, Kts."
-#
-#, fuzzy
-msgid "otcurrent PlugIn for OpenCPN"
-msgstr "Doplněk GRIB pro OpenCPN"
-#
-msgid ""
-"otcurrent PlugIn for OpenCPN\n"
-"Provides an overlay of Tidal Current (Stream) Arrows.\n"
-"\n"
-"\t\t\t   "
-msgstr ""
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
+
+#: src/otcurrentUIDialogBase.h:197
 msgid "otcurrent Settings"
-msgstr "Nastavení GRIBu"
-#
-#
-#
-#, fuzzy
-msgid "otcurrentInterval"
-msgstr "Rychlost proudu, Kts."
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseDirection"
-msgstr "Nastavení GRIBu"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseFillColour"
-msgstr "Nastavení GRIBu"
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseRate"
-msgstr "Rychlost proudu, Kts."
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Colors"
-#~ msgstr "&Zavřít"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Current"
-#~ msgstr "Rychlost proudu, Kts."
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Data Display Preferences"
-#~ msgstr "Nastavení GRIBu"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "GRIB"
-#~ msgstr "GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "GRIB File Directory"
-#~ msgstr "Složka souborů GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Please Zoom or Scale Out to view invisible overlays:"
-#~ msgstr "Prosím zmenši měřítko pro zobrazení HTSGW GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
-#~ msgstr "Prosím zmenši měřítko pro zobrazení SEATEMP GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
-#~ msgstr "Prosím zmenši měřítko pro zobrazení CRAIN GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
-#~ msgstr "Prosím zmenši měřítko pro zobrazení CRAIN GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
-#~ msgstr "Prosím zmenši měřítko pro zobrazení SEATEMP GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
-#~ msgstr "Prosím zmenši měřítko pro zobrazení CRAIN GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Pressure"
-#~ msgstr "Tlak, mBar"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Pressure (MSL)"
-#~ msgstr "Tlak, mBar"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Sea Temp"
-#~ msgstr "Povrchová teplota moře, C"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Select a tcurrent file"
-#~ msgstr "Složka souborů GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Show GRIB icon"
-#~ msgstr "Zobrazit ikonu GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Show metres/sec for Wind Speed"
-#~ msgstr "Ukaž  m/s pro rychlost větru"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Sign.Wave Height"
-#~ msgstr "Signifikantní výška vln, m"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Use High Definition Graphics"
-#~ msgstr "Použít grafiku ve velkém rozlišení"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Wind Direction(10m)"
-#~ msgstr "Směr větru"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Wind Speed and Direction(10m)"
-#~ msgstr "Směr větru"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Wind Speed(10m)"
-#~ msgstr "Rychlost větru, m/s"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Wind Speed, Kts."
-#~ msgstr "Rychlost větru, Uzly"
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "otcurrentPort"
-#~ msgstr "Rychlost proudu, Kts."
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "tcdata"
-#~ msgstr "Data GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid ""
-#~ "tcurrent PlugIn for OpenCPN\n"
-#~ "Provides basic tcurrent file overlay capabilities for several tcurrent "
-#~ "file types.\n"
-#~ "\n"
-#~ "Supported tcurrent file types include:\n"
-#~ "- wind direction and speed\n"
-#~ "- significant wave height\n"
-#~ "- sea surface temperature\n"
-#~ "- surface current direction and speed."
-#~ msgstr ""
-#~ "Doplněk GRIB pro OpenCPN\n"
-#~ "Poskytuje základní možnosti překryvného zobrazení GRIB souborů několika "
-#~ "typů.\n"
-#~ "\n"
-#~ "Podporované typy GRIB souborů obsahují:\n"
-#~ "- rychlost a sílu větru\n"
-#~ "- signifikantní výšku vlny\n"
-#~ "- teplotu povrchu moře\n"
-#~ "- rychlost a směr povrchových proudů."
+msgstr ""
+
+#: src/otcurrentUIDialogBase.h:249
+msgid "Preferences"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:121
+msgid "otcurrent"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:182
+msgid "otcurrent PlugIn for OpenCPN"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:188
+msgid "otcurrent PlugIn for OpenCPN\nProvides an overlay of Tidal Current (Stream) Arrows.\n\n\t\t\t   "
+msgstr ""
+

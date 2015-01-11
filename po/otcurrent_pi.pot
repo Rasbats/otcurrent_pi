@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: otcurrent_pi 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-16 13:10+0000\n"
+"POT-Creation-Date: 2015-01-10 17:25-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,63 +17,35 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/otcurrentOverlayFactory.cpp:890 src/otcurrentUIDialog.cpp:375
+#: src/otcurrentOverlayFactory.cpp:894 src/otcurrentUIDialog.cpp:362
 msgid "Using Tide/Current data from:  "
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:101
-msgid "LOC"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:103
-msgid "UTC"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:122 src/otcurrentUIDialog.cpp:171
-msgid "/Settings/otcurrent"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:124 src/otcurrentUIDialog.cpp:173
-msgid "otcurrentUseRate"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:125 src/otcurrentUIDialog.cpp:174
-msgid "otcurrentUseDirection"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:126 src/otcurrentUIDialog.cpp:175
-msgid "otcurrentUseFillColour"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:128 src/otcurrentUIDialog.cpp:185
-msgid "otcurrentInterval"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:244
+#: src/otcurrentUIDialog.cpp:242
 msgid "START Date/Time"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:379
+#: src/otcurrentUIDialog.cpp:366
 msgid "HARMONIC"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:409
+#: src/otcurrentUIDialog.cpp:396
 msgid "No tidal data for this port"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:409
+#: src/otcurrentUIDialog.cpp:396
 msgid "No Tidal Data"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:504 src/otcurrentUIDialog.cpp:517
+#: src/otcurrentUIDialog.cpp:491 src/otcurrentUIDialog.cpp:504
 msgid "HW"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:504 src/otcurrentUIDialog.cpp:512
+#: src/otcurrentUIDialog.cpp:491 src/otcurrentUIDialog.cpp:499
 msgid "LW"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:696
+#: src/otcurrentUIDialog.cpp:683
 msgid ""
 "Tidal Data for UKHO Tidal Diamonds\n"
 "--------------------------------------------------------------\n"
@@ -108,25 +80,25 @@ msgid ""
 "Stream Atlases. This is based on the average range for the day\n"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:697
+#: src/otcurrentUIDialog.cpp:684
 msgid "About Tidal Arrows"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:714
+#: src/otcurrentUIDialog.cpp:701
 #, c-format
 msgid " x = %d y = %d\n"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:716
+#: src/otcurrentUIDialog.cpp:703
 #, c-format
 msgid " width = %d height = %d\n"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:733
+#: src/otcurrentUIDialog.cpp:718
 msgid "OK"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:735
+#: src/otcurrentUIDialog.cpp:720
 msgid "Cancel"
 msgstr ""
 
@@ -170,6 +142,30 @@ msgstr ""
 msgid "Fill Colour"
 msgstr ""
 
+#: src/otcurrentUIDialogBase.cpp:221
+msgid "Tidal Current Arrow Colour"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:241
+msgid "      < 0.5 knots"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:246
+msgid ">= 0.5 and < 1.5"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:251
+msgid ">= 1.5 and < 2.5"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:256
+msgid ">= 2.5 and < 3.5"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:261
+msgid ">= 3.5 knots    "
+msgstr ""
+
 #: src/otcurrentUIDialogBase.h:138
 msgid "Tidal Current Control"
 msgstr ""
@@ -182,15 +178,15 @@ msgstr ""
 msgid "Preferences"
 msgstr ""
 
-#: src/otcurrent_pi.cpp:120
+#: src/otcurrent_pi.cpp:121
 msgid "otcurrent"
 msgstr ""
 
-#: src/otcurrent_pi.cpp:181
+#: src/otcurrent_pi.cpp:182
 msgid "otcurrent PlugIn for OpenCPN"
 msgstr ""
 
-#: src/otcurrent_pi.cpp:187
+#: src/otcurrent_pi.cpp:188
 msgid ""
 "otcurrent PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n"

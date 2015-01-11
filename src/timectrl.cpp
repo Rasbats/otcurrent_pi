@@ -73,7 +73,7 @@
                }else{
                       cvt++;
                }			  
-               SetValue(wxString::Format(wxT("%2d%s"),cvt,GetValue().Mid(2)));
+               SetValue(wxString::Format(wxT("%2d%s"),cvt,GetValue().Mid(2).c_str()));
                SetInsertionPoint(x);
          }else if(x == 3){
 			   
