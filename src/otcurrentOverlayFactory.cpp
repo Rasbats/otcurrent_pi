@@ -212,7 +212,7 @@ wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed){
 
 void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate )
 {   	
-	double m_rate = abs(rate);
+	double m_rate = fabs(rate);
 	wxPoint p[9];
 
     wxColour colour;	
@@ -970,7 +970,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 						   if( m_bShowRate){
                           
 							  DrawGLLabels( this, m_pdc, BBox, 
-									  DrawGLText( abs(tcvalue), 1), lat, lon, 0 ) ;
+									  DrawGLText( fabs(tcvalue), 1), lat, lon, 0 ) ;
 							  shift = 13;
 						   }
 						   if( m_bShowDirection){
@@ -988,7 +988,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 						if( m_bShowRate && m_pdc ) 
 						{
 							m_pdc->SetFont( *pTCFont );
-							snprintf( sbuf, 19, "%3.1f", abs(tcvalue) );
+							snprintf( sbuf, 19, "%3.1f", fabs(tcvalue) );
 							m_pdc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc );
 							shift = 13;
 						}					 

@@ -513,7 +513,7 @@ void otcurrentUIDialog::CalcHW(int PortCode)
 
 													   myRange = myHW - myLW;
 													 
-													  if ((abs(myRange) == myHW) || (abs(myRange) == myLW))
+													  if ((fabs(myRange) == myHW) || (fabs(myRange) == myLW))
 													  {
 															// out of range
 													  }
@@ -579,7 +579,7 @@ int otcurrentUIDialog::CalcHoursFromHWNow()
 		d = t - m;
 		myDiff = (d/60)/60;  
 		
-		if (abs(myDiff) < abs(myTest))
+		if (fabs(myDiff) < fabs(myTest))
 		{
 			myTest = myDiff;
 		}
@@ -624,7 +624,7 @@ int otcurrentUIDialog::round(double c)
 	c = c - a; //-2.6 --2 c = -0.6
 	}
 	
-	if ( abs(c) > 0.5) 
+	if ( fabs(c) > 0.5) 
 	{
 		b = 1;  //1
 	}
