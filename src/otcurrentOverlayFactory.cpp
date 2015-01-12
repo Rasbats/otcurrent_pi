@@ -38,13 +38,8 @@
 #include "otcurrentUIDialog.h"
 #include "otcurrentUIDialogBase.h"
 #include "otcurrentOverlayFactory.h"
-
-
 #include <vector>
-
-//#include "dychart.h"
 #include "bbox.h"
-//#include "cutil.h"
 
 #ifdef __WXMSW__
 #define snprintf _snprintf
@@ -56,9 +51,6 @@ class Position;
 class otcurrentUIDialog;
 class PlugIn_ViewPort;
 class wxBoundingBox;
-//class TCMgr;
-
-//enum OVERLAP { _IN, _ON, _OUT };
 
 #define NUM_CURRENT_ARROW_POINTS 9
 static wxPoint CurrentArrowArray[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -10 ),
@@ -75,42 +67,31 @@ otcurrentOverlayFactory::otcurrentOverlayFactory( otcurrentUIDialog &dlg )
     m_dFont_map = new wxFont( 10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL );
     m_dFont_war = new wxFont( 16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL );
 
-  //  m_potcurrentTimelineRecordSet = NULL;
-    m_last_vp_scale = 0.;
+	m_last_vp_scale = 0.;
 	m_bShowRate = m_dlg.m_bUseRate;
 	m_bShowDirection = m_dlg.m_bUseDirection;
 	m_bShowFillColour = m_dlg.m_bUseFillColour;
 
 	m_dtUseNew = m_dlg.m_dtNow;
-    //for(int i=0; i<otcurrentOverlaySettings::SETTINGS_COUNT; i++)
-      //  m_pOverlay[i] = NULL;
-
-	
 }
 
 otcurrentOverlayFactory::~otcurrentOverlayFactory()
 {
-  ///  ClearCachedData();
+
 }
 
 void otcurrentOverlayFactory::Reset()
 {
-   // m_potcurrentTimelineRecordSet = NULL;
 
-  ///  ClearCachedData();
 }
 
 bool otcurrentOverlayFactory::RenderGLotcurrentOverlay( wxGLContext *pcontext, PlugIn_ViewPort *vp )
 {
     m_pdc = NULL;  // inform lower layers that this is OpenGL render
 
-	//int myTime = time(NULL);  
-	//wxDateTime dt = wxDateTime::Now();
-	//m_dtUseNew.Add(wxTimeSpan::Hours(6));
     DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
     return true;
-	
-	//return DoRenderotcurrentOverlay( vp );
+
 }
 
 bool otcurrentOverlayFactory::RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort *vp )
@@ -127,15 +108,9 @@ bool otcurrentOverlayFactory::RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort 
 #endif
 	   
 	m_pdc = &dc;
-	
-	//int myTime = time(NULL); 
-	//wxDateTime dt = wxDateTime::Now(); 
+
 	DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
     return true;
-	//return DoRenderotcurrentOverlay( vp );
-
-	
-
 
 }
 
@@ -144,21 +119,12 @@ bool otcurrentOverlayFactory::RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort 
 bool otcurrentOverlayFactory::DoRenderotcurrentOverlay( PlugIn_ViewPort *vp )
 {
     
-
     m_Message_Hiden.Empty();
-
-	    //    If the scale has changed, clear out the cached bitmaps
-
     m_last_vp_scale = vp->view_scale_ppm;
 	
-
-	//RenderMyArrows(vp);
-
     if( !m_Message_Hiden.IsEmpty() )
         DrawMessageWindow( m_Message_Hiden , vp->pix_width, vp->pix_height, m_dFont_map );
-	
-	
-	 DrawMessageWindow( m_Message_Hiden , vp->pix_width, vp->pix_height, m_dFont_map );
+	    DrawMessageWindow( m_Message_Hiden , vp->pix_width, vp->pix_height, m_dFont_map );
     return true;
 }
 
@@ -173,10 +139,8 @@ void otcurrentOverlayFactory::DrawMessageWindow( wxString msg, int x, int y , wx
     mdc.SelectObject( bm );
     mdc.Clear();
 
-    //wxFont mfont( 15, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL );
     mdc.SetFont( *mfont );
     mdc.SetPen( *wxTRANSPARENT_PEN);
-   // mdc.SetBrush( *wxLIGHT_GREY_BRUSH );
     mdc.SetBrush( wxColour(243, 229, 47 ) );
     int w, h;
     mdc.GetMultiLineTextExtent( msg, &w, &h );
@@ -225,7 +189,7 @@ void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 
     if( m_pdc ) {
         m_pdc->SetPen( pen );
-        m_pdc->SetBrush( brush);  //*wxTRANSPARENT_BRUSH);
+        m_pdc->SetBrush( brush);  
     }
 
    
@@ -300,8 +264,6 @@ wxImage &otcurrentOverlayFactory::DrawGLText( double value, int precision ){
 	wxFont *pTCFont;
 					pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
                                                    wxString( _T ( "Eurostile Extended" ) ) );
-
-   // wxFont mfont( 12, wxDEFAULT, wxNORMAL, wxBOLD );
     mdc.SetFont(*pTCFont);
 
     int w, h;
@@ -325,8 +287,7 @@ wxImage &otcurrentOverlayFactory::DrawGLText( double value, int precision ){
           
     int xd = 0;
     int yd = 0;
-//    mdc.DrawRoundedRectangle(xd, yd, w+(label_offset * 2), h+2, -.25);
-    //mdc.DrawRectangle(xd, yd, w+(label_offset * 2), h+2);
+
     mdc.DrawText(labels, label_offset + xd, yd+1);
           
     mdc.SelectObject(wxNullBitmap);
@@ -369,7 +330,6 @@ wxImage &otcurrentOverlayFactory::DrawGLTextDir( double value, int precision ){
 					pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
                                                    wxString( _T ( "Eurostile Extended" ) ) );
 
-   // wxFont mfont( 12, wxDEFAULT, wxNORMAL, wxBOLD );
     mdc.SetFont(*pTCFont);
 
     int w, h;
@@ -393,8 +353,7 @@ wxImage &otcurrentOverlayFactory::DrawGLTextDir( double value, int precision ){
           
     int xd = 0;
     int yd = 0;
-//    mdc.DrawRoundedRectangle(xd, yd, w+(label_offset * 2), h+2, -.25);
-    //mdc.DrawRectangle(xd, yd, w+(label_offset * 2), h+2);
+
     mdc.DrawText(labels, label_offset + xd, yd+1);
           
     mdc.SelectObject(wxNullBitmap);
@@ -430,7 +389,6 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
 		
 	wxMemoryDC mdc(wxNullBitmap);
 
-    //wxFont mfont( 12, wxDEFAULT, wxNORMAL, wxBOLD );
 	wxFont *pTCFont;
 					pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
                                                    wxString( _T ( "Eurostile Extended" ) ) );	
@@ -489,7 +447,6 @@ void otcurrentOverlayFactory::DrawGLLine( double x1, double y1, double x2, doubl
 {
     {
         wxColour isoLineColor = myColour;
-		//GetGlobalColor ( _T ( "UITX1" ), &isoLineColor );
 		glColor4ub(isoLineColor.Red(), isoLineColor.Green(), isoLineColor.Blue(),
                      255/*isoLineColor.Alpha()*/);
 
@@ -720,8 +677,6 @@ wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
 	*/
     
 	mdc.DrawPolygon(9,p_basic,0);
-    //mdc.DrawRectangle(xd, yd, w+(label_offset * 2), h+2);
-    //mdc.DrawText(labels, label_offset + xd, yd+1);
           
     mdc.SelectObject(wxNullBitmap);
 
@@ -861,6 +816,8 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 		return;
 	}
 
+    double rot_vp = BBox->rotation*180/M_PI;
+
 	// Set up the scaler
 	int mmx, mmy;
 	wxDisplaySizeMM( &mmx, &mmy );
@@ -957,7 +914,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
                         double a2 = log10( a1 );
                         double scale = current_draw_scaler * a2;
 
-						drawCurrentArrow( pixxc, pixyc,	dir - 90 , scale/100, tcvalue );
+						drawCurrentArrow( pixxc, pixyc,	dir - 90 + rot_vp , scale/100, tcvalue );
                                
 						int shift = 0;
 
@@ -1006,7 +963,6 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 
                 }
 
-			
                 lon_last = lon;
                 lat_last = lat;
 

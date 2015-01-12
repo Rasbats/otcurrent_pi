@@ -120,7 +120,7 @@ public:
 	wxDateTime        m_dtUseNew;
 
 private:
-	
+
 	bool inGL;
 	vector<Position> new_positions;
     bool DoRenderotcurrentOverlay( PlugIn_ViewPort *vp );
