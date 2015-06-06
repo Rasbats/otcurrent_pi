@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: otcurrent_pi 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-10 17:25-0600\n"
+"POT-Creation-Date: 2015-06-06 11:42-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/otcurrentOverlayFactory.cpp:894 src/otcurrentUIDialog.cpp:362
+#: src/otcurrentOverlayFactory.cpp:851 src/otcurrentUIDialog.cpp:362
 msgid "Using Tide/Current data from:  "
 msgstr ""
 
