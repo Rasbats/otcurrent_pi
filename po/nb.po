@@ -1,0 +1,216 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: opencpn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-06 11:42-0500\n"
+"PO-Revision-Date: 2015-06-06 13:27-0400\n"
+"Last-Translator: nohal <pavel@kalian.cz>\n"
+"Language-Team: Norwegian Bokmal\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: nb\n"
+"X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
+
+#: src/otcurrentOverlayFactory.cpp:851 src/otcurrentUIDialog.cpp:362
+msgid "Using Tide/Current data from:  "
+msgstr "Bruker tidevann/strømdata fra:  "
+
+#: src/otcurrentUIDialog.cpp:242
+msgid "START Date/Time"
+msgstr "START Dato/Tid"
+
+#: src/otcurrentUIDialog.cpp:366
+msgid "HARMONIC"
+msgstr "HARMONISK"
+
+#: src/otcurrentUIDialog.cpp:396
+msgid "No tidal data for this port"
+msgstr "Ikke tidevanndata for denne havnen"
+
+#: src/otcurrentUIDialog.cpp:396
+msgid "No Tidal Data"
+msgstr "Ingen tidevannsdata"
+
+#: src/otcurrentUIDialog.cpp:491 src/otcurrentUIDialog.cpp:504
+msgid "HW"
+msgstr "HV"
+
+#: src/otcurrentUIDialog.cpp:491 src/otcurrentUIDialog.cpp:499
+msgid "LW"
+msgstr "LV"
+
+#: src/otcurrentUIDialog.cpp:683
+msgid "Tidal Data for UKHO Tidal Diamonds\n"
+"--------------------------------------------------------------\n"
+"The standard OpenCPN distribution has tidal data for the\n"
+"following ports, which this plugin uses:\n\n"
+"PLYMOUTH (DEVONPORT)\n"
+"PORTSMOUTH\n"
+"DOVER\n"
+"SHEERNESS\n"
+"LOWESTOFT\n"
+"IMMINGHAM\n"
+"LEITH\n"
+"ABERDEEN\n"
+"WICK\n"
+"LERWICK\n"
+"ULLAPOOL\n"
+"LIVERPOOL (GLADSTONE DOCK)\n"
+"HOLYHEAD\n"
+"MILFORD HAVEN\n"
+"PORT OF BRISTOL (AVONMOUTH)\n"
+"ST. HELIER\n\n"
+"Use this data with caution.\n"
+"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n\n"
+"--------------------------------------------------------------------\n\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n"
+"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
+"Stream Atlases. This is based on the average range for the day\n"
+msgstr "Tidevannsdata for UKHO Tidal Diamonds\n"
+"--------------------------------------------------------------\n"
+"Standard OpenCPN distribusjon har tidevannsdata for\n"
+"følgende havner, som denne utvidelsen benytter:\n\n"
+"PLYMOUTH (DEVONPORT)\n"
+"PORTSMOUTH\n"
+"DOVER\n"
+"SHEERNESS\n"
+"LOWESTOFT\n"
+"IMMINGHAM\n"
+"LEITH\n"
+"ABERDEEN\n"
+"WICK\n"
+"LERWICK\n"
+"ULLAPOOL\n"
+"LIVERPOOL (GLADSTONE DOCK)\n"
+"HOLYHEAD\n"
+"MILFORD HAVEN\n"
+"BRISTOL HAVN (AVONMOUTH)\n"
+"ST. HELIER\n\n"
+"Bruk disse data med forsiktighet.\n"
+"Bruk sammen med UKHO Tidal Stream Atlas og Tidal Diamonds\n\n"
+"--------------------------------------------------------------------\n\n"
+"Merknad: 1 Verdiene som er vist er for posisjon i midten\n"
+"av basen til pilen. Tidevanns verdien er vist som knop.\n"
+"Merknad: 2 Verdier er kalkulert ut fra metode som vist i UKHO Tidal\n"
+"Stream Atlaser. Dette er basert på gjennomsnitt for dagen\n"
+
+#: src/otcurrentUIDialog.cpp:684
+msgid "About Tidal Arrows"
+msgstr "Om tidevannspiler"
+
+#: src/otcurrentUIDialog.cpp:701
+#, c-format
+msgid " x = %d y = %d\n"
+msgstr " x = %d y = %d\n"
+
+#: src/otcurrentUIDialog.cpp:703
+#, c-format
+msgid " width = %d height = %d\n"
+msgstr " bredde = %d høyde = %d\n"
+
+#: src/otcurrentUIDialog.cpp:718
+msgid "OK"
+msgstr "OK"
+
+#: src/otcurrentUIDialog.cpp:720
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: src/otcurrentUIDialogBase.cpp:21
+msgid "Date/Time"
+msgstr "Dato/Tid"
+
+#: src/otcurrentUIDialogBase.cpp:32
+msgid "Select"
+msgstr "Velg"
+
+#: src/otcurrentUIDialogBase.cpp:33
+msgid "Select date/time for current prediction"
+msgstr "Velg dato/tid for gjeldende varsel"
+
+#: src/otcurrentUIDialogBase.cpp:43
+msgid "Now"
+msgstr "Nå"
+
+#: src/otcurrentUIDialogBase.cpp:50
+msgid "Step (Minutes)"
+msgstr "Trinn (minutter)"
+
+#: src/otcurrentUIDialogBase.cpp:69
+msgid "Previous"
+msgstr "Forrige"
+
+#: src/otcurrentUIDialogBase.cpp:75
+msgid "Next"
+msgstr "Neste"
+
+#: src/otcurrentUIDialogBase.cpp:206
+msgid "Display tidal rates (knots)"
+msgstr "Vis tidevannsverdi (knop)"
+
+#: src/otcurrentUIDialogBase.cpp:209
+msgid "Display tidal direction"
+msgstr "Vis tidevannets retning"
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "Fill Colour"
+msgstr "Fyllfarge"
+
+#: src/otcurrentUIDialogBase.cpp:221
+msgid "Tidal Current Arrow Colour"
+msgstr "Farge for tidevannstrøm pil"
+
+#: src/otcurrentUIDialogBase.cpp:241
+msgid "      < 0.5 knots"
+msgstr "      < 0.5 knop"
+
+#: src/otcurrentUIDialogBase.cpp:246
+msgid ">= 0.5 and < 1.5"
+msgstr ">= 0.5 og < 1.5"
+
+#: src/otcurrentUIDialogBase.cpp:251
+msgid ">= 1.5 and < 2.5"
+msgstr ">= 1.5 og < 2.5"
+
+#: src/otcurrentUIDialogBase.cpp:256
+msgid ">= 2.5 and < 3.5"
+msgstr ">= 2.5 og < 3.5"
+
+#: src/otcurrentUIDialogBase.cpp:261
+msgid ">= 3.5 knots    "
+msgstr ">= 3.5 knop    "
+
+#: src/otcurrentUIDialogBase.h:138
+msgid "Tidal Current Control"
+msgstr "Tidevannsstrøm kontroll"
+
+#: src/otcurrentUIDialogBase.h:197
+msgid "otcurrent Settings"
+msgstr "otcurrent innstillinger"
+
+#: src/otcurrentUIDialogBase.h:249
+msgid "Preferences"
+msgstr "Innstillinger"
+
+#: src/otcurrent_pi.cpp:121
+msgid "otcurrent"
+msgstr "otcurrent"
+
+#: src/otcurrent_pi.cpp:182
+msgid "otcurrent PlugIn for OpenCPN"
+msgstr "otcurrent utvidelse for OpenCPN"
+
+#: src/otcurrent_pi.cpp:188
+msgid "otcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
+"\t\t\t   "
+msgstr "otcurrent utvidelse for OpenCPN\n"
+"Gir et overlegg av tidevannstrøm som piler.\n\n"
+"\t\t\t   "
+
