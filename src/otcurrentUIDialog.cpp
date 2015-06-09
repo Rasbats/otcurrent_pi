@@ -73,7 +73,7 @@ enum
 using namespace std;
 
 
-#if defined (_WIN32)
+#if (_MSC_VER == 1600)
 int round (double x) {
 	int i = (int) x;
 	if (x >= 0.0) {

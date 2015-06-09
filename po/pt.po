@@ -1,57 +1,54 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: otcurrent_pi 1.0\n"
+"Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-06 11:42-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2015-06-06 13:27-0400\n"
+"Last-Translator: nohal <pavel@kalian.cz>\n"
+"Language-Team: Portuguese, Brazilian\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: pt-BR\n"
+"X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
 
 #: src/otcurrentOverlayFactory.cpp:851 src/otcurrentUIDialog.cpp:362
 msgid "Using Tide/Current data from:  "
-msgstr ""
+msgstr "Usando os dados de maré/corrente de:  "
 
 #: src/otcurrentUIDialog.cpp:242
 msgid "START Date/Time"
-msgstr ""
+msgstr "Data/hora de início"
 
 #: src/otcurrentUIDialog.cpp:366
 msgid "HARMONIC"
-msgstr ""
+msgstr "HARMÔNICO"
 
 #: src/otcurrentUIDialog.cpp:396
 msgid "No tidal data for this port"
-msgstr ""
+msgstr "Não há dados das marés para este porto"
 
 #: src/otcurrentUIDialog.cpp:396
 msgid "No Tidal Data"
-msgstr ""
+msgstr "Não há dados de marés"
 
 #: src/otcurrentUIDialog.cpp:491 src/otcurrentUIDialog.cpp:504
 msgid "HW"
-msgstr ""
+msgstr "HW"
 
 #: src/otcurrentUIDialog.cpp:491 src/otcurrentUIDialog.cpp:499
 msgid "LW"
-msgstr ""
+msgstr "LW"
 
 #: src/otcurrentUIDialog.cpp:683
-msgid ""
-"Tidal Data for UKHO Tidal Diamonds\n"
+msgid "Tidal Data for UKHO Tidal Diamonds\n"
 "--------------------------------------------------------------\n"
 "The standard OpenCPN distribution has tidal data for the\n"
-"following ports, which this plugin uses:\n"
-"\n"
+"following ports, which this plugin uses:\n\n"
 "PLYMOUTH (DEVONPORT)\n"
 "PORTSMOUTH\n"
 "DOVER\n"
@@ -67,129 +64,153 @@ msgid ""
 "HOLYHEAD\n"
 "MILFORD HAVEN\n"
 "PORT OF BRISTOL (AVONMOUTH)\n"
-"ST. HELIER\n"
-"\n"
+"ST. HELIER\n\n"
 "Use this data with caution.\n"
-"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
-"\n"
-"--------------------------------------------------------------------\n"
-"\n"
+"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n\n"
+"--------------------------------------------------------------------\n\n"
 "Note: 1 Rates shown are for a position corresponding to the centre\n"
 "of the base of the arrow. Tidal rate is shown as knots.\n"
 "Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
 "Stream Atlases. This is based on the average range for the day\n"
-msgstr ""
+msgstr "Dados de maré para UKHO Tidal Diamonds\n"
+"--------------------------------------------------------------\n"
+"A distribuição standard do OpenCPN tem dados de marés para os\n"
+"seguintes portos, que esta extensão utiliza:\n\n"
+"PLYMOUTH (DEVONPORT)\n"
+"PORTSMOUTH\n"
+"DOVER\n"
+"SHEERNESS\n"
+"LOWESTOFT\n"
+"IMMINGHAM\n"
+"LEITH\n"
+"ABERDEEN\n"
+"WICK\n"
+"LERWICK\n"
+"ULLAPOOL\n"
+"LIVERPOOL (GLADSTONE DOCK)\n"
+"HOLYHEAD\n"
+"MILFORD HAVEN\n"
+"PORT OF BRISTOL (AVONMOUTH)\n"
+"ST. HELIER\n\n"
+"Use estes dados com precaução.\n"
+"Use em conjunto com o UKHO Tidal Stream Atlases and tidal diamonds\n\n"
+"--------------------------------------------------------------------\n\n"
+"Nota: 1 As classificações apresentadas são para posições correspondentes ao centro\n"
+"de base da seta. A classificação das marés é dada em nós.\n"
+"Note: 2 As classificações são calculadas pelo método apresentado no UKHO Tidal\n"
+"Stream Atlases. Este é baseado na classificação média do dia\n"
 
 #: src/otcurrentUIDialog.cpp:684
 msgid "About Tidal Arrows"
-msgstr ""
+msgstr "Sobre as setas das marés"
 
 #: src/otcurrentUIDialog.cpp:701
 #, c-format
 msgid " x = %d y = %d\n"
-msgstr ""
+msgstr " x = %d y = %d\n"
 
 #: src/otcurrentUIDialog.cpp:703
 #, c-format
 msgid " width = %d height = %d\n"
-msgstr ""
+msgstr " largura = %d altura = %d\n"
 
 #: src/otcurrentUIDialog.cpp:718
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/otcurrentUIDialog.cpp:720
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: src/otcurrentUIDialogBase.cpp:21
 msgid "Date/Time"
-msgstr ""
+msgstr "Data/Hora"
 
 #: src/otcurrentUIDialogBase.cpp:32
 msgid "Select"
-msgstr ""
+msgstr "Seleccionar"
 
 #: src/otcurrentUIDialogBase.cpp:33
 msgid "Select date/time for current prediction"
-msgstr ""
+msgstr "Selecione data/hora para previsão atual"
 
 #: src/otcurrentUIDialogBase.cpp:43
 msgid "Now"
-msgstr ""
+msgstr "Agora"
 
 #: src/otcurrentUIDialogBase.cpp:50
 msgid "Step (Minutes)"
-msgstr ""
+msgstr "Passo (minutos)"
 
 #: src/otcurrentUIDialogBase.cpp:69
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: src/otcurrentUIDialogBase.cpp:75
 msgid "Next"
-msgstr ""
+msgstr "Próximo"
 
 #: src/otcurrentUIDialogBase.cpp:206
 msgid "Display tidal rates (knots)"
-msgstr ""
+msgstr "Exibir taxas das marés (nós)"
 
 #: src/otcurrentUIDialogBase.cpp:209
 msgid "Display tidal direction"
-msgstr ""
+msgstr "Exibir a direção das marés"
 
 #: src/otcurrentUIDialogBase.cpp:212
 msgid "Fill Colour"
-msgstr ""
+msgstr "Preencher com cor"
 
 #: src/otcurrentUIDialogBase.cpp:221
 msgid "Tidal Current Arrow Colour"
-msgstr ""
+msgstr "Cor da Seta da Corrente de Maré"
 
 #: src/otcurrentUIDialogBase.cpp:241
 msgid "      < 0.5 knots"
-msgstr ""
+msgstr "      < 0.5 nós"
 
 #: src/otcurrentUIDialogBase.cpp:246
 msgid ">= 0.5 and < 1.5"
-msgstr ""
+msgstr ">= 0.5 e < 1.5"
 
 #: src/otcurrentUIDialogBase.cpp:251
 msgid ">= 1.5 and < 2.5"
-msgstr ""
+msgstr ">= 1.5 e < 2.5"
 
 #: src/otcurrentUIDialogBase.cpp:256
 msgid ">= 2.5 and < 3.5"
-msgstr ""
+msgstr ">= 2.5 e < 3.5"
 
 #: src/otcurrentUIDialogBase.cpp:261
 msgid ">= 3.5 knots    "
-msgstr ""
+msgstr ">= 3.5 nós    "
 
 #: src/otcurrentUIDialogBase.h:138
 msgid "Tidal Current Control"
-msgstr ""
+msgstr "Controle de corrente de maré"
 
 #: src/otcurrentUIDialogBase.h:197
 msgid "otcurrent Settings"
-msgstr ""
+msgstr "Configuração otcurrent"
 
 #: src/otcurrentUIDialogBase.h:249
 msgid "Preferences"
-msgstr ""
+msgstr "Preferências"
 
 #: src/otcurrent_pi.cpp:121
 msgid "otcurrent"
-msgstr ""
+msgstr "otcurrent"
 
 #: src/otcurrent_pi.cpp:182
 msgid "otcurrent PlugIn for OpenCPN"
-msgstr ""
+msgstr "Extensão otcurrent para OpenCPN"
 
 #: src/otcurrent_pi.cpp:188
-msgid ""
-"otcurrent PlugIn for OpenCPN\n"
-"Provides an overlay of Tidal Current (Stream) Arrows.\n"
-"\n"
+msgid "otcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
 "\t\t\t   "
-msgstr ""
+msgstr "Extensão otcurrent para OpenCPN\n"
+"Disponibiliza uma sobreposição de Setas de Corrente (fluxo) de Maré.\n\n"
+"\t\t\t   "
+
