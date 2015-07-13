@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-06 11:42-0500\n"
-"PO-Revision-Date: 2015-06-06 13:27-0400\n"
+"POT-Creation-Date: 2015-01-10 17:25-0600\n"
+"PO-Revision-Date: 2015-01-10 18:27-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -13,204 +13,147 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
-"X-Crowdin-Language: nl\n"
 "X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
 
-#: src/otcurrentOverlayFactory.cpp:851 src/otcurrentUIDialog.cpp:362
+#: src/otcurrentOverlayFactory.cpp:894 src/otcurrentUIDialog.cpp:362
 msgid "Using Tide/Current data from:  "
-msgstr "Gebruik getij- en stroomgegevens van:  "
+msgstr ""
 
 #: src/otcurrentUIDialog.cpp:242
 msgid "START Date/Time"
-msgstr "START datum/tijd"
+msgstr ""
 
 #: src/otcurrentUIDialog.cpp:366
 msgid "HARMONIC"
-msgstr "HARMONISCHE"
+msgstr ""
 
 #: src/otcurrentUIDialog.cpp:396
 msgid "No tidal data for this port"
-msgstr "Geen getijgegevens voor deze haven"
+msgstr ""
 
 #: src/otcurrentUIDialog.cpp:396
 msgid "No Tidal Data"
-msgstr "Geen getijgegevens"
+msgstr ""
 
 #: src/otcurrentUIDialog.cpp:491 src/otcurrentUIDialog.cpp:504
 msgid "HW"
-msgstr "HW"
+msgstr ""
 
 #: src/otcurrentUIDialog.cpp:491 src/otcurrentUIDialog.cpp:499
 msgid "LW"
-msgstr "LW"
+msgstr ""
 
 #: src/otcurrentUIDialog.cpp:683
-msgid "Tidal Data for UKHO Tidal Diamonds\n"
-"--------------------------------------------------------------\n"
-"The standard OpenCPN distribution has tidal data for the\n"
-"following ports, which this plugin uses:\n\n"
-"PLYMOUTH (DEVONPORT)\n"
-"PORTSMOUTH\n"
-"DOVER\n"
-"SHEERNESS\n"
-"LOWESTOFT\n"
-"IMMINGHAM\n"
-"LEITH\n"
-"ABERDEEN\n"
-"WICK\n"
-"LERWICK\n"
-"ULLAPOOL\n"
-"LIVERPOOL (GLADSTONE DOCK)\n"
-"HOLYHEAD\n"
-"MILFORD HAVEN\n"
-"PORT OF BRISTOL (AVONMOUTH)\n"
-"ST. HELIER\n\n"
-"Use this data with caution.\n"
-"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n\n"
-"--------------------------------------------------------------------\n\n"
-"Note: 1 Rates shown are for a position corresponding to the centre\n"
-"of the base of the arrow. Tidal rate is shown as knots.\n"
-"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
-"Stream Atlases. This is based on the average range for the day\n"
-msgstr "Getijgegevens voor UKHO 'Tidal Diamonds'\n"
-"--------------------------------------------------------------\n"
-"De standaard OpenCPN distributie bevat getijgegevens voor de\n"
-"volgende havens, die deze plugin gebruikt: \n\n"
-"PLYMOUTH (DEVONPORT) \n"
-"PORTSMOUTH\n"
-"DOVER\n"
-"SHEERNESS\n"
-"LOWESTOFT\n"
-"IMMINGHAM\n"
-"LEITH\n"
-"ABERDEEN\n"
-"WICK\n"
-"LERWICK\n"
-"ULLAPOOL\n"
-"LIVERPOOL (GLADSTONE DOCK) \n"
-"HOLYHEAD\n"
-"MILFORD HAVEN\n"
-"PORT OF BRISTOL (AVONMOUTH) \n"
-"ST. HELIER\n\n"
-"Gebruik deze gegevens met voorzichtigheid.\n"
-"Gebruik alleen in combinatie met UKHO stroomatlassen en 'Tidal Diamonds'\n\n"
-"--------------------------------------------------------------\n\n"
-"Opmerkingen:\n"
-"1. Stroomgegevens gelden voor de positie die overeenkomt met het midden\n"
-"van de onderzijde van de pijl. Stroomsnelheid is in knopen.\n"
-"2. Stroomsnelheden worden berekend met behulp van de methode zoals beschreven de  UKHO stroomatlassen, /ngebaseerd op het gemiddelde verval van de dag.\n"
+msgid "Tidal Data for UKHO Tidal Diamonds\n--------------------------------------------------------------\nThe standard OpenCPN distribution has tidal data for the\nfollowing ports, which this plugin uses:\n\nPLYMOUTH (DEVONPORT)\nPORTSMOUTH\nDOVER\nSHEERNESS\nLOWESTOFT\nIMMINGHAM\nLEITH\nABERDEEN\nWICK\nLERWICK\nULLAPOOL\nLIVERPOOL (GLADSTONE DOCK)\nHOLYHEAD\nMILFORD HAVEN\nPORT OF BRISTOL (AVONMOUTH)\nST. HELIER\n\nUse this data with caution.\nUse in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n\n--------------------------------------------------------------------\n\nNote: 1 Rates shown are for a position corresponding to the centre\nof the base of the arrow. Tidal rate is shown as knots.\nNote: 2 Rates are calculated by using the method shown in UKHO Tidal\nStream Atlases. This is based on the average range for the day\n"
+msgstr ""
 
 #: src/otcurrentUIDialog.cpp:684
 msgid "About Tidal Arrows"
-msgstr "Over stroompijlen"
+msgstr ""
 
 #: src/otcurrentUIDialog.cpp:701
 #, c-format
 msgid " x = %d y = %d\n"
-msgstr " x = %d y = %d\n"
+msgstr ""
 
 #: src/otcurrentUIDialog.cpp:703
 #, c-format
 msgid " width = %d height = %d\n"
-msgstr " breedte = %d hoogte = %d\n"
+msgstr ""
 
 #: src/otcurrentUIDialog.cpp:718
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: src/otcurrentUIDialog.cpp:720
 msgid "Cancel"
-msgstr "Annuleer"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:21
 msgid "Date/Time"
-msgstr "Datum/tijd"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:32
 msgid "Select"
-msgstr "Selecteer"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:33
 msgid "Select date/time for current prediction"
-msgstr "Selecteer datum/tijd voor stroomvoorspelling"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:43
 msgid "Now"
-msgstr "Nu"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:50
 msgid "Step (Minutes)"
-msgstr "Stap (minuten)"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:69
 msgid "Previous"
-msgstr "Vorige"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:75
 msgid "Next"
-msgstr "Volgende"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:206
 msgid "Display tidal rates (knots)"
-msgstr "Toon stroomsnelheid (knopen)"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:209
 msgid "Display tidal direction"
-msgstr "Toon stroomrichting"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:212
 msgid "Fill Colour"
-msgstr "Vulkleur"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:221
 msgid "Tidal Current Arrow Colour"
-msgstr "Pijlkleur voor getijstroom"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:241
 msgid "      < 0.5 knots"
-msgstr "      < 0,5 knopen"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:246
 msgid ">= 0.5 and < 1.5"
-msgstr "> = 0.5 en < 1,5"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:251
 msgid ">= 1.5 and < 2.5"
-msgstr "> = 1,5 en 2,5 <"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:256
 msgid ">= 2.5 and < 3.5"
-msgstr "> = 2.5 en < 3.5"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:261
 msgid ">= 3.5 knots    "
-msgstr "> = 3,5 knopen    "
+msgstr ""
 
 #: src/otcurrentUIDialogBase.h:138
 msgid "Tidal Current Control"
-msgstr "Getijstroombeheer"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.h:197
 msgid "otcurrent Settings"
-msgstr "otcurrent instellingen"
+msgstr ""
 
 #: src/otcurrentUIDialogBase.h:249
 msgid "Preferences"
-msgstr "Voorkeuren"
+msgstr ""
 
 #: src/otcurrent_pi.cpp:121
 msgid "otcurrent"
-msgstr "otcurrent"
+msgstr ""
 
 #: src/otcurrent_pi.cpp:182
 msgid "otcurrent PlugIn for OpenCPN"
-msgstr "otcurrent PlugIn voor OpenCPN"
+msgstr ""
 
 #: src/otcurrent_pi.cpp:188
-msgid "otcurrent PlugIn for OpenCPN\n"
-"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
-"\t\t\t   "
-msgstr "otcurrent PlugIn voor OpenCPN\n"
-"Toont een overlay van getijstroompijlen op de kaart.\n\n"
-"\t\t\t   "
+msgid "otcurrent PlugIn for OpenCPN\nProvides an overlay of Tidal Current (Stream) Arrows.\n\n\t\t\t   "
+msgstr ""
 

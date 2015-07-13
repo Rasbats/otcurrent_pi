@@ -39,6 +39,8 @@
 #include <wx/listbox.h>
 #include <wx/colordlg.h>
 #include <wx/clrpicker.h>
+#include <wx/filepicker.h>
+#include <wx/event.h>
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -98,6 +100,7 @@ class otcurrentUIDialogBase : public wxDialog
 		wxTextCtrl* m_tcSeaTemperature;
 		wxTextCtrl* m_tcCAPE;
 		
+		wxDirPickerCtrl* m_dirPicker1;
 		
 		wxTextCtrl* m_textCtrl1;
 		 
@@ -105,7 +108,9 @@ class otcurrentUIDialogBase : public wxDialog
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnSize( wxSizeEvent& event ) { event.Skip(); }
 		virtual void OnDateSelChanged(wxDateEvent& event) { event.Skip(); }
-
+		virtual void OnFolderSelChanged(wxFileDirPickerEvent& event) { event.Skip(); }
+		
+		
 		virtual void OnNow( wxCommandEvent& event ) { event.Skip(); }
 		virtual void About( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCalendarShow( wxCommandEvent& event ) { event.Skip(); }

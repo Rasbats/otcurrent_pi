@@ -242,15 +242,18 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 			 m_botcurrentUseHiDef = FillColour;
 		 }
 	 
-        if( m_bCopyUseRate != copyrate || m_bCopyUseDirection != copydirection ) {
+        if( m_bCopyUseRate != copyrate || m_bCopyUseDirection != copydirection||  m_botcurrentUseHiDef != FillColour ) {
              m_bCopyUseRate = copyrate;
-             m_bCopyUseDirection = copydirection;           
+             m_bCopyUseDirection = copydirection;   
+			 m_botcurrentUseHiDef = FillColour;
          }
 
 		
          if(m_potcurrentDialog )
-		 {
-			 m_potcurrentDialog->OpenFile(true);
+		 {			
+			 m_potcurrentDialog->m_FolderSelected = m_CopyFolderSelected;
+			 m_potcurrentDialog->m_IntervalSelected = m_CopyIntervalSelected;
+
 			 m_potcurrentDialog->m_bUseRate = m_bCopyUseRate;
 			 m_potcurrentDialog->m_bUseDirection = m_bCopyUseDirection;	
 			 m_potcurrentDialog->m_bUseFillColour = m_botcurrentUseHiDef;
@@ -259,29 +262,29 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
  			 m_potcurrentDialog->myUseColour[1] = myVColour[1];
  			 m_potcurrentDialog->myUseColour[2] = myVColour[2];
  			 m_potcurrentDialog->myUseColour[3] = myVColour[3];
- 			 m_potcurrentDialog->myUseColour[4] = myVColour[4];
-
+ 			 m_potcurrentDialog->myUseColour[4] = myVColour[4];			 
 		 }
 
 		 if (m_potcurrentOverlayFactory)
-		 {
+		 {			 
 			 m_potcurrentOverlayFactory->m_bShowRate = m_bCopyUseRate;
 			 m_potcurrentOverlayFactory->m_bShowDirection = m_bCopyUseDirection;
 			 m_potcurrentOverlayFactory->m_bShowFillColour = m_botcurrentUseHiDef;
 		 }
 
          SaveConfig();
+		 
+		 RequestRefresh(m_parent_window); // refresh main window
      }
-
 	
 }
 
 void otcurrent_pi::OnToolbarToolCallback(int id)
 {
-    if(!m_potcurrentDialog)
+    
+	if(!m_potcurrentDialog)
     {
-		
-        		
+		       		
 		m_potcurrentDialog = new otcurrentUIDialog(m_parent_window, this);
         wxPoint p = wxPoint(m_otcurrent_dialog_x, m_otcurrent_dialog_y);
         m_potcurrentDialog->Move(0,0);        // workaround for gtk autocentre dialog behavior
@@ -289,13 +292,10 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
 
         // Create the drawing factory
         m_potcurrentOverlayFactory = new otcurrentOverlayFactory( *m_potcurrentDialog );
-        m_potcurrentOverlayFactory->SetParentSize( m_display_width, m_display_height);
-		
-		
+        m_potcurrentOverlayFactory->SetParentSize( m_display_width, m_display_height);		
         
     }
 
-   m_potcurrentDialog->OpenFile(true);
       // Qualify the otcurrent dialog position
             bool b_reset_pos = false;
 
@@ -348,7 +348,7 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
       // Toggle is handled by the toolbar but we must keep plugin manager b_toggle updated
       // to actual status to ensure correct status upon toolbar rebuild
       SetToolbarItemState( m_leftclick_tool_id, m_bShowotcurrent );
-      RequestRefresh(m_parent_window); // refresh mainn window
+      RequestRefresh(m_parent_window); // refresh main window
 }
 
 void otcurrent_pi::OnotcurrentDialogClose()
@@ -357,11 +357,10 @@ void otcurrent_pi::OnotcurrentDialogClose()
     SetToolbarItemState( m_leftclick_tool_id, m_bShowotcurrent );
 
     m_potcurrentDialog->Hide();
-    //if(m_potcurrentDialog->pReq_Dialog) m_potcurrentDialog->pReq_Dialog->Hide();
 
     SaveConfig();
 
-    RequestRefresh(m_parent_window); // refresh mainn window
+    RequestRefresh(m_parent_window); // refresh main window
 
 }
 
@@ -407,21 +406,19 @@ bool otcurrent_pi::LoadConfig(void)
     m_bCopyUseDirection = pConf->Read ( _T ( "otcurrentUseDirection" ), 1);
 	m_botcurrentUseHiDef = pConf->Read ( _T ( "otcurrentUseFillColour" ), 1);
 
-	
+	m_CopyFolderSelected = pConf->Read ( _T ( "otcurrentFolder" ));
+	m_CopyIntervalSelected = pConf->Read ( _T ( "otcurrentInterval"), 20L);
 
     m_otcurrent_dialog_sx = pConf->Read ( _T ( "otcurrentDialogSizeX" ), 300L );
     m_otcurrent_dialog_sy = pConf->Read ( _T ( "otcurrentDialogSizeY" ), 540L );
     m_otcurrent_dialog_x =  pConf->Read ( _T ( "otcurrentDialogPosX" ), 20L );
     m_otcurrent_dialog_y =  pConf->Read ( _T ( "otcurrentDialogPosY" ), 170L );
-
-	  
-    //wxString DisplayString = _T("read test");
+	
     pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
     pConf->Read( _T("VColour1"), &myVColour[1], myVColour[1] );
 	pConf->Read( _T("VColour2"), &myVColour[2], myVColour[2] );
 	pConf->Read( _T("VColour3"), &myVColour[3], myVColour[3] );
 	pConf->Read( _T("VColour4"), &myVColour[4], myVColour[4] );
-
 	
     return true;
 }
@@ -437,6 +434,9 @@ bool otcurrent_pi::SaveConfig(void)
     pConf->Write ( _T ( "otcurrentUseRate" ), m_bCopyUseRate );
     pConf->Write ( _T ( "otcurrentUseDirection" ), m_bCopyUseDirection );
 	pConf->Write ( _T ( "otcurrentUseFillColour" ), m_botcurrentUseHiDef );
+
+	pConf->Write ( _T ( "otcurrentFolder" ), m_CopyFolderSelected); 
+	pConf->Write ( _T ( "otcurrentInterval" ), m_CopyIntervalSelected);
 
     pConf->Write ( _T ( "otcurrentDialogSizeX" ),  m_otcurrent_dialog_sx );
     pConf->Write ( _T ( "otcurrentDialogSizeY" ),  m_otcurrent_dialog_sy );

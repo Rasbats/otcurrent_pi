@@ -79,7 +79,7 @@ public:
       void SetCursorLatLon(double lat, double lon);
       void SendTimelineMessage(wxDateTime time);
       void SetDefaults(void);
-      int GetToolbarToolCount(void);
+      int  GetToolbarToolCount(void);
       void ShowPreferencesDialog( wxWindow* parent );
       void OnToolbarToolCallback(int id);
 
@@ -95,14 +95,11 @@ public:
       bool GetCopyRate() { return  m_bCopyUseRate; }
       bool GetCopyDirection() { return  m_bCopyUseDirection; }
 	  bool GetCopyColour() { return m_botcurrentUseHiDef ; }
-     // wxString GetCopyPort() { return  m_bCopyusePort; }
-      otcurrentOverlayFactory *GetotcurrentOverlayFactory(){ return m_potcurrentOverlayFactory; }
 
-	  
-     
-	 //wxString SetPort(){ return myPort;}
-	 // wxString myNewPort; 
-	 // void SetKMLDir(wxString KML_dir){ m_KML_dir = KML_dir;};
+	  wxString GetFolderSelected() {return m_CopyFolderSelected;}
+	  int      GetIntervalSelected() {return m_CopyIntervalSelected;}
+  
+      otcurrentOverlayFactory *GetotcurrentOverlayFactory(){ return m_potcurrentOverlayFactory; }
 
 
 private:
@@ -121,25 +118,14 @@ private:
       int              m_otcurrent_dialog_x, m_otcurrent_dialog_y;
       int              m_otcurrent_dialog_sx, m_otcurrent_dialog_sy;
 
-	  
-
-	  //wxString myPort;
-
-	 // int myNewPort; 
-	 // 
-
-      //    Controls added to Preferences panel
-      wxCheckBox              *m_potcurrentUseHiDef;
-      wxCheckBox              *m_potcurrentUseGradualColors;
-
-     // otcurrentTimelineRecordSet *m_pLastTimelineSet;
-
       // preference data
       bool              m_botcurrentUseHiDef;
       bool              m_botcurrentUseGradualColors;
 	  bool              m_bCopyUseRate;
       bool              m_bCopyUseDirection;
 
+	  wxString          m_CopyFolderSelected;
+	  int               m_CopyIntervalSelected;
 	  
 
       int              m_bTimeZone;
@@ -152,7 +138,7 @@ private:
 
       int              m_height;
 
-      bool        m_bShowotcurrent;
+      bool			   m_bShowotcurrent;
 
 	
 
@@ -165,9 +151,7 @@ private:
 class otcurrentPreferencesDialog : public otcurrentPreferencesDialogBase
 {
 public:
-	
-    
-	
+		
 	otcurrentPreferencesDialog( wxWindow *pparent)
     : otcurrentPreferencesDialogBase(pparent) {}
     ~otcurrentPreferencesDialog() {}

@@ -25,7 +25,6 @@
  */
 
 #include <map>
-#include <vector>
 #include <wx/string.h>
 #include "bbox.h"
 #include "tcmgr.h"
@@ -68,9 +67,6 @@ public:
 //----------------------------------------------------------------------------------------------------------
 
 class otcurrentUIDialog;
-//class otcurrentRecord;
-//class otcurrentTimelineRecordSet;
-class Position;
 
 class otcurrentOverlayFactory {
 public:
@@ -88,13 +84,8 @@ public:
     void SetParentSize( int w, int h ) { m_ParentSize.SetWidth(w) ; m_ParentSize.SetHeight(h) ;}
 	bool RenderGLotcurrentOverlay( wxGLContext *pcontext, PlugIn_ViewPort *vp );
     bool RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort *vp );
-	/* USA Currents
 
-	
-
-	*/
-	
-    void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
+	void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
         bool bforce_redraw_currents, bool bdraw_mono_for_mask, wxDateTime myTime);
 
     void Reset();
@@ -122,7 +113,7 @@ public:
 private:
 
 	bool inGL;
-	vector<Position> new_positions;
+	
     bool DoRenderotcurrentOverlay( PlugIn_ViewPort *vp );
 	void RenderMyArrows(PlugIn_ViewPort *vp );
 
@@ -168,20 +159,11 @@ private:
 	std::map < wxString , wxImage > m_labelCacheText;
 
     otcurrentUIDialog &m_dlg;
-  //  otcurrentOverlaySettings &m_Settings;
-	vector<Position> &m_Positions;
-	bool m_bool;
-	int m_fromHW;
-	wxString m_portXML2;
-	
-   // bool              m_bUseRate;
-   // bool              m_bUseDirection;
-   TCMgr *ctcmgr;
-   wxBoundingBox *myBox;
-   
-   LLBBox * myLLBox;
+
+    TCMgr *ctcmgr;
+    wxBoundingBox *myBox;   
+    LLBBox * myLLBox;
 
 	wxString        *pTC_Dir;
-	//double latN[100], lonN[100];
 
 };

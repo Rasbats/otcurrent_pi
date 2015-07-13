@@ -19,33 +19,27 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 
 	wxStaticBoxSizer* sbSizer2;
 	sbSizer2 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY|wxEXPAND, _("Date/Time") ), wxHORIZONTAL );
-	
-	//sbSizer2->SetMinSize( wxSize( 215, -1 ) ); 
 
-	
 	m_textCtrl1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( 170,20 ), wxTE_READONLY|wxSIMPLE_BORDER );
-	//m_textCtrl1->SetMinSize( wxSize( 400,10 ) );
 	sbSizer2->Add( m_textCtrl1, 0, wxALL, 5 );
 	
-	//sbSizer2->Add( 5, 0, 1, wxEXPAND, 5 );
-		// Start About Information Button
 	m_button33 = new wxButton( this, wxID_ANY , _("Select"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
 	m_button33->SetToolTip(_("Select date/time for current prediction"));	
 	sbSizer2->Add( m_button33, 0, wxALL, 5 );
 
-	//wxArrayString m_choice1Choices ;
-	//m_choice1 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice1Choices, 0);	
-		
-	//sbSizer2->Add( m_choice1, 0, wxALL, 5 );
-	//sbSizer2->Add( 15, 0, 1, wxEXPAND, 5 );
-
 	m_bpNow = new wxBitmapButton( this, wxID_ANY, wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW );
 	m_bpNow->SetToolTip( _("Now") );
-	
 	sbSizer2->Add( m_bpNow, 0, wxALL, 1 );
-
 	bSizer1->Add( sbSizer2, 0, wxEXPAND, 5 );
 	
+	wxStaticBoxSizer* sbSizer4;
+	sbSizer4 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Data Folder") ), wxVERTICAL );
+
+	m_dirPicker1 = new wxDirPickerCtrl( this, wxID_ANY, wxEmptyString, _("Select a folder"), wxDefaultPosition, wxDefaultSize, wxDIRP_CHANGE_DIR|wxDIRP_USE_TEXTCTRL );
+	sbSizer4->Add( m_dirPicker1, 0, wxALL|wxEXPAND, 5 );
+
+	bSizer1->Add( sbSizer4, 1, wxEXPAND, 5 );
+
 	wxStaticBoxSizer* sbSizer3;
 	sbSizer3 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Step (Minutes)") ), wxHORIZONTAL );
 	
@@ -62,92 +56,19 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 
 	sbSizer3->Add( 5, 0, 1, wxEXPAND, 5 );
 
+
 	m_button1 = new wxButton( this, wxID_ANY, wxT("Help"), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizer3->Add( m_button1, 0, wxALL, 5 );	
 
 	m_bpPrev = new wxBitmapButton( this, wxID_ANY, wxNullBitmap, wxDefaultPosition, wxSize( 30,-1 ), 0  );
 	m_bpPrev->SetToolTip( _("Previous") );	
 	sbSizer3->Add( m_bpPrev, 0, wxALL, 1 );
-	
-	//sbSizer3->Add( 1, 0, 1, wxEXPAND, 1 );
 
 	m_bpNext = new wxBitmapButton( this, wxID_ANY, wxNullBitmap, wxDefaultPosition, wxSize( 30,-1 ), 0  );
 	m_bpNext->SetToolTip( _("Next") );
-	
 	sbSizer3->Add( m_bpNext, 0, wxALL, 1 );
-	
-
-	//m_datePicker1 = new wxDatePickerCtrl( this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN );
-	//sbSizer3->Add( m_datePicker1, 0, wxALL, 5 );
-	
-	
 
 	bSizer1->Add( sbSizer3, 1, wxEXPAND, 5 );
-	/*
-	wxStaticBoxSizer* sbSizer4;
-	sbSizer4 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY,_("Select High Water")), wxVERTICAL );
-	
-	sbSizer4->SetMinSize( wxSize( -1,50 ) ); 
-	
-	wxArrayString m_choiceHWTime;
-	m_choice2 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceHWTime, 0 );
-	m_choice2->SetSelection( -1 );
-	sbSizer4->Add( m_choice2, 0, wxALL, 5 );
-	
-	bSizer1->Add( sbSizer4, 0, wxEXPAND, 5 );
-	*/
-	//wxBoxSizer* bSizer2;
-	//bSizer2 = new wxBoxSizer( wxVERTICAL );
-	
-	//bSizer1->Add( bSizer2, 0, 0, 5 );
-	/*
-	wxBoxSizer* bSizer3;
-	bSizer3 = new wxBoxSizer( wxHORIZONTAL );
-
-	m_button5 = new wxButton( this, 6, _("HW"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
-	bSizer3->Add( m_button5, 0, wxALL, 5 );
-	
- 	
-	m_button4 = new wxButton( this, 0 , _("HW -6"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
-	bSizer3->Add( m_button4, 0, wxALL, 5 );
-
-	
-	m_button6 = new wxButton( this, 12 , _("HW +6"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
-	bSizer3->Add( m_button6, 0, wxALL, 5 );
-
-	
-	bSizer1->Add( bSizer3, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
-	*/
-	//wxBoxSizer* bSizer7;
-	//bSizer7 = new wxBoxSizer( wxHORIZONTAL );
-	
-	
-
-	//bSizer7->Add( 20, 0, 1, wxEXPAND, 5 );
-
-	
-	//bSizer1->Add( bSizer7, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
-	/*
-	
-	m_staticText1 = new wxStaticText( this, wxID_ANY, wxT(""), wxDefaultPosition, wxSize( -1,-1 ), wxALIGN_CENTRE|wxST_NO_AUTORESIZE);
-	m_staticText1->Wrap( -1 );
-	m_staticText1->SetFont( wxFont( 10, 74, 90, 90, false, wxT("Tahoma") ) );
-	
-	bSizer1->Add( m_staticText1, 0, wxEXPAND, 5 );
-
-	m_staticText2 = new wxStaticText( this, wxID_ANY, wxT(""), wxDefaultPosition, wxSize( -1,-1 ), wxALIGN_CENTRE|wxST_NO_AUTORESIZE);
-	m_staticText2->Wrap( -1 );
-	m_staticText2->SetFont( wxFont( 10, 74, 90, 90, false, wxT("Tahoma") ) );
-	
-	bSizer1->Add( m_staticText2, 0, wxEXPAND, 5 );
-	
-	m_staticText211 = new wxStaticText( this, wxID_ANY, wxT(""), wxDefaultPosition, wxSize( -1,-1 ), wxALIGN_CENTRE|wxST_NO_AUTORESIZE);
-	m_staticText211->Wrap( -1 );
-	m_staticText211->SetFont( wxFont( 12, 74, 90, 92, false, wxT("Tahoma") ) );
-	
-	bSizer1->Add( m_staticText211, 0, wxEXPAND, 5 );
-
-	*/
 	
 	this->SetSizer( bSizer1 );
 	this->Layout();
@@ -160,13 +81,13 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	this->Connect( wxEVT_SIZE, wxSizeEventHandler( otcurrentUIDialogBase::OnSize ) );
 
 	m_bpNow->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNow ), NULL, this );
- //	m_button33->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::About ), NULL, this );
 	m_button33->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnCalendarShow ), NULL, this );
 
 	m_bpPrev->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnPrev ), NULL, this );
 	m_bpNext->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNext ), NULL, this );
 
-	//m_choice1->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( otcurrentUIDialogBase::SetInterval ), NULL, this );
+	m_dirPicker1->Connect( wxEVT_COMMAND_DIRPICKER_CHANGED, wxFileDirPickerEventHandler( otcurrentUIDialogBase::OnFolderSelChanged ), NULL, this );
+ 	m_button1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::About ), NULL, this );
 
 
 }
@@ -177,15 +98,15 @@ otcurrentUIDialogBase::~otcurrentUIDialogBase()
 	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( otcurrentUIDialogBase::OnClose ) );
 	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( otcurrentUIDialogBase::OnSize ) );
 	
-
 	m_bpNow->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNow ), NULL, this );
-//	m_button33->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::About ), NULL, this );
 	m_button33->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnCalendarShow ), NULL, this );
+
 	m_bpPrev->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnPrev ), NULL, this );
 	m_bpNext->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNext ), NULL, this );
 
-	//m_choice1->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( otcurrentUIDialogBase::SetInterval ), NULL, this );
-
+	m_dirPicker1->Disconnect( wxEVT_COMMAND_DIRPICKER_CHANGED, wxFileDirPickerEventHandler( otcurrentUIDialogBase::OnFolderSelChanged ), NULL, this );
+    m_button1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::About ), NULL, this );
+	
 }
 
 otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )

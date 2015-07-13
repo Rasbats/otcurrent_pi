@@ -120,23 +120,6 @@ public:
     void SetViewPort( PlugIn_ViewPort *vp );
 	PlugIn_ViewPort *vp;
 
-	vector<Position> my_positions;
-	vector<StandardPort> my_ports;
-	wxString wxPortName[100][5];
-	wxString selectedPort;
-
-	vector<Position> my_points;
-	bool mBool;
-	vector<Position> OnRecord();
-	void SetFromHW(int fromHW);
-
-	int button_id;
-	wxString m_portXML;
-	double myRange;
-	
-	double CalcCurrent(double m_spRange, double m_npRange, double m_spRateDiamond, double m_npRateDiamond, double m_rangeOnDay);
-	int CalcHoursFromHWNow();
-	wxString nearestHW[8];
 	int round(double c);
 
 	bool m_bUseRate;    
@@ -150,63 +133,35 @@ public:
 
 	bool onNext;
 	bool onPrev;
+
+    wxString m_FolderSelected;
+	int m_IntervalSelected;
 	
-	wxString m_PortSelected;
-	wxString m_IntervalSelected;
 	time_t myCurrentTime; 
 
 	void OnCalendarShow( wxCommandEvent& event );
+	void OnFolderSelChanged(wxFileDirPickerEvent& event);
 	void OnNow( wxCommandEvent& event );
 	wxString MakeDateTimeLabel(wxDateTime myDateTime);
 
 private:
 
-    
-
     void OnClose( wxCloseEvent& event );
     void OnMove( wxMoveEvent& event );
     void OnSize( wxSizeEvent& event );
-
-	void OnStartSetupHW();
-
-	void CalcHW(int PortCode);
-
-
-	void SetDateForNowButton();
 	
-	wxString FindPortXMLUsingChoice(wxString inPortName);
-	int  FindPortIDUsingChoice(wxString inPortName);
-	void LoadHarmonics();
-	int  FindPortID(wxString myPort);
-	bool LoadStandardPorts();
-	bool OpenXML();
-
-    void OnChooseTideButton(wxCommandEvent & event);
 	void OnPrev( wxCommandEvent& event );
     void OnNext( wxCommandEvent& event );
     void SetInterval( wxCommandEvent& event );
-
 	void About(wxCommandEvent& event);
-
-
 
     //    Data
     wxWindow *pParent;
     otcurrent_pi *pPlugIn;
 
     PlugIn_ViewPort  *m_vp;
-    int m_lastdatatype;
-
+ 
     double m_cursor_lat, m_cursor_lon;
-
-	int next_id;
-	int back_id;
-				// For the tide bit
-	//wxDateTime m_dt;
-	int m_myChoice;
-	wxString	label_array[13];
-	float       tcv[26];
-
 	wxString         g_SData_Locn;
 	TCMgr           *ptcmgr;
 	wxString        *pTC_Dir;
@@ -216,12 +171,6 @@ private:
     int         m_t_graphday_00_at_station;
     wxDateTime  m_graphday;
     int         m_plot_y_offset;
-
-	int myDateSelection;
-	int myNewDateSelection;
-	wxString    euTC[8][3];  //Date.Time, Height, Units, HW.LW
-	wxDateTime m_dt;
-	wxTimeSpan  m_ts;
 
 	bool isNowButton;
 	wxTimeSpan  myTimeOfDay;
@@ -237,19 +186,17 @@ public:
 	              const wxPoint & pos = wxDefaultPosition,
 	              const wxSize & size = wxDefaultSize,
 	              long style = wxDEFAULT_DIALOG_STYLE );
- 
-	//wxTextCtrl * dialogText;
-	wxCalendarCtrl* dialogCalendar; 
 
+	wxCalendarCtrl* dialogCalendar; 
 	wxStaticText *m_staticText; 
 	wxTimeTextCtrl *_timeText;
 	wxSpinButton *_spinCtrl;
 	wxString GetText();
-    //virtual void spinUp(wxSpinEvent& event) { event.Skip(); }
-    void spinUp(wxSpinEvent& event);
+
+	void spinUp(wxSpinEvent& event);
 	void spinDown(wxSpinEvent& event);
+
 private:
- 
 	void OnOk( wxCommandEvent & event );
 
 };
