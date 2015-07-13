@@ -250,7 +250,8 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 
 		
          if(m_potcurrentDialog )
-		 {			
+		 {	
+			 m_potcurrentDialog->OpenFile(true);
 			 m_potcurrentDialog->m_FolderSelected = m_CopyFolderSelected;
 			 m_potcurrentDialog->m_IntervalSelected = m_CopyIntervalSelected;
 
@@ -407,6 +408,17 @@ bool otcurrent_pi::LoadConfig(void)
 	m_botcurrentUseHiDef = pConf->Read ( _T ( "otcurrentUseFillColour" ), 1);
 
 	m_CopyFolderSelected = pConf->Read ( _T ( "otcurrentFolder" ));
+	if (m_CopyFolderSelected == wxEmptyString){
+
+	  wxString g_SData_Locn = *GetpSharedDataLocation();
+
+      // Establish location of Tide and Current data
+      pTC_Dir = new wxString(_T("tcdata"));
+      pTC_Dir->Prepend(g_SData_Locn);
+
+	  m_CopyFolderSelected = *pTC_Dir;	  
+	}
+
 	m_CopyIntervalSelected = pConf->Read ( _T ( "otcurrentInterval"), 20L);
 
     m_otcurrent_dialog_sx = pConf->Read ( _T ( "otcurrentDialogSizeX" ), 300L );

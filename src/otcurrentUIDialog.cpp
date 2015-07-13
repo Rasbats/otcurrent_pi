@@ -120,8 +120,22 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 	m_dtNow = wxDateTime::Now(); 
 	MakeDateTimeLabel(m_dtNow);
 	
-	m_dirPicker1->SetPath(m_FolderSelected);
+	 if (m_FolderSelected == wxEmptyString){
 
+			  wxString g_SData_Locn = *GetpSharedDataLocation();
+
+			  // Establish location of Tide and Current data
+			  pTC_Dir = new wxString(_T("tcdata"));
+			  pTC_Dir->Prepend(g_SData_Locn);			  
+
+			  m_FolderSelected = *pTC_Dir;	    	
+			  m_dirPicker1->SetPath(m_FolderSelected);
+			  m_dirPicker1->GetTextCtrlValue();
+			}
+			else{
+			  m_dirPicker1->SetPath(m_FolderSelected);
+			}
+	
 	m_choice1->SetSelection(m_IntervalSelected);
 	int i = m_choice1->GetSelection();
 	wxString c = m_choice1->GetString(i);	
@@ -132,7 +146,8 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 	DimeWindow( this );
 
     Fit();
-    SetMinSize( GetBestSize() );	
+    SetMinSize( GetBestSize() );
+	
 }
 
 otcurrentUIDialog::~otcurrentUIDialog()
@@ -205,6 +220,9 @@ void otcurrentUIDialog::OpenFile(bool newestFile)
 	m_bUseRate = pPlugIn->GetCopyRate();
 	m_bUseDirection = pPlugIn->GetCopyDirection();
 	m_bUseFillColour = pPlugIn->GetCopyColour();
+
+	m_FolderSelected = pPlugIn->GetFolderSelected();
+	m_IntervalSelected = pPlugIn->GetIntervalSelected();
 }
 
 void otcurrentUIDialog::OnFolderSelChanged(wxFileDirPickerEvent& event)

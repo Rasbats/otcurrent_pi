@@ -132,7 +132,7 @@ private:
      
       int              m_bStartOptions;
       wxString         m_RequestConfig;
-     
+      wxString         *pTC_Dir;
       
       bool             m_botcurrentShowIcon;
 

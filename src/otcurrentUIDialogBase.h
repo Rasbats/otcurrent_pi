@@ -100,7 +100,7 @@ class otcurrentUIDialogBase : public wxDialog
 		wxTextCtrl* m_tcSeaTemperature;
 		wxTextCtrl* m_tcCAPE;
 		
-		wxDirPickerCtrl* m_dirPicker1;
+		
 		
 		wxTextCtrl* m_textCtrl1;
 		 
@@ -137,7 +137,7 @@ class otcurrentUIDialogBase : public wxDialog
 	
 		wxChoice* m_choice1;
 		wxButton* m_button1;
-
+		wxDirPickerCtrl* m_dirPicker1;
 		
 
 		otcurrentUIDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Tidal Current Control"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxRESIZE_BORDER|wxSYSTEM_MENU ); 
