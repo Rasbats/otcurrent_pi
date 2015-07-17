@@ -403,11 +403,11 @@ bool otcurrent_pi::LoadConfig(void)
 
     pConf->SetPath ( _T( "/PlugIns/otcurrent" ) );
 
-	m_bCopyUseRate = pConf->Read ( _T ( "otcurrentUseRate" ),1);
-    m_bCopyUseDirection = pConf->Read ( _T ( "otcurrentUseDirection" ), 1);
-	m_botcurrentUseHiDef = pConf->Read ( _T ( "otcurrentUseFillColour" ), 1);
+	m_bCopyUseRate = pConf->Read ( _( "otcurrentUseRate" ),1);
+    m_bCopyUseDirection = pConf->Read ( _( "otcurrentUseDirection" ), 1);
+	m_botcurrentUseHiDef = pConf->Read ( _( "otcurrentUseFillColour" ), 1);
 
-	m_CopyFolderSelected = pConf->Read ( _T ( "otcurrentFolder" ));
+	m_CopyFolderSelected = pConf->Read ( _( "otcurrentFolder" ));
 	if (m_CopyFolderSelected == wxEmptyString){
 
 	  wxString g_SData_Locn = *GetpSharedDataLocation();
@@ -421,10 +421,10 @@ bool otcurrent_pi::LoadConfig(void)
 
 	m_CopyIntervalSelected = pConf->Read ( _T ( "otcurrentInterval"), 20L);
 
-    m_otcurrent_dialog_sx = pConf->Read ( _T ( "otcurrentDialogSizeX" ), 300L );
-    m_otcurrent_dialog_sy = pConf->Read ( _T ( "otcurrentDialogSizeY" ), 540L );
-    m_otcurrent_dialog_x =  pConf->Read ( _T ( "otcurrentDialogPosX" ), 20L );
-    m_otcurrent_dialog_y =  pConf->Read ( _T ( "otcurrentDialogPosY" ), 170L );
+    m_otcurrent_dialog_sx = pConf->Read ( _( "otcurrentDialogSizeX" ), 300L );
+    m_otcurrent_dialog_sy = pConf->Read ( _( "otcurrentDialogSizeY" ), 540L );
+    m_otcurrent_dialog_x =  pConf->Read ( _( "otcurrentDialogPosX" ), 20L );
+    m_otcurrent_dialog_y =  pConf->Read ( _( "otcurrentDialogPosY" ), 170L );
 	
     pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
     pConf->Read( _T("VColour1"), &myVColour[1], myVColour[1] );
@@ -443,17 +443,17 @@ bool otcurrent_pi::SaveConfig(void)
         return false;
 
     pConf->SetPath ( _T( "/PlugIns/otcurrent" ) );
-    pConf->Write ( _T ( "otcurrentUseRate" ), m_bCopyUseRate );
-    pConf->Write ( _T ( "otcurrentUseDirection" ), m_bCopyUseDirection );
-	pConf->Write ( _T ( "otcurrentUseFillColour" ), m_botcurrentUseHiDef );
+    pConf->Write ( _( "otcurrentUseRate" ), m_bCopyUseRate );
+    pConf->Write ( _( "otcurrentUseDirection" ), m_bCopyUseDirection );
+	pConf->Write ( _( "otcurrentUseFillColour" ), m_botcurrentUseHiDef );
 
-	pConf->Write ( _T ( "otcurrentFolder" ), m_CopyFolderSelected); 
-	pConf->Write ( _T ( "otcurrentInterval" ), m_CopyIntervalSelected);
+	pConf->Write ( _( "otcurrentFolder" ), m_CopyFolderSelected); 
+	pConf->Write ( _( "otcurrentInterval" ), m_CopyIntervalSelected);
 
-    pConf->Write ( _T ( "otcurrentDialogSizeX" ),  m_otcurrent_dialog_sx );
-    pConf->Write ( _T ( "otcurrentDialogSizeY" ),  m_otcurrent_dialog_sy );
-    pConf->Write ( _T ( "otcurrentDialogPosX" ),   m_otcurrent_dialog_x );
-    pConf->Write ( _T ( "otcurrentDialogPosY" ),   m_otcurrent_dialog_y );
+    pConf->Write ( _( "otcurrentDialogSizeX" ),  m_otcurrent_dialog_sx );
+    pConf->Write ( _( "otcurrentDialogSizeY" ),  m_otcurrent_dialog_sy );
+    pConf->Write ( _( "otcurrentDialogPosX" ),   m_otcurrent_dialog_x );
+    pConf->Write ( _( "otcurrentDialogPosY" ),   m_otcurrent_dialog_y );
 
 	pConf->Write( _T("VColour0"), myVColour[0] );
 	pConf->Write( _T("VColour1"), myVColour[1] );

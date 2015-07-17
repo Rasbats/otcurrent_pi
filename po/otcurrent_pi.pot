@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: otcurrent_pi 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-10 17:25-0600\n"
+"POT-Creation-Date: 2015-07-17 10:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,88 +17,60 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/otcurrentOverlayFactory.cpp:894 src/otcurrentUIDialog.cpp:362
+#: src/otcurrentOverlayFactory.cpp:852
 msgid "Using Tide/Current data from:  "
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:242
+#: src/otcurrentUIDialog.cpp:237
 msgid "START Date/Time"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:366
-msgid "HARMONIC"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:396
-msgid "No tidal data for this port"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:396
-msgid "No Tidal Data"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:491 src/otcurrentUIDialog.cpp:504
-msgid "HW"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:491 src/otcurrentUIDialog.cpp:499
-msgid "LW"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:683
+#: src/otcurrentUIDialog.cpp:340
 msgid ""
-"Tidal Data for UKHO Tidal Diamonds\n"
+"Tidal Current\n"
 "--------------------------------------------------------------\n"
-"The standard OpenCPN distribution has tidal data for the\n"
-"following ports, which this plugin uses:\n"
 "\n"
-"PLYMOUTH (DEVONPORT)\n"
-"PORTSMOUTH\n"
-"DOVER\n"
-"SHEERNESS\n"
-"LOWESTOFT\n"
-"IMMINGHAM\n"
-"LEITH\n"
-"ABERDEEN\n"
-"WICK\n"
-"LERWICK\n"
-"ULLAPOOL\n"
-"LIVERPOOL (GLADSTONE DOCK)\n"
-"HOLYHEAD\n"
-"MILFORD HAVEN\n"
-"PORT OF BRISTOL (AVONMOUTH)\n"
-"ST. HELIER\n"
+"\n"
+"\n"
+"\n"
 "\n"
 "Use this data with caution.\n"
-"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n"
 "\n"
 "--------------------------------------------------------------------\n"
 "\n"
 "Note: 1 Rates shown are for a position corresponding to the centre\n"
 "of the base of the arrow. Tidal rate is shown as knots.\n"
-"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
-"Stream Atlases. This is based on the average range for the day\n"
+"\n"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:684
+#: src/otcurrentUIDialog.cpp:341
 msgid "About Tidal Arrows"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:701
+#: src/otcurrentUIDialog.cpp:358
 #, c-format
 msgid " x = %d y = %d\n"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:703
+#: src/otcurrentUIDialog.cpp:360
 #, c-format
 msgid " width = %d height = %d\n"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:718
+#: src/otcurrentUIDialog.cpp:364
+msgid "Tide Calendar"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:366
+msgid "Time:"
+msgstr ""
+
+#: src/otcurrentUIDialog.cpp:375
 msgid "OK"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:720
+#: src/otcurrentUIDialog.cpp:377
 msgid "Cancel"
 msgstr ""
 
@@ -106,75 +78,87 @@ msgstr ""
 msgid "Date/Time"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:32
+#: src/otcurrentUIDialogBase.cpp:26
 msgid "Select"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:33
+#: src/otcurrentUIDialogBase.cpp:27
 msgid "Select date/time for current prediction"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:43
+#: src/otcurrentUIDialogBase.cpp:31
 msgid "Now"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:50
+#: src/otcurrentUIDialogBase.cpp:36
+msgid "Tidal Data Folder"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:38
+msgid "Select a folder"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:44
 msgid "Step (Minutes)"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:69
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "Help"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:64
 msgid "Previous"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:75
+#: src/otcurrentUIDialogBase.cpp:68
 msgid "Next"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:206
+#: src/otcurrentUIDialogBase.cpp:127
 msgid "Display tidal rates (knots)"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:209
+#: src/otcurrentUIDialogBase.cpp:130
 msgid "Display tidal direction"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:212
+#: src/otcurrentUIDialogBase.cpp:133
 msgid "Fill Colour"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:221
+#: src/otcurrentUIDialogBase.cpp:142
 msgid "Tidal Current Arrow Colour"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:241
+#: src/otcurrentUIDialogBase.cpp:162
 msgid "      < 0.5 knots"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:246
+#: src/otcurrentUIDialogBase.cpp:167
 msgid ">= 0.5 and < 1.5"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:251
+#: src/otcurrentUIDialogBase.cpp:172
 msgid ">= 1.5 and < 2.5"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:256
+#: src/otcurrentUIDialogBase.cpp:177
 msgid ">= 2.5 and < 3.5"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:261
+#: src/otcurrentUIDialogBase.cpp:182
 msgid ">= 3.5 knots    "
 msgstr ""
 
-#: src/otcurrentUIDialogBase.h:138
+#: src/otcurrentUIDialogBase.h:143
 msgid "Tidal Current Control"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.h:197
+#: src/otcurrentUIDialogBase.h:202
 msgid "otcurrent Settings"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.h:249
+#: src/otcurrentUIDialogBase.h:254
 msgid "Preferences"
 msgstr ""
 
@@ -192,4 +176,40 @@ msgid ""
 "Provides an overlay of Tidal Current (Stream) Arrows.\n"
 "\n"
 "\t\t\t   "
+msgstr ""
+
+#: src/otcurrent_pi.cpp:406 src/otcurrent_pi.cpp:446
+msgid "otcurrentUseRate"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:407 src/otcurrent_pi.cpp:447
+msgid "otcurrentUseDirection"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:408 src/otcurrent_pi.cpp:448
+msgid "otcurrentUseFillColour"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:410 src/otcurrent_pi.cpp:450
+msgid "otcurrentFolder"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:424 src/otcurrent_pi.cpp:453
+msgid "otcurrentDialogSizeX"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:425 src/otcurrent_pi.cpp:454
+msgid "otcurrentDialogSizeY"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:426 src/otcurrent_pi.cpp:455
+msgid "otcurrentDialogPosX"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:427 src/otcurrent_pi.cpp:456
+msgid "otcurrentDialogPosY"
+msgstr ""
+
+#: src/otcurrent_pi.cpp:451
+msgid "otcurrentInterval"
 msgstr ""

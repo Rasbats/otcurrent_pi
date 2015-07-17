@@ -57,7 +57,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	sbSizer3->Add( 5, 0, 1, wxEXPAND, 5 );
 
 
-	m_button1 = new wxButton( this, wxID_ANY, wxT("Help"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button1 = new wxButton( this, wxID_ANY, _("Help"), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizer3->Add( m_button1, 0, wxALL, 5 );	
 
 	m_bpPrev = new wxBitmapButton( this, wxID_ANY, wxNullBitmap, wxDefaultPosition, wxSize( 30,-1 ), 0  );

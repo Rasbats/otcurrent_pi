@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 1.3.6 (Pt01)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-16 13:10+0000\n"
+"POT-Creation-Date: 2015-07-17 10:33+0100\n"
 "PO-Revision-Date: 2010-02-05 16:06+0100\n"
 "Last-Translator: as <as400big@gmail.com>\n"
 "Language-Team: Minhota <zemaria@zemaria.biz>\n"
@@ -19,6 +19,9 @@ msgstr ""
 "X-Poedit-Country: PORTUGAL\n"
 "Plural-Forms: \n"
 #
+msgid "      < 0.5 knots"
+msgstr ""
+#
 #, c-format
 msgid " width = %d height = %d\n"
 msgstr ""
@@ -27,7 +30,16 @@ msgstr ""
 msgid " x = %d y = %d\n"
 msgstr ""
 #
-msgid "/Settings/otcurrent"
+msgid ">= 0.5 and < 1.5"
+msgstr ""
+#
+msgid ">= 1.5 and < 2.5"
+msgstr ""
+#
+msgid ">= 2.5 and < 3.5"
+msgstr ""
+#
+msgid ">= 3.5 knots    "
 msgstr ""
 #
 msgid "About Tidal Arrows"
@@ -48,25 +60,10 @@ msgstr ""
 msgid "Fill Colour"
 msgstr ""
 #
-msgid "HARMONIC"
-msgstr ""
-#
-msgid "HW"
-msgstr ""
-#
-msgid "LOC"
-msgstr ""
-#
-msgid "LW"
+msgid "Help"
 msgstr ""
 #
 msgid "Next"
-msgstr ""
-#
-msgid "No Tidal Data"
-msgstr ""
-#
-msgid "No tidal data for this port"
 msgstr ""
 #
 msgid "Now"
@@ -87,11 +84,52 @@ msgstr ""
 msgid "Select"
 msgstr ""
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select a folder"
+msgstr "Pasta de Ficheiros GRIB"
+#
 msgid "Select date/time for current prediction"
 msgstr ""
 #
 msgid "Step (Minutes)"
 msgstr ""
+#
+msgid ""
+"Tidal Current\n"
+"--------------------------------------------------------------\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"Use this data with caution.\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n"
+"\n"
+"--------------------------------------------------------------------\n"
+"\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n"
+"\n"
+msgstr ""
+#
+#
+#
+#
+#, fuzzy
+msgid "Tidal Current Arrow Colour"
+msgstr "Controlo Visualização GRIB"
 #
 #
 #
@@ -100,41 +138,13 @@ msgstr ""
 msgid "Tidal Current Control"
 msgstr "Controlo Visualização GRIB"
 #
-msgid ""
-"Tidal Data for UKHO Tidal Diamonds\n"
-"--------------------------------------------------------------\n"
-"The standard OpenCPN distribution has tidal data for the\n"
-"following ports, which this plugin uses:\n"
-"\n"
-"PLYMOUTH (DEVONPORT)\n"
-"PORTSMOUTH\n"
-"DOVER\n"
-"SHEERNESS\n"
-"LOWESTOFT\n"
-"IMMINGHAM\n"
-"LEITH\n"
-"ABERDEEN\n"
-"WICK\n"
-"LERWICK\n"
-"ULLAPOOL\n"
-"LIVERPOOL (GLADSTONE DOCK)\n"
-"HOLYHEAD\n"
-"MILFORD HAVEN\n"
-"PORT OF BRISTOL (AVONMOUTH)\n"
-"ST. HELIER\n"
-"\n"
-"Use this data with caution.\n"
-"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
-"\n"
-"--------------------------------------------------------------------\n"
-"\n"
-"Note: 1 Rates shown are for a position corresponding to the centre\n"
-"of the base of the arrow. Tidal rate is shown as knots.\n"
-"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
-"Stream Atlases. This is based on the average range for the day\n"
+msgid "Tidal Data Folder"
 msgstr ""
 #
-msgid "UTC"
+msgid "Tide Calendar"
+msgstr ""
+#
+msgid "Time:"
 msgstr ""
 #
 msgid "Using Tide/Current data from:  "
@@ -154,6 +164,21 @@ msgid ""
 msgstr ""
 #
 msgid "otcurrent Settings"
+msgstr ""
+#
+msgid "otcurrentDialogPosX"
+msgstr ""
+#
+msgid "otcurrentDialogPosY"
+msgstr ""
+#
+msgid "otcurrentDialogSizeX"
+msgstr ""
+#
+msgid "otcurrentDialogSizeY"
+msgstr ""
+#
+msgid "otcurrentFolder"
 msgstr ""
 #
 msgid "otcurrentInterval"
@@ -201,9 +226,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Colors"
 #~ msgstr "Fechar"
+#
+#
 #
 #
 #
@@ -260,8 +289,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "Pasta de Ficheiros GRIB"
+#
+#
 #
 #
 #
@@ -294,9 +327,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Ajuste Zoom ou Escala para ver HTSGW GRIB escondido"
+#
+#
 #
 #
 #
@@ -336,9 +373,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "Ajuste Zoom ou Escala para ver CRAIN GRIB escondido"
+#
+#
 #
 #
 #
@@ -376,9 +417,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Ajuste Zoom ou Escala para ver CRAIN GRIB escondido"
+#
+#
 #
 #
 #
@@ -411,24 +456,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure (MSL)"
 #~ msgstr "Pressão, mBar"
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Select a tcurrent file"
-#~ msgstr "Pasta de Ficheiros GRIB"
 #
 #
 #
@@ -487,6 +521,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Altura de Vaga Significativa, m"
@@ -502,8 +538,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Usar Gráficos Alta Definição"
+#
+#
 #
 #
 #
@@ -563,6 +603,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Direcção Vento"
@@ -583,9 +625,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Direcção Vento"
+#
+#
 #
 #
 #
@@ -645,8 +691,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind Speed, Kts."
 #~ msgstr "Velocidade Vento, Kts."
+#
+#
 #
 #
 #

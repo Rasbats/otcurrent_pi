@@ -361,9 +361,9 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	dimensions.append(s);
 	dimensions.append(wxT("here"));
  
-	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, sz, wxCAL_SHOW_HOLIDAYS ,wxT("Tide Calendar"));
+	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, sz, wxCAL_SHOW_HOLIDAYS ,_("Tide Calendar"));
 
-	m_staticText = new wxStaticText(this,wxID_ANY,wxT("Time:"),wxPoint(15,155),wxSize(60,21));
+	m_staticText = new wxStaticText(this,wxID_ANY,_("Time:"),wxPoint(15,155),wxSize(60,21));
 
 	_timeText = new wxTimeTextCtrl(this,wxID_ANY,wxT("12:00"),wxPoint(75,155),wxSize(60,21));
 

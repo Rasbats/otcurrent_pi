@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.1.0b620\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-16 13:10+0000\n"
+"POT-Creation-Date: 2015-07-17 10:33+0100\n"
 "PO-Revision-Date: 2010-06-25 19:44-0300\n"
 "Last-Translator: Eloi Barros <eloibarros@hotmail.com>\n"
 "Language-Team: \n"
@@ -19,6 +19,9 @@ msgstr ""
 "X-Poedit-Country: BRAZIL\n"
 "X-Poedit-SourceCharset: utf-8\n"
 #
+msgid "      < 0.5 knots"
+msgstr ""
+#
 #, c-format
 msgid " width = %d height = %d\n"
 msgstr ""
@@ -27,11 +30,17 @@ msgstr ""
 msgid " x = %d y = %d\n"
 msgstr ""
 #
+msgid ">= 0.5 and < 1.5"
+msgstr ""
 #
+msgid ">= 1.5 and < 2.5"
+msgstr ""
 #
-#, fuzzy
-msgid "/Settings/otcurrent"
-msgstr "Velocidade da Corrente, Nós."
+msgid ">= 2.5 and < 3.5"
+msgstr ""
+#
+msgid ">= 3.5 knots    "
+msgstr ""
 #
 msgid "About Tidal Arrows"
 msgstr ""
@@ -51,25 +60,10 @@ msgstr ""
 msgid "Fill Colour"
 msgstr ""
 #
-msgid "HARMONIC"
-msgstr ""
-#
-msgid "HW"
-msgstr ""
-#
-msgid "LOC"
-msgstr ""
-#
-msgid "LW"
+msgid "Help"
 msgstr ""
 #
 msgid "Next"
-msgstr ""
-#
-msgid "No Tidal Data"
-msgstr ""
-#
-msgid "No tidal data for this port"
 msgstr ""
 #
 msgid "Now"
@@ -90,11 +84,50 @@ msgstr ""
 msgid "Select"
 msgstr ""
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select a folder"
+msgstr "Selecionar Diretório de Arquivos GRIB"
+#
 msgid "Select date/time for current prediction"
 msgstr ""
 #
 msgid "Step (Minutes)"
 msgstr ""
+#
+msgid ""
+"Tidal Current\n"
+"--------------------------------------------------------------\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"Use this data with caution.\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n"
+"\n"
+"--------------------------------------------------------------------\n"
+"\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n"
+"\n"
+msgstr ""
+#
+#
+#
+#, fuzzy
+msgid "Tidal Current Arrow Colour"
+msgstr "Controle da Apresentação GRIB"
 #
 #
 #
@@ -102,41 +135,13 @@ msgstr ""
 msgid "Tidal Current Control"
 msgstr "Controle da Apresentação GRIB"
 #
-msgid ""
-"Tidal Data for UKHO Tidal Diamonds\n"
-"--------------------------------------------------------------\n"
-"The standard OpenCPN distribution has tidal data for the\n"
-"following ports, which this plugin uses:\n"
-"\n"
-"PLYMOUTH (DEVONPORT)\n"
-"PORTSMOUTH\n"
-"DOVER\n"
-"SHEERNESS\n"
-"LOWESTOFT\n"
-"IMMINGHAM\n"
-"LEITH\n"
-"ABERDEEN\n"
-"WICK\n"
-"LERWICK\n"
-"ULLAPOOL\n"
-"LIVERPOOL (GLADSTONE DOCK)\n"
-"HOLYHEAD\n"
-"MILFORD HAVEN\n"
-"PORT OF BRISTOL (AVONMOUTH)\n"
-"ST. HELIER\n"
-"\n"
-"Use this data with caution.\n"
-"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
-"\n"
-"--------------------------------------------------------------------\n"
-"\n"
-"Note: 1 Rates shown are for a position corresponding to the centre\n"
-"of the base of the arrow. Tidal rate is shown as knots.\n"
-"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
-"Stream Atlases. This is based on the average range for the day\n"
+msgid "Tidal Data Folder"
 msgstr ""
 #
-msgid "UTC"
+msgid "Tide Calendar"
+msgstr ""
+#
+msgid "Time:"
 msgstr ""
 #
 msgid "Using Tide/Current data from:  "
@@ -166,9 +171,47 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
+#, fuzzy
+msgid "otcurrentDialogPosX"
+msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "otcurrentDialogPosY"
+msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#, fuzzy
+msgid "otcurrentDialogSizeX"
+msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#, fuzzy
+msgid "otcurrentDialogSizeY"
+msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "otcurrentFolder"
+msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
 #, fuzzy
 msgid "otcurrentInterval"
 msgstr "Velocidade da Corrente, Nós."
+#
 #
 #
 #
@@ -176,14 +219,29 @@ msgstr "Velocidade da Corrente, Nós."
 msgid "otcurrentUseDirection"
 msgstr "Velocidade da Corrente, Nós."
 #
+#
+#
+#
+#, fuzzy
 msgid "otcurrentUseFillColour"
-msgstr ""
+msgstr "Velocidade da Corrente, Nós."
+#
 #
 #
 #
 #, fuzzy
 msgid "otcurrentUseRate"
 msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "/Settings/otcurrent"
+#~ msgstr "Velocidade da Corrente, Nós."
+#
+#
 #
 #
 #
@@ -231,9 +289,13 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Velocidade da Corrente, Nós."
+#
+#
 #
 #
 #
@@ -288,8 +350,12 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "Diretório de Arquivos GRIB"
+#
+#
 #
 #
 #
@@ -320,9 +386,13 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Por favor Afaste ou Diminua a Escala para ver SEATEMP GRIB suprimido"
+#
+#
 #
 #
 #
@@ -361,10 +431,14 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr ""
 #~ "Por favor Afaste ou Diminua a Escala para ver OCEAN CURRENT GRIB suprimido"
+#
+#
 #
 #
 #
@@ -400,6 +474,8 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Por favor Afaste ou Diminua a Escala para ver CRAIN GRIB suprimido"
@@ -414,9 +490,13 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Pressão, hPa"
+#
+#
 #
 #
 #
@@ -455,23 +535,13 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Temperatura da Superfície do Mar, C"
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Select a tcurrent file"
-#~ msgstr "Selecionar Diretório de Arquivos GRIB"
 #
 #
 #
@@ -528,6 +598,8 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Altura Significativa das Ondas, m"
@@ -542,8 +614,12 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Usar Gráficos de Alta Definição"
+#
+#
 #
 #
 #
@@ -601,6 +677,8 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Direção do Vento"
@@ -620,9 +698,13 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Direção do Vento"
+#
+#
 #
 #
 #
@@ -680,15 +762,12 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #~ msgid "Wind Speed, Kts."
 #~ msgstr "Veloc. do Vento, Nós"
 #
 #
-#
-#
-#, fuzzy
-#~ msgid "otcurrentPort"
-#~ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #

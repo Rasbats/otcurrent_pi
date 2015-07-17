@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.1.0b604\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-16 13:10+0000\n"
+"POT-Creation-Date: 2015-07-17 10:33+0100\n"
 "PO-Revision-Date: 2012-06-03 20:54+0200\n"
 "Last-Translator: Hasan Çetin <boraxtr@yahoo.com>\n"
 "Language-Team: Gunther Pilz <service@opencpn.de>\n"
@@ -19,6 +19,9 @@ msgstr ""
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 #
+msgid "      < 0.5 knots"
+msgstr ""
+#
 #, c-format
 msgid " width = %d height = %d\n"
 msgstr ""
@@ -27,11 +30,17 @@ msgstr ""
 msgid " x = %d y = %d\n"
 msgstr ""
 #
+msgid ">= 0.5 and < 1.5"
+msgstr ""
 #
+msgid ">= 1.5 and < 2.5"
+msgstr ""
 #
-#, fuzzy
-msgid "/Settings/otcurrent"
-msgstr "Akıntı hızı, Kts"
+msgid ">= 2.5 and < 3.5"
+msgstr ""
+#
+msgid ">= 3.5 knots    "
+msgstr ""
 #
 msgid "About Tidal Arrows"
 msgstr ""
@@ -51,25 +60,10 @@ msgstr ""
 msgid "Fill Colour"
 msgstr ""
 #
-msgid "HARMONIC"
-msgstr ""
-#
-msgid "HW"
-msgstr ""
-#
-msgid "LOC"
-msgstr ""
-#
-msgid "LW"
+msgid "Help"
 msgstr ""
 #
 msgid "Next"
-msgstr ""
-#
-msgid "No Tidal Data"
-msgstr ""
-#
-msgid "No tidal data for this port"
 msgstr ""
 #
 msgid "Now"
@@ -92,51 +86,60 @@ msgstr ""
 msgid "Select"
 msgstr ""
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select a folder"
+msgstr "GRIB dosyasını seçin"
+#
 msgid "Select date/time for current prediction"
 msgstr ""
 #
 msgid "Step (Minutes)"
 msgstr ""
 #
-#, fuzzy
-msgid "Tidal Current Control"
-msgstr "GRIB Görüntü Denetim Panosu"
-#
 msgid ""
-"Tidal Data for UKHO Tidal Diamonds\n"
+"Tidal Current\n"
 "--------------------------------------------------------------\n"
-"The standard OpenCPN distribution has tidal data for the\n"
-"following ports, which this plugin uses:\n"
 "\n"
-"PLYMOUTH (DEVONPORT)\n"
-"PORTSMOUTH\n"
-"DOVER\n"
-"SHEERNESS\n"
-"LOWESTOFT\n"
-"IMMINGHAM\n"
-"LEITH\n"
-"ABERDEEN\n"
-"WICK\n"
-"LERWICK\n"
-"ULLAPOOL\n"
-"LIVERPOOL (GLADSTONE DOCK)\n"
-"HOLYHEAD\n"
-"MILFORD HAVEN\n"
-"PORT OF BRISTOL (AVONMOUTH)\n"
-"ST. HELIER\n"
+"\n"
+"\n"
+"\n"
 "\n"
 "Use this data with caution.\n"
-"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n"
 "\n"
 "--------------------------------------------------------------------\n"
 "\n"
 "Note: 1 Rates shown are for a position corresponding to the centre\n"
 "of the base of the arrow. Tidal rate is shown as knots.\n"
-"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
-"Stream Atlases. This is based on the average range for the day\n"
+"\n"
 msgstr ""
 #
-msgid "UTC"
+#, fuzzy
+msgid "Tidal Current Arrow Colour"
+msgstr "GRIB Görüntü Denetim Panosu"
+#
+#, fuzzy
+msgid "Tidal Current Control"
+msgstr "GRIB Görüntü Denetim Panosu"
+#
+msgid "Tidal Data Folder"
+msgstr ""
+#
+msgid "Tide Calendar"
+msgstr ""
+#
+msgid "Time:"
 msgstr ""
 #
 msgid "Using Tide/Current data from:  "
@@ -182,9 +185,47 @@ msgstr "GRIB Seçenekleri"
 #
 #
 #
+#
+#
+#, fuzzy
+msgid "otcurrentDialogPosX"
+msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "otcurrentDialogPosY"
+msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#, fuzzy
+msgid "otcurrentDialogSizeX"
+msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#, fuzzy
+msgid "otcurrentDialogSizeY"
+msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "otcurrentFolder"
+msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#
 #, fuzzy
 msgid "otcurrentInterval"
 msgstr "Akıntı hızı, Kts"
+#
 #
 #
 #
@@ -224,15 +265,27 @@ msgstr "GRIB Seçenekleri"
 #
 #
 #
+#
 #, fuzzy
 msgid "otcurrentUseFillColour"
 msgstr "GRIB Seçenekleri"
 #
 #
 #
+#
 #, fuzzy
 msgid "otcurrentUseRate"
 msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "/Settings/otcurrent"
+#~ msgstr "Akıntı hızı, Kts"
+#
+#
 #
 #
 #
@@ -278,6 +331,8 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Akıntı hızı, Kts"
@@ -295,9 +350,13 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Data Display Preferences"
 #~ msgstr "GRIB Seçenekleri"
+#
+#
 #
 #
 #
@@ -352,6 +411,8 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "GRIB Dosya Klasörü"
 #
@@ -364,8 +425,12 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #~ msgid "Grib"
 #~ msgstr "GRIB"
+#
+#
 #
 #
 #
@@ -398,11 +463,15 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr ""
 #~ "Zur Anzeige der ausgeblendeten GRIB Wassertemperatur bitte herauszoom oder "
 #~ "Maßstab verkleinern."
+#
+#
 #
 #
 #
@@ -442,11 +511,15 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr ""
 #~ "Zur Anzeige der ausgeblendeten GRIB Ozean-Strömung bitte herauszoom oder "
 #~ "Maßstab verkleinern."
+#
+#
 #
 #
 #
@@ -484,6 +557,8 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr ""
@@ -500,9 +575,13 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Basınç, mBar"
+#
+#
 #
 #
 #
@@ -541,23 +620,13 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Deniz yüzey sıcaklığı, °C"
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Select a tcurrent file"
-#~ msgstr "GRIB dosyasını seçin"
 #
 #
 #
@@ -614,6 +683,8 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Belirgin dalga yüksekliği, m"
@@ -628,8 +699,12 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Yüksek çözünürlükte grafik kullan."
+#
+#
 #
 #
 #
@@ -687,6 +762,8 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Rüzgar yönü"
@@ -706,9 +783,13 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Rüzgar yönü"
+#
+#
 #
 #
 #
@@ -766,15 +847,12 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #~ msgid "Wind Speed, Kts."
 #~ msgstr "Rüzgar hızı, Kts."
 #
 #
-#
-#
-#, fuzzy
-#~ msgid "otcurrentPort"
-#~ msgstr "Akıntı hızı, Kts"
 #
 #
 #
@@ -799,6 +877,8 @@ msgstr "Akıntı hızı, Kts"
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "GRIB Verileri"
+#
+#
 #
 #
 #

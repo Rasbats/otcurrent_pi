@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenCPN 3.3.1006\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-16 13:10+0000\n"
+"POT-Creation-Date: 2015-07-17 10:33+0100\n"
 "PO-Revision-Date: 2013-10-14 23:57+0100\n"
 "Last-Translator: Frode Lynum <post@opencpn.kb-h.com>\n"
 "Language-Team: OpenCPN Norge <post@opencpn.kb-h.com>\n"
@@ -17,6 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 #
+msgid "      < 0.5 knots"
+msgstr ""
+#
 #, c-format
 msgid " width = %d height = %d\n"
 msgstr ""
@@ -25,9 +28,17 @@ msgstr ""
 msgid " x = %d y = %d\n"
 msgstr ""
 #
-#, fuzzy
-msgid "/Settings/otcurrent"
-msgstr "Strøm"
+msgid ">= 0.5 and < 1.5"
+msgstr ""
+#
+msgid ">= 1.5 and < 2.5"
+msgstr ""
+#
+msgid ">= 2.5 and < 3.5"
+msgstr ""
+#
+msgid ">= 3.5 knots    "
+msgstr ""
 #
 msgid "About Tidal Arrows"
 msgstr ""
@@ -47,26 +58,11 @@ msgstr ""
 msgid "Fill Colour"
 msgstr ""
 #
-msgid "HARMONIC"
-msgstr ""
-#
-msgid "HW"
-msgstr ""
-#
-msgid "LOC"
-msgstr ""
-#
-msgid "LW"
+msgid "Help"
 msgstr ""
 #
 msgid "Next"
 msgstr "Neste"
-#
-msgid "No Tidal Data"
-msgstr ""
-#
-msgid "No tidal data for this port"
-msgstr ""
 #
 msgid "Now"
 msgstr "Nå"
@@ -88,54 +84,59 @@ msgstr ""
 msgid "Select"
 msgstr ""
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select a folder"
+msgstr "Velg en GRIB fil"
+#
 msgid "Select date/time for current prediction"
 msgstr ""
 #
 msgid "Step (Minutes)"
 msgstr ""
 #
-#, fuzzy
-msgid "Tidal Current Control"
-msgstr "GRIB visningskontroll"
-#
 msgid ""
-"Tidal Data for UKHO Tidal Diamonds\n"
+"Tidal Current\n"
 "--------------------------------------------------------------\n"
-"The standard OpenCPN distribution has tidal data for the\n"
-"following ports, which this plugin uses:\n"
 "\n"
-"PLYMOUTH (DEVONPORT)\n"
-"PORTSMOUTH\n"
-"DOVER\n"
-"SHEERNESS\n"
-"LOWESTOFT\n"
-"IMMINGHAM\n"
-"LEITH\n"
-"ABERDEEN\n"
-"WICK\n"
-"LERWICK\n"
-"ULLAPOOL\n"
-"LIVERPOOL (GLADSTONE DOCK)\n"
-"HOLYHEAD\n"
-"MILFORD HAVEN\n"
-"PORT OF BRISTOL (AVONMOUTH)\n"
-"ST. HELIER\n"
+"\n"
+"\n"
+"\n"
 "\n"
 "Use this data with caution.\n"
-"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n"
 "\n"
 "--------------------------------------------------------------------\n"
 "\n"
 "Note: 1 Rates shown are for a position corresponding to the centre\n"
 "of the base of the arrow. Tidal rate is shown as knots.\n"
-"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
-"Stream Atlases. This is based on the average range for the day\n"
+"\n"
 msgstr ""
 #
+#, fuzzy
+msgid "Tidal Current Arrow Colour"
+msgstr "GRIB visningskontroll"
 #
+#, fuzzy
+msgid "Tidal Current Control"
+msgstr "GRIB visningskontroll"
 #
-msgid "UTC"
-msgstr "UTC"
+msgid "Tidal Data Folder"
+msgstr ""
+#
+msgid "Tide Calendar"
+msgstr ""
+#
+msgid "Time:"
+msgstr ""
 #
 msgid "Using Tide/Current data from:  "
 msgstr ""
@@ -159,17 +160,47 @@ msgstr ""
 msgid "otcurrent Settings"
 msgstr "GRIB innstillinger"
 #
+#
+#
+#, fuzzy
+msgid "otcurrentDialogPosX"
+msgstr "Strøm"
+#
+#
+#
+#, fuzzy
+msgid "otcurrentDialogPosY"
+msgstr "Strøm"
+#
+#, fuzzy
+msgid "otcurrentDialogSizeX"
+msgstr "Strøm"
+#
+#, fuzzy
+msgid "otcurrentDialogSizeY"
+msgstr "Strøm"
+#
+#
+#
+#, fuzzy
+msgid "otcurrentFolder"
+msgstr "Strøm"
+#
+#
 #, fuzzy
 msgid "otcurrentInterval"
 msgstr "Strøm"
+#
 #
 #, fuzzy
 msgid "otcurrentUseDirection"
 msgstr "GRIB innstillinger"
 #
+#
 #, fuzzy
 msgid "otcurrentUseFillColour"
 msgstr "GRIB innstillinger"
+#
 #
 #, fuzzy
 msgid "otcurrentUseRate"
@@ -185,8 +216,18 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid " (Dup)"
 #~ msgstr " (Dup)"
+#
+#
+#
+#, fuzzy
+#~ msgid "/Settings/otcurrent"
+#~ msgstr "Strøm"
+#
+#
 #
 #
 #
@@ -209,8 +250,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Air Temp"
 #~ msgstr "Luft temp"
+#
+#
 #
 #
 #
@@ -232,6 +277,8 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Barbed Arrows"
 #~ msgstr "Spisse piler"
 #
@@ -243,8 +290,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Building Isobar map"
 #~ msgstr "Bygger isobarkart"
+#
+#
 #
 #
 #
@@ -269,8 +320,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Cloud"
 #~ msgstr "Sky"
+#
+#
 #
 #
 #
@@ -313,8 +368,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Colors"
 #~ msgstr "Farger"
+#
+#
 #
 #
 #
@@ -335,6 +394,8 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Copy Missing Wave Records"
 #~ msgstr "Kopier manglende bølgeregistrering"
 #
@@ -346,8 +407,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Current"
 #~ msgstr "Strøm"
+#
+#
 #
 #
 #
@@ -374,8 +439,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Days"
 #~ msgstr "Dager"
+#
+#
 #
 #
 #
@@ -397,6 +466,8 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Direction Arrows"
 #~ msgstr "Retningspiler"
 #
@@ -408,8 +479,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Display"
 #~ msgstr "Vis"
+#
+#
 #
 #
 #
@@ -431,9 +506,13 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Display Isobars"
 #~ msgstr "Vis"
+#
+#
 #
 #
 #
@@ -457,8 +536,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Error"
 #~ msgstr "Feil"
+#
+#
 #
 #
 #
@@ -479,8 +562,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Error:  File does not exist!"
 #~ msgstr "Feil: Filen eksisterer ikke"
+#
+#
 #
 #
 #
@@ -493,6 +580,8 @@ msgstr "Strøm"
 #, fuzzy
 #~ msgid "Error:  No valid data in this file!"
 #~ msgstr "Feil: Kan ikke lese filen!"
+#
+#
 #
 #
 #
@@ -515,6 +604,8 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Failed to send mail message"
 #~ msgstr "Kunne ikke sende epost melding"
 #
@@ -526,8 +617,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Feet"
 #~ msgstr "Fot"
+#
+#
 #
 #
 #
@@ -578,8 +673,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "GRIB fil katalog"
+#
+#
 #
 #
 #
@@ -601,6 +700,8 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Grib"
 #~ msgstr "GRIB"
 #
@@ -612,8 +713,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Inches"
 #~ msgstr "Tommer"
+#
+#
 #
 #
 #
@@ -635,8 +740,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Interval"
 #~ msgstr "Intervall"
+#
+#
 #
 #
 #
@@ -660,8 +769,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "KPH"
 #~ msgstr "KMT"
+#
+#
 #
 #
 #
@@ -682,8 +795,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Local Time"
 #~ msgstr "Lokaltid"
+#
+#
 #
 #
 #
@@ -706,8 +823,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "M/S"
 #~ msgstr "M/S"
+#
+#
 #
 #
 #
@@ -731,8 +852,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "MPH"
 #~ msgstr "MPT"
+#
+#
 #
 #
 #
@@ -754,9 +879,13 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Mail To "
 #~ msgstr "epost til"
+#
+#
 #
 #
 #
@@ -777,8 +906,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "MilliBars"
 #~ msgstr "Millibar"
+#
+#
 #
 #
 #
@@ -801,8 +934,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "MyLabel"
 #~ msgstr "MittMerke"
+#
+#
 #
 #
 #
@@ -823,8 +960,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Numbers"
 #~ msgstr "Nummer"
+#
+#
 #
 #
 #
@@ -847,8 +988,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "OpenCpn failed to logon! Please verify your eMail environment"
 #~ msgstr "OpenCPN klarte ikke å logge inn! Vennligst sjekk ditt epost system"
+#
+#
 #
 #
 #
@@ -861,6 +1006,8 @@ msgstr "Strøm"
 #, fuzzy
 #~ msgid "Overlay Transparency"
 #~ msgstr "Overleggskart"
+#
+#
 #
 #
 #
@@ -883,8 +1030,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Parameters"
 #~ msgstr "Parametre"
+#
+#
 #
 #
 #
@@ -907,6 +1058,8 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Period"
 #~ msgstr "Periode"
 #
@@ -918,8 +1071,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Play"
 #~ msgstr "Spill"
+#
+#
 #
 #
 #
@@ -946,9 +1103,13 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Vennligst Zoom eller Skaler ut for å vise skjulte SJØTEMP GRIB"
+#
+#
 #
 #
 #
@@ -982,9 +1143,13 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "Vennligst Zoom eller Skaler ut for å vise skjulte SJØSTRØM GRIB"
+#
+#
 #
 #
 #
@@ -1016,9 +1181,13 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Vennligst Zoom eller Skaler ut for å vise skjulte CRAIN GRIB"
+#
+#
 #
 #
 #
@@ -1041,8 +1210,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Pressure"
 #~ msgstr "Trykk"
+#
+#
 #
 #
 #
@@ -1071,8 +1244,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Quickscat"
 #~ msgstr "Quickscat"
+#
+#
 #
 #
 #
@@ -1085,6 +1262,8 @@ msgstr "Strøm"
 #, fuzzy
 #~ msgid "Rainfall"
 #~ msgstr "Regn"
+#
+#
 #
 #
 #
@@ -1107,8 +1286,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Ref : "
 #~ msgstr "Ref : "
+#
+#
 #
 #
 #
@@ -1131,8 +1314,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Request Pofile"
 #~ msgstr "Forespør profil"
+#
+#
 #
 #
 #
@@ -1161,8 +1348,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Sea Temp"
 #~ msgstr "Sjøtemp"
+#
+#
 #
 #
 #
@@ -1186,20 +1377,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "SeaTemp"
 #~ msgstr "Havtemp"
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Select a tcurrent file"
-#~ msgstr "Velg en GRIB fil"
 #
 #
 #
@@ -1220,8 +1403,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Settings"
 #~ msgstr "Innstillinger"
+#
+#
 #
 #
 #
@@ -1274,9 +1461,13 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Signifikant bølgehøyde, m"
+#
+#
 #
 #
 #
@@ -1297,8 +1488,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Slices per Update"
 #~ msgstr "Stykker per oppdatering"
+#
+#
 #
 #
 #
@@ -1319,8 +1514,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Spacing"
 #~ msgstr "Mellomrom"
+#
+#
 #
 #
 #
@@ -1341,9 +1540,20 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Time Range"
 #~ msgstr "Rekkevidde"
+#
+#
+#
+#
+#
+#~ msgid "UTC"
+#~ msgstr "UTC"
+#
+#
 #
 #
 #
@@ -1364,6 +1574,8 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Updates per Second"
 #~ msgstr "Oppdateringer per sekund"
 #
@@ -1375,8 +1587,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Use Gradual Colors"
 #~ msgstr "Bruk gradiente farger"
+#
+#
 #
 #
 #
@@ -1425,8 +1641,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "ADVARSEL:  QuickSCAT GRIB data er %d timer gammel."
+#
+#
 #
 #
 #
@@ -1448,6 +1668,8 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "WavesModel"
 #~ msgstr "Modell"
@@ -1460,8 +1682,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Wind"
 #~ msgstr "Vind"
+#
+#
 #
 #
 #
@@ -1488,6 +1714,8 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Wind Gust"
 #~ msgstr "Vindkast"
 #
@@ -1501,8 +1729,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Wind Scat"
 #~ msgstr "Vindscat"
+#
+#
 #
 #
 #
@@ -1534,9 +1766,13 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Vindhastighet, Knop"
+#
+#
 #
 #
 #
@@ -1555,6 +1791,8 @@ msgstr "Strøm"
 #~ "Din forespørsel er klar. En epost er klargjort i din epostleser.\n"
 #~ "Du trenger kun å klikke 'send' for å sende den.\n"
 #~ "OK for å gå videre..."
+#
+#
 #
 #
 #
@@ -1584,8 +1822,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "Zone"
 #~ msgstr "Sone"
+#
+#
 #
 #
 #
@@ -1608,13 +1850,12 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #~ msgid "mmHG"
 #~ msgstr "mmHG"
 #
 #
-#, fuzzy
-#~ msgid "otcurrentPort"
-#~ msgstr "Strøm"
 #
 #
 #
@@ -1626,6 +1867,8 @@ msgstr "Strøm"
 #
 #~ msgid "playback"
 #~ msgstr "avspilling"
+#
+#
 #
 #
 #
@@ -1659,9 +1902,13 @@ msgstr "Strøm"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrent Data at Cursor"
 #~ msgstr "GRIB data ved kursor"
+#
+#
 #
 #
 #
@@ -1691,6 +1938,8 @@ msgstr "Strøm"
 #~ "- Signifikant bølgehøyde\n"
 #~ "- Sjøoverflate temperatur\n"
 #~ "- Overflate strøm, retning og fart."
+#
+#
 #
 #
 #
