@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-17 10:33+0100\n"
-"PO-Revision-Date: 2015-01-10 18:27-0500\n"
+"POT-Creation-Date: 2015-07-20 15:32-0500\n"
+"PO-Revision-Date: 2015-07-20 16:38-0400\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -13,157 +13,164 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: cs\n"
 "X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
-#
-msgid "      < 0.5 knots"
-msgstr ""
-#
-#, c-format
-msgid " width = %d height = %d\n"
-msgstr ""
-#
+
+#: src/otcurrentOverlayFactory.cpp:852
+msgid "Using Tide/Current data from:  "
+msgstr "Používám data přílivu/proudu z:  "
+
+#: src/otcurrentUIDialog.cpp:237
+msgid "START Date/Time"
+msgstr "Datum a čas zahájení"
+
+#: src/otcurrentUIDialog.cpp:340
+msgid "Tidal Current\n"
+"--------------------------------------------------------------\n\n\n\n\n\n"
+"Use this data with caution.\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n\n"
+"--------------------------------------------------------------------\n\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n\n"
+msgstr "Přílivové proudy\n"
+"--------------------------------------------------------------\n\n\n\n\n\n"
+"Buď opatrný při použití těchto dat.\n"
+"Používat zároveň s atlasy přílivových proudů a diamanty proudů\n\n"
+"--------------------------------------------------------------------\n\n"
+"Poznámka: 1 Zobrazené rychlosti odpovídají pozici v centru\n"
+"základny šipky. Rychlost proudu je zobrazena v uzlech.\n\n"
+
+#: src/otcurrentUIDialog.cpp:341
+msgid "About Tidal Arrows"
+msgstr "O přílivových šipkách"
+
+#: src/otcurrentUIDialog.cpp:358
 #, c-format
 msgid " x = %d y = %d\n"
 msgstr ""
-#
-msgid ">= 0.5 and < 1.5"
-msgstr ""
-#
-msgid ">= 1.5 and < 2.5"
-msgstr ""
-#
-msgid ">= 2.5 and < 3.5"
-msgstr ""
-#
-msgid ">= 3.5 knots    "
-msgstr ""
-#
-msgid "About Tidal Arrows"
-msgstr ""
-#
-msgid "Cancel"
-msgstr ""
-#
-msgid "Date/Time"
-msgstr ""
-#
-msgid "Display tidal direction"
-msgstr ""
-#
-msgid "Display tidal rates (knots)"
-msgstr ""
-#
-msgid "Fill Colour"
-msgstr ""
-#
-msgid "Help"
-msgstr ""
-#
-msgid "Next"
-msgstr ""
-#
-msgid "Now"
-msgstr ""
-#
+
+#: src/otcurrentUIDialog.cpp:360
+#, c-format
+msgid " width = %d height = %d\n"
+msgstr " Šířka = %d výška = %d\n"
+
+#: src/otcurrentUIDialog.cpp:364
+msgid "Tide Calendar"
+msgstr "Přílivový kalendář"
+
+#: src/otcurrentUIDialog.cpp:366
+msgid "Time:"
+msgstr "Čas:"
+
+#: src/otcurrentUIDialog.cpp:375
 msgid "OK"
 msgstr ""
-#
-msgid "Preferences"
-msgstr ""
-#
-msgid "Previous"
-msgstr ""
-#
-msgid "START Date/Time"
-msgstr ""
-#
+
+#: src/otcurrentUIDialog.cpp:377
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: src/otcurrentUIDialogBase.cpp:21
+msgid "Date/Time"
+msgstr "Datum/čas"
+
+#: src/otcurrentUIDialogBase.cpp:26
 msgid "Select"
-msgstr ""
-#
-msgid "Select a folder"
-msgstr ""
-#
+msgstr "Vybrat"
+
+#: src/otcurrentUIDialogBase.cpp:27
 msgid "Select date/time for current prediction"
-msgstr ""
-#
-msgid "Step (Minutes)"
-msgstr ""
-#
-msgid ""
-"Tidal Current\n"
-"--------------------------------------------------------------\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"Use this data with caution.\n"
-"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n"
-"\n"
-"--------------------------------------------------------------------\n"
-"\n"
-"Note: 1 Rates shown are for a position corresponding to the centre\n"
-"of the base of the arrow. Tidal rate is shown as knots.\n"
-"\n"
-msgstr ""
-#
-msgid "Tidal Current Arrow Colour"
-msgstr ""
-#
-msgid "Tidal Current Control"
-msgstr ""
-#
+msgstr "Vyberte datum a čas pro předpověď proudu"
+
+#: src/otcurrentUIDialogBase.cpp:31
+msgid "Now"
+msgstr "Teď"
+
+#: src/otcurrentUIDialogBase.cpp:36
 msgid "Tidal Data Folder"
-msgstr ""
-#
-msgid "Tide Calendar"
-msgstr ""
-#
-msgid "Time:"
-msgstr ""
-#
-msgid "Using Tide/Current data from:  "
-msgstr ""
-#
-msgid "otcurrent"
-msgstr ""
-#
-msgid "otcurrent PlugIn for OpenCPN"
-msgstr ""
-#
-msgid ""
-"otcurrent PlugIn for OpenCPN\n"
-"Provides an overlay of Tidal Current (Stream) Arrows.\n"
-"\n"
-"\t\t\t   "
-msgstr ""
-#
+msgstr "Složka přílivových dat"
+
+#: src/otcurrentUIDialogBase.cpp:38
+msgid "Select a folder"
+msgstr "Vyber složku"
+
+#: src/otcurrentUIDialogBase.cpp:44
+msgid "Step (Minutes)"
+msgstr "Krok (minuty)"
+
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "Help"
+msgstr "Nápověda"
+
+#: src/otcurrentUIDialogBase.cpp:64
+msgid "Previous"
+msgstr "Předchozí"
+
+#: src/otcurrentUIDialogBase.cpp:68
+msgid "Next"
+msgstr "Další"
+
+#: src/otcurrentUIDialogBase.cpp:127
+msgid "Display tidal rates (knots)"
+msgstr "Zobrazit rychlost přílivu (uzly)"
+
+#: src/otcurrentUIDialogBase.cpp:130
+msgid "Display tidal direction"
+msgstr "Zobrazit směr přílivu"
+
+#: src/otcurrentUIDialogBase.cpp:133
+msgid "Fill Colour"
+msgstr "Barva výplně"
+
+#: src/otcurrentUIDialogBase.cpp:142
+msgid "Tidal Current Arrow Colour"
+msgstr "Barva přílivové šipky"
+
+#: src/otcurrentUIDialogBase.cpp:162
+msgid "      < 0.5 knots"
+msgstr "      < 0,5 uzlu"
+
+#: src/otcurrentUIDialogBase.cpp:167
+msgid ">= 0.5 and < 1.5"
+msgstr ">= 0.5 a < 1.5"
+
+#: src/otcurrentUIDialogBase.cpp:172
+msgid ">= 1.5 and < 2.5"
+msgstr ">= 1.5 a < 2.5"
+
+#: src/otcurrentUIDialogBase.cpp:177
+msgid ">= 2.5 and < 3.5"
+msgstr ">= 2.5 a < 3.5"
+
+#: src/otcurrentUIDialogBase.cpp:182
+msgid ">= 3.5 knots    "
+msgstr ">= 3.5 uzlu    "
+
+#: src/otcurrentUIDialogBase.h:143
+msgid "Tidal Current Control"
+msgstr "Nastavení ovládání přílivu"
+
+#: src/otcurrentUIDialogBase.h:202
 msgid "otcurrent Settings"
-msgstr ""
-#
-msgid "otcurrentDialogPosX"
-msgstr ""
-#
-msgid "otcurrentDialogPosY"
-msgstr ""
-#
-msgid "otcurrentDialogSizeX"
-msgstr ""
-#
-msgid "otcurrentDialogSizeY"
-msgstr ""
-#
-msgid "otcurrentFolder"
-msgstr ""
-#
-msgid "otcurrentInterval"
-msgstr ""
-#
-msgid "otcurrentUseDirection"
-msgstr ""
-#
-msgid "otcurrentUseFillColour"
-msgstr ""
-#
-msgid "otcurrentUseRate"
-msgstr ""
+msgstr "Nastavení otcurrent"
+
+#: src/otcurrentUIDialogBase.h:254
+msgid "Preferences"
+msgstr "Konfigurace"
+
+#: src/otcurrent_pi.cpp:121
+msgid "otcurrent"
+msgstr "otcurrent"
+
+#: src/otcurrent_pi.cpp:182
+msgid "otcurrent PlugIn for OpenCPN"
+msgstr "Doplněk OTCurrent pro OpenCPN"
+
+#: src/otcurrent_pi.cpp:188
+msgid "otcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
+"\t\t\t   "
+msgstr "Doplněk OTCurrent pro OpenCPN\n"
+"Poskkytuje překryvné zobrazení přílivových proudů pomocí šipek.\n\n"
+"\t\t\t   "
+
