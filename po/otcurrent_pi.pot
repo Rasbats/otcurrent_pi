@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: otcurrent_pi 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-17 10:33+0100\n"
+"POT-Creation-Date: 2015-07-20 15:32-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,40 +176,4 @@ msgid ""
 "Provides an overlay of Tidal Current (Stream) Arrows.\n"
 "\n"
 "\t\t\t   "
-msgstr ""
-
-#: src/otcurrent_pi.cpp:406 src/otcurrent_pi.cpp:446
-msgid "otcurrentUseRate"
-msgstr ""
-
-#: src/otcurrent_pi.cpp:407 src/otcurrent_pi.cpp:447
-msgid "otcurrentUseDirection"
-msgstr ""
-
-#: src/otcurrent_pi.cpp:408 src/otcurrent_pi.cpp:448
-msgid "otcurrentUseFillColour"
-msgstr ""
-
-#: src/otcurrent_pi.cpp:410 src/otcurrent_pi.cpp:450
-msgid "otcurrentFolder"
-msgstr ""
-
-#: src/otcurrent_pi.cpp:424 src/otcurrent_pi.cpp:453
-msgid "otcurrentDialogSizeX"
-msgstr ""
-
-#: src/otcurrent_pi.cpp:425 src/otcurrent_pi.cpp:454
-msgid "otcurrentDialogSizeY"
-msgstr ""
-
-#: src/otcurrent_pi.cpp:426 src/otcurrent_pi.cpp:455
-msgid "otcurrentDialogPosX"
-msgstr ""
-
-#: src/otcurrent_pi.cpp:427 src/otcurrent_pi.cpp:456
-msgid "otcurrentDialogPosY"
-msgstr ""
-
-#: src/otcurrent_pi.cpp:451
-msgid "otcurrentInterval"
 msgstr ""
