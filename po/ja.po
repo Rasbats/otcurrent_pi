@@ -5,15 +5,15 @@ msgstr ""
 "POT-Creation-Date: 2016-02-27 09:57-0300\n"
 "PO-Revision-Date: 2016-02-27 08:04-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
-"Language-Team: Swedish\n"
-"Language: sv_SE\n"
+"Language-Team: Japanese\n"
+"Language: ja_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
-"X-Crowdin-Language: sv-SE\n"
+"X-Crowdin-Language: ja\n"
 "X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
 
 #: src/otcurrentOverlayFactory.cpp:852
@@ -58,7 +58,7 @@ msgstr ""
 
 #: src/otcurrentUIDialog.cpp:375
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/otcurrentUIDialog.cpp:377
 msgid "Cancel"
@@ -70,7 +70,7 @@ msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:26
 msgid "Select"
-msgstr ""
+msgstr "選択"
 
 #: src/otcurrentUIDialogBase.cpp:27
 msgid "Select date/time for current prediction"
@@ -86,7 +86,7 @@ msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:38
 msgid "Select a folder"
-msgstr ""
+msgstr "フォルダを選択"
 
 #: src/otcurrentUIDialogBase.cpp:44
 msgid "Step (Minutes)"
@@ -94,15 +94,15 @@ msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:60
 msgid "Help"
-msgstr ""
+msgstr "ヘルプ"
 
 #: src/otcurrentUIDialogBase.cpp:64
 msgid "Previous"
-msgstr ""
+msgstr "前へ"
 
 #: src/otcurrentUIDialogBase.cpp:68
 msgid "Next"
-msgstr ""
+msgstr "次へ"
 
 #: src/otcurrentUIDialogBase.cpp:127
 msgid "Display tidal rates (knots)"
@@ -122,23 +122,23 @@ msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:162
 msgid "      < 0.5 knots"
-msgstr ""
+msgstr "      < 0.5 ノット"
 
 #: src/otcurrentUIDialogBase.cpp:167
 msgid ">= 0.5 and < 1.5"
-msgstr ""
+msgstr ">= 0.5 と < 1.5"
 
 #: src/otcurrentUIDialogBase.cpp:172
 msgid ">= 1.5 and < 2.5"
-msgstr ""
+msgstr ">= 1.5 と < 2.5"
 
 #: src/otcurrentUIDialogBase.cpp:177
 msgid ">= 2.5 and < 3.5"
-msgstr ""
+msgstr ">= 2.5 と < 3.5"
 
 #: src/otcurrentUIDialogBase.cpp:182
 msgid ">= 3.5 knots    "
-msgstr ""
+msgstr ">= 3.5 ノット    "
 
 #: src/otcurrentUIDialogBase.h:143
 msgid "Tidal Current Control"
@@ -150,7 +150,7 @@ msgstr ""
 
 #: src/otcurrentUIDialogBase.h:254
 msgid "Preferences"
-msgstr ""
+msgstr "設定"
 
 #: src/otcurrent_pi.cpp:121
 msgid "otcurrent"

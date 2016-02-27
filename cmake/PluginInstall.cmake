@@ -1,6 +1,6 @@
 ##---------------------------------------------------------------------------
-## Author:      Sean D'Epagnier
-## Copyright:   
+## Author:      Pavel Kalian (Based on the work of Sean D'Epagnier)
+## Copyright:   2014
 ## License:     GPLv3+
 ##---------------------------------------------------------------------------
 
@@ -85,7 +85,7 @@ IF(UNIX AND NOT APPLE)
   SET(PREFIX_PARENTLIB ${PREFIX_LIB}/${PARENT})
   INSTALL(TARGETS ${PACKAGE_NAME} RUNTIME LIBRARY DESTINATION ${PREFIX_PARENTLIB})
 
- IF(EXISTS ${PROJECT_SOURCE_DIR}/data)
+  IF(EXISTS ${PROJECT_SOURCE_DIR}/data)
     INSTALL(DIRECTORY data DESTINATION ${PREFIX_PARENTDATA}/plugins/${PACKAGE_NAME})
   ENDIF()
 ENDIF(UNIX AND NOT APPLE)

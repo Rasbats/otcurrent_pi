@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 15:32-0500\n"
-"PO-Revision-Date: 2015-07-20 16:39-0400\n"
+"POT-Creation-Date: 2016-02-27 09:57-0300\n"
+"PO-Revision-Date: 2016-02-27 08:04-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -32,7 +32,23 @@ msgid "Tidal Current\n"
 "--------------------------------------------------------------------\n\n"
 "Note: 1 Rates shown are for a position corresponding to the centre\n"
 "of the base of the arrow. Tidal rate is shown as knots.\n\n"
-msgstr ""
+msgstr "Getijstroom\n"
+"\n"
+"--------------------------------------------------------------\n\n\n\n\n\n"
+"\n"
+"Gebruik deze gegevens met voorzichtigheid, \n"
+"\n"
+"en alleen in combinatie met stroomatlassen en\n"
+"\n"
+"getijinformatie in zeekaarten.\n\n"
+"\n"
+"--------------------------------------------------------------\n\n"
+"\n"
+"Opmerking: Getoonde stroomsnelheden gelden\n"
+"\n"
+"voor een positie die overeenkomt met het midden\n"
+"\n"
+"van de basis van de pijl en zijn gegeven in knopen.\n\n"
 
 #: src/otcurrentUIDialog.cpp:341
 msgid "About Tidal Arrows"
@@ -50,11 +66,11 @@ msgstr " breedte = %d hoogte = %d\n"
 
 #: src/otcurrentUIDialog.cpp:364
 msgid "Tide Calendar"
-msgstr ""
+msgstr "Getijkalender"
 
 #: src/otcurrentUIDialog.cpp:366
 msgid "Time:"
-msgstr ""
+msgstr "Tijd:"
 
 #: src/otcurrentUIDialog.cpp:375
 msgid "OK"
@@ -82,11 +98,11 @@ msgstr "Nu"
 
 #: src/otcurrentUIDialogBase.cpp:36
 msgid "Tidal Data Folder"
-msgstr ""
+msgstr "Map getijgegevens"
 
 #: src/otcurrentUIDialogBase.cpp:38
 msgid "Select a folder"
-msgstr ""
+msgstr "Selecteer een map"
 
 #: src/otcurrentUIDialogBase.cpp:44
 msgid "Step (Minutes)"
@@ -94,7 +110,7 @@ msgstr "Stap (minuten)"
 
 #: src/otcurrentUIDialogBase.cpp:60
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: src/otcurrentUIDialogBase.cpp:64
 msgid "Previous"
