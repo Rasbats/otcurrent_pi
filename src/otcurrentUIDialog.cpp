@@ -235,7 +235,7 @@ void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 {	
 
 	CalendarDialog CalDialog ( this, -1, _("START Date/Time"),
-	                          wxPoint(100, 100), wxSize(200, 250) );
+	                          wxPoint(100, 100), wxSize(240, 250) );
 	if ( CalDialog.ShowModal() == wxID_OK ){
 		
 		wxDateTime dm = CalDialog.dialogCalendar->GetDate();
@@ -351,7 +351,7 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	wxPoint p;
 	wxSize  sz;
  
-	sz.SetWidth(180);
+	sz.SetWidth(220);
 	sz.SetHeight(150);
 	
 	p.x = 6; p.y = 2;
