@@ -812,7 +812,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
         bool bforce_redraw_currents, bool bdraw_mono_for_mask, wxDateTime myTime)
 {
 
-	if (BBox->chart_scale > 500000){
+	if (BBox->chart_scale > 1000000){
 		return;
 	}
 
