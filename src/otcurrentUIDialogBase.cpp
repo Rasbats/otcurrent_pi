@@ -21,9 +21,9 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	sbSizer2 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY|wxEXPAND, _("Date/Time") ), wxHORIZONTAL );
 
 	m_textCtrl1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( 170,20 ), wxTE_READONLY|wxSIMPLE_BORDER );
-	sbSizer2->Add( m_textCtrl1, 100, wxALL, 5 );
+	sbSizer2->Add( m_textCtrl1, 100, wxALL|wxEXPAND, 5 );
 	
-	m_button33 = new wxButton( this, wxID_ANY , _("Select"), wxDefaultPosition, wxSize( 40,-1 ), 0 );
+	m_button33 = new wxButton( this, wxID_ANY , _("Select"), wxDefaultPosition, wxSize( 80,-1 ), 0 );
 	m_button33->SetToolTip(_("Select date/time for current prediction"));	
 	sbSizer2->Add( m_button33, 0, wxALL, 5 );
 
