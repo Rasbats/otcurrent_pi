@@ -85,10 +85,11 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
     wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(pConf) {
-        pConf->SetPath ( _T ( "/Settings/otcurrent" ) );
+        pConf->SetPath ( _T ( "/Plugins/otcurrent" ) );
 
 		pConf->Read ( _T ( "otcurrentUseRate" ), &m_bUseRate );
         pConf->Read ( _T ( "otcurrentUseDirection" ), &m_bUseDirection);
+		pConf->Read(_T("otcurrentUseHighResolution"), &m_bUseHighRes);
 		pConf->Read ( _T ( "otcurrentUseFillColour" ), &m_bUseFillColour);
 
 		pConf->Read ( _T ( "otcurrentInterval" ), &m_IntervalSelected);
@@ -155,10 +156,11 @@ otcurrentUIDialog::~otcurrentUIDialog()
     wxFileConfig *pConf = GetOCPNConfigObject();;
 
     if(pConf) {
-        pConf->SetPath ( _T ( "/Settings/otcurrent" ) );
+        pConf->SetPath ( _T ( "/Plugins/otcurrent" ) );
 
 		pConf->Write ( _T ( "otcurrentUseRate" ), m_bUseRate );
 		pConf->Write ( _T ( "otcurrentUseDirection" ), m_bUseDirection );
+		pConf->Write(_T("otcurrentUseHighResolution"), m_bUseHighRes);
 		pConf->Write ( _T ( "otcurrentUseFillColour" ), m_bUseFillColour );
 
 		pConf->Write( _T("VColour0"), myVColour[0] );
@@ -219,6 +221,7 @@ void otcurrentUIDialog::OpenFile(bool newestFile)
 {
 	m_bUseRate = pPlugIn->GetCopyRate();
 	m_bUseDirection = pPlugIn->GetCopyDirection();
+	m_bUseHighRes = pPlugIn->GetCopyResolution();
 	m_bUseFillColour = pPlugIn->GetCopyColour();
 
 	m_FolderSelected = pPlugIn->GetFolderSelected();
@@ -235,7 +238,7 @@ void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 {	
 
 	CalendarDialog CalDialog ( this, -1, _("START Date/Time"),
-	                          wxPoint(100, 100), wxSize(240, 250) );
+	                          wxPoint(100, 100), wxSize(400, 500) );
 	if ( CalDialog.ShowModal() == wxID_OK ){
 		
 		wxDateTime dm = CalDialog.dialogCalendar->GetDate();
@@ -351,8 +354,8 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	wxPoint p;
 	wxSize  sz;
  
-	sz.SetWidth(220);
-	sz.SetHeight(150);
+	sz.SetWidth(440);
+	sz.SetHeight(350);
 	
 	p.x = 6; p.y = 2;
 	s.Printf(_(" x = %d y = %d\n"), p.x, p.y);
@@ -361,20 +364,20 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	dimensions.append(s);
 	dimensions.append(wxT("here"));
  
-	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, sz, wxCAL_SHOW_HOLIDAYS ,_("Tide Calendar"));
+	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, sz, wxCAL_SHOW_HOLIDAYS,_("Tide Calendar"));
 
-	m_staticText = new wxStaticText(this,wxID_ANY,_("Time:"),wxPoint(15,155),wxSize(60,21));
+	m_staticText = new wxStaticText(this,wxID_ANY,_("Time:"),wxPoint(15,360),wxSize(120,42));
 
-	_timeText = new wxTimeTextCtrl(this,wxID_ANY,wxT("12:00"),wxPoint(75,155),wxSize(60,21));
+	_timeText = new wxTimeTextCtrl(this,wxID_ANY,wxT("12:00"),wxPoint(210,360),wxSize(120,42));
 
-    _spinCtrl=new wxSpinButton(this,wxID_ANY,wxPoint(136,155),wxSize(20,21),wxSP_VERTICAL|wxSP_ARROW_KEYS);
+    _spinCtrl=new wxSpinButton(this,wxID_ANY,wxPoint(136,360),wxSize(40,42),wxSP_VERTICAL|wxSP_ARROW_KEYS);
 	_spinCtrl->Connect( wxEVT_SCROLL_LINEUP, wxSpinEventHandler( CalendarDialog::spinUp ), NULL, this );
 	_spinCtrl->Connect( wxEVT_SCROLL_LINEDOWN, wxSpinEventHandler( CalendarDialog::spinDown ), NULL, this );
 	
-	p.y += sz.GetHeight() + 30;
+	p.y += sz.GetHeight() + 80;
+	wxButton * c = new wxButton( this, wxID_CANCEL, _("Cancel"), p, wxDefaultSize );	
+	p.x += 220;
 	wxButton * b = new wxButton( this, wxID_OK, _("OK"), p, wxDefaultSize );
-	p.x += 110;
-	wxButton * c = new wxButton( this, wxID_CANCEL, _("Cancel"), p, wxDefaultSize );
     
 }
 

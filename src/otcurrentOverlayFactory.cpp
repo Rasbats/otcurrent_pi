@@ -70,6 +70,7 @@ otcurrentOverlayFactory::otcurrentOverlayFactory( otcurrentUIDialog &dlg )
 	m_last_vp_scale = 0.;
 	m_bShowRate = m_dlg.m_bUseRate;
 	m_bShowDirection = m_dlg.m_bUseDirection;
+	m_bHighResolution = m_dlg.m_bUseHighRes;
 	m_bShowFillColour = m_dlg.m_bUseFillColour;
 
 	m_dtUseNew = m_dlg.m_dtNow;	
@@ -926,11 +927,17 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 
 
 					   if (!m_pdc){
-						   if( m_bShowRate){
+						   if(m_bShowRate){
                           
 							  DrawGLLabels( this, m_pdc, BBox, 
 									  DrawGLText( fabs(tcvalue), 1), lat, lon, 0 ) ;
-							  shift = 19;
+
+							  if (!m_bHighResolution){
+								  shift = 13;
+							  }
+							  else {
+								  shift = 26;
+							  }
 						   }
 						   if( m_bShowDirection){
 						  
@@ -949,7 +956,12 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 							m_pdc->SetFont( *pTCFont );
 							snprintf( sbuf, 19, "%3.1f", fabs(tcvalue) );
 							m_pdc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc );
-							shift = 19;
+							if (!m_bHighResolution){
+								shift = 13;
+							}
+							else {
+								shift = 26;
+							}
 						}					 
 					
 						if ( m_bShowDirection && m_pdc)	

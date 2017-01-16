@@ -205,7 +205,9 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 
     Pref->m_cbUseRate->SetValue(m_bCopyUseRate);
     Pref->m_cbUseDirection->SetValue(m_bCopyUseDirection);
+	Pref->m_cbUseHighRes->SetValue(m_bCopyUseHighRes);
 	Pref->m_cbFillColour->SetValue(m_botcurrentUseHiDef);
+	
 
 	wxColour myC0 = wxColour(myVColour[0]);
 	Pref->myColourPicker0->SetColour(myC0);
@@ -236,18 +238,25 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 
      bool copyrate = Pref->m_cbUseRate->GetValue();
      bool copydirection = Pref->m_cbUseDirection->GetValue();
+	 bool copyresolution = Pref->m_cbUseHighRes->GetValue();
+
 	 bool FillColour = Pref->m_cbFillColour->GetValue();
 
-		 if (m_botcurrentUseHiDef != FillColour){		 
+		 if (m_bCopyUseRate != copyrate) {
+			 m_bCopyUseRate = copyrate;
+		 }
+
+		 if (m_bCopyUseDirection != copydirection) {
+			 m_bCopyUseDirection = copydirection;
+		 }
+
+		 if (m_bCopyUseHighRes != copyresolution) {
+			 m_bCopyUseHighRes = copyresolution;
+		 }
+
+		 if (m_botcurrentUseHiDef != FillColour){
 			 m_botcurrentUseHiDef = FillColour;
 		 }
-	 
-        if( m_bCopyUseRate != copyrate || m_bCopyUseDirection != copydirection||  m_botcurrentUseHiDef != FillColour ) {
-             m_bCopyUseRate = copyrate;
-             m_bCopyUseDirection = copydirection;   
-			 m_botcurrentUseHiDef = FillColour;
-         }
-
 		
          if(m_potcurrentDialog )
 		 {	
@@ -256,8 +265,10 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 			 m_potcurrentDialog->m_IntervalSelected = m_CopyIntervalSelected;
 
 			 m_potcurrentDialog->m_bUseRate = m_bCopyUseRate;
-			 m_potcurrentDialog->m_bUseDirection = m_bCopyUseDirection;	
+			 m_potcurrentDialog->m_bUseDirection = m_bCopyUseDirection; 
+			 m_potcurrentDialog->m_bUseHighRes = m_bCopyUseHighRes;	
 			 m_potcurrentDialog->m_bUseFillColour = m_botcurrentUseHiDef;
+			
 
 			 m_potcurrentDialog->myUseColour[0] = myVColour[0];
  			 m_potcurrentDialog->myUseColour[1] = myVColour[1];
@@ -270,6 +281,7 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 		 {			 
 			 m_potcurrentOverlayFactory->m_bShowRate = m_bCopyUseRate;
 			 m_potcurrentOverlayFactory->m_bShowDirection = m_bCopyUseDirection;
+			 m_potcurrentOverlayFactory->m_bHighResolution = m_bCopyUseHighRes;
 			 m_potcurrentOverlayFactory->m_bShowFillColour = m_botcurrentUseHiDef;
 		 }
 
@@ -405,6 +417,7 @@ bool otcurrent_pi::LoadConfig(void)
 
 	m_bCopyUseRate = pConf->Read ( _T( "otcurrentUseRate" ),1);
     m_bCopyUseDirection = pConf->Read ( _T( "otcurrentUseDirection" ), 1);
+	m_bCopyUseHighRes = pConf->Read(_T("otcurrentUseHighResolution"), 1);
 	m_botcurrentUseHiDef = pConf->Read ( _T( "otcurrentUseFillColour" ), 1);
 
 	m_CopyFolderSelected = pConf->Read ( _T( "otcurrentFolder" ));
@@ -445,6 +458,7 @@ bool otcurrent_pi::SaveConfig(void)
     pConf->SetPath ( _T( "/PlugIns/otcurrent" ) );
     pConf->Write ( _T( "otcurrentUseRate" ), m_bCopyUseRate );
     pConf->Write ( _T( "otcurrentUseDirection" ), m_bCopyUseDirection );
+	pConf->Write(_T("otcurrentUseHighResolution"), m_bCopyUseHighRes);
 	pConf->Write ( _T( "otcurrentUseFillColour" ), m_botcurrentUseHiDef );
 
 	pConf->Write ( _T( "otcurrentFolder" ), m_CopyFolderSelected); 

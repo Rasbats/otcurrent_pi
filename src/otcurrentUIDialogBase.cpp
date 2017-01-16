@@ -133,6 +133,9 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent
 	m_cbFillColour = new wxCheckBox( this, wxID_ANY, _("Fill Colour"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer6->Add( m_cbFillColour, 0, wxALL, 5 );
 
+	m_cbUseHighRes = new wxCheckBox(this, wxID_ANY, _("High Resolution Display"), wxDefaultPosition, wxDefaultSize, 0);	
+	fgSizer6->Add(m_cbUseHighRes, 0, wxALL, 5);
+	
 	fgSizer8->Add( fgSizer6, 1, wxEXPAND, 5 );
 		
 	wxBoxSizer* bSizer2;

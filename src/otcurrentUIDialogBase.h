@@ -227,7 +227,9 @@ class otcurrentPreferencesDialogBase : public wxDialog
 
 		wxCheckBox* m_cbUseRate;
 		wxCheckBox* m_cbUseDirection;
+		wxCheckBox* m_cbUseHighRes;
 		wxCheckBox* m_cbFillColour;
+		
 
 		wxStaticText* m_staticText4;
 		wxStaticText* m_staticText41;
@@ -254,7 +256,7 @@ class otcurrentPreferencesDialogBase : public wxDialog
 		wxRadioBox* m_rbStartOptions;
 		wxRadioBox* m_rbTimeFormat;
 		
-		otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE ); 
+		otcurrentPreferencesDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 		~otcurrentPreferencesDialogBase();
 	
 };

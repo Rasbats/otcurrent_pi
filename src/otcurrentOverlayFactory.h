@@ -107,6 +107,7 @@ public:
 	PlugIn_ViewPort *vp;
 	bool              m_bShowRate;
     bool              m_bShowDirection;
+	bool			  m_bHighResolution;
 	bool              m_bShowFillColour;
 	wxDateTime        m_dtUseNew;
 

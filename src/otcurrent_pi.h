@@ -35,7 +35,7 @@
 #endif //precompiled headers
 
 #define     PLUGIN_VERSION_MAJOR    1
-#define     PLUGIN_VERSION_MINOR    2
+#define     PLUGIN_VERSION_MINOR    3
 
 #define     MY_API_VERSION_MAJOR    1
 #define     MY_API_VERSION_MINOR    7
@@ -94,6 +94,7 @@ public:
 
       bool GetCopyRate() { return  m_bCopyUseRate; }
       bool GetCopyDirection() { return  m_bCopyUseDirection; }
+	  bool GetCopyResolution() { return  m_bCopyUseHighRes; }
 	  bool GetCopyColour() { return m_botcurrentUseHiDef ; }
 
 	  wxString GetFolderSelected() {return m_CopyFolderSelected;}
@@ -123,6 +124,7 @@ private:
       bool              m_botcurrentUseGradualColors;
 	  bool              m_bCopyUseRate;
       bool              m_bCopyUseDirection;
+	  bool				m_bCopyUseHighRes;
 
 	  wxString          m_CopyFolderSelected;
 	  int               m_CopyIntervalSelected;

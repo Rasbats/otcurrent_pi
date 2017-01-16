@@ -124,6 +124,7 @@ public:
 
 	bool m_bUseRate;    
 	bool m_bUseDirection; 
+	bool m_bUseHighRes;
 	bool m_bUseFillColour;
 
 	wxString myUseColour[5];
@@ -185,7 +186,7 @@ public:
 	CalendarDialog ( wxWindow * parent, wxWindowID id, const wxString & title,
 	              const wxPoint & pos = wxDefaultPosition,
 	              const wxSize & size = wxDefaultSize,
-	              long style = wxDEFAULT_DIALOG_STYLE );
+				  long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 
 	wxCalendarCtrl* dialogCalendar; 
 	wxStaticText *m_staticText; 
