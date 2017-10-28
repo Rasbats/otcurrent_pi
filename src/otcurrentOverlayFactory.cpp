@@ -882,9 +882,6 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 							
 				if( !b_dup && LLBBox.PointInBox( lon, lat, 0 )   )  {
 
-					double myLat = LLBBox.GetMaxY();
-					double myLon = LLBBox.GetMaxX();
-
                     wxPoint r;
 					GetCanvasPixLL( BBox, &r,lat, lon );
 
