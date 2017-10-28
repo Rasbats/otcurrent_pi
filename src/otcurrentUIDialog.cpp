@@ -77,7 +77,7 @@ static wxString TToString( const wxDateTime date_time, const int time_zone )
 
 
 otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
-: otcurrentUIDialogBase(parent)
+: otcurrentUIDialogBase(parent), m_vp(0)
 {
 	pParent = parent;
     pPlugIn = ppi;
@@ -189,6 +189,7 @@ void otcurrentUIDialog::SetViewPort( PlugIn_ViewPort *vp )
 {
     if(m_vp == vp)  return;
 
+    delete m_vp;
     m_vp = new PlugIn_ViewPort(*vp);
 }
 
