@@ -933,14 +933,19 @@ Station_Data *TCMgr::find_or_load_harm_data(IDX_entry *pIDX)
             FILE *fp;
             char linrec[linelen];
             fp = fopen (hfile_name, "r");
+            if (fp == 0)
+              return psd;
 
             while (next_line (fp, linrec, 1))
             {
                   nojunk (linrec);
+#if 0
+                  // OpenCPN not used
                   int curonly = 0;
                   if (curonly)
                         if (!strstr (linrec, "Current"))
                               continue;
+#endif
 //    See the note above about station names
 //                  if(!strncmp(linrec, "Rivi", 4))
 //                        int ggl = 4;
@@ -1020,10 +1025,10 @@ Station_Data *TCMgr::find_or_load_harm_data(IDX_entry *pIDX)
                   psd->amplitude[a] = loca;
                   psd->epoch[a] = loce * M_PI / 180.;
               }
-              fclose (fp);
 
               break;
             }
+            fclose (fp);
 
             if(!psd)
                 plast_reference_not_found->Append(wxString(pIDX->IDX_reference_name, wxConvUTF8));
