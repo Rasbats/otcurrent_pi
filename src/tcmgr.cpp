@@ -1934,7 +1934,8 @@ harmonic_file_entry *pHarmonic, *pHarmonic_prev;
       pIDX_first = pIDX_prev = NULL;
       if (IndexFileIO(IFF_OPEN, 0)) {
         while (IndexFileIO(IFF_READ, 0)) {
-         if ((index_line[0] == '#') || (index_line[0] <= ' '));  // Skip comment lines
+         if ((index_line[0] == '#') || (index_line[0] <= ' '))
+             continue;  // Skip comment lines
          else if (!have_index && !xref_start) {
             if (!strncmp(index_line, "XREF", 4))
                xref_start = IndexFileIO(IFF_TELL, 0);
