@@ -1158,7 +1158,7 @@ void TCMgr::fudge_constituents (Station_Data *psd, IDX_entry *pIDX)
 */
 
   if(       pIDX->IDX_ht_time_off ||
-                  pIDX->IDX_ht_time_off ||
+                  pIDX->IDX_lt_time_off ||
                   pIDX->IDX_ht_off != 0.0 ||
                   pIDX->IDX_lt_off != 0.0 ||
                   pIDX->IDX_ht_mpy != 1.0 ||
