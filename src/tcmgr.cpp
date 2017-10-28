@@ -1812,21 +1812,21 @@ char stz[80];
       pIDX->IDX_time_zone = TZHr*60 + TZMin;
 
       if (strchr("tcUu",index_line[0])) { // Substation so get second line of info
-                  IndexFileIO(IFF_READ, 0);
+            IndexFileIO(IFF_READ, 0);
 
-                  /*
+            /*
                   cNAA:XX:XX: -122.5500  47.7167 -8:0 Agate Passage, north end
                   ^-88   0.80 0 -18   0.70 0   1301 230 32 1 ADMIRALTY INLET (off Bush Point), WASH.
-                  */
+            */
 
             if(index_line[0] == '^')                  // Opencpn special
             {
                   if (11 != sscanf(index_line, "%*c%d %f %f %d %f %f %d %d %d %d%*c%[^\r\n]",
-                        &pIDX->IDX_ht_time_off, &pIDX->IDX_ht_mpy, &pIDX->IDX_ht_off,
-                        &pIDX->IDX_lt_time_off, &pIDX->IDX_lt_mpy, &pIDX->IDX_lt_off,
-                        &pIDX->IDX_sta_num, &pIDX->IDX_flood_dir, &pIDX->IDX_ebb_dir,
-                        &pIDX->IDX_ref_file_num, pIDX->IDX_reference_name))
-                  return(1);
+                           &pIDX->IDX_ht_time_off, &pIDX->IDX_ht_mpy, &pIDX->IDX_ht_off,
+                           &pIDX->IDX_lt_time_off, &pIDX->IDX_lt_mpy, &pIDX->IDX_lt_off,
+                           &pIDX->IDX_sta_num, &pIDX->IDX_flood_dir, &pIDX->IDX_ebb_dir,
+                           &pIDX->IDX_ref_file_num, pIDX->IDX_reference_name))
+                        return(1);
 
                   if(abs(pIDX->IDX_ht_time_off) > 1000)           // useable?
                         pIDX->IDX_Useable = 0;
@@ -1850,7 +1850,7 @@ char stz[80];
 
             else
             {
-                        if (9 != sscanf(index_line, "%*c%d %f %f %d %f %f %d %d%*c%[^\r\n]",
+                  if (9 != sscanf(index_line, "%*c%d %f %f %d %f %f %d %d%*c%[^\r\n]",
                         &pIDX->IDX_ht_time_off, &pIDX->IDX_ht_mpy, &pIDX->IDX_ht_off,
                         &pIDX->IDX_lt_time_off, &pIDX->IDX_lt_mpy, &pIDX->IDX_lt_off,
                         &pIDX->IDX_sta_num, &pIDX->IDX_ref_file_num, pIDX->IDX_reference_name))
@@ -1866,38 +1866,38 @@ char stz[80];
 
                   if (NULL!=(pIDX->IDX_tzname = (char *)malloc(strlen(stz)+1)))
                         strcpy(pIDX->IDX_tzname, stz);
-                  }           // else
+            }           // else
 
 
-                  if (pIDX->IDX_ref_file_num <= 0)
+            if (pIDX->IDX_ref_file_num <= 0)
             { // Find harmonic reference file number
-                  pIDX->IDX_ref_file_num= 0;
+                     pIDX->IDX_ref_file_num= 0;
 // Find reference station in index, if no index, it had better be in the first one
-                  pIDXh = pIDX_first;
-                  while (pIDXh!=NULL && strcmp(pIDXh->IDX_reference_name,pIDX->IDX_reference_name))
+                     pIDXh = pIDX_first;
+                     while (pIDXh!=NULL && strcmp(pIDXh->IDX_reference_name,pIDX->IDX_reference_name))
                         pIDXh = (IDX_entry *)pIDXh->IDX_next;
 
 // Copy reference station harmonic file number
-                  if (pIDXh!=NULL)
+                     if (pIDXh!=NULL)
                         pIDX->IDX_ref_file_num = pIDXh->IDX_ref_file_num;
-                  }
+            }
       }
 
       else
       { // Reference stations have no offsets
-                  pIDX->IDX_ht_time_off = pIDX->IDX_lt_time_off = 0;
-                  pIDX->IDX_ht_mpy      = pIDX->IDX_lt_mpy = 1.0;
-                  pIDX->IDX_ht_off      = pIDX->IDX_lt_off = 0.0;
-                  pIDX->IDX_sta_num     = 0;
-                  strcpy(pIDX->IDX_reference_name, pIDX->IDX_station_name);
+            pIDX->IDX_ht_time_off = pIDX->IDX_lt_time_off = 0;
+            pIDX->IDX_ht_mpy      = pIDX->IDX_lt_mpy = 1.0;
+            pIDX->IDX_ht_off      = pIDX->IDX_lt_off = 0.0;
+            pIDX->IDX_sta_num     = 0;
+            strcpy(pIDX->IDX_reference_name, pIDX->IDX_station_name);
 
-                  pIDX->IDX_ref_file_num= 0;
-                  pHarmonic = harmonic_file_list;
-                  while (pHarmonic && (pHarmonic->rec_start <= pIDX->IDX_rec_num))
+            pIDX->IDX_ref_file_num= 0;
+            pHarmonic = harmonic_file_list;
+            while (pHarmonic && (pHarmonic->rec_start <= pIDX->IDX_rec_num))
             {
                   pHarmonic = (harmonic_file_entry *)pHarmonic->next;
                   pIDX->IDX_ref_file_num++;
-                  }
+            }
       }
 
 
