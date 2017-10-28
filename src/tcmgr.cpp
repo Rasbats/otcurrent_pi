@@ -1850,6 +1850,7 @@ char stz[80];
 
             else
             {
+                  stz[0] = 0;
                   if (9 != sscanf(index_line, "%*c%d %f %f %d %f %f %d %d%*c%[^\r\n]",
                         &pIDX->IDX_ht_time_off, &pIDX->IDX_ht_mpy, &pIDX->IDX_ht_off,
                         &pIDX->IDX_lt_time_off, &pIDX->IDX_lt_mpy, &pIDX->IDX_lt_off,
