@@ -216,18 +216,18 @@ TCMgr::TCMgr(const wxString &data_dir, const wxString &home_dir)
       for (a=0;a<num_csts;a++)
       {
             if(EOF == fscanf (fp, "%s", linrec))
-                  return;
+                  goto error;
             for (b=0;b<num_epochs;b++)
             {
                   if(EOF == fscanf (fp, "%lf", &(cst_epochs[a][b])))
-                        return;
+                        goto error;
                   cst_epochs[a][b] *= M_PI / 180.0;
             }
       }
 
       /* Sanity check */
       if(EOF == fscanf (fp, "%s", linrec))
-            return;
+            goto error;
       skipnl (fp);
 
       /* Load node factor table */
@@ -242,12 +242,13 @@ TCMgr::TCMgr(const wxString &data_dir, const wxString &home_dir)
                   ignore = fscanf (fp, "%lf", &(cst_nodes[a][b]));
       }
 
-      fclose(fp);
 
 //    Load the Master Station Data Cache file
       LoadMRU();
 
       bTCMReady = true;
+error:
+      fclose(fp);
 
 }
 
