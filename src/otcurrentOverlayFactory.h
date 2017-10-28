@@ -80,7 +80,6 @@ public:
     }
 
     void SetMessage( wxString message ) { m_Message = message; }
-    void SetTimeZone( int TimeZone ) { m_TimeZone = TimeZone; }
     void SetParentSize( int w, int h ) { m_ParentSize.SetWidth(w) ; m_ParentSize.SetHeight(h) ;}
 	bool RenderGLotcurrentOverlay( wxGLContext *pcontext, PlugIn_ViewPort *vp );
     bool RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort *vp );
@@ -120,21 +119,10 @@ private:
 
     void DrawMessageWindow( wxString msg, int x, int y , wxFont *mfont);
 
-    void drawWindArrowWithBarbs( int config, int x, int y, double vx, double vy,
-                                 bool polar, bool south, wxColour arrowColor );
-    void drawWaveArrow( int i, int j, double dir, wxColour arrowColor );
+    wxColour GetSpeedColour(double my_speed);
 
-	wxColour GetSpeedColour(double my_speed);
+    void drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate );
 
-	void drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate );
-
-    void drawSingleArrow( int i, int j, double dir, wxColour arrowColor, int width = 1 );
-
-    void drawTransformedLine( wxPen pen, double si, double co, int di, int dj,
-                              int i, int j, int k, int l );
-    void drawPetiteBarbule( wxPen pen, bool south, double si, double co, int di, int dj, int b );
-    void drawGrandeBarbule( wxPen pen, bool south, double si, double co, int di, int dj, int b );
-    void drawTriangle( wxPen pen, bool south, double si, double co, int di, int dj, int b );
 
     double m_last_vp_scale;
 
@@ -144,7 +132,6 @@ private:
 	//
     wxString m_Message;
     wxString m_Message_Hiden;
-    int  m_TimeZone;
     wxSize  m_ParentSize;
 
     wxDC *m_pdc;
@@ -162,7 +149,6 @@ private:
     otcurrentUIDialog &m_dlg;
 
     TCMgr *ctcmgr;
-    wxBoundingBox *myBox;   
     LLBBox * myLLBox;
 
 	wxString        *pTC_Dir;
