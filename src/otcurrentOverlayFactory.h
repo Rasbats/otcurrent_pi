@@ -103,7 +103,6 @@ public:
 
 	void DrawGLLine( double x1, double y1, double x2, double y2, double width, wxColour myColour );
     void DrawOLBitmap( const wxBitmap &bitmap, wxCoord x, wxCoord y, bool usemask );
-	PlugIn_ViewPort *vp;
 	bool              m_bShowRate;
     bool              m_bShowDirection;
 	bool			  m_bHighResolution;

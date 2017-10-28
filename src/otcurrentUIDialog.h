@@ -175,7 +175,6 @@ private:
 
 	bool isNowButton;
 	wxTimeSpan  myTimeOfDay;
-	bool btc_valid;
 
 };
 
