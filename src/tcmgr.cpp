@@ -1486,13 +1486,15 @@ void TCMgr::clean_string(char *str) {
 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int TCMgr::allocate_copy_string(char **dst, const char *string) {
+
    char *cp=(char *)malloc( (int)(strlen(string)) +1);
 
    *dst = cp;
-   if (dst) {
+   if (*dst) {
       strcpy(*dst,string);
       return(0);
-   } else return (-1);
+   }
+   return (-1);
 }
 
 
