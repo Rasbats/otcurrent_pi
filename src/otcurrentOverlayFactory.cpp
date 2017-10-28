@@ -430,7 +430,7 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
     unsigned char *a = image.GetAlpha();
 
     w = image.GetWidth(), h = image.GetHeight();
-    for( int y = 0; y < h; y++ )
+    for( int y = 0; y < h; y++ ) {
         for( int x = 0; x < w; x++ ) {
             int r, g, b;
             int ioff = (y * w + x);
@@ -440,8 +440,8 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
 
             a[ioff] = 255-(r+g+b)/3;
         }
-	
-	return m_labelCacheText[myText];
+    }
+    return m_labelCacheText[myText];
 }
 
 void otcurrentOverlayFactory::DrawGLLine( double x1, double y1, double x2, double y2, double width, wxColour myColour )
