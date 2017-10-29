@@ -77,9 +77,9 @@ static wxString TToString( const wxDateTime date_time, const int time_zone )
 
 
 otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
-: otcurrentUIDialogBase(parent), m_vp(0)
+: otcurrentUIDialogBase(parent), m_ptcmgr(0), m_vp(0)
 {
-	pParent = parent;
+    pParent = parent;
     pPlugIn = ppi;
 
     wxFileConfig *pConf = GetOCPNConfigObject();
@@ -118,25 +118,24 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 
     this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
 
-	m_dtNow = wxDateTime::Now(); 
-	MakeDateTimeLabel(m_dtNow);
+    m_dtNow = wxDateTime::Now(); 
+    MakeDateTimeLabel(m_dtNow);
 	
-	 if (m_FolderSelected == wxEmptyString){
+    if (m_FolderSelected == wxEmptyString){
+        wxString g_SData_Locn = *GetpSharedDataLocation();
+        // Establish location of Tide and Current data
+        pTC_Dir = new wxString(_T("tcdata"));
+        pTC_Dir->Prepend(g_SData_Locn);
+        m_FolderSelected = *pTC_Dir;
 
-			  wxString g_SData_Locn = *GetpSharedDataLocation();
+        m_dirPicker1->SetPath(m_FolderSelected);
+        m_dirPicker1->GetTextCtrlValue();
+    }
+    else{
+        m_dirPicker1->SetPath(m_FolderSelected);
+    }
 
-			  // Establish location of Tide and Current data
-			  pTC_Dir = new wxString(_T("tcdata"));
-			  pTC_Dir->Prepend(g_SData_Locn);			  
-
-			  m_FolderSelected = *pTC_Dir;	    	
-			  m_dirPicker1->SetPath(m_FolderSelected);
-			  m_dirPicker1->GetTextCtrlValue();
-			}
-			else{
-			  m_dirPicker1->SetPath(m_FolderSelected);
-			}
-	
+    LoadTCMFile();
 	m_choice1->SetSelection(m_IntervalSelected);
 	int i = m_choice1->GetSelection();
 	wxString c = m_choice1->GetString(i);	
@@ -151,9 +150,22 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 	
 }
 
+
+void otcurrentUIDialog::LoadTCMFile()
+{
+    delete m_ptcmgr;
+    wxString TCDir = m_FolderSelected;
+    TCDir.Append(wxFileName::GetPathSeparator());
+    wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
+
+    wxString cache_locn = TCDir; 
+    m_ptcmgr = new TCMgr(TCDir, cache_locn);
+}
+
+
 otcurrentUIDialog::~otcurrentUIDialog()
 {
-    wxFileConfig *pConf = GetOCPNConfigObject();;
+    wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(pConf) {
         pConf->SetPath ( _T ( "/Plugins/otcurrent" ) );
@@ -177,6 +189,7 @@ otcurrentUIDialog::~otcurrentUIDialog()
 		pConf->Write ( _T ( "otcurrentFolder" ), myF ); 
 
     }
+    delete m_ptcmgr;
 }
 
 void otcurrentUIDialog::SetCursorLatLon( double lat, double lon )
@@ -227,11 +240,14 @@ void otcurrentUIDialog::OpenFile(bool newestFile)
 
 	m_FolderSelected = pPlugIn->GetFolderSelected();
 	m_IntervalSelected = pPlugIn->GetIntervalSelected();
+    LoadTCMFile();
 }
 
 void otcurrentUIDialog::OnFolderSelChanged(wxFileDirPickerEvent& event)
 {
 	m_FolderSelected = m_dirPicker1->GetPath();
+    LoadTCMFile();
+
 	RequestRefresh(pParent);	
 }
 

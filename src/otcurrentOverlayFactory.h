@@ -149,9 +149,6 @@ private:
 
     otcurrentUIDialog &m_dlg;
 
-    TCMgr *ctcmgr;
     LLBBox * myLLBox;
-
-	wxString        *pTC_Dir;
 
 };

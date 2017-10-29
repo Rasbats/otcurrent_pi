@@ -828,25 +828,8 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
     bool bnew_val = true;
     double lon_last = 0.;
     
-	//  Establish a "home" location
-    /*    
-	wxString g_SData_Locn = *GetpSharedDataLocation();
-
-    // Establish location of Tide and Current data
-    pTC_Dir = new wxString(_T("tcdata"));
-    pTC_Dir->Prepend(g_SData_Locn);
-    pTC_Dir->Append(wxFileName::GetPathSeparator());  
-	*/
-	wxString TCDir;
-    //TCDir = *pTC_Dir;
-	TCDir = m_dlg.m_FolderSelected; //m_sUseFolder;
-	TCDir.Append(wxFileName::GetPathSeparator()); 
-    wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
-	
-	wxString cache_locn = TCDir; 
-	
-	double lat_last = 0.;
-	ctcmgr = new TCMgr(TCDir, cache_locn);
+    double lat_last = 0.;
+    TCMgr *ctcmgr = m_dlg.m_ptcmgr;
 
 
 	wxDateTime yn = m_dlg.m_dtNow; 
