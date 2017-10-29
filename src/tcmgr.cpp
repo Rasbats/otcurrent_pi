@@ -1820,7 +1820,8 @@ char stz[80];
       pIDX->IDX_time_zone = TZHr*60 + TZMin;
 
       if (strchr("tcUu",index_line[0])) { // Substation so get second line of info
-            IndexFileIO(IFF_READ, 0);
+           if (!IndexFileIO(IFF_READ, 0))
+               return 1;
 
             /*
                   cNAA:XX:XX: -122.5500  47.7167 -8:0 Agate Passage, north end
