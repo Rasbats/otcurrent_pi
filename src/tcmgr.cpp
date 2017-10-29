@@ -1938,8 +1938,13 @@ harmonic_file_entry *pHarmonic, *pHarmonic_prev;
          if ((index_line[0] == '#') || (index_line[0] <= ' '))
              continue;  // Skip comment lines
          else if (!have_index && !xref_start) {
-            if (!strncmp(index_line, "XREF", 4))
+            if (!strncmp(index_line, "XREF", 4)) {
                xref_start = IndexFileIO(IFF_TELL, 0);
+               if (xref_start < 0) {
+                  IndexFileIO(IFF_CLOSE, 0);
+                  return(FALSE);
+               }
+            }
          }
          else if (!have_index && !strncmp(index_line, "*END*", 5)) {
             if (num_abv == 0) {
