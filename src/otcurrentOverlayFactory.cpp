@@ -66,6 +66,7 @@ otcurrentOverlayFactory::otcurrentOverlayFactory( otcurrentUIDialog &dlg )
 {
     m_dFont_map = new wxFont( 10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL );
     m_dFont_war = new wxFont( 16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL );
+    pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE, wxString( _T ( "Eurostile Extended" ) ) );
 
 	m_last_vp_scale = 0.;
 	m_bShowRate = m_dlg.m_bUseRate;
@@ -262,9 +263,6 @@ wxImage &otcurrentOverlayFactory::DrawGLText( double value, int precision ){
 	
 	wxMemoryDC mdc(wxNullBitmap);
 
-	wxFont *pTCFont;
-					pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
-                                                   wxString( _T ( "Eurostile Extended" ) ) );
     mdc.SetFont(*pTCFont);
 
     int w, h;
@@ -327,10 +325,6 @@ wxImage &otcurrentOverlayFactory::DrawGLTextDir( double value, int precision ){
 	
 	wxMemoryDC mdc(wxNullBitmap);
 
-	wxFont *pTCFont;
-					pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
-                                                   wxString( _T ( "Eurostile Extended" ) ) );
-
     mdc.SetFont(*pTCFont);
 
     int w, h;
@@ -390,9 +384,6 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
 		
 	wxMemoryDC mdc(wxNullBitmap);
 
-	wxFont *pTCFont;
-					pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
-                                                   wxString( _T ( "Eurostile Extended" ) ) );	
     mdc.SetFont( *pTCFont);
 
     int w, h;
@@ -860,12 +851,15 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 
 	wxDateTime yn = m_dlg.m_dtNow; 
 
+        pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE, wxString( _T ( "Eurostile Extended" ) ) );
+        if (m_pdc ) {
+            m_pdc->SetFont( *pTCFont );
+        }
+
         for( int i = 1; i <  ctcmgr->Get_max_IDX() + 1; i++ ) {
             IDX_entry *pIDX = ctcmgr->GetIDX_entry( i );
             double lon = pIDX->IDX_lon;
             double lat = pIDX->IDX_lat;
-
-			
 
             char type = pIDX->IDX_type;             // Entry "TCtcIUu" identifier
             
@@ -942,15 +936,10 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 											DrawGLTextDir(dir, 0), lat, lon, shift) ;
 						   }
 					   }			
-
-						wxFont *pTCFont;
-						pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
-													   wxString( _T ( "Eurostile Extended" ) ) );
 						char sbuf[20];					 
 					
 						if( m_bShowRate && m_pdc ) 
 						{
-							m_pdc->SetFont( *pTCFont );
 							snprintf( sbuf, 19, "%3.1f", fabs(tcvalue) );
 							m_pdc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc );
 							if (!m_bHighResolution){

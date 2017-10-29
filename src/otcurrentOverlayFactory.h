@@ -139,6 +139,8 @@ private:
     wxFont *m_dFont_map;
     wxFont *m_dFont_war;
 
+    wxFont *pTCFont;
+
     bool m_hiDefGraphics;
     bool m_bGradualColors;
 
