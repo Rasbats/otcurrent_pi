@@ -854,7 +854,6 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
                 bool b_dup = false;
                 if( ( type == 'c' ) && ( lat == lat_last ) && ( lon == lon_last ) ) b_dup = true;
 				
-				myLLBox = new LLBBox;
 				wxBoundingBox LLBBox( BBox->lon_min, BBox->lat_min , BBox->lon_max, BBox->lat_max );
 							
 				if( !b_dup && LLBBox.PointInBox( lon, lat, 0 )   )  {

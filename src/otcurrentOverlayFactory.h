@@ -149,6 +149,4 @@ private:
 
     otcurrentUIDialog &m_dlg;
 
-    LLBBox * myLLBox;
-
 };
