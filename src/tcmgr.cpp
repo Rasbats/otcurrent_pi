@@ -216,18 +216,18 @@ TCMgr::TCMgr(const wxString &data_dir, const wxString &home_dir)
       for (a=0;a<num_csts;a++)
       {
             if(EOF == fscanf (fp, "%s", linrec))
-                  return;
+                  goto error;
             for (b=0;b<num_epochs;b++)
             {
                   if(EOF == fscanf (fp, "%lf", &(cst_epochs[a][b])))
-                        return;
+                        goto error;
                   cst_epochs[a][b] *= M_PI / 180.0;
             }
       }
 
       /* Sanity check */
       if(EOF == fscanf (fp, "%s", linrec))
-            return;
+            goto error;
       skipnl (fp);
 
       /* Load node factor table */
@@ -242,12 +242,13 @@ TCMgr::TCMgr(const wxString &data_dir, const wxString &home_dir)
                   ignore = fscanf (fp, "%lf", &(cst_nodes[a][b]));
       }
 
-      fclose(fp);
 
 //    Load the Master Station Data Cache file
       LoadMRU();
 
       bTCMReady = true;
+error:
+      fclose(fp);
 
 }
 
@@ -933,14 +934,19 @@ Station_Data *TCMgr::find_or_load_harm_data(IDX_entry *pIDX)
             FILE *fp;
             char linrec[linelen];
             fp = fopen (hfile_name, "r");
+            if (fp == 0)
+              return psd;
 
             while (next_line (fp, linrec, 1))
             {
                   nojunk (linrec);
+#if 0
+                  // OpenCPN not used
                   int curonly = 0;
                   if (curonly)
                         if (!strstr (linrec, "Current"))
                               continue;
+#endif
 //    See the note above about station names
 //                  if(!strncmp(linrec, "Rivi", 4))
 //                        int ggl = 4;
@@ -1020,10 +1026,10 @@ Station_Data *TCMgr::find_or_load_harm_data(IDX_entry *pIDX)
                   psd->amplitude[a] = loca;
                   psd->epoch[a] = loce * M_PI / 180.;
               }
-              fclose (fp);
 
               break;
             }
+            fclose (fp);
 
             if(!psd)
                 plast_reference_not_found->Append(wxString(pIDX->IDX_reference_name, wxConvUTF8));
@@ -1158,7 +1164,7 @@ void TCMgr::fudge_constituents (Station_Data *psd, IDX_entry *pIDX)
 */
 
   if(       pIDX->IDX_ht_time_off ||
-                  pIDX->IDX_ht_time_off ||
+                  pIDX->IDX_lt_time_off ||
                   pIDX->IDX_ht_off != 0.0 ||
                   pIDX->IDX_lt_off != 0.0 ||
                   pIDX->IDX_ht_mpy != 1.0 ||
@@ -1486,13 +1492,15 @@ void TCMgr::clean_string(char *str) {
 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int TCMgr::allocate_copy_string(char **dst, const char *string) {
+
    char *cp=(char *)malloc( (int)(strlen(string)) +1);
 
    *dst = cp;
-   if (dst) {
+   if (*dst) {
       strcpy(*dst,string);
       return(0);
-   } else return (-1);
+   }
+   return (-1);
 }
 
 
@@ -1812,21 +1820,22 @@ char stz[80];
       pIDX->IDX_time_zone = TZHr*60 + TZMin;
 
       if (strchr("tcUu",index_line[0])) { // Substation so get second line of info
-                  IndexFileIO(IFF_READ, 0);
+           if (!IndexFileIO(IFF_READ, 0))
+               return 1;
 
-                  /*
+            /*
                   cNAA:XX:XX: -122.5500  47.7167 -8:0 Agate Passage, north end
                   ^-88   0.80 0 -18   0.70 0   1301 230 32 1 ADMIRALTY INLET (off Bush Point), WASH.
-                  */
+            */
 
             if(index_line[0] == '^')                  // Opencpn special
             {
                   if (11 != sscanf(index_line, "%*c%d %f %f %d %f %f %d %d %d %d%*c%[^\r\n]",
-                        &pIDX->IDX_ht_time_off, &pIDX->IDX_ht_mpy, &pIDX->IDX_ht_off,
-                        &pIDX->IDX_lt_time_off, &pIDX->IDX_lt_mpy, &pIDX->IDX_lt_off,
-                        &pIDX->IDX_sta_num, &pIDX->IDX_flood_dir, &pIDX->IDX_ebb_dir,
-                        &pIDX->IDX_ref_file_num, pIDX->IDX_reference_name))
-                  return(1);
+                           &pIDX->IDX_ht_time_off, &pIDX->IDX_ht_mpy, &pIDX->IDX_ht_off,
+                           &pIDX->IDX_lt_time_off, &pIDX->IDX_lt_mpy, &pIDX->IDX_lt_off,
+                           &pIDX->IDX_sta_num, &pIDX->IDX_flood_dir, &pIDX->IDX_ebb_dir,
+                           &pIDX->IDX_ref_file_num, pIDX->IDX_reference_name))
+                        return(1);
 
                   if(abs(pIDX->IDX_ht_time_off) > 1000)           // useable?
                         pIDX->IDX_Useable = 0;
@@ -1850,7 +1859,8 @@ char stz[80];
 
             else
             {
-                        if (9 != sscanf(index_line, "%*c%d %f %f %d %f %f %d %d%*c%[^\r\n]",
+                  stz[0] = 0;
+                  if (9 != sscanf(index_line, "%*c%d %f %f %d %f %f %d %d%*c%[^\r\n]",
                         &pIDX->IDX_ht_time_off, &pIDX->IDX_ht_mpy, &pIDX->IDX_ht_off,
                         &pIDX->IDX_lt_time_off, &pIDX->IDX_lt_mpy, &pIDX->IDX_lt_off,
                         &pIDX->IDX_sta_num, &pIDX->IDX_ref_file_num, pIDX->IDX_reference_name))
@@ -1866,38 +1876,38 @@ char stz[80];
 
                   if (NULL!=(pIDX->IDX_tzname = (char *)malloc(strlen(stz)+1)))
                         strcpy(pIDX->IDX_tzname, stz);
-                  }           // else
+            }           // else
 
 
-                  if (pIDX->IDX_ref_file_num <= 0)
+            if (pIDX->IDX_ref_file_num <= 0)
             { // Find harmonic reference file number
-                  pIDX->IDX_ref_file_num= 0;
+                     pIDX->IDX_ref_file_num= 0;
 // Find reference station in index, if no index, it had better be in the first one
-                  pIDXh = pIDX_first;
-                  while (pIDXh!=NULL && strcmp(pIDXh->IDX_reference_name,pIDX->IDX_reference_name))
+                     pIDXh = pIDX_first;
+                     while (pIDXh!=NULL && strcmp(pIDXh->IDX_reference_name,pIDX->IDX_reference_name))
                         pIDXh = (IDX_entry *)pIDXh->IDX_next;
 
 // Copy reference station harmonic file number
-                  if (pIDXh!=NULL)
+                     if (pIDXh!=NULL)
                         pIDX->IDX_ref_file_num = pIDXh->IDX_ref_file_num;
-                  }
+            }
       }
 
       else
       { // Reference stations have no offsets
-                  pIDX->IDX_ht_time_off = pIDX->IDX_lt_time_off = 0;
-                  pIDX->IDX_ht_mpy      = pIDX->IDX_lt_mpy = 1.0;
-                  pIDX->IDX_ht_off      = pIDX->IDX_lt_off = 0.0;
-                  pIDX->IDX_sta_num     = 0;
-                  strcpy(pIDX->IDX_reference_name, pIDX->IDX_station_name);
+            pIDX->IDX_ht_time_off = pIDX->IDX_lt_time_off = 0;
+            pIDX->IDX_ht_mpy      = pIDX->IDX_lt_mpy = 1.0;
+            pIDX->IDX_ht_off      = pIDX->IDX_lt_off = 0.0;
+            pIDX->IDX_sta_num     = 0;
+            strcpy(pIDX->IDX_reference_name, pIDX->IDX_station_name);
 
-                  pIDX->IDX_ref_file_num= 0;
-                  pHarmonic = harmonic_file_list;
-                  while (pHarmonic && (pHarmonic->rec_start <= pIDX->IDX_rec_num))
+            pIDX->IDX_ref_file_num= 0;
+            pHarmonic = harmonic_file_list;
+            while (pHarmonic && (pHarmonic->rec_start <= pIDX->IDX_rec_num))
             {
                   pHarmonic = (harmonic_file_entry *)pHarmonic->next;
                   pIDX->IDX_ref_file_num++;
-                  }
+            }
       }
 
 
@@ -1925,10 +1935,16 @@ harmonic_file_entry *pHarmonic, *pHarmonic_prev;
       pIDX_first = pIDX_prev = NULL;
       if (IndexFileIO(IFF_OPEN, 0)) {
         while (IndexFileIO(IFF_READ, 0)) {
-         if ((index_line[0] == '#') || (index_line[0] <= ' '));  // Skip comment lines
+         if ((index_line[0] == '#') || (index_line[0] <= ' '))
+             continue;  // Skip comment lines
          else if (!have_index && !xref_start) {
-            if (!strncmp(index_line, "XREF", 4))
+            if (!strncmp(index_line, "XREF", 4)) {
                xref_start = IndexFileIO(IFF_TELL, 0);
+               if (xref_start < 0) {
+                  IndexFileIO(IFF_CLOSE, 0);
+                  return(FALSE);
+               }
+            }
          }
          else if (!have_index && !strncmp(index_line, "*END*", 5)) {
             if (num_abv == 0) {

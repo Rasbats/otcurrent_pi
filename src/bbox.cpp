@@ -166,8 +166,6 @@ OVERLAP wxBoundingBox::Intersect(wxBoundingBox &other, double Marge)
 {
     assert (m_validbbox == TRUE);
 
-    // other boundingbox must exist
-    assert (&other);
 
     if (((m_minx - Marge) > (other.m_maxx + Marge)) ||
          ((m_maxx + Marge) < (other.m_minx - Marge)) ||

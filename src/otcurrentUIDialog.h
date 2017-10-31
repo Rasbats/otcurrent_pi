@@ -136,6 +136,7 @@ public:
 	bool onPrev;
 
     wxString m_FolderSelected;
+    TCMgr           *m_ptcmgr;
 	int m_IntervalSelected;
 	
 	time_t myCurrentTime; 
@@ -144,6 +145,8 @@ public:
 	void OnFolderSelChanged(wxFileDirPickerEvent& event);
 	void OnNow( wxCommandEvent& event );
 	wxString MakeDateTimeLabel(wxDateTime myDateTime);
+
+    void LoadTCMFile();
 
 private:
 
@@ -156,6 +159,7 @@ private:
     void SetInterval( wxCommandEvent& event );
 	void About(wxCommandEvent& event);
 
+
     //    Data
     wxWindow *pParent;
     otcurrent_pi *pPlugIn;
@@ -164,7 +168,6 @@ private:
  
     double m_cursor_lat, m_cursor_lon;
 	wxString         g_SData_Locn;
-	TCMgr           *ptcmgr;
 	wxString        *pTC_Dir;
 
 	int         m_corr_mins;
@@ -175,7 +178,6 @@ private:
 
 	bool isNowButton;
 	wxTimeSpan  myTimeOfDay;
-	bool btc_valid;
 
 };
 
