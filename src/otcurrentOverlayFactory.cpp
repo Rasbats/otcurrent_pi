@@ -176,7 +176,7 @@ wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed){
 	return wxColour(0, 0, 0);
 }
 
-void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate )
+bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate )
 {   	
 	double m_rate = fabs(rate);
 	wxPoint p[9];
@@ -186,7 +186,7 @@ void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 	
 	c_GLcolour = colour;  // for filling GL arrows
 	if( scale <= 1e-2 )
-	    return;
+	    return false;
 
 	wxBrush brush(colour);
 
@@ -249,7 +249,7 @@ void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 		m_pdc->SetBrush(brush);
 		m_pdc->DrawPolygon(9,p);
 	}
-
+	return true;
 }
 
 wxImage &otcurrentOverlayFactory::DrawGLText( double value, int precision ){
@@ -786,16 +786,14 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
                         double a2 = log10( a1 );
                         double scale = current_draw_scaler * a2;
 
-						drawCurrentArrow( pixxc, pixyc,	dir - 90 + rot_vp , scale/100, tcvalue );
+						bool rendered = drawCurrentArrow( pixxc, pixyc, dir -90 + rot_vp , scale/100, tcvalue );
                                
 						int shift = 0;
 
-						if(!m_pdc && m_bShowFillColour){
-							drawGLPolygons(this, m_pdc, BBox, DrawGLPolygon(), lat, lon, shift);
-						}
+						if ( !m_pdc ) {
+                           if (rendered && m_bShowFillColour) 
+							  drawGLPolygons(this, m_pdc, BBox, DrawGLPolygon(), lat, lon, shift);
 
-
-					   if (!m_pdc){
 						   if(m_bShowRate){
                           
 							  DrawGLLabels( this, m_pdc, BBox, 
@@ -810,14 +808,13 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 						   }
 						   if( m_bShowDirection){
 						  
-								DrawGLLabels( this, m_pdc, BBox, 
+							  DrawGLLabels( this, m_pdc, BBox, 
 											DrawGLTextDir(dir, 0), lat, lon, shift) ;
 						   }
-					   }			
-						char sbuf[20];					 
-					
-						if( m_bShowRate && m_pdc ) 
-						{
+					    }
+						else {
+						  char sbuf[20];
+                          if( m_bShowRate ) {
 							snprintf( sbuf, 19, "%3.1f", fabs(tcvalue) );
 							m_pdc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc );
 							if (!m_bHighResolution){
@@ -826,17 +823,14 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 							else {
 								shift = 26;
 							}
-						}					 
+						  }
 					
-						if ( m_bShowDirection && m_pdc)	
-						{	
+						  if ( m_bShowDirection ) {	
 							snprintf( sbuf, 19, "%03.0f", dir );
 							m_pdc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc + shift );
-						}
-
-
+                          }
+                        }
                     }
-                      
                   }
 
                 }
