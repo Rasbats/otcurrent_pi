@@ -386,8 +386,8 @@ void otcurrentOverlayFactory::DrawOLBitmap( const wxBitmap &bitmap, wxCoord x, w
             unsigned char *a = image.GetAlpha();
 
             unsigned char mr, mg, mb;
-            if( !image.GetOrFindMaskColour( &mr, &mg, &mb ) && !a ) printf(
-                    "trying to use mask to draw a bitmap without alpha or mask\n" );
+            if(!a && !image.GetOrFindMaskColour( &mr, &mg, &mb ) ) 
+               printf("trying to use mask to draw a bitmap without alpha or mask\n" );
 
             unsigned char *e = new unsigned char[4 * w * h];
             {
@@ -464,15 +464,15 @@ void otcurrentOverlayFactory::DrawGLLabels(otcurrentOverlayFactory *pof, wxDC *d
             unsigned char *a = imageLabel.GetAlpha();
 
             unsigned char mr, mg, mb;
-            if( !imageLabel.GetOrFindMaskColour( &mr, &mg, &mb ) && !a ) wxMessageBox(_T(
-                    "trying to use mask to draw a bitmap without alpha or mask\n" ));
+            if( !a && !imageLabel.GetOrFindMaskColour( &mr, &mg, &mb ) ) 
+              wxMessageBox(_T("trying to use mask to draw a bitmap without alpha or mask\n" ));
 
             unsigned char *e = new unsigned char[4 * w * h];
             {
                 for( int y = 0; y < h; y++ )
                     for( int x = 0; x < w; x++ ) {
                         unsigned char r, g, b;
-                        int off = ( y * imageLabel.GetWidth() + x );
+                        int off = ( y * w + x );
                         r = d[off * 3 + 0];
                         g = d[off * 3 + 1];
                         b = d[off * 3 + 2];
@@ -656,15 +656,15 @@ void otcurrentOverlayFactory::drawGLPolygons(otcurrentOverlayFactory *pof, wxDC 
             unsigned char *a = imageLabel.GetAlpha();
 
             unsigned char mr, mg, mb;
-           if( !imageLabel.GetOrFindMaskColour( &mr, &mg, &mb ) && !a ) wxMessageBox(_T(
-                    "trying to use mask to draw a bitmap without alpha or mask\n" ));
+           if(!a && !imageLabel.GetOrFindMaskColour( &mr, &mg, &mb ) ) 
+                wxMessageBox(_T("trying to use mask to draw a bitmap without alpha or mask\n" ));
 
             unsigned char *e = new unsigned char[4 * w * h];
             {
                 for( int y = 0; y < h; y++ )
                     for( int x = 0; x < w; x++ ) {
                         unsigned char r, g, b;
-                        int off = ( y * imageLabel.GetWidth() + x );
+                        int off = ( y * w + x );
                         r = d[off * 3 + 0];
                         g = d[off * 3 + 1];
                         b = d[off * 3 + 2];
