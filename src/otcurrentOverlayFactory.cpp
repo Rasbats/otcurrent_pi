@@ -197,60 +197,58 @@ void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
         m_pdc->SetBrush( brush);  
     }
 
-   
+    float sin_rot = sin( rot_angle * PI / 180. );
+    float cos_rot = cos( rot_angle * PI / 180. );
 
-        float sin_rot = sin( rot_angle * PI / 180. );
-        float cos_rot = cos( rot_angle * PI / 180. );
+    // Move to the first point
 
-        // Move to the first point
+    float xt = CurrentArrowArray[0].x;
+    float yt = CurrentArrowArray[0].y;
 
-        float xt = CurrentArrowArray[0].x;
-        float yt = CurrentArrowArray[0].y;
+    float xp = ( xt * cos_rot ) - ( yt * sin_rot );
+    float yp = ( xt * sin_rot ) + ( yt * cos_rot );
+    int x1 = (int) ( xp * scale );
+    int y1 = (int) ( yp * scale );
+
+	p[0].x = x;
+	p[0].y = y;
+
+	p_basic[0].x = 100;
+	p_basic[0].y = 100;
+
+    // Walk thru the point list
+    for( int ip = 1; ip < NUM_CURRENT_ARROW_POINTS; ip++ ) {
+        xt = CurrentArrowArray[ip].x;
+        yt = CurrentArrowArray[ip].y;
 
         float xp = ( xt * cos_rot ) - ( yt * sin_rot );
         float yp = ( xt * sin_rot ) + ( yt * cos_rot );
-        int x1 = (int) ( xp * scale );
-        int y1 = (int) ( yp * scale );
+        int x2 = (int) ( xp * scale );
+        int y2 = (int) ( yp * scale );
 
-		p[0].x = x;
-		p[0].y = y;
+		p_basic[ip].x = 100 + x2;
+		p_basic[ip].y = 100 + y2;
 
-		p_basic[0].x = 100;
-		p_basic[0].y = 100;
-
-        // Walk thru the point list
-        for( int ip = 1; ip < NUM_CURRENT_ARROW_POINTS; ip++ ) {
-            xt = CurrentArrowArray[ip].x;
-            yt = CurrentArrowArray[ip].y;
-
-            float xp = ( xt * cos_rot ) - ( yt * sin_rot );
-            float yp = ( xt * sin_rot ) + ( yt * cos_rot );
-            int x2 = (int) ( xp * scale );
-            int y2 = (int) ( yp * scale );
-
-			p_basic[ip].x = 100 + x2;
-			p_basic[ip].y = 100 + y2;
-
-			if (m_pdc){
-				m_pdc->DrawLine( x1 + x, y1 + y, x2 + x, y2 + y );
-			}
-			else{
-				DrawGLLine(x1 + x, y1 + y, x2 + x, y2 + y , 2, colour);
-			}
-			p[ip].x = x1 + x; 
-            p[ip].y = y1 + y;
-
-			x1 = x2;
-            y1 = y2;            			
-         }
-
-		//p[9].x = x1;
-		//p[9].y = y1;
-
-		if( m_bShowFillColour && m_pdc){
-			m_pdc->SetBrush(brush);
-			m_pdc->DrawPolygon(9,p);
+		if (m_pdc){
+			m_pdc->DrawLine( x1 + x, y1 + y, x2 + x, y2 + y );
 		}
+		else{
+			DrawGLLine(x1 + x, y1 + y, x2 + x, y2 + y , 2, colour);
+		}
+		p[ip].x = x1 + x; 
+        p[ip].y = y1 + y;
+
+		x1 = x2;
+        y1 = y2;            			
+     }
+
+	//p[9].x = x1;
+	//p[9].y = y1;
+
+	if( m_bShowFillColour && m_pdc){
+		m_pdc->SetBrush(brush);
+		m_pdc->DrawPolygon(9,p);
+	}
 
 }
 
@@ -258,131 +256,28 @@ wxImage &otcurrentOverlayFactory::DrawGLText( double value, int precision ){
 
 	wxString labels;
 
-	int p = precision;
-
-	labels.Printf( _T("%.*f"), p, value );
-	
-	wxMemoryDC mdc(wxNullBitmap);
-
-    mdc.SetFont(*pTCFont);
-
-    int w, h;
-    mdc.GetTextExtent(labels, &w, &h);
-
-    int label_offset = 10;   //5
-
-    wxBitmap bm(w +  label_offset*2, h + 1);
-    mdc.SelectObject(bm);
-    mdc.Clear();
-
-    wxColour text_color;
-
-    GetGlobalColor( _T ("UINFD" ), &text_color );
-    wxPen penText(text_color);
-	mdc.SetPen(penText);
-
-    mdc.SetBrush(*wxTRANSPARENT_BRUSH);
-    mdc.SetTextForeground(text_color);
-    mdc.SetTextBackground(wxTRANSPARENT);
-          
-    int xd = 0;
-    int yd = 0;
-
-    mdc.DrawText(labels, label_offset + xd, yd+1);
-          
-    mdc.SelectObject(wxNullBitmap);
-
-    m_labelCache[value] = bm.ConvertToImage();
-
-    m_labelCache[value].InitAlpha();
-
-    wxImage &image = m_labelCache[value];
-
-    unsigned char *d = image.GetData();
-    unsigned char *a = image.GetAlpha();
-
-    w = image.GetWidth(), h = image.GetHeight();
-    for( int y = 0; y < h; y++ )
-        for( int x = 0; x < w; x++ ) {
-            int r, g, b;
-            int ioff = (y * w + x);
-            r = d[ioff* 3 + 0];
-            g = d[ioff* 3 + 1];
-            b = d[ioff* 3 + 2];
-
-            a[ioff] = 255-(r+g+b)/3;
-        }
-		
-		return m_labelCache[value];
+	labels.Printf( _T("%.*f"), precision, value );
+	return 	DrawGLTextString( labels);
 }
 
 wxImage &otcurrentOverlayFactory::DrawGLTextDir( double value, int precision ){
 
 	wxString labels;
 
-	int p = precision;
-
-	labels.Printf( _T("%03.*f"), p, value );
-	
-	wxMemoryDC mdc(wxNullBitmap);
-
-    mdc.SetFont(*pTCFont);
-
-    int w, h;
-    mdc.GetTextExtent(labels, &w, &h);
-
-    int label_offset = 10;   //5
-
-    wxBitmap bm(w +  label_offset*2, h + 1);
-    mdc.SelectObject(bm);
-    mdc.Clear();
-
-    wxColour text_color;
-
-    GetGlobalColor( _T ("UINFD" ), &text_color );
-    wxPen penText(text_color);
-	mdc.SetPen(penText);
-
-    mdc.SetBrush(*wxTRANSPARENT_BRUSH);
-    mdc.SetTextForeground(text_color);
-    mdc.SetTextBackground(wxTRANSPARENT);
-          
-    int xd = 0;
-    int yd = 0;
-
-    mdc.DrawText(labels, label_offset + xd, yd+1);
-          
-    mdc.SelectObject(wxNullBitmap);
-
-    m_labelCache[value] = bm.ConvertToImage();
-
-    m_labelCache[value].InitAlpha();
-
-    wxImage &image = m_labelCache[value];
-
-    unsigned char *d = image.GetData();
-    unsigned char *a = image.GetAlpha();
-
-    w = image.GetWidth(), h = image.GetHeight();
-    for( int y = 0; y < h; y++ )
-        for( int x = 0; x < w; x++ ) {
-            int r, g, b;
-            int ioff = (y * w + x);
-            r = d[ioff* 3 + 0];
-            g = d[ioff* 3 + 1];
-            b = d[ioff* 3 + 2];
-
-            a[ioff] = 255-(r+g+b)/3;
-        }
-		
-		return m_labelCache[value];
+	labels.Printf( _T("%03.*f"), precision, value );
+	return 	DrawGLTextString( labels);
 }
 
 wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
 
 	wxString labels;
 	labels = myText;
-		
+    std::map <wxString, wxImage >::iterator it;
+
+    it = m_labelCacheText.find(labels);
+    if (it != m_labelCacheText.end())
+        return it->second;
+                                    
 	wxMemoryDC mdc(wxNullBitmap);
 
     mdc.SetFont( *pTCFont);
@@ -612,7 +507,8 @@ wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
 
 	wxString labels;
 	labels = _T("");  // dummy label for drawing with
-	
+	wxImage	img;
+
 	wxColour c_orange = c_GLcolour;
 
     wxPen penText(c_orange);
@@ -673,11 +569,10 @@ wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
           
     mdc.SelectObject(wxNullBitmap);
 
-    m_labelCacheText[labels] = bm.ConvertToImage();
+	m_fillImg = bm.ConvertToImage();
 
-    m_labelCacheText[labels].InitAlpha();
-
-    wxImage &image = m_labelCacheText[labels];
+	wxImage &image = m_fillImg;
+    image.InitAlpha();
 
     unsigned char *d = image.GetData();
     unsigned char *a = image.GetAlpha();
@@ -694,7 +589,7 @@ wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
             a[ioff] = 255-(r+g+b)/3;
         }
 
-    return m_labelCacheText[labels];
+    return image;
 	/*
 	                wxPoint p;  
 					p.x = 200;

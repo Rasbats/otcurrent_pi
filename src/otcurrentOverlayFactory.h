@@ -147,6 +147,7 @@ private:
     std::map < double , wxImage > m_labelCache;
 	std::map < wxString , wxImage > m_labelCacheText;
 
+	wxImage m_fillImg;
     otcurrentUIDialog &m_dlg;
 
 };
