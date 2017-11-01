@@ -185,17 +185,19 @@ void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 	colour = GetSpeedColour( m_rate );
 	
 	c_GLcolour = colour;  // for filling GL arrows
+	if( scale <= 1e-2 )
+	    return;
 
-	wxPen pen( colour, 2 );
 	wxBrush brush(colour);
 
     if( m_pdc ) {
+	    wxPen pen( colour, 2 );
+
         m_pdc->SetPen( pen );
         m_pdc->SetBrush( brush);  
     }
 
    
-	if( scale > 1e-2 ) {
 
         float sin_rot = sin( rot_angle * PI / 180. );
         float cos_rot = cos( rot_angle * PI / 180. );
@@ -250,7 +252,6 @@ void otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 			m_pdc->DrawPolygon(9,p);
 		}
 
-    }
 }
 
 wxImage &otcurrentOverlayFactory::DrawGLText( double value, int precision ){
