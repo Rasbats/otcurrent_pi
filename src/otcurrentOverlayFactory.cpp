@@ -277,7 +277,7 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
     it = m_labelCacheText.find(labels);
     if (it != m_labelCacheText.end())
         return it->second;
-                                    
+
 	wxMemoryDC mdc(wxNullBitmap);
 
     mdc.SetFont( *pTCFont);
@@ -291,14 +291,11 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
     mdc.SelectObject(bm);
     mdc.Clear();
 
-    wxColour text_color;
-
-    GetGlobalColor( _T ("UINFD" ), &text_color );
-    wxPen penText(text_color);
+    wxPen penText(m_text_color);
 	mdc.SetPen(penText);
 
     mdc.SetBrush(*wxTRANSPARENT_BRUSH);
-    mdc.SetTextForeground(text_color);
+    mdc.SetTextForeground(m_text_color);
     mdc.SetTextBackground(wxTRANSPARENT);
           
     int xd = 0;
@@ -328,7 +325,7 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
             a[ioff] = 255-(r+g+b)/3;
         }
     }
-    return m_labelCacheText[myText];
+    return image;
 }
 
 void otcurrentOverlayFactory::DrawGLLine( double x1, double y1, double x2, double y2, double width, wxColour myColour )
@@ -703,6 +700,14 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 	if (BBox->chart_scale > 1000000){
 		return;
 	}
+    wxColour text_color;
+
+    GetGlobalColor( _T ("UINFD" ), &text_color );
+    if (text_color != m_text_color) {
+       // color changed, invalid cache
+       m_text_color = text_color;
+       m_labelCacheText.clear();
+    }
 
     double rot_vp = BBox->rotation*180/M_PI;
 
