@@ -502,8 +502,6 @@ void otcurrentOverlayFactory::DrawGLLabels(otcurrentOverlayFactory *pof, wxDC *d
 
 wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
 
-	wxString labels;
-	labels = _T("");  // dummy label for drawing with
 	wxImage	img;
 
 	wxColour c_orange = c_GLcolour;
@@ -513,11 +511,7 @@ wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
 
     wxMemoryDC mdc(wxNullBitmap);
 
-    wxFont mfont( 9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL );
-    mdc.SetFont( mfont );
-
     int w, h;
-    mdc.GetTextExtent(labels, &w, &h);
 	
 	w = 200;
 	h = 200;
@@ -531,8 +525,7 @@ wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
     mdc.SetTextForeground(c_orange);
     mdc.SetTextBackground(c_orange);
           
-    int xd = 0;
-    int yd = 0;
+   // int xd = 0, yd = 0;
    // mdc.DrawRoundedRectangle(xd, yd, w+(label_offset * 2), h+2, -.25);
 /*
 		
@@ -647,13 +640,11 @@ void otcurrentOverlayFactory::drawGLPolygons(otcurrentOverlayFactory *pof, wxDC 
          } 
 		 else { /* opengl */
                   
-			int w = imageLabel.GetWidth(), h = imageLabel.GetHeight();
-
             unsigned char *d = imageLabel.GetData();
             unsigned char *a = imageLabel.GetAlpha();
 
             unsigned char mr, mg, mb;
-           if(!a && !imageLabel.GetOrFindMaskColour( &mr, &mg, &mb ) ) 
+            if(!a && !imageLabel.GetOrFindMaskColour( &mr, &mg, &mb ) ) 
                 wxMessageBox(_T("trying to use mask to draw a bitmap without alpha or mask\n" ));
 
             unsigned char *e = new unsigned char[4 * w * h];
