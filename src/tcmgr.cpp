@@ -244,7 +244,7 @@ TCMgr::TCMgr(const wxString &data_dir, const wxString &home_dir)
 
 
 //    Load the Master Station Data Cache file
-      LoadMRU();
+      // LoadMRU();
 
       bTCMReady = true;
 error:
@@ -254,7 +254,7 @@ error:
 
 TCMgr::~TCMgr()
 {
-   SaveMRU();
+   //SaveMRU();
 
    FreeMRU();
 

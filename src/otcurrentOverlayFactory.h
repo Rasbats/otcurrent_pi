@@ -120,7 +120,7 @@ private:
 
     wxColour GetSpeedColour(double my_speed);
 
-    void drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate );
+    bool drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate );
 
 
     double m_last_vp_scale;
@@ -144,9 +144,11 @@ private:
     bool m_hiDefGraphics;
     bool m_bGradualColors;
 
+    wxColour m_text_color;
     std::map < double , wxImage > m_labelCache;
 	std::map < wxString , wxImage > m_labelCacheText;
 
+	wxImage m_fillImg;
     otcurrentUIDialog &m_dlg;
 
 };
