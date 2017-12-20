@@ -145,8 +145,8 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 
 	DimeWindow( this );
 
-    Fit();
-    SetMinSize( GetBestSize() );
+    //Fit();
+    //SetMinSize( GetBestSize() );
 	
 }
 

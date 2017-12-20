@@ -303,6 +303,8 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
         m_potcurrentDialog->Move(0,0);        // workaround for gtk autocentre dialog behavior
         m_potcurrentDialog->Move(p);
 
+		m_potcurrentDialog->SetSize(m_otcurrent_dialog_sx, m_otcurrent_dialog_sy);
+
         // Create the drawing factory
         m_potcurrentOverlayFactory = new otcurrentOverlayFactory( *m_potcurrentDialog );
         m_potcurrentOverlayFactory->SetParentSize( m_display_width, m_display_height);		

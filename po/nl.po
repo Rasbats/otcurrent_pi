@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-27 09:57-0300\n"
+"POT-Creation-Date: 2017-12-19 13:00+0000\n"
 "PO-Revision-Date: 2016-02-27 08:04-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Dutch\n"
@@ -15,172 +15,162 @@ msgstr ""
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Language: nl\n"
 "X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
-
-#: src/otcurrentOverlayFactory.cpp:852
-msgid "Using Tide/Current data from:  "
-msgstr "Gebruik getij- en stroomgegevens van:  "
-
-#: src/otcurrentUIDialog.cpp:237
+#
+msgid "      < 0.5 knots"
+msgstr "      < 0,5 knopen"
+#
+#, c-format
+msgid " width = %d height = %d\n"
+msgstr " breedte = %d hoogte = %d\n"
+#
+#, c-format
+msgid " x = %d y = %d\n"
+msgstr " x = %d y = %d\n"
+#
+msgid ">= 0.5 and < 1.5"
+msgstr "> = 0.5 en < 1,5"
+#
+msgid ">= 1.5 and < 2.5"
+msgstr "> = 1,5 en 2,5 <"
+#
+msgid ">= 2.5 and < 3.5"
+msgstr "> = 2.5 en < 3.5"
+#
+msgid ">= 3.5 knots    "
+msgstr "> = 3,5 knopen    "
+#
+msgid "About Tidal Arrows"
+msgstr "Over stroompijlen"
+#
+msgid "Cancel"
+msgstr "Annuleer"
+#
+msgid "Date/Time"
+msgstr "Datum/tijd"
+#
+msgid "Display tidal direction"
+msgstr "Toon stroomrichting"
+#
+msgid "Display tidal rates (knots)"
+msgstr "Toon stroomsnelheid (knopen)"
+#
+msgid "Fill Colour"
+msgstr "Vulkleur"
+#
+msgid "Help"
+msgstr "Help"
+#
+msgid "High Resolution Display"
+msgstr ""
+#
+msgid "Next"
+msgstr "Volgende"
+#
+msgid "Now"
+msgstr "Nu"
+#
+msgid "OK"
+msgstr "OK"
+#
+msgid "Preferences"
+msgstr "Voorkeuren"
+#
+msgid "Previous"
+msgstr "Vorige"
+#
 msgid "START Date/Time"
 msgstr "START datum/tijd"
-
-#: src/otcurrentUIDialog.cpp:340
-msgid "Tidal Current\n"
-"--------------------------------------------------------------\n\n\n\n\n\n"
-"Use this data with caution.\n"
-"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n\n"
-"--------------------------------------------------------------------\n\n"
-"Note: 1 Rates shown are for a position corresponding to the centre\n"
-"of the base of the arrow. Tidal rate is shown as knots.\n\n"
-msgstr "Getijstroom\n"
+#
+msgid "Select"
+msgstr "Selecteer"
+#
+msgid "Select a folder"
+msgstr "Selecteer een map"
+#
+msgid "Select date/time for current prediction"
+msgstr "Selecteer datum/tijd voor stroomvoorspelling"
+#
+msgid "Step (Minutes)"
+msgstr "Stap (minuten)"
+#
+msgid ""
+"Tidal Current\n"
+"--------------------------------------------------------------\n"
 "\n"
-"--------------------------------------------------------------\n\n\n\n\n\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"Use this data with caution.\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n"
+"\n"
+"--------------------------------------------------------------------\n"
+"\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n"
+"\n"
+msgstr ""
+"Getijstroom\n"
+"\n"
+"--------------------------------------------------------------\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
 "\n"
 "Gebruik deze gegevens met voorzichtigheid, \n"
 "\n"
 "en alleen in combinatie met stroomatlassen en\n"
 "\n"
-"getijinformatie in zeekaarten.\n\n"
+"getijinformatie in zeekaarten.\n"
 "\n"
-"--------------------------------------------------------------\n\n"
+"\n"
+"--------------------------------------------------------------\n"
+"\n"
 "\n"
 "Opmerking: Getoonde stroomsnelheden gelden\n"
 "\n"
 "voor een positie die overeenkomt met het midden\n"
 "\n"
-"van de basis van de pijl en zijn gegeven in knopen.\n\n"
-
-#: src/otcurrentUIDialog.cpp:341
-msgid "About Tidal Arrows"
-msgstr "Over stroompijlen"
-
-#: src/otcurrentUIDialog.cpp:358
-#, c-format
-msgid " x = %d y = %d\n"
-msgstr " x = %d y = %d\n"
-
-#: src/otcurrentUIDialog.cpp:360
-#, c-format
-msgid " width = %d height = %d\n"
-msgstr " breedte = %d hoogte = %d\n"
-
-#: src/otcurrentUIDialog.cpp:364
-msgid "Tide Calendar"
-msgstr "Getijkalender"
-
-#: src/otcurrentUIDialog.cpp:366
-msgid "Time:"
-msgstr "Tijd:"
-
-#: src/otcurrentUIDialog.cpp:375
-msgid "OK"
-msgstr "OK"
-
-#: src/otcurrentUIDialog.cpp:377
-msgid "Cancel"
-msgstr "Annuleer"
-
-#: src/otcurrentUIDialogBase.cpp:21
-msgid "Date/Time"
-msgstr "Datum/tijd"
-
-#: src/otcurrentUIDialogBase.cpp:26
-msgid "Select"
-msgstr "Selecteer"
-
-#: src/otcurrentUIDialogBase.cpp:27
-msgid "Select date/time for current prediction"
-msgstr "Selecteer datum/tijd voor stroomvoorspelling"
-
-#: src/otcurrentUIDialogBase.cpp:31
-msgid "Now"
-msgstr "Nu"
-
-#: src/otcurrentUIDialogBase.cpp:36
-msgid "Tidal Data Folder"
-msgstr "Map getijgegevens"
-
-#: src/otcurrentUIDialogBase.cpp:38
-msgid "Select a folder"
-msgstr "Selecteer een map"
-
-#: src/otcurrentUIDialogBase.cpp:44
-msgid "Step (Minutes)"
-msgstr "Stap (minuten)"
-
-#: src/otcurrentUIDialogBase.cpp:60
-msgid "Help"
-msgstr "Help"
-
-#: src/otcurrentUIDialogBase.cpp:64
-msgid "Previous"
-msgstr "Vorige"
-
-#: src/otcurrentUIDialogBase.cpp:68
-msgid "Next"
-msgstr "Volgende"
-
-#: src/otcurrentUIDialogBase.cpp:127
-msgid "Display tidal rates (knots)"
-msgstr "Toon stroomsnelheid (knopen)"
-
-#: src/otcurrentUIDialogBase.cpp:130
-msgid "Display tidal direction"
-msgstr "Toon stroomrichting"
-
-#: src/otcurrentUIDialogBase.cpp:133
-msgid "Fill Colour"
-msgstr "Vulkleur"
-
-#: src/otcurrentUIDialogBase.cpp:142
+"van de basis van de pijl en zijn gegeven in knopen.\n"
+"\n"
+#
 msgid "Tidal Current Arrow Colour"
 msgstr "Pijlkleur voor getijstroom"
-
-#: src/otcurrentUIDialogBase.cpp:162
-msgid "      < 0.5 knots"
-msgstr "      < 0,5 knopen"
-
-#: src/otcurrentUIDialogBase.cpp:167
-msgid ">= 0.5 and < 1.5"
-msgstr "> = 0.5 en < 1,5"
-
-#: src/otcurrentUIDialogBase.cpp:172
-msgid ">= 1.5 and < 2.5"
-msgstr "> = 1,5 en 2,5 <"
-
-#: src/otcurrentUIDialogBase.cpp:177
-msgid ">= 2.5 and < 3.5"
-msgstr "> = 2.5 en < 3.5"
-
-#: src/otcurrentUIDialogBase.cpp:182
-msgid ">= 3.5 knots    "
-msgstr "> = 3,5 knopen    "
-
-#: src/otcurrentUIDialogBase.h:143
+#
 msgid "Tidal Current Control"
 msgstr "Getijstroombeheer"
-
-#: src/otcurrentUIDialogBase.h:202
-msgid "otcurrent Settings"
-msgstr "otcurrent instellingen"
-
-#: src/otcurrentUIDialogBase.h:254
-msgid "Preferences"
-msgstr "Voorkeuren"
-
-#: src/otcurrent_pi.cpp:121
+#
+msgid "Tidal Data Folder"
+msgstr "Map getijgegevens"
+#
+msgid "Tide Calendar"
+msgstr "Getijkalender"
+#
+msgid "Time:"
+msgstr "Tijd:"
+#
+msgid "Using Tide/Current data from:  "
+msgstr "Gebruik getij- en stroomgegevens van:  "
+#
 msgid "otcurrent"
 msgstr "otcurrent"
-
-#: src/otcurrent_pi.cpp:182
+#
 msgid "otcurrent PlugIn for OpenCPN"
 msgstr "otcurrent PlugIn voor OpenCPN"
-
-#: src/otcurrent_pi.cpp:188
-msgid "otcurrent PlugIn for OpenCPN\n"
-"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
+#
+msgid ""
+"otcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n"
+"\n"
 "\t\t\t   "
-msgstr "otcurrent PlugIn voor OpenCPN\n"
-"Toont een overlay van getijstroompijlen op de kaart.\n\n"
+msgstr ""
+"otcurrent PlugIn voor OpenCPN\n"
+"Toont een overlay van getijstroompijlen op de kaart.\n"
+"\n"
 "\t\t\t   "
-
+#
+#
+#~ msgid "otcurrent Settings"
+#~ msgstr "otcurrent instellingen"

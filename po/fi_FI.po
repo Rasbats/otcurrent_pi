@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 2.2.1111\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-17 10:33+0100\n"
+"POT-Creation-Date: 2017-12-19 13:00+0000\n"
 "PO-Revision-Date: 2010-12-09 22:34+0200\n"
 "Last-Translator: Asko Laite <alaite@netti.fi>\n"
 "Language-Team: Asko Laite <alaite@netti.fi>\n"
@@ -60,6 +60,9 @@ msgid "Fill Colour"
 msgstr ""
 #
 msgid "Help"
+msgstr ""
+#
+msgid "High Resolution Display"
 msgstr ""
 #
 msgid "Next"
@@ -161,108 +164,11 @@ msgstr ""
 #
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrent Settings"
-msgstr "GRIB asetukset"
-#
-#
-#
-#, fuzzy
-msgid "otcurrentDialogPosX"
-msgstr "Virran nopeus, solmua"
-#
-#
-#
-#, fuzzy
-msgid "otcurrentDialogPosY"
-msgstr "Virran nopeus, solmua"
-#
-#, fuzzy
-msgid "otcurrentDialogSizeX"
-msgstr "Virran nopeus, solmua"
-#
-#, fuzzy
-msgid "otcurrentDialogSizeY"
-msgstr "Virran nopeus, solmua"
-#
-#
-#
-#, fuzzy
-msgid "otcurrentFolder"
-msgstr "Virran nopeus, solmua"
-#
-#
-#, fuzzy
-msgid "otcurrentInterval"
-msgstr "Virran nopeus, solmua"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseDirection"
-msgstr "GRIB asetukset"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseFillColour"
-msgstr "GRIB asetukset"
-#
-#
-#, fuzzy
-msgid "otcurrentUseRate"
-msgstr "Virran nopeus, solmua"
-#
-#
-#
 #, fuzzy
 #~ msgid "/Settings/otcurrent"
 #~ msgstr "Virran nopeus, solmua"
+#
+#
 #
 #
 #
@@ -310,6 +216,8 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Virran nopeus, solmua"
@@ -329,9 +237,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Data Display Preferences"
 #~ msgstr "GRIB asetukset"
+#
+#
 #
 #
 #
@@ -386,6 +298,8 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "GRIB-tiedostohakemisto"
 #
@@ -400,8 +314,12 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #~ msgid "Grib"
 #~ msgstr "Grib"
+#
+#
 #
 #
 #
@@ -432,9 +350,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Zoomaa ulos nähdäksesi GRIB pintalämpötilan"
+#
+#
 #
 #
 #
@@ -472,9 +394,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "Zoomaa ulos nähdäksesi GRIB virtatiedot"
+#
+#
 #
 #
 #
@@ -510,9 +436,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Zoomaa ulos nähdäksesi GRIB sadetiedon"
+#
+#
 #
 #
 #
@@ -543,9 +473,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure (MSL)"
 #~ msgstr "Ilampaine, mbar"
+#
+#
 #
 #
 #
@@ -606,8 +540,12 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #~ msgid "Show GRIB icon"
 #~ msgstr "Näytä GRIB-ikoni"
+#
+#
 #
 #
 #
@@ -638,8 +576,12 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Käytä tarkkuusgrafiikkaa"
+#
+#
 #
 #
 #
@@ -697,9 +639,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Tuulen suunta"
+#
+#
 #
 #
 #
@@ -735,9 +681,13 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Tuulen nopeus, solmua"
+#
+#
 #
 #
 #
@@ -798,12 +748,137 @@ msgstr "Virran nopeus, solmua"
 #
 #
 #
+#, fuzzy
+#~ msgid "otcurrent Settings"
+#~ msgstr "GRIB asetukset"
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogPosX"
+#~ msgstr "Virran nopeus, solmua"
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogPosY"
+#~ msgstr "Virran nopeus, solmua"
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogSizeX"
+#~ msgstr "Virran nopeus, solmua"
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogSizeY"
+#~ msgstr "Virran nopeus, solmua"
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentFolder"
+#~ msgstr "Virran nopeus, solmua"
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentInterval"
+#~ msgstr "Virran nopeus, solmua"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentUseDirection"
+#~ msgstr "GRIB asetukset"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentUseFillColour"
+#~ msgstr "GRIB asetukset"
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentUseRate"
+#~ msgstr "Virran nopeus, solmua"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "GRIB Data"
+#
+#
 #
 #
 #

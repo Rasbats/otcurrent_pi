@@ -28,6 +28,8 @@
 #include <wx/string.h>
 #include "bbox.h"
 #include "tcmgr.h"
+#include "GL/GL.h"
+
 
 
 using namespace std;

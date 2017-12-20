@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.1.0b604\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-17 10:33+0100\n"
+"POT-Creation-Date: 2017-12-19 13:00+0000\n"
 "PO-Revision-Date: 2012-06-03 20:54+0200\n"
 "Last-Translator: Hasan Çetin <boraxtr@yahoo.com>\n"
 "Language-Team: Gunther Pilz <service@opencpn.de>\n"
@@ -61,6 +61,9 @@ msgid "Fill Colour"
 msgstr ""
 #
 msgid "Help"
+msgstr ""
+#
+msgid "High Resolution Display"
 msgstr ""
 #
 msgid "Next"
@@ -168,122 +171,11 @@ msgstr ""
 #
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrent Settings"
-msgstr "GRIB Seçenekleri"
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentDialogPosX"
-msgstr "Akıntı hızı, Kts"
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentDialogPosY"
-msgstr "Akıntı hızı, Kts"
-#
-#
-#
-#, fuzzy
-msgid "otcurrentDialogSizeX"
-msgstr "Akıntı hızı, Kts"
-#
-#
-#
-#, fuzzy
-msgid "otcurrentDialogSizeY"
-msgstr "Akıntı hızı, Kts"
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentFolder"
-msgstr "Akıntı hızı, Kts"
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentInterval"
-msgstr "Akıntı hızı, Kts"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseDirection"
-msgstr "GRIB Seçenekleri"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseFillColour"
-msgstr "GRIB Seçenekleri"
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseRate"
-msgstr "Akıntı hızı, Kts"
-#
-#
-#
-#
-#
 #, fuzzy
 #~ msgid "/Settings/otcurrent"
 #~ msgstr "Akıntı hızı, Kts"
+#
+#
 #
 #
 #
@@ -333,6 +225,8 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Akıntı hızı, Kts"
@@ -352,9 +246,13 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Data Display Preferences"
 #~ msgstr "GRIB Seçenekleri"
+#
+#
 #
 #
 #
@@ -413,6 +311,8 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "GRIB Dosya Klasörü"
 #
@@ -427,8 +327,12 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #~ msgid "Grib"
 #~ msgstr "GRIB"
+#
+#
 #
 #
 #
@@ -465,11 +369,15 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr ""
 #~ "Zur Anzeige der ausgeblendeten GRIB Wassertemperatur bitte herauszoom oder "
 #~ "Maßstab verkleinern."
+#
+#
 #
 #
 #
@@ -513,11 +421,15 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr ""
 #~ "Zur Anzeige der ausgeblendeten GRIB Ozean-Strömung bitte herauszoom oder "
 #~ "Maßstab verkleinern."
+#
+#
 #
 #
 #
@@ -559,11 +471,15 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr ""
 #~ "Zur Anzeige der ausgeblendeten CRAIN GRIB-Daten bitte herauszoom oder "
 #~ "Maßstab verkleinern."
+#
+#
 #
 #
 #
@@ -598,9 +514,13 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure (MSL)"
 #~ msgstr "Basınç, mBar"
+#
+#
 #
 #
 #
@@ -665,8 +585,12 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #~ msgid "Show GRIB icon"
 #~ msgstr "GRIB simgesini göster"
+#
+#
 #
 #
 #
@@ -701,8 +625,12 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Yüksek çözünürlükte grafik kullan."
+#
+#
 #
 #
 #
@@ -764,9 +692,13 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Rüzgar yönü"
+#
+#
 #
 #
 #
@@ -806,9 +738,13 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Rüzgar hızı, Kts."
+#
+#
 #
 #
 #
@@ -871,12 +807,151 @@ msgstr "Akıntı hızı, Kts"
 #
 #
 #
+#, fuzzy
+#~ msgid "otcurrent Settings"
+#~ msgstr "GRIB Seçenekleri"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogPosX"
+#~ msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogPosY"
+#~ msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogSizeX"
+#~ msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogSizeY"
+#~ msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentFolder"
+#~ msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentInterval"
+#~ msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentUseDirection"
+#~ msgstr "GRIB Seçenekleri"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentUseFillColour"
+#~ msgstr "GRIB Seçenekleri"
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentUseRate"
+#~ msgstr "Akıntı hızı, Kts"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "GRIB Verileri"
+#
+#
 #
 #
 #

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 2.2.1111\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-17 10:33+0100\n"
+"POT-Creation-Date: 2017-12-19 13:00+0000\n"
 "PO-Revision-Date: 2010-11-28 17:53+0100\n"
 "Last-Translator: Piotr Carlson <pjotrc@interia.pl>\n"
 "Language-Team: \n"
@@ -58,6 +58,9 @@ msgid "Fill Colour"
 msgstr ""
 #
 msgid "Help"
+msgstr ""
+#
+msgid "High Resolution Display"
 msgstr ""
 #
 msgid "Next"
@@ -166,115 +169,11 @@ msgstr ""
 #
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrent Settings"
-msgstr "Preferencje GRIB"
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentDialogPosX"
-msgstr "Prędkość prądu, w."
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentDialogPosY"
-msgstr "Prędkość prądu, w."
-#
-#
-#, fuzzy
-msgid "otcurrentDialogSizeX"
-msgstr "Prędkość prądu, w."
-#
-#
-#, fuzzy
-msgid "otcurrentDialogSizeY"
-msgstr "Prędkość prądu, w."
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentFolder"
-msgstr "Prędkość prądu, w."
-#
-#
-#
-#, fuzzy
-msgid "otcurrentInterval"
-msgstr "Prędkość prądu, w."
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseDirection"
-msgstr "Preferencje GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseFillColour"
-msgstr "Preferencje GRIB"
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseRate"
-msgstr "Prędkość prądu, w."
-#
-#
-#
-#
 #, fuzzy
 #~ msgid "/Settings/otcurrent"
 #~ msgstr "Prędkość prądu, w."
+#
+#
 #
 #
 #
@@ -324,6 +223,8 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Prędkość prądu, w."
@@ -343,9 +244,13 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Data Display Preferences"
 #~ msgstr "Preferencje GRIB"
+#
+#
 #
 #
 #
@@ -401,6 +306,8 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "Katalog plików GRIB"
 #
@@ -416,8 +323,12 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#
+#
 #~ msgid "Grib"
 #~ msgstr "Grib"
+#
+#
 #
 #
 #
@@ -449,9 +360,13 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć SEATEMP"
+#
+#
 #
 #
 #
@@ -489,9 +404,13 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć OCEAN CURRENT"
+#
+#
 #
 #
 #
@@ -527,9 +446,13 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć CRAIN"
+#
+#
 #
 #
 #
@@ -561,9 +484,13 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure (MSL)"
 #~ msgstr "Ciśnienie, mbar"
+#
+#
 #
 #
 #
@@ -625,8 +552,12 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#
+#
 #~ msgid "Show GRIB icon"
 #~ msgstr "Pokaż ikonę GRIB"
+#
+#
 #
 #
 #
@@ -658,8 +589,12 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Użyj grafili wysokuej rozdzielczości"
+#
+#
 #
 #
 #
@@ -717,9 +652,13 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Kierunek wiatru"
+#
+#
 #
 #
 #
@@ -755,9 +694,13 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Prędkość wiatru, w."
+#
+#
 #
 #
 #
@@ -818,6 +761,136 @@ msgstr "Prędkość prądu, w."
 #
 #
 #
+#, fuzzy
+#~ msgid "otcurrent Settings"
+#~ msgstr "Preferencje GRIB"
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogPosX"
+#~ msgstr "Prędkość prądu, w."
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogPosY"
+#~ msgstr "Prędkość prądu, w."
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogSizeX"
+#~ msgstr "Prędkość prądu, w."
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogSizeY"
+#~ msgstr "Prędkość prądu, w."
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentFolder"
+#~ msgstr "Prędkość prądu, w."
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentInterval"
+#~ msgstr "Prędkość prądu, w."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentUseDirection"
+#~ msgstr "Preferencje GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentUseFillColour"
+#~ msgstr "Preferencje GRIB"
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentUseRate"
+#~ msgstr "Prędkość prądu, w."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -825,6 +898,8 @@ msgstr "Prędkość prądu, w."
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "Dane GRIB"
+#
+#
 #
 #
 #

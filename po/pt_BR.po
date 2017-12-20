@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.1.0b620\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-17 10:33+0100\n"
+"POT-Creation-Date: 2017-12-19 13:00+0000\n"
 "PO-Revision-Date: 2010-06-25 19:44-0300\n"
 "Last-Translator: Eloi Barros <eloibarros@hotmail.com>\n"
 "Language-Team: \n"
@@ -61,6 +61,9 @@ msgid "Fill Colour"
 msgstr ""
 #
 msgid "Help"
+msgstr ""
+#
+msgid "High Resolution Display"
 msgstr ""
 #
 msgid "Next"
@@ -165,74 +168,6 @@ msgstr ""
 #
 #
 #
-#, fuzzy
-msgid "otcurrent Settings"
-msgstr "Velocidade da Corrente, Nós."
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentDialogPosX"
-msgstr "Velocidade da Corrente, Nós."
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentDialogPosY"
-msgstr "Velocidade da Corrente, Nós."
-#
-#
-#
-#, fuzzy
-msgid "otcurrentDialogSizeX"
-msgstr "Velocidade da Corrente, Nós."
-#
-#
-#
-#, fuzzy
-msgid "otcurrentDialogSizeY"
-msgstr "Velocidade da Corrente, Nós."
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentFolder"
-msgstr "Velocidade da Corrente, Nós."
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentInterval"
-msgstr "Velocidade da Corrente, Nós."
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseDirection"
-msgstr "Velocidade da Corrente, Nós."
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseFillColour"
-msgstr "Velocidade da Corrente, Nós."
-#
-#
-#
-#
-#, fuzzy
-msgid "otcurrentUseRate"
-msgstr "Velocidade da Corrente, Nós."
-#
 #
 #
 #
@@ -240,6 +175,8 @@ msgstr "Velocidade da Corrente, Nós."
 #, fuzzy
 #~ msgid "/Settings/otcurrent"
 #~ msgstr "Velocidade da Corrente, Nós."
+#
+#
 #
 #
 #
@@ -291,9 +228,13 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Velocidade da Corrente, Nós."
+#
+#
 #
 #
 #
@@ -352,8 +293,12 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "Diretório de Arquivos GRIB"
+#
+#
 #
 #
 #
@@ -388,9 +333,13 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Por favor Afaste ou Diminua a Escala para ver SEATEMP GRIB suprimido"
+#
+#
 #
 #
 #
@@ -433,10 +382,14 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr ""
 #~ "Por favor Afaste ou Diminua a Escala para ver OCEAN CURRENT GRIB suprimido"
+#
+#
 #
 #
 #
@@ -476,9 +429,13 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Por favor Afaste ou Diminua a Escala para ver CRAIN GRIB suprimido"
+#
+#
 #
 #
 #
@@ -513,9 +470,13 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure (MSL)"
 #~ msgstr "Pressão, hPa"
+#
+#
 #
 #
 #
@@ -580,8 +541,12 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #~ msgid "Show GRIB icon"
 #~ msgstr "Mostrar ícone GRIB"
+#
+#
 #
 #
 #
@@ -616,8 +581,12 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Usar Gráficos de Alta Definição"
+#
+#
 #
 #
 #
@@ -679,6 +648,8 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Direção do Vento"
@@ -700,9 +671,13 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Direção do Vento"
+#
+#
 #
 #
 #
@@ -764,8 +739,102 @@ msgstr "Velocidade da Corrente, Nós."
 #
 #
 #
+#
+#
 #~ msgid "Wind Speed, Kts."
 #~ msgstr "Veloc. do Vento, Nós"
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrent Settings"
+#~ msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogPosX"
+#~ msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogPosY"
+#~ msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogSizeX"
+#~ msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentDialogSizeY"
+#~ msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentFolder"
+#~ msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentInterval"
+#~ msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentUseDirection"
+#~ msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentUseFillColour"
+#~ msgstr "Velocidade da Corrente, Nós."
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "otcurrentUseRate"
+#~ msgstr "Velocidade da Corrente, Nós."
+#
+#
 #
 #
 #

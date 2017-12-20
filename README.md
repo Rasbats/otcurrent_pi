@@ -16,7 +16,7 @@ cd otcurrent_pi/build
 cmake ..
 cmake --build .
 ```
-Windows note: You must place opencpn.lib into your build directory to be able to link the plugin DLL. You can get this file from your local OpenCPN build, or alternatively download from http://sourceforge.net/projects/opencpnplugins/files/opencpn_lib/
+Windows note: You must place opencpn.lib into your build directory to be able to link the plugin DLL. You can get this file from your local OpenCPN build.
 
 Debugging:
 If you check out the plugin source into the plugins subdirectory of your OpenCPN source tree, you can build it as part of it (exactly as with the versions prior to 1.0)
@@ -73,4 +73,4 @@ The plugin code is licensed under the terms of the GPL v2.
 
 Acknowledgements
 ----------------
-The authors wish to thank Dave Register for providing OpenCPN and the Garmin radar plugin, from which this plugin was derived.
+The author wishes to thank Dave Register for providing OpenCPN, from which this plugin was derived.

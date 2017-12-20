@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-27 09:57-0300\n"
+"POT-Creation-Date: 2017-12-19 13:00+0000\n"
 "PO-Revision-Date: 2016-02-27 08:04-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Greek\n"
@@ -15,162 +15,152 @@ msgstr ""
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Language: el\n"
 "X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
-
-#: src/otcurrentOverlayFactory.cpp:852
-msgid "Using Tide/Current data from:  "
-msgstr "Χρήση δεδομένων παλίρροιας/ρευμάτων από:  "
-
-#: src/otcurrentUIDialog.cpp:237
-msgid "START Date/Time"
-msgstr "Ημερομηνία/ώρα ΈΝΑΡΞΗΣ"
-
-#: src/otcurrentUIDialog.cpp:340
-msgid "Tidal Current\n"
-"--------------------------------------------------------------\n\n\n\n\n\n"
-"Use this data with caution.\n"
-"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n\n"
-"--------------------------------------------------------------------\n\n"
-"Note: 1 Rates shown are for a position corresponding to the centre\n"
-"of the base of the arrow. Tidal rate is shown as knots.\n\n"
-msgstr "Παλιρροιακό ρεύμα\n"
-"--------------------------------------------------------------\n\n\n\n\n\n"
-"Χρησιμοποιήστε τα δεδομένα με προσοχή.\n"
-"Χρήση σε συνυασμό με Άτλαντες παλιρροιακών ρευμάτων και ρόμβων\n\n"
-"--------------------------------------------------------------------\n\n"
-"Σημείωση: Οι ταχύτητες αντιστοιχούν στο μέσον\n"
-"της βάσης του βέλους και δίδονται σε κόμβους.\n\n"
-
-#: src/otcurrentUIDialog.cpp:341
-msgid "About Tidal Arrows"
-msgstr "Για τα παλιρροιακά βέλη"
-
-#: src/otcurrentUIDialog.cpp:358
-#, c-format
-msgid " x = %d y = %d\n"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:360
+#
+msgid "      < 0.5 knots"
+msgstr "      < 0.5 κόμβους"
+#
 #, c-format
 msgid " width = %d height = %d\n"
 msgstr " πλάτος = %d ύψος = %d\n"
-
-#: src/otcurrentUIDialog.cpp:364
-msgid "Tide Calendar"
-msgstr "Ημερολόγιο παλίρροιας"
-
-#: src/otcurrentUIDialog.cpp:366
-msgid "Time:"
-msgstr "Ώρα:"
-
-#: src/otcurrentUIDialog.cpp:375
-msgid "OK"
-msgstr "εντάξει"
-
-#: src/otcurrentUIDialog.cpp:377
-msgid "Cancel"
-msgstr "Ακύρωση"
-
-#: src/otcurrentUIDialogBase.cpp:21
-msgid "Date/Time"
-msgstr "Ημερομηνία/Ώρα"
-
-#: src/otcurrentUIDialogBase.cpp:26
-msgid "Select"
-msgstr "Επιλογή"
-
-#: src/otcurrentUIDialogBase.cpp:27
-msgid "Select date/time for current prediction"
-msgstr "Επιλέξτε ημερομηνία/ώρα για την πρόβλεψη του ρεύματος"
-
-#: src/otcurrentUIDialogBase.cpp:31
-msgid "Now"
-msgstr "Τώρα"
-
-#: src/otcurrentUIDialogBase.cpp:36
-msgid "Tidal Data Folder"
-msgstr "Φάκελος δεδομένων παλίρροιας"
-
-#: src/otcurrentUIDialogBase.cpp:38
-msgid "Select a folder"
-msgstr "Επιλέξτε ένα φάκελο"
-
-#: src/otcurrentUIDialogBase.cpp:44
-msgid "Step (Minutes)"
-msgstr "Βήμα (λεπτά)"
-
-#: src/otcurrentUIDialogBase.cpp:60
-msgid "Help"
-msgstr "Βοήθεια"
-
-#: src/otcurrentUIDialogBase.cpp:64
-msgid "Previous"
-msgstr "Προηγούμενο"
-
-#: src/otcurrentUIDialogBase.cpp:68
-msgid "Next"
-msgstr "Επόμενο"
-
-#: src/otcurrentUIDialogBase.cpp:127
-msgid "Display tidal rates (knots)"
-msgstr "Δείξε παλιρροιακές ταχύτητες (κόμβους)"
-
-#: src/otcurrentUIDialogBase.cpp:130
-msgid "Display tidal direction"
-msgstr "Δείξε παλιρροιακή κατεύθυνση"
-
-#: src/otcurrentUIDialogBase.cpp:133
-msgid "Fill Colour"
-msgstr "Εσωτερικό χρώμα"
-
-#: src/otcurrentUIDialogBase.cpp:142
-msgid "Tidal Current Arrow Colour"
-msgstr "Χρώμα βέλους παλιρροιακού ρεύματος"
-
-#: src/otcurrentUIDialogBase.cpp:162
-msgid "      < 0.5 knots"
-msgstr "      < 0.5 κόμβους"
-
-#: src/otcurrentUIDialogBase.cpp:167
+#
+#, c-format
+msgid " x = %d y = %d\n"
+msgstr ""
+#
 msgid ">= 0.5 and < 1.5"
 msgstr "> = 0,5 και < 1,5"
-
-#: src/otcurrentUIDialogBase.cpp:172
+#
 msgid ">= 1.5 and < 2.5"
 msgstr "> = 1.5 και < 2.5"
-
-#: src/otcurrentUIDialogBase.cpp:177
+#
 msgid ">= 2.5 and < 3.5"
 msgstr "> = 2.5 και < 3.5"
-
-#: src/otcurrentUIDialogBase.cpp:182
+#
 msgid ">= 3.5 knots    "
 msgstr "> = 3,5 knots    "
-
-#: src/otcurrentUIDialogBase.h:143
-msgid "Tidal Current Control"
-msgstr "Έλεγχος παλιρροιακού ρεύματος"
-
-#: src/otcurrentUIDialogBase.h:202
-msgid "otcurrent Settings"
-msgstr "Ρυθμίσεις otcurrent"
-
-#: src/otcurrentUIDialogBase.h:254
+#
+msgid "About Tidal Arrows"
+msgstr "Για τα παλιρροιακά βέλη"
+#
+msgid "Cancel"
+msgstr "Ακύρωση"
+#
+msgid "Date/Time"
+msgstr "Ημερομηνία/Ώρα"
+#
+msgid "Display tidal direction"
+msgstr "Δείξε παλιρροιακή κατεύθυνση"
+#
+msgid "Display tidal rates (knots)"
+msgstr "Δείξε παλιρροιακές ταχύτητες (κόμβους)"
+#
+msgid "Fill Colour"
+msgstr "Εσωτερικό χρώμα"
+#
+msgid "Help"
+msgstr "Βοήθεια"
+#
+msgid "High Resolution Display"
+msgstr ""
+#
+msgid "Next"
+msgstr "Επόμενο"
+#
+msgid "Now"
+msgstr "Τώρα"
+#
+msgid "OK"
+msgstr "εντάξει"
+#
 msgid "Preferences"
 msgstr "Προτιμήσεις"
-
-#: src/otcurrent_pi.cpp:121
+#
+msgid "Previous"
+msgstr "Προηγούμενο"
+#
+msgid "START Date/Time"
+msgstr "Ημερομηνία/ώρα ΈΝΑΡΞΗΣ"
+#
+msgid "Select"
+msgstr "Επιλογή"
+#
+msgid "Select a folder"
+msgstr "Επιλέξτε ένα φάκελο"
+#
+msgid "Select date/time for current prediction"
+msgstr "Επιλέξτε ημερομηνία/ώρα για την πρόβλεψη του ρεύματος"
+#
+msgid "Step (Minutes)"
+msgstr "Βήμα (λεπτά)"
+#
+msgid ""
+"Tidal Current\n"
+"--------------------------------------------------------------\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"Use this data with caution.\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n"
+"\n"
+"--------------------------------------------------------------------\n"
+"\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n"
+"\n"
+msgstr ""
+"Παλιρροιακό ρεύμα\n"
+"--------------------------------------------------------------\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"Χρησιμοποιήστε τα δεδομένα με προσοχή.\n"
+"Χρήση σε συνυασμό με Άτλαντες παλιρροιακών ρευμάτων και ρόμβων\n"
+"\n"
+"--------------------------------------------------------------------\n"
+"\n"
+"Σημείωση: Οι ταχύτητες αντιστοιχούν στο μέσον\n"
+"της βάσης του βέλους και δίδονται σε κόμβους.\n"
+"\n"
+#
+msgid "Tidal Current Arrow Colour"
+msgstr "Χρώμα βέλους παλιρροιακού ρεύματος"
+#
+msgid "Tidal Current Control"
+msgstr "Έλεγχος παλιρροιακού ρεύματος"
+#
+msgid "Tidal Data Folder"
+msgstr "Φάκελος δεδομένων παλίρροιας"
+#
+msgid "Tide Calendar"
+msgstr "Ημερολόγιο παλίρροιας"
+#
+msgid "Time:"
+msgstr "Ώρα:"
+#
+msgid "Using Tide/Current data from:  "
+msgstr "Χρήση δεδομένων παλίρροιας/ρευμάτων από:  "
+#
 msgid "otcurrent"
 msgstr "otcurrent"
-
-#: src/otcurrent_pi.cpp:182
+#
 msgid "otcurrent PlugIn for OpenCPN"
 msgstr "Πρόσθετο otcurrent για το OpenCPN"
-
-#: src/otcurrent_pi.cpp:188
-msgid "otcurrent PlugIn for OpenCPN\n"
-"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
+#
+msgid ""
+"otcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n"
+"\n"
 "\t\t\t   "
-msgstr "Πρόσθετο otcurrent για το OpenCPN\n"
-" Δείχνει τα παλιρροιακά ρεύματα (ροή) ως βέλη.\n\n"
+msgstr ""
+"Πρόσθετο otcurrent για το OpenCPN\n"
+" Δείχνει τα παλιρροιακά ρεύματα (ροή) ως βέλη.\n"
+"\n"
 "\t\t\t   "
-
+#
+#
+#~ msgid "otcurrent Settings"
+#~ msgstr "Ρυθμίσεις otcurrent"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-27 09:57-0300\n"
+"POT-Creation-Date: 2017-12-19 13:00+0000\n"
 "PO-Revision-Date: 2016-02-27 08:04-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Catalan\n"
@@ -15,162 +15,152 @@ msgstr ""
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Language: ca\n"
 "X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
-
-#: src/otcurrentOverlayFactory.cpp:852
-msgid "Using Tide/Current data from:  "
-msgstr "Utilitzant les dades de marea/corrent de:  "
-
-#: src/otcurrentUIDialog.cpp:237
-msgid "START Date/Time"
-msgstr "Inicia data/hora"
-
-#: src/otcurrentUIDialog.cpp:340
-msgid "Tidal Current\n"
-"--------------------------------------------------------------\n\n\n\n\n\n"
-"Use this data with caution.\n"
-"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n\n"
-"--------------------------------------------------------------------\n\n"
-"Note: 1 Rates shown are for a position corresponding to the centre\n"
-"of the base of the arrow. Tidal rate is shown as knots.\n\n"
-msgstr "Corrents de Marea\n"
-"--------------------------------------------------------------\n\n\n\n\n\n"
-"Useu aquesta dada amb precaució.\n"
-"Useu-lo conjuntament amb l'Anuari i Taules de Marees\n\n"
-"--------------------------------------------------------------------\n\n"
-"Nota: 1 Les velocitats mostrades són per a la posició corresponent al centre\n"
-"del peu de la fletxa. La velocitat de la marea es mostra en nusos.\n\n"
-
-#: src/otcurrentUIDialog.cpp:341
-msgid "About Tidal Arrows"
-msgstr "Sobre les fletxes de marea"
-
-#: src/otcurrentUIDialog.cpp:358
-#, c-format
-msgid " x = %d y = %d\n"
-msgstr " x = %d y = %d\n"
-
-#: src/otcurrentUIDialog.cpp:360
+#
+msgid "      < 0.5 knots"
+msgstr "      < 0.5 nusos"
+#
 #, c-format
 msgid " width = %d height = %d\n"
 msgstr " amplada = %d alçada = %d\n"
-
-#: src/otcurrentUIDialog.cpp:364
-msgid "Tide Calendar"
-msgstr "Calendari de marees"
-
-#: src/otcurrentUIDialog.cpp:366
-msgid "Time:"
-msgstr "Hora:"
-
-#: src/otcurrentUIDialog.cpp:375
-msgid "OK"
-msgstr "Ok"
-
-#: src/otcurrentUIDialog.cpp:377
-msgid "Cancel"
-msgstr "Cancel·la"
-
-#: src/otcurrentUIDialogBase.cpp:21
-msgid "Date/Time"
-msgstr "Data/hora"
-
-#: src/otcurrentUIDialogBase.cpp:26
-msgid "Select"
-msgstr "Selecciona"
-
-#: src/otcurrentUIDialogBase.cpp:27
-msgid "Select date/time for current prediction"
-msgstr "Seleccioneu la data i hora per a la predicció actual"
-
-#: src/otcurrentUIDialogBase.cpp:31
-msgid "Now"
-msgstr "Ara"
-
-#: src/otcurrentUIDialogBase.cpp:36
-msgid "Tidal Data Folder"
-msgstr "Carpeta dades de marea"
-
-#: src/otcurrentUIDialogBase.cpp:38
-msgid "Select a folder"
-msgstr "Seleccioneu una carpeta"
-
-#: src/otcurrentUIDialogBase.cpp:44
-msgid "Step (Minutes)"
-msgstr "Pas (minuts)"
-
-#: src/otcurrentUIDialogBase.cpp:60
-msgid "Help"
-msgstr "Ajuda"
-
-#: src/otcurrentUIDialogBase.cpp:64
-msgid "Previous"
-msgstr "Anterior"
-
-#: src/otcurrentUIDialogBase.cpp:68
-msgid "Next"
-msgstr "Següent"
-
-#: src/otcurrentUIDialogBase.cpp:127
-msgid "Display tidal rates (knots)"
-msgstr "Mostrar els ritmes de marea (nusos)"
-
-#: src/otcurrentUIDialogBase.cpp:130
-msgid "Display tidal direction"
-msgstr "Mostrar la direcció de la marea"
-
-#: src/otcurrentUIDialogBase.cpp:133
-msgid "Fill Colour"
-msgstr "Omplir de color"
-
-#: src/otcurrentUIDialogBase.cpp:142
-msgid "Tidal Current Arrow Colour"
-msgstr "Color de la fletxa del corrent de la marea"
-
-#: src/otcurrentUIDialogBase.cpp:162
-msgid "      < 0.5 knots"
-msgstr "      < 0.5 nusos"
-
-#: src/otcurrentUIDialogBase.cpp:167
+#
+#, c-format
+msgid " x = %d y = %d\n"
+msgstr " x = %d y = %d\n"
+#
 msgid ">= 0.5 and < 1.5"
 msgstr "> = 0,5 i < 1,5"
-
-#: src/otcurrentUIDialogBase.cpp:172
+#
 msgid ">= 1.5 and < 2.5"
 msgstr "> = 1.5 i < 2.5"
-
-#: src/otcurrentUIDialogBase.cpp:177
+#
 msgid ">= 2.5 and < 3.5"
 msgstr "> = 2.5 i < 3.5"
-
-#: src/otcurrentUIDialogBase.cpp:182
+#
 msgid ">= 3.5 knots    "
 msgstr "> = 3,5 nusos    "
-
-#: src/otcurrentUIDialogBase.h:143
-msgid "Tidal Current Control"
-msgstr "Control del corrent de la  marea"
-
-#: src/otcurrentUIDialogBase.h:202
-msgid "otcurrent Settings"
-msgstr "Configuració d'otcurrent"
-
-#: src/otcurrentUIDialogBase.h:254
+#
+msgid "About Tidal Arrows"
+msgstr "Sobre les fletxes de marea"
+#
+msgid "Cancel"
+msgstr "Cancel·la"
+#
+msgid "Date/Time"
+msgstr "Data/hora"
+#
+msgid "Display tidal direction"
+msgstr "Mostrar la direcció de la marea"
+#
+msgid "Display tidal rates (knots)"
+msgstr "Mostrar els ritmes de marea (nusos)"
+#
+msgid "Fill Colour"
+msgstr "Omplir de color"
+#
+msgid "Help"
+msgstr "Ajuda"
+#
+msgid "High Resolution Display"
+msgstr ""
+#
+msgid "Next"
+msgstr "Següent"
+#
+msgid "Now"
+msgstr "Ara"
+#
+msgid "OK"
+msgstr "Ok"
+#
 msgid "Preferences"
 msgstr "Preferències"
-
-#: src/otcurrent_pi.cpp:121
+#
+msgid "Previous"
+msgstr "Anterior"
+#
+msgid "START Date/Time"
+msgstr "Inicia data/hora"
+#
+msgid "Select"
+msgstr "Selecciona"
+#
+msgid "Select a folder"
+msgstr "Seleccioneu una carpeta"
+#
+msgid "Select date/time for current prediction"
+msgstr "Seleccioneu la data i hora per a la predicció actual"
+#
+msgid "Step (Minutes)"
+msgstr "Pas (minuts)"
+#
+msgid ""
+"Tidal Current\n"
+"--------------------------------------------------------------\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"Use this data with caution.\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n"
+"\n"
+"--------------------------------------------------------------------\n"
+"\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n"
+"\n"
+msgstr ""
+"Corrents de Marea\n"
+"--------------------------------------------------------------\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"Useu aquesta dada amb precaució.\n"
+"Useu-lo conjuntament amb l'Anuari i Taules de Marees\n"
+"\n"
+"--------------------------------------------------------------------\n"
+"\n"
+"Nota: 1 Les velocitats mostrades són per a la posició corresponent al centre\n"
+"del peu de la fletxa. La velocitat de la marea es mostra en nusos.\n"
+"\n"
+#
+msgid "Tidal Current Arrow Colour"
+msgstr "Color de la fletxa del corrent de la marea"
+#
+msgid "Tidal Current Control"
+msgstr "Control del corrent de la  marea"
+#
+msgid "Tidal Data Folder"
+msgstr "Carpeta dades de marea"
+#
+msgid "Tide Calendar"
+msgstr "Calendari de marees"
+#
+msgid "Time:"
+msgstr "Hora:"
+#
+msgid "Using Tide/Current data from:  "
+msgstr "Utilitzant les dades de marea/corrent de:  "
+#
 msgid "otcurrent"
 msgstr "otcurrent"
-
-#: src/otcurrent_pi.cpp:182
+#
 msgid "otcurrent PlugIn for OpenCPN"
 msgstr "Connector otcurrent per a OpenCPN"
-
-#: src/otcurrent_pi.cpp:188
-msgid "otcurrent PlugIn for OpenCPN\n"
-"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
+#
+msgid ""
+"otcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n"
+"\n"
 "\t\t\t   "
-msgstr "el connector otcurrent per a OpenCPN\n"
-"Mostra una superposició de les fletxes del Corrent de Marea.\n\n"
+msgstr ""
+"el connector otcurrent per a OpenCPN\n"
+"Mostra una superposició de les fletxes del Corrent de Marea.\n"
+"\n"
 "\t\t\t    "
-
+#
+#
+#~ msgid "otcurrent Settings"
+#~ msgstr "Configuració d'otcurrent"

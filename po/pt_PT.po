@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 1.3.6 (Pt01)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-17 10:33+0100\n"
+"POT-Creation-Date: 2017-12-19 13:00+0000\n"
 "PO-Revision-Date: 2010-02-05 16:06+0100\n"
 "Last-Translator: as <as400big@gmail.com>\n"
 "Language-Team: Minhota <zemaria@zemaria.biz>\n"
@@ -61,6 +61,9 @@ msgid "Fill Colour"
 msgstr ""
 #
 msgid "Help"
+msgstr ""
+#
+msgid "High Resolution Display"
 msgstr ""
 #
 msgid "Next"
@@ -163,35 +166,7 @@ msgid ""
 "\t\t\t   "
 msgstr ""
 #
-msgid "otcurrent Settings"
-msgstr ""
 #
-msgid "otcurrentDialogPosX"
-msgstr ""
-#
-msgid "otcurrentDialogPosY"
-msgstr ""
-#
-msgid "otcurrentDialogSizeX"
-msgstr ""
-#
-msgid "otcurrentDialogSizeY"
-msgstr ""
-#
-msgid "otcurrentFolder"
-msgstr ""
-#
-msgid "otcurrentInterval"
-msgstr ""
-#
-msgid "otcurrentUseDirection"
-msgstr ""
-#
-msgid "otcurrentUseFillColour"
-msgstr ""
-#
-msgid "otcurrentUseRate"
-msgstr ""
 #
 #
 #
@@ -231,6 +206,8 @@ msgstr ""
 #, fuzzy
 #~ msgid "Colors"
 #~ msgstr "Fechar"
+#
+#
 #
 #
 #
@@ -291,8 +268,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "GRIB File Directory"
 #~ msgstr "Pasta de Ficheiros GRIB"
+#
+#
 #
 #
 #
@@ -329,9 +310,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Ajuste Zoom ou Escala para ver HTSGW GRIB escondido"
+#
+#
 #
 #
 #
@@ -375,9 +360,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "Ajuste Zoom ou Escala para ver CRAIN GRIB escondido"
+#
+#
 #
 #
 #
@@ -419,6 +408,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Ajuste Zoom ou Escala para ver CRAIN GRIB escondido"
@@ -436,9 +427,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Pressão, mBar"
+#
+#
 #
 #
 #
@@ -502,8 +497,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Show GRIB icon"
 #~ msgstr "Mostrar Ícone GRIB"
+#
+#
 #
 #
 #
@@ -540,8 +539,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Usar Gráficos Alta Definição"
+#
+#
 #
 #
 #
@@ -605,6 +608,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Direcção Vento"
@@ -627,9 +632,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Direcção Vento"
+#
+#
 #
 #
 #
@@ -693,8 +702,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind Speed, Kts."
 #~ msgstr "Velocidade Vento, Kts."
+#
+#
 #
 #
 #
