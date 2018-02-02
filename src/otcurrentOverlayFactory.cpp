@@ -703,13 +703,12 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
     double rot_vp = BBox->rotation*180/M_PI;
 
 	// Set up the scaler
-	int mmx, mmy;
-	wxDisplaySizeMM( &mmx, &mmy );
+    double mmx = PlugInGetDisplaySizeMM();
 
 	int sx, sy;
 	wxDisplaySize( &sx, &sy );
 
-	double m_pix_per_mm = ( (double) sx ) / ( (double) mmx );
+	double m_pix_per_mm = ( (double) sx ) / ( mmx );
 
 	int mm_per_knot = 10;
 	float current_draw_scaler = mm_per_knot * m_pix_per_mm * 100 / 100.0;

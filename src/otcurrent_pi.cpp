@@ -71,7 +71,7 @@ extern "C" DECL_EXP void destroy_pi(opencpn_plugin* p)
 //---------------------------------------------------------------------------------------------------------
 
 otcurrent_pi::otcurrent_pi(void *ppimgr)
-      :opencpn_plugin_17(ppimgr)
+      :opencpn_plugin_115(ppimgr)
 {
       // Create the PlugIn icons
       initialize_images();
@@ -116,11 +116,16 @@ int otcurrent_pi::Init(void)
 	
 
       //    This PlugIn needs a toolbar icon, so request its insertion if enabled locally
-      if(m_botcurrentShowIcon)
+      if(m_botcurrentShowIcon) {
+#ifdef OTCURRENT_USE_SVG
+          m_leftclick_tool_id = InsertPlugInToolSVG(_T( "otcurrent" ), _svg_otcurrent, _svg_otcurrent_rollover, _svg_otcurrent_toggled,
+            wxITEM_CHECK, _("otcurrent"), _T( "" ), NULL, otcurrent_TOOL_POSITION, 0, this);
+#else
           m_leftclick_tool_id = InsertPlugInTool(_T(""), _img_otcurrent, _img_otcurrent, wxITEM_CHECK,
                                                  _("otcurrent"), _T(""), NULL,
                                                  otcurrent_TOOL_POSITION, 0, this);	  
-
+#endif
+      }
       return (WANTS_OVERLAY_CALLBACK |
               WANTS_OPENGL_OVERLAY_CALLBACK |
               WANTS_CURSOR_LATLON       |

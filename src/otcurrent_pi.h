@@ -38,7 +38,7 @@
 #define     PLUGIN_VERSION_MINOR    4
 
 #define     MY_API_VERSION_MAJOR    1
-#define     MY_API_VERSION_MINOR    7
+#define     MY_API_VERSION_MINOR    15
 
 #include "ocpn_plugin.h"
 #include "otcurrentOverlayFactory.h"
@@ -54,7 +54,7 @@ extern wxString myVColour[5];
 
 #define otcurrent_TOOL_POSITION    -1          // Request default positioning of toolbar tool
 
-class otcurrent_pi : public opencpn_plugin_17
+class otcurrent_pi : public opencpn_plugin_115
 {
 public:
       otcurrent_pi(void *ppimgr);
