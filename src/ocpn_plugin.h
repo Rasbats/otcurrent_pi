@@ -50,7 +50,7 @@ class wxGLContext;
 //    PlugIns conforming to API Version less then the most modern will also
 //    be correctly supported.
 #define API_VERSION_MAJOR           1
-#define API_VERSION_MINOR           13
+#define API_VERSION_MINOR           15
 
 //    Fwd Definitions
 class       wxFileConfig;
@@ -58,6 +58,7 @@ class       wxNotebook;
 class       wxFont;
 class       wxAuiManager;
 class       wxScrolledWindow;
+class       wxGLCanvas;
 
 //---------------------------------------------------------------------------------------------------------
 //
@@ -515,6 +516,22 @@ public:
     virtual void OnToolbarToolUpCallback(int id);
 };
 
+class DECL_EXP opencpn_plugin_114 : public opencpn_plugin_113
+{
+public:
+  opencpn_plugin_114(void *pmgr);
+  virtual ~opencpn_plugin_114();
+
+};
+
+class DECL_EXP opencpn_plugin_115 : public opencpn_plugin_114
+{
+public:
+    opencpn_plugin_115(void *pmgr);
+    virtual ~opencpn_plugin_115();
+
+};
+
 //------------------------------------------------------------------
 //      Route and Waypoint PlugIn support
 //
@@ -782,6 +799,41 @@ public:
 };
 
 
+// ----------------------------------------------------------------------------
+// PlugInChartBaseExtended
+//  Derived from PlugInChartBase, add extended chart support methods
+// ----------------------------------------------------------------------------
+
+class DECL_EXP PlugInChartBaseExtended : public PlugInChartBase
+{
+public:
+    PlugInChartBaseExtended();
+    virtual ~PlugInChartBaseExtended();
+    
+    virtual int RenderRegionViewOnGL( const wxGLContext &glc, const PlugIn_ViewPort& VPoint,
+                                      const wxRegion &Region, bool b_use_stencil );
+    
+    virtual wxBitmap &RenderRegionViewOnDCNoText(  const PlugIn_ViewPort& VPoint, const wxRegion &Region);
+    virtual bool RenderRegionViewOnDCTextOnly( wxMemoryDC &dc, const PlugIn_ViewPort& VPoint, const wxRegion &Region);
+    
+    virtual int RenderRegionViewOnGLNoText( const wxGLContext &glc, const PlugIn_ViewPort& VPoint,
+                                            const wxRegion &Region, bool b_use_stencil );
+
+    virtual int RenderRegionViewOnGLTextOnly( const wxGLContext &glc, const PlugIn_ViewPort& VPoint,
+                                              const wxRegion &Region, bool b_use_stencil );
+    
+    virtual ListOfPI_S57Obj *GetObjRuleListAtLatLon(float lat, float lon, float select_radius, PlugIn_ViewPort *VPoint);
+    virtual wxString CreateObjDescriptions( ListOfPI_S57Obj* obj_list );
+    
+    virtual int GetNoCOVREntries();
+    virtual int GetNoCOVRTablePoints(int iTable);
+    virtual int  GetNoCOVRTablenPoints(int iTable);
+    virtual float *GetNoCOVRTableHead(int iTable);
+    
+    virtual void ClearPLIBTextList();
+    
+};
+
 
 
 
@@ -1022,6 +1074,7 @@ extern DECL_EXP void ForceChartDBUpdate();
 extern  DECL_EXP wxString GetWritableDocumentsDir( void );
 extern  DECL_EXP wxDialog *GetActiveOptionsDialog();
 extern  DECL_EXP wxArrayString GetWaypointGUIDArray( void );
+extern  DECL_EXP wxArrayString GetIconNameArray(void);
 
 extern  DECL_EXP bool AddPersistentFontKey(wxString TextElement);
 extern  DECL_EXP wxString GetActiveStyleName();
@@ -1166,4 +1219,21 @@ private:
 
 extern WXDLLIMPEXP_CORE const wxEventType wxEVT_DOWNLOAD_EVENT;
 
+// API 1.14 Extra canvas Support
+
+/* Allow drawing of objects onto other OpenGL canvases */
+extern DECL_EXP void PlugInAISDrawGL( wxGLCanvas* glcanvas, const PlugIn_ViewPort& vp );
+extern DECL_EXP bool PlugInSetFontColor(const wxString TextElement, const wxColour color);
+
+// API 1.15
+extern DECL_EXP double PlugInGetDisplaySizeMM();
+
+// 
+extern DECL_EXP wxFont* FindOrCreateFont_PlugIn( int point_size, wxFontFamily family, 
+                    wxFontStyle style, wxFontWeight weight, bool underline = false,
+                    const wxString &facename = wxEmptyString,
+                    wxFontEncoding encoding = wxFONTENCODING_DEFAULT );
+
+extern DECL_EXP int PlugInGetMinAvailableGshhgQuality();
+extern DECL_EXP int PlugInGetMaxAvailableGshhgQuality();
 #endif //_PLUGIN_H_
