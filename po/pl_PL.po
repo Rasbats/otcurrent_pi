@@ -1,934 +1,148 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: grib_pi 2.2.1111\n"
+"Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-19 13:00+0000\n"
-"PO-Revision-Date: 2010-11-28 17:53+0100\n"
-"Last-Translator: Piotr Carlson <pjotrc@interia.pl>\n"
-"Language-Team: \n"
-"Language: \n"
+"POT-Creation-Date: 2018-02-04 14:34-0300\n"
+"PO-Revision-Date: 2018-02-04 12:39-0500\n"
+"Last-Translator: nohal <pavel@kalian.cz>\n"
+"Language-Team: Polish\n"
+"Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-#
-msgid "      < 0.5 knots"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: pl\n"
+"X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
+
+#: src/otcurrentUIDialog.cpp:153
+msgid "Using Tide/Current data from:  "
+msgstr "Użycie danych Pływ/Prąd z:  "
+
+#: src/otcurrentUIDialog.cpp:336
+msgid "Tidal Current\n"
+"------------------------------------------------------\n\n\n\n\n\n"
+"Use this data with caution.\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n\n"
+"------------------------------------------------------\n\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n\n"
 msgstr ""
-#
-#, c-format
-msgid " width = %d height = %d\n"
-msgstr ""
-#
-#, c-format
-msgid " x = %d y = %d\n"
-msgstr ""
-#
-msgid ">= 0.5 and < 1.5"
-msgstr ""
-#
-msgid ">= 1.5 and < 2.5"
-msgstr ""
-#
-msgid ">= 2.5 and < 3.5"
-msgstr ""
-#
-msgid ">= 3.5 knots    "
-msgstr ""
-#
+
+#: src/otcurrentUIDialog.cpp:337
 msgid "About Tidal Arrows"
+msgstr "O strzałkach pływów"
+
+#: src/otcurrentUIDialog.h:118
+msgid "Currents"
 msgstr ""
-#
-msgid "Cancel"
-msgstr ""
-#
+
+#: src/otcurrentUIDialogBase.cpp:20
 msgid "Date/Time"
+msgstr "Data i godzina"
+
+#: src/otcurrentUIDialogBase.cpp:22
+msgid "Day"
 msgstr ""
-#
-msgid "Display tidal direction"
+
+#: src/otcurrentUIDialogBase.cpp:36
+msgid "Now"
+msgstr "Teraz"
+
+#: src/otcurrentUIDialogBase.cpp:45
+msgid "Tidal Data Folder"
+msgstr "Folder danych pływów"
+
+#: src/otcurrentUIDialogBase.cpp:47
+msgid "Select a folder"
+msgstr "Wybierz folder"
+
+#: src/otcurrentUIDialogBase.cpp:57
+msgid "Step (Minutes)"
+msgstr "Krok (w minutach)"
+
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "60"
 msgstr ""
-#
-msgid "Display tidal rates (knots)"
+
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "30"
 msgstr ""
-#
-msgid "Fill Colour"
+
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "15"
 msgstr ""
-#
+
+#: src/otcurrentUIDialogBase.cpp:69
 msgid "Help"
-msgstr ""
-#
+msgstr "Pomoc"
+
+#: src/otcurrentUIDialogBase.cpp:73
+msgid "Previous"
+msgstr "Poprzedni"
+
+#: src/otcurrentUIDialogBase.cpp:79
+msgid "Next"
+msgstr "Następny"
+
+#: src/otcurrentUIDialogBase.cpp:128
+msgid "Display tidal rates (knots)"
+msgstr "Wyświetlanie wielkość pływów (węzłów)"
+
+#: src/otcurrentUIDialogBase.cpp:131
+msgid "Display tidal direction"
+msgstr "Wyświetl kierunek pływów"
+
+#: src/otcurrentUIDialogBase.cpp:134
+msgid "Fill Colour"
+msgstr "Kolor wypełnienia"
+
+#: src/otcurrentUIDialogBase.cpp:137
 msgid "High Resolution Display"
 msgstr ""
-#
-msgid "Next"
-msgstr ""
-#
-msgid "Now"
-msgstr ""
-#
-msgid "OK"
-msgstr ""
-#
-#
-#
-#, fuzzy
-msgid "Preferences"
-msgstr "Preferencje GRIB"
-#
-msgid "Previous"
-msgstr ""
-#
-msgid "START Date/Time"
-msgstr ""
-#
-msgid "Select"
-msgstr ""
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "Select a folder"
-msgstr "Wybierz katalog GRIB"
-#
-msgid "Select date/time for current prediction"
-msgstr ""
-#
-msgid "Step (Minutes)"
-msgstr ""
-#
-msgid ""
-"Tidal Current\n"
-"--------------------------------------------------------------\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"Use this data with caution.\n"
-"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n"
-"\n"
-"--------------------------------------------------------------------\n"
-"\n"
-"Note: 1 Rates shown are for a position corresponding to the centre\n"
-"of the base of the arrow. Tidal rate is shown as knots.\n"
-"\n"
-msgstr ""
-#
-#
-#, fuzzy
+
+#: src/otcurrentUIDialogBase.cpp:144
 msgid "Tidal Current Arrow Colour"
-msgstr "Ustawienia wyświetlania GRIB"
-#
-#
-#, fuzzy
-msgid "Tidal Current Control"
-msgstr "Ustawienia wyświetlania GRIB"
-#
-msgid "Tidal Data Folder"
-msgstr ""
-#
-msgid "Tide Calendar"
-msgstr ""
-#
-msgid "Time:"
-msgstr ""
-#
-msgid "Using Tide/Current data from:  "
-msgstr ""
-#
-#
-#, fuzzy
+msgstr "Kolor strzałki Prądu pływowego"
+
+#: src/otcurrentUIDialogBase.cpp:152
+msgid "      < 0.5 knots"
+msgstr "      < 0,5 węzłów"
+
+#: src/otcurrentUIDialogBase.cpp:159
+msgid ">= 0.5 and < 1.5"
+msgstr ">= 0.5 and < 1.5"
+
+#: src/otcurrentUIDialogBase.cpp:166
+msgid ">= 1.5 and < 2.5"
+msgstr "> = 1.5 i < 2.5"
+
+#: src/otcurrentUIDialogBase.cpp:173
+msgid ">= 2.5 and < 3.5"
+msgstr "> = 2.5 i < 3.5"
+
+#: src/otcurrentUIDialogBase.cpp:180
+msgid ">= 3.5 knots    "
+msgstr "> = 3,5 węzłów    "
+
+#: src/otcurrentUIDialogBase.h:103
+msgid "Preferences"
+msgstr "Ustawienia"
+
+#: src/otcurrent_pi.cpp:122 src/otcurrent_pi.cpp:125
 msgid "otcurrent"
-msgstr "Prędkość prądu, w."
-#
-#
-#, fuzzy
+msgstr "otcurrent"
+
+#: src/otcurrent_pi.cpp:187
 msgid "otcurrent PlugIn for OpenCPN"
-msgstr "Wtyczka do wyświetlania GRIB w OpenCPN"
-#
-msgid ""
-"otcurrent PlugIn for OpenCPN\n"
-"Provides an overlay of Tidal Current (Stream) Arrows.\n"
-"\n"
+msgstr "otcurrent PlugIn dla OpenCPN"
+
+#: src/otcurrent_pi.cpp:193
+msgid "otcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
 "\t\t\t   "
-msgstr ""
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "/Settings/otcurrent"
-#~ msgstr "Prędkość prądu, w."
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Colors"
-#~ msgstr "&Zamknij"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Current"
-#~ msgstr "Prędkość prądu, w."
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Data Display Preferences"
-#~ msgstr "Preferencje GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "GRIB"
-#~ msgstr "GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "GRIB File Directory"
-#~ msgstr "Katalog plików GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Grib"
-#~ msgstr "Grib"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Please Zoom or Scale Out to view invisible overlays:"
-#~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć HTSGW"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
-#~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć SEATEMP"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
-#~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć OCEAN CURRENT"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
-#~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć OCEAN CURRENT"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
-#~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć SEATEMP"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
-#~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć CRAIN"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Pressure"
-#~ msgstr "Ciśnienie, mbar"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Pressure (MSL)"
-#~ msgstr "Ciśnienie, mbar"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Sea Temp"
-#~ msgstr "Temp. powierzchni morza, C"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Show GRIB icon"
-#~ msgstr "Pokaż ikonę GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Sign.Wave Height"
-#~ msgstr "Wysokość fali znacznej, m"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Use High Definition Graphics"
-#~ msgstr "Użyj grafili wysokuej rozdzielczości"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
-#~ msgstr "UWAGA: Dane GRIB QuickScat są sprzed %d godzin."
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Wind Direction(10m)"
-#~ msgstr "Kierunek wiatru"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Wind Speed and Direction(10m)"
-#~ msgstr "Kierunek wiatru"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Wind Speed(10m)"
-#~ msgstr "Prędkość wiatru, w."
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Wind Speed, Kts."
-#~ msgstr "Prędkość wiatru, w."
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "otcurrent Settings"
-#~ msgstr "Preferencje GRIB"
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "otcurrentDialogPosX"
-#~ msgstr "Prędkość prądu, w."
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "otcurrentDialogPosY"
-#~ msgstr "Prędkość prądu, w."
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "otcurrentDialogSizeX"
-#~ msgstr "Prędkość prądu, w."
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "otcurrentDialogSizeY"
-#~ msgstr "Prędkość prądu, w."
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "otcurrentFolder"
-#~ msgstr "Prędkość prądu, w."
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "otcurrentInterval"
-#~ msgstr "Prędkość prądu, w."
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "otcurrentUseDirection"
-#~ msgstr "Preferencje GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "otcurrentUseFillColour"
-#~ msgstr "Preferencje GRIB"
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "otcurrentUseRate"
-#~ msgstr "Prędkość prądu, w."
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "tcdata"
-#~ msgstr "Dane GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid ""
-#~ "tcurrent PlugIn for OpenCPN\n"
-#~ "Provides basic tcurrent file overlay capabilities for several tcurrent "
-#~ "file types.\n"
-#~ "\n"
-#~ "Supported tcurrent file types include:\n"
-#~ "- wind direction and speed\n"
-#~ "- significant wave height\n"
-#~ "- sea surface temperature\n"
-#~ "- surface current direction and speed."
-#~ msgstr ""
-#~ "Wtyczka do wyświetlania GRIB w OpenCPN\n"
-#~ "Umożliwia podstawowe funkcje dla kilku rodzajów danych GRIB.\n"
-#~ "\n"
-#~ "Wśród wyświetlanych danych znajdują się:\n"
-#~ "- kierunek i prędkośc wiatru\n"
-#~ "- wysokośc fali znacznej\n"
-#~ "- temperatura wody powierzchniowej\n"
-#~ "- kierunek i prędkość prądu powierzchniowego."
+msgstr "otcurrent wtyczka do OpenCPN\n"
+"Zapewnia nakładkę Prądów pływowych.\n\n"
+"\t\t\t   "
+

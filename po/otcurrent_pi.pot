@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: otcurrent_pi 1.3\n"
+"Project-Id-Version: otcurrent_pi 1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-19 13:04+0000\n"
+"POT-Creation-Date: 2018-02-04 14:34-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,18 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/otcurrentUIDialog.cpp:159
+#: src/otcurrentUIDialog.cpp:153
 msgid "Using Tide/Current data from:  "
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:257
-msgid "START Date/Time"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:360
+#: src/otcurrentUIDialog.cpp:336
 msgid ""
 "Tidal Current\n"
-"--------------------------------------------------------------\n"
+"------------------------------------------------------\n"
 "\n"
 "\n"
 "\n"
@@ -37,140 +33,122 @@ msgid ""
 "Use this data with caution.\n"
 "Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n"
 "\n"
-"--------------------------------------------------------------------\n"
+"------------------------------------------------------\n"
 "\n"
 "Note: 1 Rates shown are for a position corresponding to the centre\n"
 "of the base of the arrow. Tidal rate is shown as knots.\n"
 "\n"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:361
+#: src/otcurrentUIDialog.cpp:337
 msgid "About Tidal Arrows"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:378
-#, c-format
-msgid " x = %d y = %d\n"
+#: src/otcurrentUIDialog.h:118
+msgid "Currents"
 msgstr ""
 
-#: src/otcurrentUIDialog.cpp:380
-#, c-format
-msgid " width = %d height = %d\n"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:384
-msgid "Tide Calendar"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:386
-msgid "Time:"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:395
-msgid "Cancel"
-msgstr ""
-
-#: src/otcurrentUIDialog.cpp:397
-msgid "OK"
-msgstr ""
-
-#: src/otcurrentUIDialogBase.cpp:21
+#: src/otcurrentUIDialogBase.cpp:20
 msgid "Date/Time"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:26
-msgid "Select"
-msgstr ""
-
-#: src/otcurrentUIDialogBase.cpp:27
-msgid "Select date/time for current prediction"
-msgstr ""
-
-#: src/otcurrentUIDialogBase.cpp:31
-msgid "Now"
+#: src/otcurrentUIDialogBase.cpp:22
+msgid "Day"
 msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:36
+msgid "Now"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:45
 msgid "Tidal Data Folder"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:38
+#: src/otcurrentUIDialogBase.cpp:47
 msgid "Select a folder"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:44
+#: src/otcurrentUIDialogBase.cpp:57
 msgid "Step (Minutes)"
 msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:60
+msgid "60"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "30"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "15"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:69
 msgid "Help"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:64
+#: src/otcurrentUIDialogBase.cpp:73
 msgid "Previous"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:68
+#: src/otcurrentUIDialogBase.cpp:79
 msgid "Next"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:127
+#: src/otcurrentUIDialogBase.cpp:128
 msgid "Display tidal rates (knots)"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:130
+#: src/otcurrentUIDialogBase.cpp:131
 msgid "Display tidal direction"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:133
+#: src/otcurrentUIDialogBase.cpp:134
 msgid "Fill Colour"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:136
+#: src/otcurrentUIDialogBase.cpp:137
 msgid "High Resolution Display"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:145
+#: src/otcurrentUIDialogBase.cpp:144
 msgid "Tidal Current Arrow Colour"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:165
+#: src/otcurrentUIDialogBase.cpp:152
 msgid "      < 0.5 knots"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:170
+#: src/otcurrentUIDialogBase.cpp:159
 msgid ">= 0.5 and < 1.5"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:175
+#: src/otcurrentUIDialogBase.cpp:166
 msgid ">= 1.5 and < 2.5"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:180
+#: src/otcurrentUIDialogBase.cpp:173
 msgid ">= 2.5 and < 3.5"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:185
+#: src/otcurrentUIDialogBase.cpp:180
 msgid ">= 3.5 knots    "
 msgstr ""
 
-#: src/otcurrentUIDialogBase.h:99 src/otcurrentUIDialogBase.h:101
-msgid "Tidal Current Control"
-msgstr ""
-
-#: src/otcurrentUIDialogBase.h:139
+#: src/otcurrentUIDialogBase.h:103
 msgid "Preferences"
 msgstr ""
 
-#: src/otcurrent_pi.cpp:121
+#: src/otcurrent_pi.cpp:122 src/otcurrent_pi.cpp:125
 msgid "otcurrent"
 msgstr ""
 
-#: src/otcurrent_pi.cpp:182
+#: src/otcurrent_pi.cpp:187
 msgid "otcurrent PlugIn for OpenCPN"
 msgstr ""
 
-#: src/otcurrent_pi.cpp:188
+#: src/otcurrent_pi.cpp:193
 msgid ""
 "otcurrent PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n"
