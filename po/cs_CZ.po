@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-14 08:25+0000\n"
-"PO-Revision-Date: 2017-11-26 13:49-0500\n"
+"POT-Creation-Date: 2018-02-04 14:34-0300\n"
+"PO-Revision-Date: 2018-02-04 12:38-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -14,193 +14,141 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Language: cs\n"
-"X-Crowdin-File: /plugins/vfkaps_pi/po/vfkaps_pi.pot\n"
+"X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
 
-#: src/vfkaps_pi.cpp:103
-msgid "VentureFarther Satellite Charts"
-msgstr ""
+#: src/otcurrentUIDialog.cpp:153
+msgid "Using Tide/Current data from:  "
+msgstr "Používám data přílivu/proudu z:  "
 
-#: src/vfkaps_pi.cpp:184
-msgid "Download Satellite Charts from VentureFarther.com"
-msgstr ""
+#: src/otcurrentUIDialog.cpp:336
+msgid "Tidal Current\n"
+"------------------------------------------------------\n\n\n\n\n\n"
+"Use this data with caution.\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n\n"
+"------------------------------------------------------\n\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n\n"
+msgstr "Přílivové proudy\n"
+"------------------------------------------------------\n\n\n\n\n\n"
+"Buď opatrný při použití těchto dat.\n"
+"Používat zároveň s atlasy přílivových proudů a diamanty proudů\n\n"
+"------------------------------------------------------\n\n"
+"Poznámka: 1 Zobrazené rychlosti odpovídají pozici v centru\n"
+"základny šipky. Rychlost proudu je zobrazena v uzlech.\n\n"
 
-#: src/vfkaps_pi.cpp:227 src/vfkapsgui.cpp:40 src/vfkapsgui_impl.cpp:101
-msgid "Generate Chart"
-msgstr ""
+#: src/otcurrentUIDialog.cpp:337
+msgid "About Tidal Arrows"
+msgstr "O přílivových šipkách"
 
-#: src/vfkaps_pi.cpp:228 src/vfkapsgui_impl.cpp:102
-msgid "Ready for chart download"
-msgstr ""
+#: src/otcurrentUIDialog.h:118
+msgid "Currents"
+msgstr "Proudy"
 
-#: src/vfkaps_pi.cpp:230 src/vfkapsgui_impl.cpp:104
-msgid "Generate Multi-Charts"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:20
+msgid "Date/Time"
+msgstr "Datum/čas"
 
-#: src/vfkaps_pi.cpp:231 src/vfkapsgui_impl.cpp:105
-msgid "Ready for multi-chart download"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:22
+msgid "Day"
+msgstr "Den"
 
-#: src/vfkaps_pi.cpp:233 src/vfkapsgui_impl.cpp:107
-msgid "Ready for marker chart download"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:36
+msgid "Now"
+msgstr "Teď"
 
-#: src/vfkapsgui.cpp:28 src/vfkapsgui.cpp:123
-msgid "Satellite Chart Source :"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:45
+msgid "Tidal Data Folder"
+msgstr "Složka přílivových dat"
 
-#: src/vfkapsgui.cpp:43 src/vfkapsgui.cpp:138 src/vfkapsgui.cpp:246
-msgid "..... Delete last download ....."
-msgstr ""
-
-#: src/vfkapsgui.cpp:102 src/vfkapsgui.cpp:197 src/vfkapsgui.cpp:249
-msgid "Status :"
-msgstr ""
-
-#: src/vfkapsgui.cpp:116
-msgid "Single Chart"
-msgstr ""
-
-#: src/vfkapsgui.cpp:135
-msgid "Generate Multi-Chart"
-msgstr ""
-
-#: src/vfkapsgui.cpp:211
-msgid "Multi-Chart"
-msgstr ""
-
-#: src/vfkapsgui.cpp:223
-msgid "Anchorage Charts :"
-msgstr ""
-
-#: src/vfkapsgui.cpp:232
-msgid "Select"
-msgstr ""
-
-#: src/vfkapsgui.cpp:243
-msgid "Generate"
-msgstr ""
-
-#: src/vfkapsgui.cpp:266
-msgid "Country Anchorage Charts"
-msgstr ""
-
-#: src/vfkapsgui.cpp:338
-msgid "Directory for saving chart downloads :"
-msgstr ""
-
-#: src/vfkapsgui.cpp:347
+#: src/otcurrentUIDialogBase.cpp:47
 msgid "Select a folder"
+msgstr "Vyber složku"
+
+#: src/otcurrentUIDialogBase.cpp:57
+msgid "Step (Minutes)"
+msgstr "Krok (minuty)"
+
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "60"
 msgstr ""
 
-#: src/vfkapsgui.cpp:353
-msgid "API key :"
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "30"
 msgstr ""
 
-#: src/vfkapsgui_impl.cpp:169
-msgid "Surrounding charts are not available at this scale\n"
-"Please zoom in closer or use the single chart page\n\n"
-"Chart scale needs to be less than 1:300000"
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "15"
 msgstr ""
 
-#: src/vfkapsgui_impl.cpp:195 src/vfkapsgui_impl.cpp:1120
-msgid "Please enter your API key in Preferences"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:69
+msgid "Help"
+msgstr "Nápověda"
 
-#: src/vfkapsgui_impl.cpp:200 src/vfkapsgui_impl.cpp:1125
-msgid "Please choose/create your satellite chart directory in Preferences"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:73
+msgid "Previous"
+msgstr "Předchozí"
 
-#: src/vfkapsgui_impl.cpp:235 src/vfkapsgui_impl.cpp:1177
-msgid "Directory for saving the chart does not exist \n"
-"Please use preferences to select/create a valid directory"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:79
+msgid "Next"
+msgstr "Další"
 
-#: src/vfkapsgui_impl.cpp:245
-msgid "Multi-Charts are not available at this very large scale\n"
-"Please zoom out a little"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:128
+msgid "Display tidal rates (knots)"
+msgstr "Zobrazit rychlost přílivu (uzly)"
 
-#: src/vfkapsgui_impl.cpp:265 src/vfkapsgui_impl.cpp:267
-msgid "Download aborted"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:131
+msgid "Display tidal direction"
+msgstr "Zobrazit směr přílivu"
 
-#: src/vfkapsgui_impl.cpp:274 src/vfkapsgui_impl.cpp:965
-msgid "Download failed.\n\n"
-"Do you have enough credit with VentureFarther?\n"
-"Are you connected to the Internet?"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:134
+msgid "Fill Colour"
+msgstr "Barva výplně"
 
-#: src/vfkapsgui_impl.cpp:277 src/vfkapsgui_impl.cpp:279
-#: src/vfkapsgui_impl.cpp:1207
-msgid "Download failed"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:137
+msgid "High Resolution Display"
+msgstr "Displej s vysokým rozlišením"
 
-#: src/vfkapsgui_impl.cpp:286 src/vfkapsgui_impl.cpp:288
-msgid "Download complete, about to extract charts"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:144
+msgid "Tidal Current Arrow Colour"
+msgstr "Barva přílivové šipky"
 
-#: src/vfkapsgui_impl.cpp:541 src/vfkapsgui_impl.cpp:545
-#: src/vfkapsgui_impl.cpp:549
-#, c-format
-msgid "Satellite Charts extracted to %s"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:152
+msgid "      < 0.5 knots"
+msgstr "      < 0,5 uzlu"
 
-#: src/vfkapsgui_impl.cpp:560 src/vfkapsgui_impl.cpp:562
-#: src/vfkapsgui_impl.cpp:564
-msgid "Unable to extract the charts"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:159
+msgid ">= 0.5 and < 1.5"
+msgstr ">= 0.5 a < 1.5"
 
-#: src/vfkapsgui_impl.cpp:585
-msgid "Cannot open file '"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:166
+msgid ">= 1.5 and < 2.5"
+msgstr ">= 1.5 a < 2.5"
 
-#: src/vfkapsgui_impl.cpp:607
-msgid "Cannot read zip entry '"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:173
+msgid ">= 2.5 and < 3.5"
+msgstr ">= 2.5 a < 3.5"
 
-#: src/vfkapsgui_impl.cpp:615
-msgid "Cannot create file '"
-msgstr ""
+#: src/otcurrentUIDialogBase.cpp:180
+msgid ">= 3.5 knots    "
+msgstr ">= 3.5 uzlu    "
 
-#: src/vfkapsgui_impl.cpp:642
-msgid "At the end of the download session:\n"
-"Go to Toolbox-> Charts->Chart Files\n"
-"Select Scan Charts and Update Database"
-msgstr ""
+#: src/otcurrentUIDialogBase.h:103
+msgid "Preferences"
+msgstr "Konfigurace"
 
-#: src/vfkapsgui_impl.cpp:924
-msgid "Have you downloaded any charts in this session?"
-msgstr ""
+#: src/otcurrent_pi.cpp:122 src/otcurrent_pi.cpp:125
+msgid "otcurrent"
+msgstr "otcurrent"
 
-#: src/vfkapsgui_impl.cpp:928
-msgid "You have chosen to delete the charts from the last download\n"
-"Do you wish to continue?"
-msgstr ""
+#: src/otcurrent_pi.cpp:187
+msgid "otcurrent PlugIn for OpenCPN"
+msgstr "Doplněk OTCurrent pro OpenCPN"
 
-#: src/vfkapsgui_impl.cpp:929
-msgid "Delete the last download"
-msgstr ""
-
-#: src/vfkapsgui_impl.cpp:943
-msgid "Go to Toolbox-> Charts->Chart Files\n"
-"Select Scan Charts and Update Database"
-msgstr ""
-
-#: src/vfkapsgui_impl.cpp:997
-msgid "fail"
-msgstr ""
-
-#: src/vfkapsgui_impl.cpp:1042 src/vfkapsgui_impl.cpp:1206
-msgid "Download failed.\n\n"
-"Do you have enough credit with VentureFarther?"
-msgstr ""
-
-#: src/vfkapsgui_impl.cpp:1078
-msgid "Clear ALL selections ..."
-msgstr ""
-
-#: src/vfkapsgui_impl.cpp:1211
-msgid "Download complete\n"
-"about to extract the charts"
-msgstr ""
+#: src/otcurrent_pi.cpp:193
+msgid "otcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
+"\t\t\t   "
+msgstr "Doplněk OTCurrent pro OpenCPN\n"
+"Poskkytuje překryvné zobrazení přílivových proudů pomocí šipek.\n\n"
+"\t\t\t   "
 

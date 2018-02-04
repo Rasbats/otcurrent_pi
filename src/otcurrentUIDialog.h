@@ -69,6 +69,12 @@ static const long long lNaN = 0xfff8000000000000;
 
 #define RT_RCDATA2           MAKEINTRESOURCE(999)
 
+#ifdef __WXOSX__
+#define OTCURRENT_DIALOG_STYLE wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxSTAY_ON_TOP
+#else
+#define OTCURRENT_DIALOG_STYLE wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER
+#endif
+
 class otcurrentOverlayFactory;
 class PlugIn_ViewPort;
 class PositionRecordSet;
@@ -109,7 +115,7 @@ public:
 class otcurrentUIDialog: public otcurrentUIDialogBase {
 public:
 
-    otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi);
+    otcurrentUIDialog(wxWindow* parent, otcurrent_pi *ppi, wxWindowID id = wxID_ANY, const wxString& title = _("Currents"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 400,300 ), long style = OTCURRENT_DIALOG_STYLE);
     ~otcurrentUIDialog();
 
     void OpenFile( bool newestFile = false );
@@ -141,7 +147,7 @@ public:
 	
 	time_t myCurrentTime; 
 
-	void OnCalendarShow( wxCommandEvent& event );
+	void OnDateTimeChanged( wxDateEvent& event );
 	void OnFolderSelChanged(wxFileDirPickerEvent& event);
 	void OnNow( wxCommandEvent& event );
 	wxString MakeDateTimeLabel(wxDateTime myDateTime);
@@ -178,29 +184,6 @@ private:
 
 	bool isNowButton;
 	wxTimeSpan  myTimeOfDay;
-
-};
-
-class CalendarDialog: public wxDialog
-{
-public:
- 
-	CalendarDialog ( wxWindow * parent, wxWindowID id, const wxString & title,
-	              const wxPoint & pos = wxDefaultPosition,
-	              const wxSize & size = wxDefaultSize,
-				  long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
-
-	wxCalendarCtrl* dialogCalendar; 
-	wxStaticText *m_staticText; 
-	wxTimeTextCtrl *_timeText;
-	wxSpinButton *_spinCtrl;
-	wxString GetText();
-
-	void spinUp(wxSpinEvent& event);
-	void spinDown(wxSpinEvent& event);
-
-private:
-	void OnOk( wxCommandEvent & event );
 
 };
 

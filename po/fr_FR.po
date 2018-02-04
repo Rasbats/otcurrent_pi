@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-14 08:25+0000\n"
-"PO-Revision-Date: 2017-11-26 13:50-0500\n"
+"POT-Creation-Date: 2018-02-04 14:34-0300\n"
+"PO-Revision-Date: 2018-02-04 12:39-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -14,193 +14,135 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Language: fr\n"
-"X-Crowdin-File: /plugins/vfkaps_pi/po/vfkaps_pi.pot\n"
+"X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
 
-#: src/vfkaps_pi.cpp:103
-msgid "VentureFarther Satellite Charts"
-msgstr "Cartes satellite VentureFarther"
+#: src/otcurrentUIDialog.cpp:153
+msgid "Using Tide/Current data from:  "
+msgstr "Utilisation des données de marée/courant depuis :  "
 
-#: src/vfkaps_pi.cpp:184
-msgid "Download Satellite Charts from VentureFarther.com"
-msgstr "Importer les cartes satellite de VentureFarther.com"
+#: src/otcurrentUIDialog.cpp:336
+msgid "Tidal Current\n"
+"------------------------------------------------------\n\n\n\n\n\n"
+"Use this data with caution.\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n\n"
+"------------------------------------------------------\n\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n\n"
+msgstr ""
 
-#: src/vfkaps_pi.cpp:227 src/vfkapsgui.cpp:40 src/vfkapsgui_impl.cpp:101
-msgid "Generate Chart"
-msgstr "Générer une carte"
+#: src/otcurrentUIDialog.cpp:337
+msgid "About Tidal Arrows"
+msgstr "Au sujet des flèches de marée"
 
-#: src/vfkaps_pi.cpp:228 src/vfkapsgui_impl.cpp:102
-msgid "Ready for chart download"
-msgstr "Prêt pour le télé-chargement de cartes"
+#: src/otcurrentUIDialog.h:118
+msgid "Currents"
+msgstr ""
 
-#: src/vfkaps_pi.cpp:230 src/vfkapsgui_impl.cpp:104
-msgid "Generate Multi-Charts"
-msgstr "Générer plusieurs cartes"
+#: src/otcurrentUIDialogBase.cpp:20
+msgid "Date/Time"
+msgstr "Date/Heure"
 
-#: src/vfkaps_pi.cpp:231 src/vfkapsgui_impl.cpp:105
-msgid "Ready for multi-chart download"
-msgstr "Prêt pour le chargement de plusieurs cartes"
+#: src/otcurrentUIDialogBase.cpp:22
+msgid "Day"
+msgstr ""
 
-#: src/vfkaps_pi.cpp:233 src/vfkapsgui_impl.cpp:107
-msgid "Ready for marker chart download"
-msgstr "Prêt pour le chargement de plusieurs cartes"
+#: src/otcurrentUIDialogBase.cpp:36
+msgid "Now"
+msgstr "Maintenant"
 
-#: src/vfkapsgui.cpp:28 src/vfkapsgui.cpp:123
-msgid "Satellite Chart Source :"
-msgstr "Origine des cartes satellite :"
+#: src/otcurrentUIDialogBase.cpp:45
+msgid "Tidal Data Folder"
+msgstr "Dossier des données de marées"
 
-#: src/vfkapsgui.cpp:43 src/vfkapsgui.cpp:138 src/vfkapsgui.cpp:246
-msgid "..... Delete last download ....."
-msgstr ".... supprimer le dernier télé-chargement ....."
-
-#: src/vfkapsgui.cpp:102 src/vfkapsgui.cpp:197 src/vfkapsgui.cpp:249
-msgid "Status :"
-msgstr "Statut :"
-
-#: src/vfkapsgui.cpp:116
-msgid "Single Chart"
-msgstr "Carte unique"
-
-#: src/vfkapsgui.cpp:135
-msgid "Generate Multi-Chart"
-msgstr "Générer plusieurs cartes"
-
-#: src/vfkapsgui.cpp:211
-msgid "Multi-Chart"
-msgstr "Multi-cartes"
-
-#: src/vfkapsgui.cpp:223
-msgid "Anchorage Charts :"
-msgstr "Cartes de mouillage :"
-
-#: src/vfkapsgui.cpp:232
-msgid "Select"
-msgstr "Sélectionner"
-
-#: src/vfkapsgui.cpp:243
-msgid "Generate"
-msgstr "Générer"
-
-#: src/vfkapsgui.cpp:266
-msgid "Country Anchorage Charts"
-msgstr "Pays de cartes de mouillage"
-
-#: src/vfkapsgui.cpp:338
-msgid "Directory for saving chart downloads :"
-msgstr "Répertoire où stocker les cartes téléchargées:"
-
-#: src/vfkapsgui.cpp:347
+#: src/otcurrentUIDialogBase.cpp:47
 msgid "Select a folder"
-msgstr "Sélectionner un dossier"
+msgstr "Choisissez un dossier"
 
-#: src/vfkapsgui.cpp:353
-msgid "API key :"
-msgstr "Clé API :"
+#: src/otcurrentUIDialogBase.cpp:57
+msgid "Step (Minutes)"
+msgstr "Pas (Minutes)"
 
-#: src/vfkapsgui_impl.cpp:169
-msgid "Surrounding charts are not available at this scale\n"
-"Please zoom in closer or use the single chart page\n\n"
-"Chart scale needs to be less than 1:300000"
-msgstr "Les cartes environnantes sont indisponibles à cette échelle, vous pouvez zoomer en plus grand ou utilisez la page \"carte unique\"; l'échelle graphique doit être inférieur à 1:300000"
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "60"
+msgstr ""
 
-#: src/vfkapsgui_impl.cpp:195 src/vfkapsgui_impl.cpp:1120
-msgid "Please enter your API key in Preferences"
-msgstr "Merci de saisir votre clé API dans Préférences"
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "30"
+msgstr ""
 
-#: src/vfkapsgui_impl.cpp:200 src/vfkapsgui_impl.cpp:1125
-msgid "Please choose/create your satellite chart directory in Preferences"
-msgstr "Choisissez/ Créer votre répertoire de cartes satellites dans l'item Préférences"
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "15"
+msgstr ""
 
-#: src/vfkapsgui_impl.cpp:235 src/vfkapsgui_impl.cpp:1177
-msgid "Directory for saving the chart does not exist \n"
-"Please use preferences to select/create a valid directory"
-msgstr "Le répertoire ou sauvegarder les cartes n'existes pas, utiliser l'item préférences pour sélectionner/créer un répertoire valide"
+#: src/otcurrentUIDialogBase.cpp:69
+msgid "Help"
+msgstr "Aide"
 
-#: src/vfkapsgui_impl.cpp:245
-msgid "Multi-Charts are not available at this very large scale\n"
-"Please zoom out a little"
-msgstr "Les cartes multiples ne sont pas disponibles à cette très grande échelle, merci d'effectuer un Zoom arrière"
+#: src/otcurrentUIDialogBase.cpp:73
+msgid "Previous"
+msgstr "Précédent"
 
-#: src/vfkapsgui_impl.cpp:265 src/vfkapsgui_impl.cpp:267
-msgid "Download aborted"
-msgstr "Télé chargement terminé précipitamment"
+#: src/otcurrentUIDialogBase.cpp:79
+msgid "Next"
+msgstr "Prochain"
 
-#: src/vfkapsgui_impl.cpp:274 src/vfkapsgui_impl.cpp:965
-msgid "Download failed.\n\n"
-"Do you have enough credit with VentureFarther?\n"
-"Are you connected to the Internet?"
-msgstr "Le téléchargement a échoué. Avez-vous assez de crédit avec VentureFarther ? êtes connecté à Internet ?"
+#: src/otcurrentUIDialogBase.cpp:128
+msgid "Display tidal rates (knots)"
+msgstr "Afficher les vitesses des courants de marée  (noeuds)"
 
-#: src/vfkapsgui_impl.cpp:277 src/vfkapsgui_impl.cpp:279
-#: src/vfkapsgui_impl.cpp:1207
-msgid "Download failed"
-msgstr "Le téléchargement à échoué"
+#: src/otcurrentUIDialogBase.cpp:131
+msgid "Display tidal direction"
+msgstr "Afficher la direction des courants (degrés)"
 
-#: src/vfkapsgui_impl.cpp:286 src/vfkapsgui_impl.cpp:288
-msgid "Download complete, about to extract charts"
-msgstr "Téléchargement complet, reste à en extraire les cartes"
+#: src/otcurrentUIDialogBase.cpp:134
+msgid "Fill Colour"
+msgstr "Remplissage en couleur des flèches"
 
-#: src/vfkapsgui_impl.cpp:541 src/vfkapsgui_impl.cpp:545
-#: src/vfkapsgui_impl.cpp:549
-#, c-format
-msgid "Satellite Charts extracted to %s"
-msgstr "Cartes satellite extraites à hauteur de %s"
+#: src/otcurrentUIDialogBase.cpp:137
+msgid "High Resolution Display"
+msgstr ""
 
-#: src/vfkapsgui_impl.cpp:560 src/vfkapsgui_impl.cpp:562
-#: src/vfkapsgui_impl.cpp:564
-msgid "Unable to extract the charts"
-msgstr "Impossible d'extraire les cartes"
+#: src/otcurrentUIDialogBase.cpp:144
+msgid "Tidal Current Arrow Colour"
+msgstr "Couleur de la flèche de courant"
 
-#: src/vfkapsgui_impl.cpp:585
-msgid "Cannot open file '"
-msgstr "Ouverture du fichier impossible"
+#: src/otcurrentUIDialogBase.cpp:152
+msgid "      < 0.5 knots"
+msgstr "      < 0.5 noeud"
 
-#: src/vfkapsgui_impl.cpp:607
-msgid "Cannot read zip entry '"
-msgstr "Impossible de lire le fichier Zip en entrée"
+#: src/otcurrentUIDialogBase.cpp:159
+msgid ">= 0.5 and < 1.5"
+msgstr ">= 0.5 et < 1.5"
 
-#: src/vfkapsgui_impl.cpp:615
-msgid "Cannot create file '"
-msgstr "Fichier impossible à créer"
+#: src/otcurrentUIDialogBase.cpp:166
+msgid ">= 1.5 and < 2.5"
+msgstr ">= 1.5 et < 2.5"
 
-#: src/vfkapsgui_impl.cpp:642
-msgid "At the end of the download session:\n"
-"Go to Toolbox-> Charts->Chart Files\n"
-"Select Scan Charts and Update Database"
-msgstr "À la fin de la session de téléchargement : sélectionner la boîte à outils-> cartes-> fichiers cartes sélectionnez les items Scan des cartes et mise à jour de base de données"
+#: src/otcurrentUIDialogBase.cpp:173
+msgid ">= 2.5 and < 3.5"
+msgstr ">= 2.5 et < 3.5"
 
-#: src/vfkapsgui_impl.cpp:924
-msgid "Have you downloaded any charts in this session?"
-msgstr "Avez-vous téléchargé une carte lors de cette session ?"
+#: src/otcurrentUIDialogBase.cpp:180
+msgid ">= 3.5 knots    "
+msgstr ">= 3.5 noeuds    "
 
-#: src/vfkapsgui_impl.cpp:928
-msgid "You have chosen to delete the charts from the last download\n"
-"Do you wish to continue?"
-msgstr "Vous avez choisi de supprimer les cartes depuis le dernier téléchargement souhaitez-vous continuer ?"
+#: src/otcurrentUIDialogBase.h:103
+msgid "Preferences"
+msgstr "Préferences"
 
-#: src/vfkapsgui_impl.cpp:929
-msgid "Delete the last download"
-msgstr "Effacer le dernier fichier téléchargé"
+#: src/otcurrent_pi.cpp:122 src/otcurrent_pi.cpp:125
+msgid "otcurrent"
+msgstr "otcurrent"
 
-#: src/vfkapsgui_impl.cpp:943
-msgid "Go to Toolbox-> Charts->Chart Files\n"
-"Select Scan Charts and Update Database"
-msgstr "Sélectioner le scan des cartes et la mise à jour de la base de données"
+#: src/otcurrent_pi.cpp:187
+msgid "otcurrent PlugIn for OpenCPN"
+msgstr "complément otcurrent pour OpenCPN"
 
-#: src/vfkapsgui_impl.cpp:997
-msgid "fail"
-msgstr "échec"
-
-#: src/vfkapsgui_impl.cpp:1042 src/vfkapsgui_impl.cpp:1206
-msgid "Download failed.\n\n"
-"Do you have enough credit with VentureFarther?"
-msgstr "Le téléchargement a échoué. Avez-vous assez de crédit avec VentureFarther ?"
-
-#: src/vfkapsgui_impl.cpp:1078
-msgid "Clear ALL selections ..."
-msgstr "Reset des paramêtres ..."
-
-#: src/vfkapsgui_impl.cpp:1211
-msgid "Download complete\n"
-"about to extract the charts"
-msgstr "Téléchargement complet, reste à en extraire les cartes"
+#: src/otcurrent_pi.cpp:193
+msgid "otcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
+"\t\t\t   "
+msgstr "Le complément otcurrent pour OpenCPN\n"
+"superpose des flèches indiquant les courants de marée (flux).\n\n"
+"\t\t\t   "
 
