@@ -132,6 +132,7 @@ public:
 	bool m_bUseDirection; 
 	bool m_bUseHighRes;
 	bool m_bUseFillColour;
+	wxString m_sUseScale;
 
 	wxString myUseColour[5];
 

@@ -103,6 +103,8 @@ public:
 	void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
         bool bforce_redraw_currents, bool bdraw_mono_for_mask, wxDateTime myTime);
 
+	wxPoint ScaleCurrentArrow(int index, wxPoint myPoint, int scale);
+
     void Reset();
 	wxImage &DrawGLText( double value, int precision);
 	wxImage &DrawGLTextDir( double value, int precision);
@@ -123,6 +125,7 @@ public:
     bool              m_bShowDirection;
 	bool			  m_bHighResolution;
 	bool              m_bShowFillColour;
+	wxString		  m_sShowScale;
 	wxDateTime        m_dtUseNew;
 
 private:

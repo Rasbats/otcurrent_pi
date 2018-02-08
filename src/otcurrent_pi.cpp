@@ -34,6 +34,7 @@
 
 #include <wx/fileconf.h>
 #include <wx/stdpaths.h>
+#include <wx/choice.h>
 
 #include "otcurrent_pi.h"
 #include "otcurrentUIDialogBase.h"
@@ -212,7 +213,11 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
     Pref->m_cbUseDirection->SetValue(m_bCopyUseDirection);
 	Pref->m_cbUseHighRes->SetValue(m_bCopyUseHighRes);
 	Pref->m_cbFillColour->SetValue(m_botcurrentUseHiDef);
-	
+
+	long selection;
+	m_sCopyUseScale.ToLong(&selection);
+
+	Pref->m_cScale->SetSelection((int)selection - 1);	
 
 	wxColour myC0 = wxColour(myVColour[0]);
 	Pref->myColourPicker0->SetColour(myC0);
@@ -245,6 +250,9 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
      bool copydirection = Pref->m_cbUseDirection->GetValue();
 	 bool copyresolution = Pref->m_cbUseHighRes->GetValue();
 
+	 int selection = Pref->m_cScale->GetSelection();
+	 wxString copyscale = Pref->m_cScale->GetString(selection);
+
 	 bool FillColour = Pref->m_cbFillColour->GetValue();
 
 		 if (m_bCopyUseRate != copyrate) {
@@ -262,7 +270,10 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 		 if (m_botcurrentUseHiDef != FillColour){
 			 m_botcurrentUseHiDef = FillColour;
 		 }
-		
+		 if (m_sCopyUseScale != copyscale){
+			 m_sCopyUseScale = copyscale;
+		 }
+
          if(m_potcurrentDialog )
 		 {	
 			 m_potcurrentDialog->OpenFile(true);
@@ -273,6 +284,7 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 			 m_potcurrentDialog->m_bUseDirection = m_bCopyUseDirection; 
 			 m_potcurrentDialog->m_bUseHighRes = m_bCopyUseHighRes;	
 			 m_potcurrentDialog->m_bUseFillColour = m_botcurrentUseHiDef;
+			 m_potcurrentDialog->m_sUseScale = m_sCopyUseScale;
 			
 
 			 m_potcurrentDialog->myUseColour[0] = myVColour[0];
@@ -288,6 +300,7 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 			 m_potcurrentOverlayFactory->m_bShowDirection = m_bCopyUseDirection;
 			 m_potcurrentOverlayFactory->m_bHighResolution = m_bCopyUseHighRes;
 			 m_potcurrentOverlayFactory->m_bShowFillColour = m_botcurrentUseHiDef;
+			 m_potcurrentOverlayFactory->m_sShowScale = m_sCopyUseScale;
 		 }
 
          SaveConfig();
@@ -426,7 +439,8 @@ bool otcurrent_pi::LoadConfig(void)
     m_bCopyUseDirection = pConf->Read ( _T( "otcurrentUseDirection" ), 1);
 	m_bCopyUseHighRes = pConf->Read(_T("otcurrentUseHighResolution"), 1);
 	m_botcurrentUseHiDef = pConf->Read ( _T( "otcurrentUseFillColour" ), 1);
-
+	m_sCopyUseScale = pConf->Read(_T("otcurrentUseScale"), "1");
+	
 	m_CopyFolderSelected = pConf->Read ( _T( "otcurrentFolder" ));
 	if (m_CopyFolderSelected == wxEmptyString){
 
@@ -467,6 +481,7 @@ bool otcurrent_pi::SaveConfig(void)
     pConf->Write ( _T( "otcurrentUseDirection" ), m_bCopyUseDirection );
 	pConf->Write(_T("otcurrentUseHighResolution"), m_bCopyUseHighRes);
 	pConf->Write ( _T( "otcurrentUseFillColour" ), m_botcurrentUseHiDef );
+	pConf->Write(_T("otcurrentUseScale"), m_sCopyUseScale);
 
 	pConf->Write ( _T( "otcurrentFolder" ), m_CopyFolderSelected); 
 	pConf->Write ( _T( "otcurrentInterval" ), m_CopyIntervalSelected);

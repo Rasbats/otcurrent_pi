@@ -51,7 +51,6 @@
 #include <wx/event.h>
 #include "otcurrent_pi.h"
 
-
 using namespace std;
 
 
@@ -86,6 +85,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
         pConf->Read ( _T ( "otcurrentUseDirection" ), &m_bUseDirection);
 		pConf->Read(_T("otcurrentUseHighResolution"), &m_bUseHighRes);
 		pConf->Read ( _T ( "otcurrentUseFillColour" ), &m_bUseFillColour);
+		pConf->Read(_T("otcurrentUseScale"), &m_sUseScale);
 
 		pConf->Read ( _T ( "otcurrentInterval" ), &m_IntervalSelected);
 		pConf->Read ( _T ( "otcurrentFolder" ), &m_FolderSelected);
@@ -137,13 +137,19 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
 	c.ToDouble(&value);
 	m_dInterval = value;
 
-	DimeWindow( this );
 
-    //Fit();
-    //SetMinSize( GetBestSize() );
+	wxDateTime::TimeZone tz(wxDateTime::Local);
+	long offset = tz.GetOffset(); // in sec from GMT0
+	double doffset = (double)offset;
+	double h = (long)(doffset / 3600);
+	double m = (doffset/3600 - h) * 60;
+	wxString tzs;
+	tzs = wxString::Format(_T("UTC %+03.0f:%02.0f"), h, m);
+	m_stTimeZone->SetLabel(tzs);
+
+	DimeWindow( this );
 	
 }
-
 
 void otcurrentUIDialog::LoadTCMFile()
 {
@@ -168,6 +174,7 @@ otcurrentUIDialog::~otcurrentUIDialog()
 		pConf->Write ( _T ( "otcurrentUseDirection" ), m_bUseDirection );
 		pConf->Write(_T("otcurrentUseHighResolution"), m_bUseHighRes);
 		pConf->Write ( _T ( "otcurrentUseFillColour" ), m_bUseFillColour );
+		pConf->Write(_T("otcurrentUseScale"), m_sUseScale);
 
 		pConf->Write( _T("VColour0"), myVColour[0] );
 		pConf->Write( _T("VColour1"), myVColour[1] );
@@ -235,6 +242,7 @@ void otcurrentUIDialog::OpenFile(bool newestFile)
 	m_bUseDirection = pPlugIn->GetCopyDirection();
 	m_bUseHighRes = pPlugIn->GetCopyResolution();
 	m_bUseFillColour = pPlugIn->GetCopyColour();
+	m_sUseScale = pPlugIn->GetCopyScale();
 
 	m_FolderSelected = pPlugIn->GetFolderSelected();
 	m_IntervalSelected = pPlugIn->GetIntervalSelected();

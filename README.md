@@ -2,6 +2,9 @@
 OTCurrent Plugin for OpenCPN
 ============================
 
+GUI updated by @Nohal (Pavel Kalian). SVG icons added and other improvements made.
+The plugin dialog now contains an indicator for the user's computer time zone setting. 
+
 Compiling
 ---------
 * This plugin now builds out of the OpenCPN source tree

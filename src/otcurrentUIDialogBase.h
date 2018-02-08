@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Jan 25 2018)
+// C++ code generated with wxFormBuilder (version Jan 23 2018)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -47,7 +47,6 @@ class otcurrentUIDialogBase : public wxDialog
 	protected:
 		wxStaticText* m_staticTextDatetime;
 		wxDatePickerCtrl* m_datePickerDate;
-		wxTimePickerCtrl* m_timePickerTime; 
 		wxBitmapButton* m_bpNow;
 		wxBitmapButton* m_bpPrev;
 		wxBitmapButton* m_bpNext;
@@ -64,10 +63,12 @@ class otcurrentUIDialogBase : public wxDialog
 		
 	
 	public:
+		wxTimePickerCtrl* m_timePickerTime; 
+		wxStaticText* m_stTimeZone;
 		wxDirPickerCtrl* m_dirPicker1;
 		wxChoice* m_choice1;
 		
-		otcurrentUIDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 400,300 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER ); 
+		otcurrentUIDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER ); 
 		~otcurrentUIDialogBase();
 	
 };
@@ -85,9 +86,14 @@ class otcurrentPreferencesDialogBase : public wxDialog
 		wxStaticText* m_staticTextMore35;
 	
 	protected:
+		wxStaticText* m_staticText8;
 		wxStdDialogButtonSizer* m_sdbSizerButtons;
 		wxButton* m_sdbSizerButtonsOK;
 		wxButton* m_sdbSizerButtonsCancel;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void OnChoice( wxCommandEvent& event ) { event.Skip(); }
+		
 	
 	public:
 		wxCheckBox* m_cbUseRate;
@@ -99,8 +105,9 @@ class otcurrentPreferencesDialogBase : public wxDialog
 		wxColourPickerCtrl* myColourPicker2;
 		wxColourPickerCtrl* myColourPicker3;
 		wxColourPickerCtrl* myColourPicker4;
+		wxChoice* m_cScale;
 		
-		otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 280,480 ), long style = wxCAPTION ); 
+		otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 235,442 ), long style = wxCAPTION ); 
 		~otcurrentPreferencesDialogBase();
 	
 };

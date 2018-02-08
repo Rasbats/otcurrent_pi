@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Jan 25 2018)
+// C++ code generated with wxFormBuilder (version Jan 23 2018)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -11,7 +11,7 @@
 
 otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxSize( 400,300 ), wxDefaultSize );
+	this->SetSizeHints( wxSize( -1,-1 ), wxDefaultSize );
 	
 	wxBoxSizer* bSizerMain;
 	bSizerMain = new wxBoxSizer( wxVERTICAL );
@@ -32,6 +32,12 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	
 	sbSizerDateTime->Add( 0, 0, 1, wxEXPAND, 5 );
 	
+	m_stTimeZone = new wxStaticText( sbSizerDateTime->GetStaticBox(), wxID_ANY, _("(UTC)"), wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT );
+	m_stTimeZone->Wrap( -1 );
+	m_stTimeZone->SetFont( wxFont( 12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxT("Arial") ) );
+	
+	sbSizerDateTime->Add( m_stTimeZone, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND, 5 );
+	
 	m_bpNow = new wxBitmapButton( sbSizerDateTime->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW );
 	m_bpNow->SetToolTip( _("Now") );
 	m_bpNow->SetMinSize( wxSize( 45,45 ) );
@@ -50,13 +56,9 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	
 	bSizerMain->Add( sbSizerFolder, 0, wxEXPAND, 5 );
 	
-	
-	bSizerMain->Add( 0, 0, 1, wxEXPAND, 5 );
-	
 	wxStaticBoxSizer* sbSizerControls;
 	sbSizerControls = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Step (Minutes)") ), wxHORIZONTAL );
 	
-	sbSizerControls->SetMinSize( wxSize( -1,30 ) ); 
 	wxString m_choice1Choices[] = { _("60"), _("30"), _("15") };
 	int m_choice1NChoices = sizeof( m_choice1Choices ) / sizeof( wxString );
 	m_choice1 = new wxChoice( sbSizerControls->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice1NChoices, m_choice1Choices, 0 );
@@ -87,6 +89,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	
 	this->SetSizer( bSizerMain );
 	this->Layout();
+	bSizerMain->Fit( this );
 	
 	this->Centre( wxBOTH );
 	
@@ -117,7 +120,7 @@ otcurrentUIDialogBase::~otcurrentUIDialogBase()
 
 otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxSize( 280,480 ), wxDefaultSize );
+	this->SetSizeHints( wxSize( -1,-1 ), wxDefaultSize );
 	
 	wxBoxSizer* bSizerMain;
 	bSizerMain = new wxBoxSizer( wxVERTICAL );
@@ -190,6 +193,30 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent
 	
 	bSizerMain->Add( sbSizerColours, 1, wxALL|wxEXPAND, 5 );
 	
+	wxStaticBoxSizer* sbSizer5;
+	sbSizer5 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Arrow Scaling") ), wxVERTICAL );
+	
+	wxFlexGridSizer* fgSizer2;
+	fgSizer2 = new wxFlexGridSizer( 0, 2, 0, 0 );
+	fgSizer2->SetFlexibleDirection( wxBOTH );
+	fgSizer2->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+	
+	m_staticText8 = new wxStaticText( sbSizer5->GetStaticBox(), wxID_ANY, _("Scale   x"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText8->Wrap( -1 );
+	fgSizer2->Add( m_staticText8, 0, wxALL, 5 );
+	
+	wxString m_cScaleChoices[] = { _("1"), _("2"), _("3"), _("4"), _("5"), _("6"), _("7"), _("8"), _("9"), _("10") };
+	int m_cScaleNChoices = sizeof( m_cScaleChoices ) / sizeof( wxString );
+	m_cScale = new wxChoice( sbSizer5->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_cScaleNChoices, m_cScaleChoices, 0 );
+	m_cScale->SetSelection( 0 );
+	fgSizer2->Add( m_cScale, 0, wxALL, 5 );
+	
+	
+	sbSizer5->Add( fgSizer2, 1, wxEXPAND, 5 );
+	
+	
+	bSizerMain->Add( sbSizer5, 1, wxEXPAND, 5 );
+	
 	m_sdbSizerButtons = new wxStdDialogButtonSizer();
 	m_sdbSizerButtonsOK = new wxButton( this, wxID_OK );
 	m_sdbSizerButtons->AddButton( m_sdbSizerButtonsOK );
@@ -204,8 +231,14 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent
 	this->Layout();
 	
 	this->Centre( wxBOTH );
+	
+	// Connect Events
+	m_cScale->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( otcurrentPreferencesDialogBase::OnChoice ), NULL, this );
 }
 
 otcurrentPreferencesDialogBase::~otcurrentPreferencesDialogBase()
 {
+	// Disconnect Events
+	m_cScale->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( otcurrentPreferencesDialogBase::OnChoice ), NULL, this );
+	
 }
