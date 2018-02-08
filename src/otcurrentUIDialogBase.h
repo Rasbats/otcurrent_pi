@@ -107,7 +107,7 @@ class otcurrentPreferencesDialogBase : public wxDialog
 		wxColourPickerCtrl* myColourPicker4;
 		wxChoice* m_cScale;
 		
-		otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 235,442 ), long style = wxCAPTION ); 
+		otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION ); 
 		~otcurrentPreferencesDialogBase();
 	
 };
