@@ -81,13 +81,13 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
     if(pConf) {
         pConf->SetPath ( _T ( "/Plugins/otcurrent" ) );
 
-		pConf->Read ( _T ( "otcurrentUseRate" ), &m_bUseRate );
-        pConf->Read ( _T ( "otcurrentUseDirection" ), &m_bUseDirection);
-		pConf->Read(_T("otcurrentUseHighResolution"), &m_bUseHighRes);
-		pConf->Read ( _T ( "otcurrentUseFillColour" ), &m_bUseFillColour);
-		pConf->Read(_T("otcurrentUseScale"), &m_sUseScale);
+		pConf->Read ( _T ( "otcurrentUseRate" ), &m_bUseRate, 1 );
+        pConf->Read ( _T ( "otcurrentUseDirection" ), &m_bUseDirection, 1);
+		pConf->Read(_T("otcurrentUseHighResolution"), &m_bUseHighRes, 1);
+		pConf->Read ( _T ( "otcurrentUseFillColour" ), &m_bUseFillColour, 1);
+		pConf->Read(_T("otcurrentUseScale"), &m_sUseScale, _T("1"));
 
-		pConf->Read ( _T ( "otcurrentInterval" ), &m_IntervalSelected);
+		pConf->Read ( _T ( "otcurrentInterval" ), &m_IntervalSelected, 20L);
 		pConf->Read ( _T ( "otcurrentFolder" ), &m_FolderSelected);
 
 		pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );

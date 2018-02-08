@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Jan 23 2018)
+// C++ code generated with wxFormBuilder (version Feb  6 2018)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -120,7 +120,7 @@ otcurrentUIDialogBase::~otcurrentUIDialogBase()
 
 otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxSize( -1,-1 ), wxDefaultSize );
+	this->SetSizeHints( wxSize( 400,400 ), wxDefaultSize );
 	
 	wxBoxSizer* bSizerMain;
 	bSizerMain = new wxBoxSizer( wxVERTICAL );
@@ -142,6 +142,9 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent
 	
 	
 	bSizerMain->Add( bSizerCheckboxes, 0, wxALL|wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizer4;
+	bSizer4 = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizerColours;
 	sbSizerColours = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Current Arrow Colour") ), wxVERTICAL );
@@ -191,13 +194,14 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent
 	sbSizerColours->Add( fgSizerColours, 1, wxEXPAND, 5 );
 	
 	
-	bSizerMain->Add( sbSizerColours, 1, wxALL|wxEXPAND, 5 );
+	bSizer4->Add( sbSizerColours, 1, wxALL|wxEXPAND, 5 );
 	
 	wxStaticBoxSizer* sbSizer5;
 	sbSizer5 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Arrow Scaling") ), wxVERTICAL );
 	
 	wxFlexGridSizer* fgSizer2;
 	fgSizer2 = new wxFlexGridSizer( 0, 2, 0, 0 );
+	fgSizer2->AddGrowableCol( 1 );
 	fgSizer2->SetFlexibleDirection( wxBOTH );
 	fgSizer2->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
@@ -209,13 +213,16 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent
 	int m_cScaleNChoices = sizeof( m_cScaleChoices ) / sizeof( wxString );
 	m_cScale = new wxChoice( sbSizer5->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_cScaleNChoices, m_cScaleChoices, 0 );
 	m_cScale->SetSelection( 0 );
-	fgSizer2->Add( m_cScale, 0, wxALL, 5 );
+	fgSizer2->Add( m_cScale, 0, wxALL|wxEXPAND, 5 );
 	
 	
 	sbSizer5->Add( fgSizer2, 1, wxEXPAND, 5 );
 	
 	
-	bSizerMain->Add( sbSizer5, 1, wxEXPAND, 5 );
+	bSizer4->Add( sbSizer5, 1, wxALL|wxEXPAND, 5 );
+	
+	
+	bSizerMain->Add( bSizer4, 1, wxEXPAND, 5 );
 	
 	m_sdbSizerButtons = new wxStdDialogButtonSizer();
 	m_sdbSizerButtonsOK = new wxButton( this, wxID_OK );
