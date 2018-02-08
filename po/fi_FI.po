@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-04 14:34-0300\n"
-"PO-Revision-Date: 2018-02-04 12:38-0500\n"
+"POT-Creation-Date: 2018-02-08 11:06-0300\n"
+"PO-Revision-Date: 2018-02-08 09:10-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
@@ -16,11 +16,11 @@ msgstr ""
 "X-Crowdin-Language: fi\n"
 "X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
 
-#: src/otcurrentUIDialog.cpp:153
+#: src/otcurrentUIDialog.cpp:159
 msgid "Using Tide/Current data from:  "
 msgstr "Käytetään vuorovesi/virta tietoja lähteestä:  "
 
-#: src/otcurrentUIDialog.cpp:336
+#: src/otcurrentUIDialog.cpp:344
 msgid "Tidal Current\n"
 "------------------------------------------------------\n\n\n\n\n\n"
 "Use this data with caution.\n"
@@ -28,15 +28,21 @@ msgid "Tidal Current\n"
 "------------------------------------------------------\n\n"
 "Note: 1 Rates shown are for a position corresponding to the centre\n"
 "of the base of the arrow. Tidal rate is shown as knots.\n\n"
-msgstr ""
+msgstr "Vuorovesi virtaus\n"
+"--------------------------------------------------------------\n\n\n\n\n\n"
+"Käytä tätä tietoa varauksella. \n"
+"Käytä yhdessä vuorovesivitauskartastojen ja vuorovesi ruutujen kanssa\n\n"
+"--------------------------------------------------------------\n\n"
+"Huomaa: 1 Lukemat on näytetty sijainnin suhteessa perusnuolen keskustaan.\n"
+"Vuorovesilukema näytetään solmuina.\n\n"
 
-#: src/otcurrentUIDialog.cpp:337
+#: src/otcurrentUIDialog.cpp:345
 msgid "About Tidal Arrows"
 msgstr "Tietoja vuorovesi nuolista"
 
 #: src/otcurrentUIDialog.h:118
 msgid "Currents"
-msgstr ""
+msgstr "Virtaukset"
 
 #: src/otcurrentUIDialogBase.cpp:20
 msgid "Date/Time"
@@ -44,101 +50,153 @@ msgstr "Päivämäärä/aika"
 
 #: src/otcurrentUIDialogBase.cpp:22
 msgid "Day"
+msgstr "Päivä"
+
+#: src/otcurrentUIDialogBase.cpp:35
+msgid "(UTC)"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:36
+#: src/otcurrentUIDialogBase.cpp:42
 msgid "Now"
 msgstr "Nyt"
 
-#: src/otcurrentUIDialogBase.cpp:45
+#: src/otcurrentUIDialogBase.cpp:51
 msgid "Tidal Data Folder"
 msgstr "Vuorovesi Datakansio"
 
-#: src/otcurrentUIDialogBase.cpp:47
+#: src/otcurrentUIDialogBase.cpp:53
 msgid "Select a folder"
 msgstr "Valitse kansio"
 
-#: src/otcurrentUIDialogBase.cpp:57
+#: src/otcurrentUIDialogBase.cpp:60
 msgid "Step (Minutes)"
 msgstr "Väli (minuuttia)"
 
-#: src/otcurrentUIDialogBase.cpp:60
+#: src/otcurrentUIDialogBase.cpp:62
 msgid "60"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:60
+#: src/otcurrentUIDialogBase.cpp:62
 msgid "30"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:60
+#: src/otcurrentUIDialogBase.cpp:62
 msgid "15"
 msgstr ""
 
-#: src/otcurrentUIDialogBase.cpp:69
+#: src/otcurrentUIDialogBase.cpp:71
 msgid "Help"
 msgstr "Ohje"
 
-#: src/otcurrentUIDialogBase.cpp:73
+#: src/otcurrentUIDialogBase.cpp:75
 msgid "Previous"
 msgstr "Edellinen"
 
-#: src/otcurrentUIDialogBase.cpp:79
+#: src/otcurrentUIDialogBase.cpp:81
 msgid "Next"
 msgstr "Seuraava"
 
-#: src/otcurrentUIDialogBase.cpp:128
+#: src/otcurrentUIDialogBase.cpp:131
 msgid "Display tidal rates (knots)"
 msgstr "Näytä vuorovesikertoimet (solmua)"
 
-#: src/otcurrentUIDialogBase.cpp:131
+#: src/otcurrentUIDialogBase.cpp:134
 msgid "Display tidal direction"
 msgstr "Näytä vuoroveden suunta"
 
-#: src/otcurrentUIDialogBase.cpp:134
+#: src/otcurrentUIDialogBase.cpp:137
 msgid "Fill Colour"
 msgstr "Täytä väri"
 
-#: src/otcurrentUIDialogBase.cpp:137
+#: src/otcurrentUIDialogBase.cpp:140
 msgid "High Resolution Display"
-msgstr ""
+msgstr "Korkean resoluution näyttö"
 
-#: src/otcurrentUIDialogBase.cpp:144
+#: src/otcurrentUIDialogBase.cpp:150
 msgid "Tidal Current Arrow Colour"
 msgstr "Vuorovesivirran nuolenväri"
 
-#: src/otcurrentUIDialogBase.cpp:152
+#: src/otcurrentUIDialogBase.cpp:158
 msgid "      < 0.5 knots"
 msgstr "      < 0,5 solmua"
 
-#: src/otcurrentUIDialogBase.cpp:159
+#: src/otcurrentUIDialogBase.cpp:165
 msgid ">= 0.5 and < 1.5"
 msgstr ">= 0.5 ja < 1.5"
 
-#: src/otcurrentUIDialogBase.cpp:166
+#: src/otcurrentUIDialogBase.cpp:172
 msgid ">= 1.5 and < 2.5"
 msgstr ">= 1.5 ja < 2.5"
 
-#: src/otcurrentUIDialogBase.cpp:173
+#: src/otcurrentUIDialogBase.cpp:179
 msgid ">= 2.5 and < 3.5"
 msgstr ">= 2.5 ja < 3.5"
 
-#: src/otcurrentUIDialogBase.cpp:180
+#: src/otcurrentUIDialogBase.cpp:186
 msgid ">= 3.5 knots    "
 msgstr ">= 3.5 solmua    "
 
-#: src/otcurrentUIDialogBase.h:103
+#: src/otcurrentUIDialogBase.cpp:200
+msgid "Arrow Scaling"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:208
+msgid "Scale   x"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "1"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "2"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "3"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "4"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "5"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "6"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "7"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "8"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "9"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "10"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.h:110
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: src/otcurrent_pi.cpp:122 src/otcurrent_pi.cpp:125
+#: src/otcurrent_pi.cpp:123 src/otcurrent_pi.cpp:126
 msgid "otcurrent"
 msgstr "vuorovesivirtaus"
 
-#: src/otcurrent_pi.cpp:187
+#: src/otcurrent_pi.cpp:188
 msgid "otcurrent PlugIn for OpenCPN"
 msgstr "OpenCPN:n vuorovesivirtaus lisäosa"
 
-#: src/otcurrent_pi.cpp:193
+#: src/otcurrent_pi.cpp:194
 msgid "otcurrent PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
 "\t\t\t   "
