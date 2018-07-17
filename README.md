@@ -12,7 +12,7 @@ Compiling
 git clone https://github.com/Rasbats/otcurrent_pi.git
 ```
 
-###Build:
+### Build:
 ```
 mkdir otcurrent_pi/build
 cd otcurrent_pi/build
@@ -24,7 +24,7 @@ Windows note: You must place opencpn.lib into your build directory to be able to
 Debugging:
 If you check out the plugin source into the plugins subdirectory of your OpenCPN source tree, you can build it as part of it (exactly as with the versions prior to 1.0)
 
-###Creating a package
+### Creating a package
 Linux
 ```
 make package
@@ -35,7 +35,7 @@ Windows
 cmake --build . --config release --target package
 ```
 
-###Build on Mac OS X:
+### Build on Mac OS X:
 Tools: Can be installed either manually or from Homebrew (http://brew.sh)
 ```
 #brew install git #If I remember well, it is already available on the system
@@ -47,7 +47,7 @@ ln -s /usr/local/Cellar/gettext/0.19.2/bin/msgfmt /usr/local/bin/msgfmt
 
 To target older OS X versions than the one you are running, you need the respective SDKs installed. The easiest way to achieve that is using https://github.co
 
-####Building wxWidgets
+#### Building wxWidgets
 (do not use wxmac from Homebrew, it is not compatible with OpenCPN)
 Get wxWidgets 3.0.x source from http://wxwidgets.org
 Configure, build and install
@@ -58,13 +58,13 @@ make
 sudo make install
 ```
 
-####Building the plugin
+#### Building the plugin
 Before running cmake, you must set the deployment target to OS X 10.7 to be compatible with the libraries used by core OpenCPN
 ```
 export MACOSX_DEPLOYMENT_TARGET=10.7
 ```
 
-####Packaging on OS X
+#### Packaging on OS X
 Get and install the Packages application from http://s.sudre.free.fr/Software/Packages/about.html
 ```
 make create-pkg
