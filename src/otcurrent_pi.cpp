@@ -76,6 +76,17 @@ otcurrent_pi::otcurrent_pi(void *ppimgr)
 {
       // Create the PlugIn icons
       initialize_images();
+
+	  wxString shareLocn = *GetpSharedDataLocation() +
+		  _T("plugins") + wxFileName::GetPathSeparator() +
+		  _T("otcurrent_pi") + wxFileName::GetPathSeparator()
+		  + _T("data") + wxFileName::GetPathSeparator();
+	  wxImage panelIcon(shareLocn + _T("otcurrent_panel_icon.png"));
+	  if (panelIcon.IsOk())
+		  m_panelBitmap = wxBitmap(panelIcon);
+	  else
+		  wxLogMessage(_T("    otcurrent panel icon NOT loaded"));
+
       m_bShowotcurrent = false;
 	  
      
@@ -174,7 +185,7 @@ int otcurrent_pi::GetPlugInVersionMinor()
 
 wxBitmap *otcurrent_pi::GetPlugInBitmap()
 {
-      return _img_otcurrent_pi;
+      return &m_panelBitmap;
 }
 
 wxString otcurrent_pi::GetCommonName()

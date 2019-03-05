@@ -144,7 +144,7 @@ private:
 
       bool			   m_bShowotcurrent;
 
-	
+	  wxBitmap		   m_panelBitmap;
 
 };
 
