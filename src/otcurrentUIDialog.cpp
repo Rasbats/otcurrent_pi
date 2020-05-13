@@ -116,7 +116,10 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
     MakeDateTimeLabel(m_dtNow);
 	
     if (m_FolderSelected == wxEmptyString){
-        wxString g_SData_Locn = *GetpSharedDataLocation();
+        
+        const char* pName = "otcurrent_pi";
+        wxString shareLocn = GetPluginDataDir(pName);         
+        wxString g_SData_Locn = shareLocn + "/data/";
         // Establish location of Tide and Current data
         pTC_Dir = new wxString(_T("tcdata"));
         pTC_Dir->Prepend(g_SData_Locn);

@@ -72,15 +72,14 @@ extern "C" DECL_EXP void destroy_pi(opencpn_plugin* p)
 //---------------------------------------------------------------------------------------------------------
 
 otcurrent_pi::otcurrent_pi(void *ppimgr)
-      :opencpn_plugin_115(ppimgr)
+      :opencpn_plugin_116(ppimgr)
 {
       // Create the PlugIn icons
       initialize_images();
 
-	  wxString shareLocn = *GetpSharedDataLocation() +
-		  _T("plugins") + wxFileName::GetPathSeparator() +
-		  _T("otcurrent_pi") + wxFileName::GetPathSeparator()
-		  + _T("data") + wxFileName::GetPathSeparator();
+      const char* pName = "otcurrent_pi";
+      wxString shareLocn = GetPluginDataDir(pName) + "/data/";
+    
 	  wxImage panelIcon(shareLocn + _T("otcurrent_panel_icon.png"));
 	  if (panelIcon.IsOk())
 		  m_panelBitmap = wxBitmap(panelIcon);
@@ -454,8 +453,9 @@ bool otcurrent_pi::LoadConfig(void)
 	
 	m_CopyFolderSelected = pConf->Read ( _T( "otcurrentFolder" ));
 	if (m_CopyFolderSelected == wxEmptyString){
-
-	  wxString g_SData_Locn = *GetpSharedDataLocation();
+        
+      const char* pName = "otcurrent_pi";
+      wxString g_SData_Locn = GetPluginDataDir(pName) + "/data/";
 
       // Establish location of Tide and Current data
       pTC_Dir = new wxString(_T("tcdata"));

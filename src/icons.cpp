@@ -34,9 +34,9 @@ void initialize_images(void)
 
 #ifdef OTCURRENT_USE_SVG
     wxFileName fn;
-    fn.SetPath(*GetpSharedDataLocation());
-    fn.AppendDir(_T("plugins"));
-    fn.AppendDir(_T("otcurrent_pi"));
+    const char* pName = "otcurrent_pi";
+    wxString tmp_path = GetPluginDataDir(pName);
+    fn.SetPath(tmp_path);
     fn.AppendDir(_T("data"));
     fn.SetFullName(_T("otcurrent_pi.svg"));
     _svg_otcurrent = fn.GetFullPath();
