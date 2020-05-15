@@ -11,6 +11,8 @@ wxBitmap *_img_otcurrent_pi;
 wxBitmap *_img_otcurrent;
 wxBitmap *_img_Clock;
 
+bool m_managedPlugin;
+
 #ifdef OTCURRENT_USE_SVG
 #include "ocpn_plugin.h"
 wxString _svg_otcurrent;
@@ -32,12 +34,27 @@ void initialize_images(void)
 		_img_Clock = new wxBitmap(wxImage(sm));
 	}
 
+#ifdef MANAGED_PLUGIN
+	m_managedPlugin = true;
+#else
+	m_managedPlugin = false;
+#endif
+
 #ifdef OTCURRENT_USE_SVG
     wxFileName fn;
-    const char* pName = "otcurrent_pi";
-    wxString tmp_path = GetPluginDataDir(pName);
-    fn.SetPath(tmp_path);
-    fn.AppendDir(_T("data"));
+	wxString tmp_path;
+	if (m_managedPlugin) {
+		tmp_path = GetPluginDataDir("otcurrent_pi");
+		fn.SetPath(tmp_path);
+		fn.AppendDir(_T("data"));
+	}
+	else {
+		fn.SetPath(*GetpSharedDataLocation());
+		fn.AppendDir(_T("plugins"));
+		fn.AppendDir(_T("otcurrent_pi"));
+		fn.AppendDir(_T("data"));
+	}
+
     fn.SetFullName(_T("otcurrent_pi.svg"));
     _svg_otcurrent = fn.GetFullPath();
     fn.SetFullName(_T("otcurrent_pi_toggled.svg"));

@@ -77,18 +77,32 @@ otcurrent_pi::otcurrent_pi(void *ppimgr)
       // Create the PlugIn icons
       initialize_images();
 
-      const char* pName = "otcurrent_pi";
-      wxString shareLocn = GetPluginDataDir(pName) + "/data/";
-    
-	  wxImage panelIcon(shareLocn + _T("otcurrent_panel_icon.png"));
+#ifdef MANAGED_PLUGIN
+	  m_managedPlugin = true;
+#else
+	  m_managedPlugin = false;
+#endif
+	  wxString shareLocn;
+
+	  if (m_managedPlugin) {
+		  wxString shareDir = GetPluginDataDir("otcurrent_pi");
+		  shareLocn = shareDir + "/data/";
+	  }
+	  else {
+		  shareLocn = *GetpSharedDataLocation() +
+			  "plugins" + wxFileName::GetPathSeparator() +
+			  "otcurrent_pi" + wxFileName::GetPathSeparator()
+			  + "data" + wxFileName::GetPathSeparator();
+	  }
+
+	  wxImage panelIcon(shareLocn + "otcurrent_panel_icon.png");
 	  if (panelIcon.IsOk())
 		  m_panelBitmap = wxBitmap(panelIcon);
 	  else
-		  wxLogMessage(_T("    otcurrent panel icon NOT loaded"));
+		  wxLogMessage(_("    otcurrent panel icon has NOT been loaded"));
 
-      m_bShowotcurrent = false;
-	  
-     
+
+      m_bShowotcurrent = false;  
 
 }
 
@@ -183,8 +197,9 @@ int otcurrent_pi::GetPlugInVersionMinor()
 }
 
 wxBitmap *otcurrent_pi::GetPlugInBitmap()
-{
-      return &m_panelBitmap;
+{  
+	
+	return &m_panelBitmap;
 }
 
 wxString otcurrent_pi::GetCommonName()
@@ -454,9 +469,21 @@ bool otcurrent_pi::LoadConfig(void)
 	m_CopyFolderSelected = pConf->Read ( _T( "otcurrentFolder" ));
 	if (m_CopyFolderSelected == wxEmptyString){
         
-      const char* pName = "otcurrent_pi";
-      wxString g_SData_Locn = GetPluginDataDir(pName) + "/data/";
+#ifdef MANAGED_PLUGIN
+		m_managedPlugin = true;
+#else
+		m_managedPlugin = false;
+#endif
+		wxString shareLocn;
 
+		if (m_managedPlugin) {
+			wxMessageBox("Select the folder with tidal current data");
+		}
+		else {
+			shareLocn = *GetpSharedDataLocation();
+		}
+
+	  wxString g_SData_Locn = shareLocn;
       // Establish location of Tide and Current data
       pTC_Dir = new wxString(_T("tcdata"));
       pTC_Dir->Prepend(g_SData_Locn);

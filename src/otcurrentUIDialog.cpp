@@ -114,12 +114,26 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
     m_timePickerTime->Connect( wxEVT_TIME_CHANGED, wxDateEventHandler( otcurrentUIDialog::OnDateTimeChanged ), NULL, this );
     m_dtNow = wxDateTime::Now(); 
     MakeDateTimeLabel(m_dtNow);
+
+	//wxMessageBox(m_FolderSelected);
 	
     if (m_FolderSelected == wxEmptyString){
         
-        const char* pName = "otcurrent_pi";
-        wxString shareLocn = GetPluginDataDir(pName);         
-        wxString g_SData_Locn = shareLocn + "/data/";
+#ifdef MANAGED_PLUGIN
+		m_managedPlugin = true;
+#else
+		m_managedPlugin = false;
+#endif
+		wxString shareLocn;
+
+		if (m_managedPlugin) {
+			wxMessageBox("Select the folder with tidal current data");
+		}
+		else {
+			shareLocn = *GetpSharedDataLocation();
+		}
+
+        wxString g_SData_Locn = shareLocn;
         // Establish location of Tide and Current data
         pTC_Dir = new wxString(_T("tcdata"));
         pTC_Dir->Prepend(g_SData_Locn);
@@ -132,6 +146,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
         m_dirPicker1->SetPath(m_FolderSelected);
     }
 
+	//wxMessageBox(m_FolderSelected);
     LoadTCMFile();
 	m_choice1->SetSelection(m_IntervalSelected);
 	int i = m_choice1->GetSelection();
@@ -159,6 +174,7 @@ void otcurrentUIDialog::LoadTCMFile()
     delete m_ptcmgr;
     wxString TCDir = m_FolderSelected;
     TCDir.Append(wxFileName::GetPathSeparator());
+
     wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
 
     wxString cache_locn = TCDir; 

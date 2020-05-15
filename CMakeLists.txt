@@ -38,6 +38,8 @@ set (CMAKE_CXX_STANDARD 11)
 
 #SET(CMAKE_BUILD_TYPE Debug)
 OPTION(OTCURRENT_USE_SVG "Use SVG graphics" ON)
+# For OpenCPN version 5.x, NOT 5.0 ON. For version 5.0 OFF
+OPTION(MANAGED_PLUGIN "Use managed plugin" OFF)
 
 INCLUDE("cmake/PluginConfigure.cmake")
 
@@ -45,9 +47,14 @@ IF(OTCURRENT_USE_SVG)
   ADD_DEFINITIONS(-DOTCURRENT_USE_SVG)
 ENDIF(OTCURRENT_USE_SVG)
 
+
+IF(MANAGED_PLUGIN)
+ADD_DEFINITIONS(-DMANAGED_PLUGIN)
+ENDIF(MANAGED_PLUGIN)
+
 SET(SRC_otcurrent
         src/bbox.cpp
-        src/bbox.h
+        src/bbox.h		
         src/otcurrent_pi.h
         src/otcurrent_pi.cpp
         src/otcurrentOverlayFactory.cpp
