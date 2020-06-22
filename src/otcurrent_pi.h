@@ -38,19 +38,14 @@
 #define     PLUGIN_VERSION_MINOR    6
 
 #define     MY_API_VERSION_MAJOR    1
+#define     MY_API_VERSION_MINOR    16
 
-#ifdef MANAGED_PLUGIN
-	#define     MY_API_VERSION_MINOR    16
-#else
-	#define     MY_API_VERSION_MINOR    15
-#endif
 
 #include "ocpn_plugin.h"
 #include "otcurrentOverlayFactory.h"
 #include "otcurrentUIDialog.h"
 
 extern wxString myVColour[5]; 
-
 
 
 //----------------------------------------------------------------------------------------------------------
@@ -150,8 +145,7 @@ private:
       bool			   m_bShowotcurrent;
 
 	  wxBitmap		   m_panelBitmap;
-
-	  bool m_managedPlugin;
+	  
 };
 
 //----------------------------------------------------------------------------------------

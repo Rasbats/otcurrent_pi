@@ -119,19 +119,9 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
 	
     if (m_FolderSelected == wxEmptyString){
         
-#ifdef MANAGED_PLUGIN
-		m_managedPlugin = true;
-#else
-		m_managedPlugin = false;
-#endif
 		wxString shareLocn;
-
-		if (m_managedPlugin) {
-			wxMessageBox("Select the folder with tidal current data");
-		}
-		else {
-			shareLocn = *GetpSharedDataLocation();
-		}
+		
+		shareLocn = *GetpSharedDataLocation();		
 
         wxString g_SData_Locn = shareLocn;
         // Establish location of Tide and Current data

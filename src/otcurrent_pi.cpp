@@ -77,30 +77,16 @@ otcurrent_pi::otcurrent_pi(void *ppimgr)
       // Create the PlugIn icons
       initialize_images();
 
-#ifdef MANAGED_PLUGIN
-	  m_managedPlugin = true;
-#else
-	  m_managedPlugin = false;
-#endif
 	  wxString shareLocn;
-
-	  if (m_managedPlugin) {
-		  wxString shareDir = GetPluginDataDir("otcurrent_pi");
-		  shareLocn = shareDir + "/data/";
-	  }
-	  else {
-		  shareLocn = *GetpSharedDataLocation() +
-			  "plugins" + wxFileName::GetPathSeparator() +
-			  "otcurrent_pi" + wxFileName::GetPathSeparator()
-			  + "data" + wxFileName::GetPathSeparator();
-	  }
-
+	  
+	  wxString shareDir = GetPluginDataDir("otcurrent_pi");
+	  shareLocn = shareDir + "/data/";	  
+	  
 	  wxImage panelIcon(shareLocn + "otcurrent_panel_icon.png");
 	  if (panelIcon.IsOk())
 		  m_panelBitmap = wxBitmap(panelIcon);
 	  else
 		  wxLogMessage(_("    otcurrent panel icon has NOT been loaded"));
-
 
       m_bShowotcurrent = false;  
 
@@ -469,24 +455,14 @@ bool otcurrent_pi::LoadConfig(void)
 	m_CopyFolderSelected = pConf->Read ( _T( "otcurrentFolder" ));
 	if (m_CopyFolderSelected == wxEmptyString){
         
-#ifdef MANAGED_PLUGIN
-		m_managedPlugin = true;
-#else
-		m_managedPlugin = false;
-#endif
 		wxString shareLocn;
-
-		if (m_managedPlugin) {
-			wxMessageBox("Select the folder with tidal current data");
-		}
-		else {
-			shareLocn = *GetpSharedDataLocation();
-		}
-
-	  wxString g_SData_Locn = shareLocn;
-      // Establish location of Tide and Current data
-      pTC_Dir = new wxString(_T("tcdata"));
-      pTC_Dir->Prepend(g_SData_Locn);
+		
+		shareLocn = *GetpSharedDataLocation();
+		
+		 wxString g_SData_Locn = shareLocn;
+		 // Establish location of Tide and Current data
+		 pTC_Dir = new wxString(_T("tcdata"));
+		 pTC_Dir->Prepend(g_SData_Locn);
 
 	  m_CopyFolderSelected = *pTC_Dir;	  
 	}

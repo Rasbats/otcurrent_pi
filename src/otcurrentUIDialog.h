@@ -185,7 +185,6 @@ private:
 
 	bool isNowButton;
 	wxTimeSpan  myTimeOfDay;
-	bool  m_managedPlugin;
 
 };
 
