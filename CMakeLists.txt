@@ -60,7 +60,7 @@ set(ALPHA "alpha") # Standard Repos
 
 set(CLOUDSMITH_USER "opencpn")
 # set this if your cloudsmith repository name does not match your git repository name set(CLOUDSMITH_BASE_REPOSITORY "sar")
-set(CLOUDSMITH_BASE_REPOSITORY "sar")
+set(CLOUDSMITH_BASE_REPOSITORY "otcurrent")
 
 set(XML_INFO_URL "https://opencpn.org/wiki/dokuwiki/doku.php?id=opencpn:opencpn_user_manual:plugins:safety:sar")
 set(XML_SUMMARY "Plugin to create search patterns for Search and Rescue")
