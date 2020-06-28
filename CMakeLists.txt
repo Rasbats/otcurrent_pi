@@ -37,7 +37,7 @@ SET(PACKAGE "otcurrent")
 SET(VERSION_MAJOR "2")
 SET(VERSION_MINOR "7")
 
-set(VERSION_PATCH "4")
+set(VERSION_PATCH "5")
 set(VERSION_TWEAK "0")
 set(VERSION_DATE "28/06/2020")
 set(OCPN_MIN_VERSION "ov50")
@@ -81,7 +81,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(USE_LOCAL_GLU TRUE)
 # Prefer libGL.so to libOpenGL.so, see CMP0072
 set(OpenGL_GL_PREFERENCE "LEGACY")
-option(USE_GL "Enable OpenGL support" ON)
+option(USE_GL "Enable OpenGL support" OFF)
 message(STATUS "${CMLOC}USE_GL: ${USE_GL}")
 
 
