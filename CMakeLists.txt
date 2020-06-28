@@ -37,7 +37,7 @@ SET(PACKAGE "otcurrent")
 SET(VERSION_MAJOR "2")
 SET(VERSION_MINOR "7")
 
-set(VERSION_PATCH "3")
+set(VERSION_PATCH "4")
 set(VERSION_TWEAK "0")
 set(VERSION_DATE "28/06/2020")
 set(OCPN_MIN_VERSION "ov50")
@@ -76,6 +76,13 @@ set(XML_DESCRIPTION "otcurrent displays tidal currents for selected dates and ti
 OPTION(OTCURRENT_USE_SVG "Use SVG graphics" ON)
 
 set(CMAKE_CXX_STANDARD 11)
+
+# Use local version of GLU library
+set(USE_LOCAL_GLU TRUE)
+# Prefer libGL.so to libOpenGL.so, see CMP0072
+set(OpenGL_GL_PREFERENCE "LEGACY")
+option(USE_GL "Enable OpenGL support" ON)
+message(STATUS "${CMLOC}USE_GL: ${USE_GL}")
 
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "")
