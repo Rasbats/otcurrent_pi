@@ -39,6 +39,7 @@
 #include "otcurrent_pi.h"
 #include "otcurrentUIDialogBase.h"
 #include "otcurrentUIDialog.h"
+#include "version.h"
 
 wxString myVColour[] = {_T("rgb(127, 0, 255)"), _T("rgb(0, 166, 80)"),  _T("rgb(253, 184, 19)"),  _T("rgb(248, 128, 64)"),  _T("rgb(248, 0, 0)")};
 
@@ -77,12 +78,17 @@ otcurrent_pi::otcurrent_pi(void *ppimgr)
       // Create the PlugIn icons
       initialize_images();
 
-	  wxString shareLocn;
-	  
-	  wxString shareDir = GetPluginDataDir("otcurrent_pi");
-	  shareLocn = shareDir + "/data/";	  
-	  
-	  wxImage panelIcon(shareLocn + "otcurrent_panel_icon.png");
+	  wxFileName fn;
+	  wxString tmp_path;
+
+	  tmp_path = GetPluginDataDir("otcurrent_pi");
+	  fn.SetPath(tmp_path);
+	  fn.AppendDir(_T("data"));
+	  fn.SetFullName("otcurrent_panel_icon.png");
+
+	  wxString shareLocn = fn.GetFullPath();  
+	  wxImage panelIcon(shareLocn);
+
 	  if (panelIcon.IsOk())
 		  m_panelBitmap = wxBitmap(panelIcon);
 	  else
