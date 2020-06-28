@@ -77,13 +77,10 @@ OPTION(OTCURRENT_USE_SVG "Use SVG graphics" ON)
 
 set(CMAKE_CXX_STANDARD 11)
 
-# Use local version of GLU library
-set(USE_LOCAL_GLU TRUE)
 # Prefer libGL.so to libOpenGL.so, see CMP0072
 set(OpenGL_GL_PREFERENCE "LEGACY")
-option(USE_GL "Enable OpenGL support" OFF)
-message(STATUS "${CMLOC}USE_GL: ${USE_GL}")
-
+# Don't use local version of GLU library
+set(USE_LOCAL_GLU FALSE)
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "")
     set(CMAKE_BUILD_TYPE
