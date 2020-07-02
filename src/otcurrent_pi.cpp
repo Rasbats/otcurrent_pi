@@ -37,7 +37,7 @@
 #include <wx/choice.h>
 
 #include "otcurrent_pi.h"
-#include "../build/CMakeFiles/include/version.h"
+#include "version.h"
 #include "wxWTranslateCatalog.h"
 
 #include "otcurrentUIDialogBase.h"
