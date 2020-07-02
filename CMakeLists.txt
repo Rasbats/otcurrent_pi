@@ -38,7 +38,7 @@ SET(VERSION_MAJOR "2")
 SET(VERSION_MINOR "7")
 
 set(VERSION_PATCH "6")
-set(VERSION_TWEAK "0")
+set(VERSION_TWEAK "1")
 set(VERSION_DATE "02/07/2020")
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
@@ -147,10 +147,19 @@ SET(SRC_otcurrent
         src/tinystr.h
 	    src/tinyxml.h
     )
+
+SET(LIBHDRS
+    libs/GL/gl.h
+    libs/GL/gl_private.h
+    libs/GL/glext.h
+    libs/GL/glu.h)
     
+ADD_DEFINITIONS(-DOTCURRENT_USE_SVG)   
+
+include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/)
+   
 ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_otcurrent})
 
-ADD_DEFINITIONS(-DOTCURRENT_USE_SVG)
 ADD_DEFINITIONS(-DTIXML_USE_STL)
 
 ##
