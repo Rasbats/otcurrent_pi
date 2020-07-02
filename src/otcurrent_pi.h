@@ -34,9 +34,6 @@
   #include <wx/glcanvas.h>
 #endif //precompiled headers
 
-#define     MY_API_VERSION_MAJOR    1
-#define     MY_API_VERSION_MINOR    16
-
 #include "ocpn_plugin.h"
 #include "otcurrentOverlayFactory.h"
 #include "otcurrentUIDialog.h"

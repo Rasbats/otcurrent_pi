@@ -37,9 +37,12 @@
 #include <wx/choice.h>
 
 #include "otcurrent_pi.h"
+#include "../build/CMakeFiles/include/version.h"
+#include "wxWTranslateCatalog.h"
+
 #include "otcurrentUIDialogBase.h"
 #include "otcurrentUIDialog.h"
-#include "version.h"
+
 
 wxString myVColour[] = {_T("rgb(127, 0, 255)"), _T("rgb(0, 166, 80)"),  _T("rgb(253, 184, 19)"),  _T("rgb(248, 128, 64)"),  _T("rgb(248, 0, 0)")};
 
@@ -106,7 +109,7 @@ otcurrent_pi::~otcurrent_pi(void)
 
 int otcurrent_pi::Init(void)
 {
-      AddLocaleCatalog( _T("opencpn-otcurrent_pi") );
+      AddLocaleCatalog(PLUGIN_CATALOG_NAME);
 
       // Set some default private member parameters
       m_otcurrent_dialog_x = 0;
@@ -170,12 +173,12 @@ bool otcurrent_pi::DeInit(void)
 
 int otcurrent_pi::GetAPIVersionMajor()
 {
-      return MY_API_VERSION_MAJOR;
+      return OCPN_API_VERSION_MAJOR;
 }
 
 int otcurrent_pi::GetAPIVersionMinor()
 {
-      return MY_API_VERSION_MINOR;
+      return OCPN_API_VERSION_MINOR;
 }
 
 int otcurrent_pi::GetPlugInVersionMajor()
