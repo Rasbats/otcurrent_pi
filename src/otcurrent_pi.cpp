@@ -173,12 +173,12 @@ bool otcurrent_pi::DeInit(void)
 
 int otcurrent_pi::GetAPIVersionMajor()
 {
-      return MY_API_VERSION_MAJOR;
+      return OCPN_API_VERSION_MAJOR;
 }
 
 int otcurrent_pi::GetAPIVersionMinor()
 {
-      return MY_API_VERSION_MINOR;
+      return OCPN_API_VERSION_MINOR;
 }
 
 int otcurrent_pi::GetPlugInVersionMajor()
