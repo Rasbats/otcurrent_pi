@@ -59,6 +59,7 @@ artifacts:
   - path: 'build\*.exe'
     name: installer
 
+# Removed from process as not providing real benefit at the moment
 #deploy:
 #  description: 'release created by AppVeyor CI'
 #  provider: GitHub
