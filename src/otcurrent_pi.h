@@ -38,6 +38,10 @@
 #include "otcurrentOverlayFactory.h"
 #include "otcurrentUIDialog.h"
 
+
+#define     MY_API_VERSION_MAJOR    1
+#define     MY_API_VERSION_MINOR    16
+
 extern wxString myVColour[5]; 
 
 
