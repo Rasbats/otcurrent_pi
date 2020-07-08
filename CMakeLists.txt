@@ -30,7 +30,7 @@ endif(COMMAND cmake_policy)
 
 SET(VERBOSE_NAME otcurrent)
 SET(COMMON_NAME "otcurrent")
-SET(TITLE_NAME otcurrent)
+SET(TITLE_NAME "otcurrent")
 SET(PACKAGE_CONTACT "Rasbats")
 SET(PACKAGE "otcurrent")
 
@@ -38,7 +38,7 @@ SET(VERSION_MAJOR "2")
 SET(VERSION_MINOR "7")
 
 set(VERSION_PATCH "7")
-set(VERSION_TWEAK "1")
+set(VERSION_TWEAK "2")
 set(VERSION_DATE "03/07/2020")
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
