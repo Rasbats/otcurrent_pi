@@ -34,6 +34,8 @@
   #include <wx/glcanvas.h>
 #endif //precompiled headers
 
+#include "config.h"
+
 #include "ocpn_plugin.h"
 #include "otcurrentOverlayFactory.h"
 #include "otcurrentUIDialog.h"

@@ -37,8 +37,6 @@
 #include <wx/choice.h>
 
 #include "otcurrent_pi.h"
-#include "version.h"
-#include "wxWTranslateCatalog.h"
 
 #include "otcurrentUIDialogBase.h"
 #include "otcurrentUIDialog.h"
@@ -109,7 +107,7 @@ otcurrent_pi::~otcurrent_pi(void)
 
 int otcurrent_pi::Init(void)
 {
-      AddLocaleCatalog(PLUGIN_CATALOG_NAME);
+      AddLocaleCatalog(_T("opencpn-otcurrent_pi"));
 
       // Set some default private member parameters
       m_otcurrent_dialog_x = 0;
@@ -173,12 +171,14 @@ bool otcurrent_pi::DeInit(void)
 
 int otcurrent_pi::GetAPIVersionMajor()
 {
-      return OCPN_API_VERSION_MAJOR;
+	return atoi(API_VERSION);
 }
 
 int otcurrent_pi::GetAPIVersionMinor()
 {
-      return OCPN_API_VERSION_MINOR;
+	std::string v(API_VERSION);
+	size_t dotpos = v.find('.');
+	return atoi(v.substr(dotpos + 1).c_str());
 }
 
 int otcurrent_pi::GetPlugInVersionMajor()
