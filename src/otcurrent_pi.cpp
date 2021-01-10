@@ -131,19 +131,10 @@ int otcurrent_pi::Init(void)
       // Get a pointer to the opencpn display canvas, to use as a parent for the otcurrent dialog
       m_parent_window = GetOCPNCanvasWindow();
 
-	
-
       //    This PlugIn needs a toolbar icon, so request its insertion if enabled locally
-      if(m_botcurrentShowIcon) {
-#ifdef OTCURRENT_USE_SVG
           m_leftclick_tool_id = InsertPlugInToolSVG(_T( "otcurrent" ), _svg_otcurrent, _svg_otcurrent, _svg_otcurrent_toggled,
             wxITEM_CHECK, _("otcurrent"), _T( "" ), NULL, otcurrent_TOOL_POSITION, 0, this);
-#else
-          m_leftclick_tool_id = InsertPlugInTool(_T(""), _img_otcurrent, _img_otcurrent, wxITEM_CHECK,
-                                                 _("otcurrent"), _T(""), NULL,
-                                                 otcurrent_TOOL_POSITION, 0, this);	  
-#endif
-      }
+
       return (WANTS_OVERLAY_CALLBACK |
               WANTS_OPENGL_OVERLAY_CALLBACK |
               WANTS_CURSOR_LATLON       |
