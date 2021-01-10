@@ -1,6 +1,7 @@
 # brew packages installed in macos ci build
 cmake
 gettext
+libtiff
 libexif
 python
 wget
