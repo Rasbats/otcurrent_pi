@@ -1,133 +1,78 @@
-# ---------------------------------------------------------------------------
-# Author:      jongough aka. Jon Gough Copyright: License:     wxWidgets License
-# ---------------------------------------------------------------------------
+# ~~~
+# Author:      Rasbats aka. Mike Rossiter
+# Copyright:
+# License:     wxWidgets License
+# ~~~
 
-## ----- When changing this file do NOT change the order in which sections occur        ----- ##
-## ----- Changes should only be made between the section blocks that identify where     ----- ##
-## ----- these changes should be. The whole configuration process relies on this        ----- ##
-## ----- sequence to be successful                                                      ----- ##
-##
-
-##
-## ----- Modify section below to include all the details for your plugin ----- ##
-##
-
-set(CMLOC "CMakeLists: ")
-
-# define minimum cmake version
-cmake_minimum_required(VERSION 3.1.1)
-if(COMMAND cmake_policy)
-    if(POLICY CMP0043)
-        cmake_policy(SET CMP0043 NEW)
-    endif(POLICY CMP0043)
-    cmake_policy(SET CMP0048 NEW)
-    if(POLICY CMP0077)
-        cmake_policy(SET CMP0077 NEW)
-    endif(POLICY CMP0077)
-endif(COMMAND cmake_policy)
-
-# define plugin name, owner and versions
-
-SET(VERBOSE_NAME otcurrent)
-SET(COMMON_NAME "otcurrent")
-SET(TITLE_NAME "otcurrent")
-SET(PACKAGE_CONTACT "Rasbats")
-SET(PACKAGE "otcurrent")
-
-SET(VERSION_MAJOR "2")
-SET(VERSION_MINOR "7")
-
-set(VERSION_PATCH "7")
-set(VERSION_TWEAK "2")
-set(VERSION_DATE "03/07/2020")
-set(OCPN_MIN_VERSION "ov50")
-set(OCPN_API_VERSION_MAJOR "1")
-set(OCPN_API_VERSION_MINOR "16")
-set(TP_COMMENT "  * Release for O5 using CI")
-
-set(PARENT "opencpn")
+# -------- Cmake setup ---------
 #
-#
-#
-#
-# The next line allows for setting up your own local webserver with git on it for testing purposes, the default is github.com
-set(GIT_REPOSITORY_SERVER "github.com")
+cmake_minimum_required(VERSION 3.5.1)
 
-# Specifies cloudsmith repository sufficies
-set(PROD "prod") # Standard Repos
-set(BETA "beta") # Standard Repos
-set(ALPHA "alpha") # Standard Repos
+cmake_policy(SET CMP0042 NEW)
 
-set(CLOUDSMITH_USER "opencpn")
-# set this if your cloudsmith repository name does not match your git repository name set(CLOUDSMITH_BASE_REPOSITORY "sar")
-set(CLOUDSMITH_BASE_REPOSITORY "otcurrent")
-
-set(XML_INFO_URL "https://opencpn.org/wiki/dokuwiki/doku.php?id=opencpn:opencpn_user_manual:plugins:navigation:otcurrent")
-set(XML_SUMMARY "Plugin to show tidal currents for selected dates and times")
-set(XML_DESCRIPTION "otcurrent displays tidal currents for selected dates and times")
-
-##
-## ----- Modify section above to include all the details for your plugin ----- ##
-##
-##
-## ----- Modify section below if there are special requirements for the plugin ----- ##
-##
-
-OPTION(OTCURRENT_USE_SVG "Use SVG graphics" ON)
-
-set(CMAKE_CXX_STANDARD 11)
+if (POLICY CMP0077)
+  cmake_policy(SET CMP0077 NEW)
+endif ()
 
 # Prefer libGL.so to libOpenGL.so, see CMP0072
 set(OpenGL_GL_PREFERENCE "LEGACY")
-# Don't use local version of GLU library
-set(USE_LOCAL_GLU FALSE)
 
-if("${CMAKE_BUILD_TYPE}" STREQUAL "")
-    set(CMAKE_BUILD_TYPE
-        "Release"
-        CACHE STRING "Choose the type of build" FORCE)
-endif("${CMAKE_BUILD_TYPE}" STREQUAL "")
-set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "" "Debug" "Release" "RelWithDebInfo" "MinSizeRel")
-message(STATUS "${CMLOC}Build type: ${CMAKE_BUILD_TYPE}")
+# Locations where cmake looks for cmake modules.
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/build ${CMAKE_SOURCE_DIR}/cmake)
 
-##
-## ----- The statements below are used to setup standard variables that are required by the CMAKE process - do not remove ----- ##
-##
-project(${PACKAGE})
+if (WIN32)
+  list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/buildwin)
+endif ()
+message(STATUS "Cmake version: ${CMAKE_VERSION}.")
 
-include("cmake/PluginSetup.cmake")
 
-##
-## ----- The above is used to setup standard variables that are required by the CMAKE process - do not remove ----- ##
-##
-
-##
-## ----- Modify section below if there are special requirements for the plugin ----- ##
-##
-
-set(CMAKE_VERBOSE_MAKEFILE ON)
-
-option(Plugin_CXX11 "Use c++11" OFF)
-
-##
-## ----- Modify section above if there are special requirements for the plugin ----- ##
-##
-
-##
-## ----- do not change next section - needed to configure build process ----- ##
-##
-
-include("cmake/PluginConfigure.cmake")
-
-##
-## ----- do not change section above - needed to configure build process ----- ##
-##
-
+# -------- Build setup (mostly in PluginCompiler) --------
 #
-# ----- Change below to match project requirements for source, headers, etc. ----- ##
-#
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-SET(SRC_otcurrent
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+message(STATUS "Building: ${BUILD_TYPE}")
+
+
+# -------- Options ----------
+
+set(OCPN_TEST_REPO
+    "opencpn/otcurrent-alpha"
+    CACHE STRING "Default repository for untagged builds"
+)
+set(OCPN_BETA_REPO
+    "opencpn/otcurrent-beta"
+    CACHE STRING 
+    "Default repository for tagged builds matching 'beta'"
+)
+set(OCPN_RELEASE_REPO
+    "opencpn/otcurrent-prod"
+    CACHE STRING 
+    "Default repository for tagged builds not matching 'beta'"
+)
+option(OTCURRENT_USE_SVG "Use SVG graphics" ON)
+
+
+# -------  Plugin setup --------
+#
+project(otcurrent_pi VERSION 2.8.0)
+
+set(DISPLAY_NAME otcurrent)    # Dialogs, installer artifacts, ...
+set(PLUGIN_API_NAME otcurrent) # As of GetCommonName() in plugin API
+set(CPACK_PACKAGE_CONTACT "Mike Rossiter")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Predict future tidal currents")
+set(CPACK_PACKAGE_DESCRIPTION [=[
+Allows predictions of future tidal currents, based on the harmonics data in
+OpenCPN.
+]=])
+
+set(PKG_RELEASE "1")
+set(PKG_AUTHOR "Mike Rossiter")
+
+
+SET(SRC
         src/bbox.cpp
         src/bbox.h		
         src/otcurrent_pi.h
@@ -147,33 +92,108 @@ SET(SRC_otcurrent
         src/tinystr.h
 	    src/tinyxml.h
     )
+ 
+macro(SetupOpenGL)
+  find_package(OpenGL)
+  if (OPENGL_FOUND)
+    # Linking to OPENGL::GL should make it, but fails on Windows.
+    target_link_libraries(${PACKAGE_NAME} ${OPENGL_LIBRARIES})
+    include_directories(${OPENGL_INCLUDE_DIR})
+  endif ()
+  if (APPLE)
+    # This is certainly neither stable nor portable, but I just cannot
+    # figure out how to handle it properly. FindOpenGL should
+    # actually find this directory, but doesn't (:
+    string(CONCAT _glinclude
+       "/Applications/Xcode-*app/Contents/Developer/Platforms"
+       "/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System"
+       "/Library/Frameworks/OpenGL.framework/Versions/A/Headers"
+    )
+    file(GLOB _glinclude ${_glinclude})
+    if (EXISTS "${_glinclude}")
+      include_directories("${_glinclude}")
+    else ()
+      message(WARNING "Cannot find gl.h, using bundled copy")
+      include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include/GL")
+    endif ()
+  endif ()
+endmacro()    
 
-SET(LIBHDRS
-    libs/GL/gl.h
-    libs/GL/gl_private.h
-    libs/GL/glext.h
-    libs/GL/glu.h)
-    
-ADD_DEFINITIONS(-DOTCURRENT_USE_SVG)   
+# -------- Setup completed, build the plugin --------
+#
+add_library(${CMAKE_PROJECT_NAME} SHARED ${SRC})
+include_directories(BEFORE ${CMAKE_BINARY_DIR}/include)
 
-include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/)
-   
-ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_otcurrent})
+add_subdirectory("libs/api-16")
+target_link_libraries(${CMAKE_PROJECT_NAME} ocpn::api)
 
-ADD_DEFINITIONS(-DTIXML_USE_STL)
+set(VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(VERSION_PATCH ${PROJECT_VERSION_PATCH})
+set(PACKAGE_NAME ${CMAKE_PROJECT_NAME})
 
-##
-## ----- Change above to match project requirements ----- ##
-##
+# Create the minimim ocpn version id string like ov50
+string(REGEX REPLACE "\([0-9]\)\.\([0-9]\).*" "ov\\1\\2"
+       OCPN_MIN_VERSION ${API_OCPN_MIN_VERSION})
 
-##
-## ----- do not change next section - needed to configure build process ----- ##
-##
+if (OTCURRENT_USE_SVG)
+  add_definitions(-DOTCURRENT_USE_SVG)
+endif ()
 
-include("cmake/PluginInstall.cmake")
-include("cmake/PluginLocalization.cmake")
-include("cmake/PluginPackage.cmake")
+# Set up targets. Targets sets up a recursive call with BUILD_TYPE set to
+# 'flatpak', 'pkg' or 'tarball'. The initial call without BUILD_TYPE ends
+# here.
+#
+include(Targets)
+create_targets(
+  ${PROJECT_SOURCE_DIR}/flatpak/org.opencpn.OpenCPN.Plugin.otcurrent.yaml
+)
+if ("${BUILD_TYPE}" STREQUAL "")
+  return ()
+endif ()
 
-##
-## ----- do not change section above - needed to configure build process ----- ##
-##
+if (NOT ${BUILD_TYPE} STREQUAL "flatpak")
+  # Build package as required (flatpak already dealt with).
+  #
+  include(PluginCompiler)
+  include(PluginLibs)
+  include(PluginLocalization)
+  include(PluginInstall)
+  include(PluginPackage)
+
+  add_subdirectory("libs/jsoncpp")
+  target_link_libraries(${PACKAGE_NAME} ocpn::jsoncpp)
+  
+  add_subdirectory("libs/tinyxml")
+  target_link_libraries(${PACKAGE_NAME} ocpn::tinyxml)
+  
+  add_subdirectory("libs/wxJSON")
+  target_link_libraries(${PACKAGE_NAME} ocpn::wxjson)
+  
+  setupOpenGL()
+endif ()
+
+configure_file(
+  ${CMAKE_SOURCE_DIR}/config.h.in ${CMAKE_BINARY_DIR}/include//config.h
+  @ONLY
+)
+
+configure_file(
+  # The cloudsmith upload script
+  ${CMAKE_SOURCE_DIR}/ci/upload.sh.in ${CMAKE_BINARY_DIR}/upload.sh
+  @ONLY
+)
+configure_file(
+  # The cloudsmith upload script, windows bat file.
+  ${CMAKE_SOURCE_DIR}/ci/upload.bat.in ${CMAKE_BINARY_DIR}/upload.bat
+  @ONLY
+)
+
+
+set(checksum "@checksum@")
+configure_file(
+  # The XML metadata file
+  ${CMAKE_SOURCE_DIR}/otcurrent-plugin.xml.in
+  ${CMAKE_BINARY_DIR}/${pkg_displayname}.xml.in
+  @ONLY
+)
