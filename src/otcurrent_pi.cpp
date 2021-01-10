@@ -95,8 +95,6 @@ otcurrent_pi::otcurrent_pi(void *ppimgr)
 	  else
 		  wxLogMessage(_("    otcurrent panel icon has NOT been loaded"));
 
-      m_bShowotcurrent = false;  
-
 }
 
 otcurrent_pi::~otcurrent_pi(void)
@@ -116,7 +114,7 @@ int otcurrent_pi::Init(void)
       m_otcurrent_dialog_sy = 400;
       m_potcurrentDialog = NULL;
       m_potcurrentOverlayFactory = NULL;
-      m_botcurrentShowIcon = true;
+      m_botcurrentShowIcon = false;
 
       ::wxDisplaySize(&m_display_width, &m_display_height);
 
@@ -132,7 +130,7 @@ int otcurrent_pi::Init(void)
       m_parent_window = GetOCPNCanvasWindow();
 
       //    This PlugIn needs a toolbar icon, so request its insertion if enabled locally
-          m_leftclick_tool_id = InsertPlugInToolSVG(_T( "otcurrent" ), _svg_otcurrent, _svg_otcurrent, _svg_otcurrent_toggled,
+          m_leftclick_tool_id = InsertPlugInToolSVG(_T( "" ), _svg_otcurrent, _svg_otcurrent, _svg_otcurrent_toggled,
             wxITEM_CHECK, _("otcurrent"), _T( "" ), NULL, otcurrent_TOOL_POSITION, 0, this);
 
       return (WANTS_OVERLAY_CALLBACK |
