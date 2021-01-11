@@ -19,7 +19,7 @@ set(OpenGL_GL_PREFERENCE "LEGACY")
 # Don't use local version of GLU library
 set(USE_LOCAL_GLU FALSE)
 
-option(USE_GL "Enable OpenGL support" ON)
+option(USE_GL "Enable OpenGL support" OFF)
 message(STATUS "${CMLOC}USE_GL: ${USE_GL}")
 
 # Locations where cmake looks for cmake modules.
