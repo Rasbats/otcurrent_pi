@@ -11,11 +11,11 @@ wxBitmap *_img_otcurrent_pi;
 wxBitmap *_img_otcurrent;
 wxBitmap *_img_Clock;
 
-#ifdef OTCURRENT_USE_SVG
+
 #include "ocpn_plugin.h"
 wxString _svg_otcurrent;
 wxString _svg_otcurrent_toggled;
-#endif
+
 
 void initialize_images(void)
 {
@@ -32,7 +32,7 @@ void initialize_images(void)
 		_img_Clock = new wxBitmap(wxImage(sm));
 	}
 
-#ifdef OTCURRENT_USE_SVG
+
     wxFileName fn;
 	wxString tmp_path;
 	
@@ -44,7 +44,7 @@ void initialize_images(void)
     _svg_otcurrent = fn.GetFullPath();
     fn.SetFullName(_T("otcurrent_pi_toggled.svg"));
     _svg_otcurrent_toggled = fn.GetFullPath();
-#endif
+
 
 	return;
 }
