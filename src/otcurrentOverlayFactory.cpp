@@ -387,7 +387,7 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
 
 void otcurrentOverlayFactory::DrawGLLine( double x1, double y1, double x2, double y2, double width, wxColour myColour )
 {
-    {
+    ifdef ocpnUSE_GL {
         wxColour isoLineColor = myColour;
 		glColor4ub(isoLineColor.Red(), isoLineColor.Green(), isoLineColor.Blue(),
                      255/*isoLineColor.Alpha()*/);
