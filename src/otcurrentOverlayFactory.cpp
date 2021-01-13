@@ -366,6 +366,7 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
 
 	// Scale the image and convert to a bitmap.
 	wxBitmap outBmp(image.Scale(32, 32), 32);
+	outBmp.UseAlpha();
 	image = outBmp.ConvertToImage();
 
     return image;
