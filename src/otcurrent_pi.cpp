@@ -94,6 +94,8 @@ otcurrent_pi::otcurrent_pi(void *ppimgr)
 		  m_panelBitmap = wxBitmap(panelIcon);
 	  else
 		  wxLogMessage(_("    otcurrent panel icon has NOT been loaded"));
+		  
+      m_bShowotcurrent = false;
 
 }
 
@@ -117,6 +119,9 @@ int otcurrent_pi::Init(void)
       m_botcurrentShowIcon = false;
 
       ::wxDisplaySize(&m_display_width, &m_display_height);
+      
+           // Get a pointer to the opencpn display canvas, to use as a parent for the otcurrent dialog
+      m_parent_window = GetOCPNCanvasWindow();
 
       //    Get a pointer to the opencpn configuration object
       m_pconfig = GetOCPNConfigObject();
@@ -124,14 +129,21 @@ int otcurrent_pi::Init(void)
       //    And load the configuration items
       LoadConfig();
 
+        //    This PlugIn needs a toolbar icon, so request its insertion
+	if(m_bShowotcurrent)
 
-
-      // Get a pointer to the opencpn display canvas, to use as a parent for the otcurrent dialog
-      m_parent_window = GetOCPNCanvasWindow();
+#ifdef OTCURRENT_USE_SVG 
 
       //    This PlugIn needs a toolbar icon, so request its insertion if enabled locally
           m_leftclick_tool_id = InsertPlugInToolSVG(_T( "" ), _svg_otcurrent, _svg_otcurrent, _svg_otcurrent_toggled,
             wxITEM_CHECK, _("otcurrent"), _T( "" ), NULL, otcurrent_TOOL_POSITION, 0, this);
+#else
+		m_leftclick_tool_id  = InsertPlugInTool(_T(""), _img_otcurrent_pi, _img_otcurrent, wxITEM_CHECK,
+            _("VentureFarther Satellite Charts"), _T(""), NULL,
+             CALCULATOR_TOOL_POSITION, 0, this);
+#endif
+
+	m_potcurrentDialog = NULL;
 
       return (WANTS_OVERLAY_CALLBACK |
               WANTS_OPENGL_OVERLAY_CALLBACK |
@@ -154,6 +166,10 @@ bool otcurrent_pi::DeInit(void)
 
     delete m_potcurrentOverlayFactory;
     m_potcurrentOverlayFactory = NULL;
+    
+    SaveConfig();
+
+    RequestRefresh(m_parent_window); // refresh main window
 
     return true;
 }
@@ -322,7 +338,7 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 void otcurrent_pi::OnToolbarToolCallback(int id)
 {
     
-	if(!m_potcurrentDialog)
+	if(NULL == m_potcurrentDialog)
     {
 		       		
 		m_potcurrentDialog = new otcurrentUIDialog(m_parent_window, this);
@@ -337,45 +353,8 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
         m_potcurrentOverlayFactory->SetParentSize( m_display_width, m_display_height);		
         
     }
-
-      // Qualify the otcurrent dialog position
-            bool b_reset_pos = false;
-
-#ifdef __WXMSW__
-        //  Support MultiMonitor setups which an allow negative window positions.
-        //  If the requested window does not intersect any installed monitor,
-        //  then default to simple primary monitor positioning.
-            RECT frame_title_rect;
-            frame_title_rect.left =   m_otcurrent_dialog_x;
-            frame_title_rect.top =    m_otcurrent_dialog_y;
-            frame_title_rect.right =  m_otcurrent_dialog_x + m_otcurrent_dialog_sx;
-            frame_title_rect.bottom = m_otcurrent_dialog_y + 30;
-
-
-            if(NULL == MonitorFromRect(&frame_title_rect, MONITOR_DEFAULTTONULL))
-                  b_reset_pos = true;
-#else
-       //    Make sure drag bar (title bar) of window on Client Area of screen, with a little slop...
-            wxRect window_title_rect;                    // conservative estimate
-            window_title_rect.x = m_otcurrent_dialog_x;
-            window_title_rect.y = m_otcurrent_dialog_y;
-            window_title_rect.width = m_otcurrent_dialog_sx;
-            window_title_rect.height = 30;
-
-            wxRect ClientRect = wxGetClientDisplayRect();
-            ClientRect.Deflate(60, 60);      // Prevent the new window from being too close to the edge
-            if(!ClientRect.Intersects(window_title_rect))
-                  b_reset_pos = true;
-
-#endif
-
-            if(b_reset_pos)
-            {
-                  m_otcurrent_dialog_x = 20;
-                  m_otcurrent_dialog_y = 170;
-                  m_otcurrent_dialog_sx = 300;
-                  m_otcurrent_dialog_sy = 540;
-            }
+    
+    m_potcurrentDialog->Fit();
 
       //Toggle otcurrent overlay display
       m_bShowotcurrent = !m_bShowotcurrent;
@@ -385,7 +364,7 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
           m_potcurrentDialog->Show();
       } else {
           m_potcurrentDialog->Hide();         
-          }
+      }
 
       // Toggle is handled by the toolbar but we must keep plugin manager b_toggle updated
       // to actual status to ensure correct status upon toolbar rebuild
