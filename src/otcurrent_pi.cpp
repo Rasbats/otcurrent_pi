@@ -138,7 +138,7 @@ int otcurrent_pi::Init(void)
             wxITEM_CHECK, _("otcurrent"), _T( "" ), NULL, otcurrent_TOOL_POSITION, 0, this);
 #else
 		m_leftclick_tool_id  = InsertPlugInTool(_T(""), _img_otcurrent_pi, _img_otcurrent, wxITEM_CHECK,
-            _("VentureFarther Satellite Charts"), _T(""), NULL,
+            _("otcurrent"), _T(""), NULL,
              otcurrent_TOOL_POSITION, 0, this);
 #endif
 
