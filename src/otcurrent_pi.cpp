@@ -130,7 +130,6 @@ int otcurrent_pi::Init(void)
       LoadConfig();
 
         //    This PlugIn needs a toolbar icon, so request its insertion
-	if(m_bShowotcurrent)
 
 #ifdef OTCURRENT_USE_SVG 
 
