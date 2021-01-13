@@ -342,33 +342,45 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
     int w, h;
     mdc.GetTextExtent(labels, &w, &h);
 
-	// Setup the alpha channel.
-	unsigned char* alphaData = new unsigned char[w * h];
-	memset(alphaData, wxIMAGE_ALPHA_TRANSPARENT, w * h);
+    int label_offset = 10;   //5
 
-	// Create an image with alpha.
-	wxImage image(wxSize(w, h));
-	image.SetAlpha(alphaData);
-	wxGraphicsContext* gc = wxGraphicsContext::Create(image);
+    wxBitmap bm(w +  label_offset*2, h + 1);
+    mdc.SelectObject(bm);
+    mdc.Clear();
 
-	gc->SetPen(wxPen(m_text_color, 4));
-	gc->SetBrush(*wxTRANSPARENT_BRUSH);
+    wxPen penText(m_text_color);
+	mdc.SetPen(penText);
 
-
-    int label_offset = 10;   //5   
+    mdc.SetBrush(*wxTRANSPARENT_BRUSH);
+    mdc.SetTextForeground(m_text_color);
+          
     int xd = 0;
     int yd = 0;
 
-    gc->DrawText(labels, label_offset + xd, yd+1);          
-    
-	// Release the graphics context.
-	delete gc;
+    mdc.DrawText(labels, label_offset + xd, yd+1);          
+    mdc.SelectObject(wxNullBitmap);
 
-	// Scale the image and convert to a bitmap.
-	wxBitmap outBmp(image.Scale(32, 32), 32);
-	outBmp.UseAlpha();
-	image = outBmp.ConvertToImage();
+    m_labelCacheText[myText] = bm.ConvertToImage();
 
+    m_labelCacheText[myText].InitAlpha();
+
+    wxImage &image = m_labelCacheText[myText];
+
+    unsigned char *d = image.GetData();
+    unsigned char *a = image.GetAlpha();
+
+    w = image.GetWidth(), h = image.GetHeight();
+    for( int y = 0; y < h; y++ ) {
+        for( int x = 0; x < w; x++ ) {
+            int r, g, b;
+            int ioff = (y * w + x);
+            r = d[ioff* 3 + 0];
+            g = d[ioff* 3 + 1];
+            b = d[ioff* 3 + 2];
+
+            a[ioff] = 255-(r+g+b)/3;
+        }
+    }
     return image;
 }
 
