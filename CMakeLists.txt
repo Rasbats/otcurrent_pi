@@ -14,10 +14,12 @@ if (POLICY CMP0077)
   cmake_policy(SET CMP0077 NEW)
 endif ()
 
-# Use local version of GLU library
-set(USE_LOCAL_GLU TRUE)
 # Prefer libGL.so to libOpenGL.so, see CMP0072
 set(OpenGL_GL_PREFERENCE "LEGACY")
+# Don't use local version of GLU library
+set(USE_LOCAL_GLU FALSE)
+
+# This must be set ON or it fails to compile
 option(USE_GL "Enable OpenGL support" ON)
 message(STATUS "${CMLOC}USE_GL: ${USE_GL}")
 
