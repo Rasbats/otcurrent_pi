@@ -1,4 +1,4 @@
-clone_folder: c:\project\opencpn\otcurrent_pi
+clone_folder: c:\project\opencpn\plugin_src
 shallow_clone: false
 clone_depth: 10
 
@@ -56,6 +56,7 @@ build_script:
   - cd build
   - cmake -T v141_xp -G "Visual Studio 15 2017" --config RelWithDebInfo  ..
   - cmake --build . --target tarball --config RelWithDebInfo
+  - py ..\ci\windows-ldd
   - cmd: upload.bat
   - py ..\ci\git-push
 

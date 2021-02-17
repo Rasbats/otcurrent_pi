@@ -5,6 +5,7 @@ debian-steps: &debian-steps
   steps:
     - checkout
     - run: ci/circleci-build-debian.sh
+    - run: sh -c "ldd  build/app/*/lib/opencpn/*.so"
     - run: cd build; /bin/bash < upload.sh
     - run: python3 ci/git-push
 
@@ -57,6 +58,7 @@ jobs:
             - /usr/local/Cellar
             - /usr/local/lib
             - /usr/local/include
+      - run: sh -c "otool -L build/app/*/OpenCPN.app/Contents/PlugIns/*.dylib"
       - run: cd build; /bin/bash < upload.sh
       - run: python3 ci/git-push
 
@@ -65,6 +67,7 @@ jobs:
       - image: circleci/buildpack-deps:xenial-scm
     environment:
       - OCPN_TARGET: xenial
+      - USE_DEADSNAKES_PY37: 1
     <<: *debian-steps
 
   build-bionic:
@@ -121,9 +124,9 @@ jobs:
 std-filters: &std-filters
   filters:
     branches:
-      only:
-        - master
-        - build
+      ignore:
+        - tmp
+        - /tmp-.*/
 
 workflows:
   version: 2
