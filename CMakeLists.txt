@@ -77,7 +77,6 @@ OpenCPN.
 set(PKG_RELEASE "1")
 set(PKG_AUTHOR "Mike Rossiter")
 
-
 SET(SRC
         src/bbox.cpp
         src/bbox.h		
