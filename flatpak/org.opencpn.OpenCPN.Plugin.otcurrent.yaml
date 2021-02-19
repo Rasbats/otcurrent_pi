@@ -1,4 +1,4 @@
-id: org.opencpn.OpenCPN.Plugin.shipdriver
+id: org.opencpn.OpenCPN.Plugin.otcurrent
 runtime: org.opencpn.OpenCPN
 # runtime-version: stable   # official build at flathub
 runtime-version: master   # for nightly builds
@@ -13,11 +13,11 @@ finish-args:
     - --device=all
 
 modules:
-    - name: shipdriver
+    - name: otcurrent
       no-autogen: true
       buildsystem: cmake
       config-opts:
-          - -DCMAKE_INSTALL_PREFIX=/app/extensions/shipdriver/
+          - -DCMAKE_INSTALL_PREFIX=/app/extensions/otcurrent/
           - -DCMAKE_BUILD_TYPE:STRING=Release
           - -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
           - -DBUILD_TYPE:STRING=tarball
