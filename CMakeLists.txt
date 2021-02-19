@@ -63,7 +63,7 @@ option(OTCURRENT_USE_SVG "Use SVG graphics" ON)
 
 # -------  Plugin setup --------
 #
-project(otcurrent_pi VERSION 2.8.3)
+project(otcurrent_pi VERSION 2.8.4)
 
 set(DISPLAY_NAME otcurrent)    # Dialogs, installer artifacts, ...
 set(PLUGIN_API_NAME otcurrent) # As of GetCommonName() in plugin API
