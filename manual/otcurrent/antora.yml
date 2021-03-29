@@ -1,3 +1,3 @@
 name: otcurrent
-title: oTCurrent Manual
-version: '0.1'
+title: otcurrent Manual
+start_page: ROOT:otcurrent.adoc 
