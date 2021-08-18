@@ -4,12 +4,12 @@ image::otcurrent_pi.png[]
 
 === Links
 
-* Source: https://github.com/Rasbats/otcurrent_pi[Github Repository] +
+* Source: https://github.com/Rasbats/otcurrent_pi[Github Repository]
 * Download: https://opencpn.org/OpenCPN/plugins/otcurrent.html[Website
-Download] +
+Download]
 * Forum:
 http://www.cruisersforum.com/forums/f134/otcurrent-plugin-129161.html[oTCurrent
-Thread] +
+Thread]
 
 === 1. What and Why
 
@@ -29,8 +29,7 @@ publications.
 
 === 2. Install
 
-The Windows installer
-ishttps://github.com/Rasbats/otcurrent_pi/releases[here].
+Install and enable using the Plugin Manager.
 
 The plugin assumes that you are using the 'HARMONIC.IDX' file installed
 in the 'tcdata' folder of your setup. The plugin is not able to work
@@ -98,12 +97,12 @@ improve the plugin dialog for those displays.
 
 === 5. FAQ
 
-*No arrows are shown.* How do I show them? +
+*No arrows are shown.* How do I show them?
 Is the chart zoomed in to a sufficiently large scale? Are you using a
 'Harmonic.idx' file?
 
 *My sailing area is Europe.* Can tidal currents (streams) be
-displayed? +
+displayed?
 Unofficial 'Harmonic.idx' files are available for some European waters.
 
 *For Linux users:* If you are using V10 please rename HARMONIC.idx as
