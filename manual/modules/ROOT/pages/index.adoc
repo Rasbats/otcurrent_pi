@@ -1,8 +1,8 @@
-== oTCurrent
+= oTCurrent
 
 image::otcurrent_pi.png[]
 
-=== Links
+== Links
 
 * Source: https://github.com/Rasbats/otcurrent_pi[Github Repository]
 * Download: https://opencpn.org/OpenCPN/plugins/otcurrent.html[Website
@@ -11,7 +11,7 @@ Download]
 http://www.cruisersforum.com/forums/f134/otcurrent-plugin-129161.html[oTCurrent
 Thread]
 
-=== 1. What and Why
+== 1. What and Why
 
 The OpenCPN standard installation has tidal current data for the USA.
 Using the program 'Show Currents' icon a set of arrows for the tidal
@@ -27,7 +27,7 @@ can both be shown.
 computer. The tidal current displayed should be checked against official
 publications.
 
-=== 2. Install
+== 2. Install
 
 Install and enable using the Plugin Manager.
 
@@ -36,7 +36,7 @@ in the 'tcdata' folder of your setup. The plugin is not able to work
 with 'tcd' files. If you are using a different 'HARMONIC.IDX' you can
 select the folder where this file is located.
 
-=== 3. Standard actions
+== 3. Standard actions
 
 Enable the plugin by using Tools/Options and pressing the Enable button.
 
@@ -88,14 +88,14 @@ selected with the 'Browse' button.
 
 image::ot_browse_button.png[]
 
-=== 4. Options
+== 4. Options
 
 Return to 'Tools/Options/Preferences' if you wish to change whether text
 is displayed for direction or rate. Also to change the color used for a
 range of speed. For high resolution displays there is an option to
 improve the plugin dialog for those displays.
 
-=== 5. FAQ
+== 5. FAQ
 
 *No arrows are shown.* How do I show them?
 Is the chart zoomed in to a sufficiently large scale? Are you using a
