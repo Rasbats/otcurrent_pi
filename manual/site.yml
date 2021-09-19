@@ -1,11 +1,11 @@
 site:
-  title: otcurrent Plugin Manual
+  title: oTcurrent
   url:  https://nowhere.net
   start_page: otcurrent:ROOT:index.adoc
 
 content:
   sources:
-    - url: ../
+    - url: ..
       start_path: manual
       branches: HEAD
       edit_url: https://github.com/rasbats/otcurrent_pi/edit/master/{path}
