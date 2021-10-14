@@ -45,6 +45,10 @@
 #define snprintf _snprintf
 #endif // __WXMSW__
 
+#ifdef __ANDROID__
+#include <qopengl.h>
+#endif
+
 using namespace std;
 
 class Position;
