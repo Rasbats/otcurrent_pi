@@ -331,7 +331,10 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 		 
 		 RequestRefresh(m_parent_window); // refresh main window
      }
-	
+
+	  delete Pref;
+      Pref = NULL;
+      
 }
 
 void otcurrent_pi::OnToolbarToolCallback(int id)
