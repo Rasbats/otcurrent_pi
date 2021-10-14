@@ -55,10 +55,12 @@ set(OCPN_RELEASE_REPO
 )
 option(OTCURRENT_USE_SVG "Use SVG graphics" ON)
 
-
+include(PluginOptions)
+#
 # -------  Plugin setup --------
 #
 project(otcurrent_pi VERSION 2.8.7)
+set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME otcurrent)    # Dialogs, installer artifacts, ...
 set(PLUGIN_API_NAME otcurrent) # As of GetCommonName() in plugin API
@@ -69,8 +71,10 @@ Allows predictions of future tidal currents, based on the harmonics data in
 OpenCPN.
 ]=])
 
-set(PKG_RELEASE "1")
 set(PKG_AUTHOR "Mike Rossiter")
+set(PKG_IS_OPEN_SOURCE "yes")
+set(CPACK_PACKAGE_HOMEPAGE_URL https://github.com/Rasbats/otcurrent_pi)
+set(PKG_INFO_URL https://opencpn.org/OpenCPN/plugins/otcurrent.html)
 
 SET(SRC
         src/bbox.cpp
