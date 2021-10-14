@@ -125,7 +125,7 @@ endif ()
 #
 include(Targets)
 create_targets(
-  ${PROJECT_SOURCE_DIR}/flatpak/org.opencpn.OpenCPN.Plugin.shipdriver.yaml
+  ${PROJECT_SOURCE_DIR}/flatpak/org.opencpn.OpenCPN.Plugin.otcurrent.yaml
 )
 if ("${BUILD_TYPE}" STREQUAL "")
   return ()
