@@ -111,7 +111,7 @@ set(PACKAGE_NAME ${CMAKE_PROJECT_NAME})
 string(REGEX REPLACE "\([0-9]\)\.\([0-9]\).*" "ov\\1\\2"
        OCPN_MIN_VERSION ${API_OCPN_MIN_VERSION})
 
-if (SHIPDRIVER_USE_SVG)
+if (OTCURRENT_USE_SVG)
   add_definitions(-DOTCURRENT_USE_SVG)
 endif ()
 
