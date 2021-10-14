@@ -46,7 +46,6 @@ class otcurrentUIDialogBase : public wxDialog
 	
 	protected:
 		wxStaticText* m_staticTextDatetime;
-		wxDatePickerCtrl* m_datePickerDate;
 		wxBitmapButton* m_bpNow;
 		wxBitmapButton* m_bpPrev;
 		wxBitmapButton* m_bpNext;
