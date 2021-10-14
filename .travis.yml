@@ -1,20 +1,19 @@
+---
 language: cpp
-  
+
 matrix:
   include:
-  - env:
-    - OCPN_TARGET=stretch-armhf
-    - DOCKER_IMAGE=balenalib/raspberry-pi-debian:stretch
-    services:
-    - docker
-    script:
-    - "./ci/generic-build-raspbian-armhf.sh"
-    - "cd build; bash < upload.sh"
-    os: Linux
-    dist: focal
+    - script:
+        - uname -a
+        - echo "Hello arm64 on branch $FLATPAK_BRANCH"
+      os: Linux
+      dist: focal
+      arch: arm64
+      env:
+        - OCPN_TARGET=flatpak-arm64
+        - FLATPAK_BRANCH=beta
 
 branches:
   only:
     - master
     - build
-

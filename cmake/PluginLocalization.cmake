@@ -7,7 +7,9 @@
 # ~~~
 
 find_program(GETTEXT_XGETTEXT_EXECUTABLE xgettext)
+
 string(REPLACE "_pi" "" I18N_NAME ${PACKAGE_NAME})
+
 if (GETTEXT_XGETTEXT_EXECUTABLE)
   add_custom_command(
     OUTPUT po/${PACKAGE_NAME}.pot.dummy
@@ -99,4 +101,5 @@ if (GETTEXT_MSGFMT_EXECUTABLE)
     DEPENDS ${_gmoFiles}
   )
   add_dependencies(${PACKAGE_NAME} ${I18N_NAME}-i18n)
+  add_dependencies( tarball ${I18N_NAME}-i18n)
 endif (GETTEXT_MSGFMT_EXECUTABLE)

@@ -1,3 +1,4 @@
-build/*
-
-src/version.h
+build
+po/*.pot
+.DS_Store
+thumbs.db
