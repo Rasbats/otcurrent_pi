@@ -4,24 +4,20 @@
 # License:     wxWidgets License
 # ~~~
 
+
 # -------- Cmake setup ---------
 #
-cmake_minimum_required(VERSION 3.5.1)
+cmake_minimum_required(VERSION 3.12.0)
 
 cmake_policy(SET CMP0042 NEW)
+
+if (POLICY CMP0072)
+  cmake_policy(SET CMP0072 NEW)
+endif ()
 
 if (POLICY CMP0077)
   cmake_policy(SET CMP0077 NEW)
 endif ()
-
-# Prefer libGL.so to libOpenGL.so, see CMP0072
-set(OpenGL_GL_PREFERENCE "LEGACY")
-# Don't use local version of GLU library
-set(USE_LOCAL_GLU FALSE)
-
-# This must be set ON or it fails to compile
-option(USE_GL "Enable OpenGL support" ON)
-message(STATUS "${CMLOC}USE_GL: ${USE_GL}")
 
 # Locations where cmake looks for cmake modules.
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/build ${CMAKE_SOURCE_DIR}/cmake)
@@ -30,7 +26,6 @@ if (WIN32)
   list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/buildwin)
 endif ()
 message(STATUS "Cmake version: ${CMAKE_VERSION}.")
-
 
 # -------- Build setup (mostly in PluginCompiler) --------
 #
@@ -98,32 +93,6 @@ SET(SRC
 	    src/tinyxml.h
     )
  
-macro(SetupOpenGL)
-  find_package(OpenGL)
-  if (OPENGL_FOUND)
-    # Linking to OPENGL::GL should make it, but fails on Windows.
-    target_link_libraries(${PACKAGE_NAME} ${OPENGL_LIBRARIES})
-    include_directories(${OPENGL_INCLUDE_DIR})
-  endif ()
-  if (APPLE)
-    # This is certainly neither stable nor portable, but I just cannot
-    # figure out how to handle it properly. FindOpenGL should
-    # actually find this directory, but doesn't (:
-    string(CONCAT _glinclude
-       "/Applications/Xcode-*app/Contents/Developer/Platforms"
-       "/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System"
-       "/Library/Frameworks/OpenGL.framework/Versions/A/Headers"
-    )
-    file(GLOB _glinclude ${_glinclude})
-    if (EXISTS "${_glinclude}")
-      include_directories("${_glinclude}")
-    else ()
-      message(WARNING "Cannot find gl.h, using bundled copy")
-      include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include/GL")
-    endif ()
-  endif ()
-endmacro()    
-
 # -------- Setup completed, build the plugin --------
 #
 add_library(${CMAKE_PROJECT_NAME} SHARED ${SRC})
@@ -135,13 +104,14 @@ target_link_libraries(${CMAKE_PROJECT_NAME} ocpn::api)
 set(VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
 set(VERSION_MINOR ${PROJECT_VERSION_MINOR})
 set(VERSION_PATCH ${PROJECT_VERSION_PATCH})
+
 set(PACKAGE_NAME ${CMAKE_PROJECT_NAME})
 
 # Create the minimim ocpn version id string like ov50
 string(REGEX REPLACE "\([0-9]\)\.\([0-9]\).*" "ov\\1\\2"
        OCPN_MIN_VERSION ${API_OCPN_MIN_VERSION})
 
-if (OTCURRENT_USE_SVG)
+if (SHIPDRIVER_USE_SVG)
   add_definitions(-DOTCURRENT_USE_SVG)
 endif ()
 
@@ -151,7 +121,7 @@ endif ()
 #
 include(Targets)
 create_targets(
-  ${PROJECT_SOURCE_DIR}/flatpak/org.opencpn.OpenCPN.Plugin.otcurrent.yaml
+  ${PROJECT_SOURCE_DIR}/flatpak/org.opencpn.OpenCPN.Plugin.shipdriver.yaml
 )
 if ("${BUILD_TYPE}" STREQUAL "")
   return ()
@@ -161,10 +131,16 @@ if (NOT ${BUILD_TYPE} STREQUAL "flatpak")
   # Build package as required (flatpak already dealt with).
   #
   include(PluginCompiler)
-  include(PluginLibs)
-  include(PluginLocalization)
   include(PluginInstall)
   include(PluginPackage)
+  if (QT_ANDROID)
+    include(AndroidLibs)
+  else ()
+    include(PluginLibs)
+  endif ()
+  include(PluginLocalization)
+
+  include_directories(BEFORE ${CMAKE_BINARY_DIR}/include)
 
   add_subdirectory("libs/jsoncpp")
   target_link_libraries(${PACKAGE_NAME} ocpn::jsoncpp)
@@ -174,12 +150,10 @@ if (NOT ${BUILD_TYPE} STREQUAL "flatpak")
   
   add_subdirectory("libs/wxJSON")
   target_link_libraries(${PACKAGE_NAME} ocpn::wxjson)
-  
-  SetupOpenGL()
 endif ()
 
 configure_file(
-  ${CMAKE_SOURCE_DIR}/config.h.in ${CMAKE_BINARY_DIR}/include/config.h
+  ${CMAKE_SOURCE_DIR}/config.h.in ${CMAKE_BINARY_DIR}/include//config.h
   @ONLY
 )
 
@@ -198,7 +172,7 @@ configure_file(
 set(checksum "@checksum@")
 configure_file(
   # The XML metadata file
-  ${CMAKE_SOURCE_DIR}/otcurrent-plugin.xml.in
+  ${CMAKE_SOURCE_DIR}/plugin.xml.in
   ${CMAKE_BINARY_DIR}/${pkg_displayname}.xml.in
   @ONLY
 )
