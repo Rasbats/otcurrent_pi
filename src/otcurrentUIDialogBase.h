@@ -63,6 +63,7 @@ class otcurrentUIDialogBase : public wxDialog
 		
 	
 	public:
+		wxDatePickerCtrl* m_datePickerDate;	    
 		wxTimePickerCtrl* m_timePickerTime; 
 		wxStaticText* m_stTimeZone;
 		wxDirPickerCtrl* m_dirPicker1;
