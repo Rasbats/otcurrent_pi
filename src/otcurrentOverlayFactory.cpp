@@ -49,6 +49,11 @@
 #include <qopengl.h>
 #endif
 
+#ifdef __OCPN__ANDROID__
+#include <qopengl.h>
+#include "GL/gl_private.h"
+#endif
+
 using namespace std;
 
 class Position;
