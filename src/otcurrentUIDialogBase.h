@@ -33,6 +33,13 @@
 #include <wx/checkbox.h>
 #include <wx/clrpicker.h>
 
+#ifdef __OCPN__ANDROID__
+#include "android/wx/datectrl.h"
+#else
+class wxDatePickerCtrl;
+#endif
+
+
 ///////////////////////////////////////////////////////////////////////////
 
 
