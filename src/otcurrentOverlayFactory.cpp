@@ -146,7 +146,7 @@ bool otcurrentOverlayFactory::RenderGLotcurrentOverlay( wxGLContext *pcontext, P
 {
     m_pdc = NULL;  // inform lower layers that this is OpenGL render
 
-    //DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
+    DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
     return true;
 
 }
@@ -164,7 +164,7 @@ bool otcurrentOverlayFactory::RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort 
     m_pdc = &dc;
 #endif
 	   
-	//DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
+	DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
     return true;
 
 }
