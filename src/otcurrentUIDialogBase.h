@@ -35,9 +35,16 @@
 
 #ifdef __OCPN__ANDROID__
 #include "android/wx/datectrl.h"
-#include "android/wx/timectrl.h"
+
 #else
 class wxDatePickerCtrl;
+#endif
+
+#ifdef __OCPN__ANDROID__
+#include "android/wx/timectrl.h"
+
+#else
+class wxTimePickerCtrl;
 #endif
 
 ///////////////////////////////////////////////////////////////////////////

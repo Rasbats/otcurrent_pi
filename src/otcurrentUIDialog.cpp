@@ -269,6 +269,9 @@ void otcurrentUIDialog::OnFolderSelChanged(wxFileDirPickerEvent& event)
 void otcurrentUIDialog::OnDateTimeChanged( wxDateEvent& event )
 {	
 	wxDateTime dm;
+	wxDateTime tm;
+	wxTimeSpan mySpan;
+
 #ifndef __OCPN__ANDROID__
 	 dm = m_datePickerDate->GetValue();
 #else	
@@ -276,10 +279,20 @@ void otcurrentUIDialog::OnDateTimeChanged( wxDateEvent& event )
     dm.ParseDate(DateString);
 #endif
     int h, m, s;
+ 
+#ifndef __OCPN__ANDROID__
+	 m_timePickerTime->GetTime( &h, &m, &s );
+	 mySpan = wxTimeSpan(h, m, s);
+#else	
+	wxDateTime tm = m_timePickerTime->GetTimeCtrlValue();
+	wxString ts = tm.FormatISOTime();
+	wxString hs = ts.Mid(0, 2);
+	wxString ms = ts.Mid(3, 2);
+	wxString ss = ts.Mid(5, 2);
+	mySpan = wxTimeSpan(wxAtoi(hs), wxAtoi(ms), wxAtoi(ss));
+#endif
     
-    m_timePickerTime->GetTime( &h, &m, &s );
-    
-    dm.Add( wxTimeSpan( h, m, s) );
+    dm.Add( mySpan );
     
     m_dtNow = dm;
     
@@ -345,8 +358,8 @@ wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime)
     const wxString dateLabel(myDateTime.Format( _T( "%a") ));
     m_staticTextDatetime->SetLabel(dateLabel);
     
-    m_datePickerDate->SetValue(myDateTime.GetDateOnly());
-    m_timePickerTime->SetTime(myDateTime.GetHour(),myDateTime.GetMinute(), myDateTime.GetSecond());
+   // m_datePickerDate->SetValue(myDateTime.GetDateOnly());
+   // m_timePickerTime->SetTime(myDateTime.GetHour(),myDateTime.GetMinute(), myDateTime.GetSecond());
 
     return dateLabel;
 }
