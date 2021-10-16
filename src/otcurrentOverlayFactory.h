@@ -136,8 +136,10 @@ private:
     wxSize  m_ParentSize;
 
     wxDC *m_pdc;
-    wxGraphicsContext *m_gdc;
 
+#if wxUSE_GRAPHICS_CONTEXT
+    wxGraphicsContext *m_gdc;
+#endif
     wxFont *m_dFont_map;
     wxFont *m_dFont_war;
 
