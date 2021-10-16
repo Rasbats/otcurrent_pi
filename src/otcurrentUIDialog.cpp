@@ -284,7 +284,7 @@ void otcurrentUIDialog::OnDateTimeChanged( wxDateEvent& event )
 	 m_timePickerTime->GetTime( &h, &m, &s );
 	 mySpan = wxTimeSpan(h, m, s);
 #else	
-	wxDateTime tm = m_timePickerTime->GetTimeCtrlValue();
+	tm = m_timePickerTime->GetTimeCtrlValue();
 	wxString ts = tm.FormatISOTime();
 	wxString hs = ts.Mid(0, 2);
 	wxString ms = ts.Mid(3, 2);
