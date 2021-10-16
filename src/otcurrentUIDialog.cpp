@@ -268,8 +268,13 @@ void otcurrentUIDialog::OnFolderSelChanged(wxFileDirPickerEvent& event)
 
 void otcurrentUIDialog::OnDateTimeChanged( wxDateEvent& event )
 {	
-    wxDateTime dm = m_datePickerDate->GetValue();
-    
+	wxDateTime dm;
+#ifndef __OCPN__ANDROID__
+	 dm = m_datePickerDate->GetValue();
+#else	
+	wxString DateString = m_datePickerDate->GetValue();  
+    dm.ParseDate(DateString);
+#endif
     int h, m, s;
     
     m_timePickerTime->GetTime( &h, &m, &s );
