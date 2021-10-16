@@ -395,7 +395,7 @@ bool otcurrent_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
         return false;
 
     m_potcurrentDialog->SetViewPort( vp );
-    m_potcurrentOverlayFactory->RenderotcurrentOverlay ( dc, vp );
+    //m_potcurrentOverlayFactory->RenderotcurrentOverlay ( dc, vp );
     return true;
 }
 
@@ -407,7 +407,7 @@ bool otcurrent_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
         return false;
 
     m_potcurrentDialog->SetViewPort( vp );
-    m_potcurrentOverlayFactory->RenderGLotcurrentOverlay ( pcontext, vp );
+    //m_potcurrentOverlayFactory->RenderGLotcurrentOverlay ( pcontext, vp );
     return true;
 }
 void otcurrent_pi::SetCursorLatLon(double lat, double lon)
