@@ -55,6 +55,9 @@
 #include <wx/event.h>
 
 
+#ifndef __OCPN__ANDROID__
+#define GetDateCtrlValue GetValue
+#endif
 
 using namespace std;
 
