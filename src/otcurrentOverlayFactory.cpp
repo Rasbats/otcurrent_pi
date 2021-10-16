@@ -45,10 +45,6 @@
 #define snprintf _snprintf
 #endif // __WXMSW__
 
-#ifdef __ANDROID__
-#include <qopengl.h>
-#endif
-
 #ifdef __OCPN__ANDROID__
 #include <qopengl.h>
 #include "GL/gl_private.h"
