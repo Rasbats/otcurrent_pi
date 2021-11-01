@@ -66,8 +66,8 @@ set(SRC
         src/timectrl.cpp
         src/timectrl.h
         src/tcmgr.h
-	    android/wx/datectrl.h
-	    android/wx/timectrl.h
+	    src/android/wx/datectrl.h
+	    src/android/wx/timectrl.h
 )
 
 set(PKG_API_LIB api-16)  #  A directory in libs/ e. g., api-17 or api-16
