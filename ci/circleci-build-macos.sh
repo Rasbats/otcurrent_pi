@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
 
-#
 # Build the  MacOS artifacts
+
+
+# Copyright (c) 2021 Alec Leamas
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
 
 set -xe
 
@@ -21,15 +28,6 @@ for pkg in $(sed '/#/d' < $here/../build-deps/macos-deps);  do
     brew list --versions $pkg || brew install $pkg || brew install $pkg || :
     brew link --overwrite $pkg || brew install $pkg
 done
-
-if brew list --cask --versions packages; then
-    version=$(pkg_version packages '--cask')
-    sudo installer \
-        -pkg /usr/local/Caskroom/packages/$version/packages/Packages.pkg \
-        -target /
-else
-    brew install --cask packages
-fi
 
 # Install the pre-built wxWidgets package
 
@@ -50,12 +48,10 @@ cmake \
 if [[ -z "$CI" ]]; then
     echo '$CI not found in environment, assuming local setup'
     echo "Complete build using 'cd build; make tarball' or so."
-    exit 0 
+    exit 0
 fi
 
 make VERBOSE=1 tarball
-
-make pkg    
 
 # Install cloudsmith needed by upload script
 python3 -m pip install --user cloudsmith-cli

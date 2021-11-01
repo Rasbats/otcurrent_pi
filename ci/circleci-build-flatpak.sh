@@ -3,6 +3,14 @@
 #
 # Build the flatpak artifacts.
 #
+
+# Copyright (c) 2021 Alec Leamas
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+
 set -e
 
 MANIFEST=$(cd flatpak; ls org.opencpn.OpenCPN.Plugin*yaml)
@@ -27,7 +35,6 @@ flatpak remote-add --user --if-not-exists \
 commit_1808=959f5fd700f72e63182eabb9821b6aa52fb12189eddf72ccf99889977b389447
 FLATPAK_BRANCH=stable
 if dpkg-architecture --is arm64; then
-    sudo apt install --reinstall ca-certificates
     flatpak install --user -y --noninteractive \
         flathub org.freedesktop.Sdk//20.08
     flatpak remote-add --user --if-not-exists flathub-beta \

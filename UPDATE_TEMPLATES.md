@@ -11,6 +11,7 @@ is to
   - Run script
   - Inspect the results, handle possible conflicts and commit the
     changes.
+  - Handle updates to CMakeLists.txt and other plugin-specific files.
   - Upstream local changes to shipdriver templates
 
 Bootstrapping
@@ -105,10 +106,20 @@ changes.  A typical sequence is
     $ git diff HEAD upstream/master ci           # list the actual diff(s)
     $ git checkout upstream/master ci            # Accept all changes
 
-Note that changes might be required in other files like CMakeLists.txt.
-
 When all looks good changes can be committed using something like
 `git commit -m "Update shipdriver templates."`
+
+Checking modifications in CMakeLists.txt and flatpak manifest
+-------------------------------------------------------------
+
+Besides the changes in generic files, CMakeLists.txt typically also needs to
+be updated. However, this file is specific for each plugin, and changes must
+be applied manually.
+
+The changes made in shipdriver's CMakeLists.txt is a good starting point to
+check. Af running the script these changes are appended as a comment to
+CMakeLists.txt. Reviewing these changes should give a good hint about the
+changes needed. After review, remove the diff comment.
 
 
 Upstreaming local changes to shipdriver
