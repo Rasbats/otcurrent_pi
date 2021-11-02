@@ -1,3 +1,6 @@
+
+#include <wx/textctrl.h>
+
 #define wxTimePickerCtrlNameStr wxS("timectrl")
 
 // No special styles are currently defined for this control but still define a

@@ -1,3 +1,5 @@
+#include <wx/textctrl.h>
+
 #define wxDatePickerCtrlNameStr wxT("datectrl")
 
 // wxDatePickerCtrl styles
