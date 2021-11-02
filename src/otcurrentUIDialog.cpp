@@ -386,8 +386,7 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, sz, wxCAL_SHOW_HOLIDAYS,_("Tide Calendar"));
 
 #else
-	dialogCalendar = new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DEFAULT);
-
+   	dialogCalendar = new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DEFAULT);
 #endif
 	m_staticText = new wxStaticText(this,wxID_ANY,_("Time:"),wxPoint(15,360),wxSize(120,42));
 

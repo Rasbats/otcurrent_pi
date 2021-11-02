@@ -62,14 +62,6 @@ class otcurrentUIDialogBase : public wxDialog
 		wxBitmapButton* m_bpPrev;
 		//wxStaticText* m_staticText24;
 		wxChoice* m_choice2;
-		
-#ifdef __OCPN__ANDROID__
-	#include "android/wx/datectrl.h"
-	wxDatePickerCtrl* m_datePicker1;
-#else
-	class wxDatePickerCtrl;
-	wxDatePickerCtrl* m_datePicker1;
-#endif
 				
 		wxBitmapButton* m_bpNext;
 		wxBitmapButton* m_bpNow;
