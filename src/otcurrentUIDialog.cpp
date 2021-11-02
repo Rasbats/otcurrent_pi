@@ -111,7 +111,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
     m_bpNow->SetBitmap(*_img_Clock, wxLEFT);
 
     this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
-    m_timePickerTime->Connect( wxEVT_TIME_CHANGED, wxDateEventHandler( otcurrentUIDialog::OnDateTimeChanged ), NULL, this );
+    //m_timePickerTime->Connect( wxEVT_TIME_CHANGED, wxDateEventHandler( otcurrentUIDialog::OnDateTimeChanged ), NULL, this );
     m_dtNow = wxDateTime::Now(); 
     MakeDateTimeLabel(m_dtNow);
 
@@ -281,8 +281,8 @@ void otcurrentUIDialog::OnDateTimeChanged( wxDateEvent& event )
     int h, m, s;
  
 #ifndef __OCPN__ANDROID__
-	 tm = m_timePickerTime->GetTimeCtrlValue();
-	 mySpan = wxTimeSpan(1, 1, 1);
+	 m_timePickerTime->GetTime( &h, &m, &s );
+	 mySpan = wxTimeSpan(h, m, s);
 #else	
 	tm = m_timePickerTime->GetTimeCtrlValue();
 	wxString ts = tm.FormatISOTime();
