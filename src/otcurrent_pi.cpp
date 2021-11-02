@@ -85,6 +85,15 @@ otcurrent_pi::otcurrent_pi(void *ppimgr)
 	  fn.SetFullName("otcurrent_panel_icon.png");
 
 	  wxString shareLocn = fn.GetFullPath();  
+
+	  wxInitAllImageHandlers();
+
+		wxLogDebug(wxString("Using icon path: ") + shareLocn);
+		if (!wxImage::CanRead(shareLocn)) {
+			wxLogDebug("Initiating image handlers.");
+			wxInitAllImageHandlers();
+		}
+
 	  wxImage panelIcon(shareLocn);
 
 	  if (panelIcon.IsOk())

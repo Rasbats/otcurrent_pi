@@ -35,14 +35,14 @@ void initialize_images(void)
 
 #ifdef OTCURRENT_USE_SVG
     wxFileName fn;
-    fn.SetPath(*GetpSharedDataLocation());
-    fn.AppendDir(_T("plugins"));
-    fn.AppendDir(_T("otcurrent_pi"));
-    fn.AppendDir(_T("data"));
+	wxString tmp_path;
+	
+	tmp_path = GetPluginDataDir("otcurrent_pi");
+	fn.SetPath(tmp_path);
+	fn.AppendDir(_T("data"));	
+	
     fn.SetFullName(_T("otcurrent_pi.svg"));
     _svg_otcurrent = fn.GetFullPath();
-    fn.SetFullName(_T("otcurrent_pi_rollover.svg"));
-    _svg_otcurrent_rollover = fn.GetFullPath();
     fn.SetFullName(_T("otcurrent_pi_toggled.svg"));
     _svg_otcurrent_toggled = fn.GetFullPath();
 #endif
