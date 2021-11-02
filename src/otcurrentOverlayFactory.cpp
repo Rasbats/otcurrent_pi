@@ -45,11 +45,6 @@
 #define snprintf _snprintf
 #endif // __WXMSW__
 
-#ifdef __OCPN__ANDROID__
-#include <qopengl.h>
-#include "GL/gl_private.h"
-#endif
-
 using namespace std;
 
 class Position;
@@ -58,15 +53,14 @@ class PlugIn_ViewPort;
 class wxBoundingBox;
 
 #define NUM_CURRENT_ARROW_POINTS 9
-static wxPoint CurrentArrowArray[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -10),
-        wxPoint( 55, -10), wxPoint( 55, -25), wxPoint( 100, 0 ), wxPoint( 55, 25), wxPoint( 55,
-                10), wxPoint( 0, 10), wxPoint( 0, 0 )
+static wxPoint CurrentArrowArray[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -10 ),
+        wxPoint( 55, -10 ), wxPoint( 55, -25 ), wxPoint( 100, 0 ), wxPoint( 55, 25 ), wxPoint( 55,
+                10 ), wxPoint( 0, 10 ), wxPoint( 0, 0 )
                                                              };
 
 //----------------------------------------------------------------------------------------------------------
 //    otcurrent Overlay Factory Implementation
 //----------------------------------------------------------------------------------------------------------
-
 otcurrentOverlayFactory::otcurrentOverlayFactory( otcurrentUIDialog &dlg )
 	: m_dlg(dlg)
 {
@@ -79,7 +73,6 @@ otcurrentOverlayFactory::otcurrentOverlayFactory( otcurrentUIDialog &dlg )
 	m_bShowDirection = m_dlg.m_bUseDirection;
 	m_bHighResolution = m_dlg.m_bUseHighRes;
 	m_bShowFillColour = m_dlg.m_bUseFillColour;
-	m_sShowScale = m_dlg.m_sUseScale;
 
 	m_dtUseNew = m_dlg.m_dtNow;	
 }
@@ -88,54 +81,6 @@ otcurrentOverlayFactory::~otcurrentOverlayFactory()
 {
 
 }
-/*
-static wxPoint CurrentArrowArray[NUM_CURRENT_ARROW_POINTS] = { wxPoint(0, 0), wxPoint(0, -10 -20),
-wxPoint(55 + 20, -10 -20), wxPoint(55 + 20, -25 -20), wxPoint(100 + 20, 0), wxPoint(55 + 20, 25 +20), wxPoint(55 + 20,
-10 +20), wxPoint(0, 10 +20), wxPoint(0, 0)
-};
-*/
-wxPoint otcurrentOverlayFactory::ScaleCurrentArrow(int index, wxPoint myPoint, int scale)
-{
-	wxPoint dummy = myPoint;
-	switch (index) {
-		case 1: {
-			dummy.y -= scale / 3;
-			return dummy;
-		}
-		case 2:{
-			dummy.x += scale;
-			dummy.y -= scale / 3;
-			return dummy;
-		}
-		case 3:{
-			dummy.x += scale;
-			dummy.y -= scale / 3;
-			return dummy;
-		}
-		case 4:{
-			dummy.x += scale * 2;
-			return dummy;
-		}
-		case 5:{
-			dummy.x += scale;
-			dummy.y += scale / 3;
-			return dummy;
-		}
-		case 6:{
-			dummy.x += scale;
-			dummy.y += scale / 3;
-			return dummy;
-		}
-		case 7:{
-			dummy.y += scale / 3;
-			return dummy;
-		}
-		case 8:{
-			return dummy;
-		}
-	}
-}
-
 
 void otcurrentOverlayFactory::Reset()
 {
@@ -164,6 +109,8 @@ bool otcurrentOverlayFactory::RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort 
     m_pdc = &dc;
 #endif
 	   
+	m_pdc = &dc;
+
 	DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
     return true;
 
@@ -269,17 +216,10 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 	p_basic[0].x = 100;
 	p_basic[0].y = 100;
 
-	wxPoint scaledPoint;
-	long scalevalue;
-	m_sShowScale.ToLong(&scalevalue);
-	scalevalue *= 10;
-
     // Walk thru the point list
     for( int ip = 1; ip < NUM_CURRENT_ARROW_POINTS; ip++ ) {
-		scaledPoint = ScaleCurrentArrow(ip, CurrentArrowArray[ip], scalevalue);
-
-        xt = scaledPoint.x;
-        yt = scaledPoint.y;
+        xt = CurrentArrowArray[ip].x;
+        yt = CurrentArrowArray[ip].y;
 
         float xp = ( xt * cos_rot ) - ( yt * sin_rot );
         float yp = ( xt * sin_rot ) + ( yt * cos_rot );
@@ -356,6 +296,7 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
 
     mdc.SetBrush(*wxTRANSPARENT_BRUSH);
     mdc.SetTextForeground(m_text_color);
+    mdc.SetTextBackground(wxTRANSPARENT);
           
     int xd = 0;
     int yd = 0;

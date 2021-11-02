@@ -34,7 +34,11 @@
   #include <wx/glcanvas.h>
 #endif //precompiled headers
 
-#include "config.h"
+#define     PLUGIN_VERSION_MAJOR    1
+#define     PLUGIN_VERSION_MINOR    4
+
+#define     MY_API_VERSION_MAJOR    1
+#define     MY_API_VERSION_MINOR    15
 
 #include "ocpn_plugin.h"
 #include "otcurrentOverlayFactory.h"
@@ -43,13 +47,14 @@
 extern wxString myVColour[5]; 
 
 
+
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
 //----------------------------------------------------------------------------------------------------------
 
 #define otcurrent_TOOL_POSITION    -1          // Request default positioning of toolbar tool
 
-class otcurrent_pi : public opencpn_plugin_116
+class otcurrent_pi : public opencpn_plugin_115
 {
 public:
       otcurrent_pi(void *ppimgr);
@@ -91,7 +96,6 @@ public:
       bool GetCopyDirection() { return  m_bCopyUseDirection; }
 	  bool GetCopyResolution() { return  m_bCopyUseHighRes; }
 	  bool GetCopyColour() { return m_botcurrentUseHiDef ; }
-	  wxString GetCopyScale() { return  m_sCopyUseScale; }
 
 	  wxString GetFolderSelected() {return m_CopyFolderSelected;}
 	  int      GetIntervalSelected() {return m_CopyIntervalSelected;}
@@ -121,7 +125,6 @@ private:
 	  bool              m_bCopyUseRate;
       bool              m_bCopyUseDirection;
 	  bool				m_bCopyUseHighRes;
-	  wxString          m_sCopyUseScale;
 
 	  wxString          m_CopyFolderSelected;
 	  int               m_CopyIntervalSelected;
@@ -139,8 +142,8 @@ private:
 
       bool			   m_bShowotcurrent;
 
-	  wxBitmap		   m_panelBitmap;
-	  
+	
+
 };
 
 //----------------------------------------------------------------------------------------

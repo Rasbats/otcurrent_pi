@@ -51,6 +51,7 @@
 #include <wx/event.h>
 #include "otcurrent_pi.h"
 
+
 using namespace std;
 
 
@@ -70,8 +71,13 @@ static wxString TToString( const wxDateTime date_time, const int time_zone )
     }
 }
 
-otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style)
-: otcurrentUIDialogBase(parent, id, title, pos, size, style), m_ptcmgr(0), m_vp(0)
+#if !wxCHECK_VERSION(2,9,4) /* to work with wx 2.8 */
+#define SetBitmap SetBitmapLabel
+#endif
+
+
+otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
+: otcurrentUIDialogBase(parent), m_ptcmgr(0), m_vp(0)
 {
     pParent = parent;
     pPlugIn = ppi;
@@ -81,13 +87,12 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
     if(pConf) {
         pConf->SetPath ( _T ( "/Plugins/otcurrent" ) );
 
-		pConf->Read ( _T ( "otcurrentUseRate" ), &m_bUseRate, 1 );
-        pConf->Read ( _T ( "otcurrentUseDirection" ), &m_bUseDirection, 1);
-		pConf->Read(_T("otcurrentUseHighResolution"), &m_bUseHighRes, 1);
-		pConf->Read ( _T ( "otcurrentUseFillColour" ), &m_bUseFillColour, 1);
-		pConf->Read(_T("otcurrentUseScale"), &m_sUseScale, _T("1"));
+		pConf->Read ( _T ( "otcurrentUseRate" ), &m_bUseRate );
+        pConf->Read ( _T ( "otcurrentUseDirection" ), &m_bUseDirection);
+		pConf->Read(_T("otcurrentUseHighResolution"), &m_bUseHighRes);
+		pConf->Read ( _T ( "otcurrentUseFillColour" ), &m_bUseFillColour);
 
-		pConf->Read ( _T ( "otcurrentInterval" ), &m_IntervalSelected, 20L);
+		pConf->Read ( _T ( "otcurrentInterval" ), &m_IntervalSelected);
 		pConf->Read ( _T ( "otcurrentFolder" ), &m_FolderSelected);
 
 		pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
@@ -106,24 +111,18 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
 
     }
 
-    m_bpPrev->SetBitmap(wxBitmap( prev1 ), wxLEFT);
-    m_bpNext->SetBitmap(wxBitmap( next1 ), wxRIGHT);
-    m_bpNow->SetBitmap(*_img_Clock, wxLEFT);
+    m_bpPrev->SetBitmap(wxBitmap( prev1 ));
+    m_bpNext->SetBitmap(wxBitmap( next1 ));
+    m_bpNow->SetBitmap(*_img_Clock );
+
 
     this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
-    //m_timePickerTime->Connect( wxEVT_TIME_CHANGED, wxDateEventHandler( otcurrentUIDialog::OnDateTimeChanged ), NULL, this );
+
     m_dtNow = wxDateTime::Now(); 
     MakeDateTimeLabel(m_dtNow);
-
-	//wxMessageBox(m_FolderSelected);
-	/*
+	
     if (m_FolderSelected == wxEmptyString){
-        
-		wxString shareLocn;
-		
-		shareLocn = *GetpSharedDataLocation();		
-
-        wxString g_SData_Locn = shareLocn;
+        wxString g_SData_Locn = *GetpSharedDataLocation();
         // Establish location of Tide and Current data
         pTC_Dir = new wxString(_T("tcdata"));
         pTC_Dir->Prepend(g_SData_Locn);
@@ -136,7 +135,6 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
         m_dirPicker1->SetPath(m_FolderSelected);
     }
 
-	//wxMessageBox(m_FolderSelected);
     LoadTCMFile();
 	m_choice1->SetSelection(m_IntervalSelected);
 	int i = m_choice1->GetSelection();
@@ -145,26 +143,19 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
 	c.ToDouble(&value);
 	m_dInterval = value;
 
-
-	wxDateTime::TimeZone tz(wxDateTime::Local);
-	long offset = tz.GetOffset(); // in sec from GMT0
-	double doffset = (double)offset;
-	double h = (long)(doffset / 3600);
-	double m = (doffset/3600 - h) * 60;
-	wxString tzs;
-	tzs = wxString::Format(_T("UTC %+03.0f:%02.0f"), h, m);
-	m_stTimeZone->SetLabel(tzs);
-*/
 	DimeWindow( this );
+
+    //Fit();
+    //SetMinSize( GetBestSize() );
 	
 }
+
 
 void otcurrentUIDialog::LoadTCMFile()
 {
     delete m_ptcmgr;
     wxString TCDir = m_FolderSelected;
     TCDir.Append(wxFileName::GetPathSeparator());
-
     wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
 
     wxString cache_locn = TCDir; 
@@ -183,7 +174,6 @@ otcurrentUIDialog::~otcurrentUIDialog()
 		pConf->Write ( _T ( "otcurrentUseDirection" ), m_bUseDirection );
 		pConf->Write(_T("otcurrentUseHighResolution"), m_bUseHighRes);
 		pConf->Write ( _T ( "otcurrentUseFillColour" ), m_bUseFillColour );
-		pConf->Write(_T("otcurrentUseScale"), m_sUseScale);
 
 		pConf->Write( _T("VColour0"), myVColour[0] );
 		pConf->Write( _T("VColour1"), myVColour[1] );
@@ -199,10 +189,6 @@ otcurrentUIDialog::~otcurrentUIDialog()
 		pConf->Write ( _T ( "otcurrentFolder" ), myF ); 
 
     }
-    
-    this->Disconnect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
-    m_timePickerTime->Disconnect( wxEVT_DATE_CHANGED, wxDateEventHandler( otcurrentUIDialog::OnDateTimeChanged ), NULL, this );
-    
     delete m_ptcmgr;
 }
 
@@ -251,7 +237,6 @@ void otcurrentUIDialog::OpenFile(bool newestFile)
 	m_bUseDirection = pPlugIn->GetCopyDirection();
 	m_bUseHighRes = pPlugIn->GetCopyResolution();
 	m_bUseFillColour = pPlugIn->GetCopyColour();
-	m_sUseScale = pPlugIn->GetCopyScale();
 
 	m_FolderSelected = pPlugIn->GetFolderSelected();
 	m_IntervalSelected = pPlugIn->GetIntervalSelected();
@@ -266,39 +251,41 @@ void otcurrentUIDialog::OnFolderSelChanged(wxFileDirPickerEvent& event)
 	RequestRefresh(pParent);	
 }
 
-void otcurrentUIDialog::OnDateTimeChanged( wxDateEvent& event )
+void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 {	
-	wxDateTime dm;
-	wxDateTime tm;
-	wxTimeSpan mySpan;
 
-#ifndef __OCPN__ANDROID__
-	 dm = m_datePickerDate->GetValue();
-#else	
-	wxString DateString = m_datePickerDate->GetValue();  
-    dm.ParseDate(DateString);
-#endif
-    int h, m, s;
- 
-#ifndef __OCPN__ANDROID__
-	 m_timePickerTime->GetTime( &h, &m, &s );
-	 mySpan = wxTimeSpan(h, m, s);
-#else	
-	tm = m_timePickerTime->GetTimeCtrlValue();
-	wxString ts = tm.FormatISOTime();
-	wxString hs = ts.Mid(0, 2);
-	wxString ms = ts.Mid(3, 2);
-	wxString ss = ts.Mid(5, 2);
-	mySpan = wxTimeSpan(wxAtoi(hs), wxAtoi(ms), wxAtoi(ss));
-#endif
-    
-    dm.Add( mySpan );
-    
-    m_dtNow = dm;
-    
-    MakeDateTimeLabel(m_dtNow);
-    
-    RequestRefresh( pParent );
+	CalendarDialog CalDialog ( this, -1, _("START Date/Time"),
+	                          wxPoint(100, 100), wxSize(400, 500) );
+	if ( CalDialog.ShowModal() == wxID_OK ){
+		
+		wxDateTime dm = CalDialog.dialogCalendar->GetDate();
+		wxString myTime = CalDialog._timeText->GetValue();
+        wxString val = myTime.Mid(0,1);
+
+		if ( val == wxT(" ")){
+			myTime = wxT("0") + myTime.Mid(1,5);
+		}
+	
+		wxDateTime dt;
+		dt.ParseTime(myTime);
+				
+		wxString todayHours = dt.Format(_T("%H"));
+        wxString todayMinutes = dt.Format(_T("%M"));
+		
+		double h;
+		double m;
+
+		todayHours.ToDouble(&h);
+		todayMinutes.ToDouble(&m);
+		myTimeOfDay = wxTimeSpan(h,m,0,0);	
+
+		dm = CalDialog.dialogCalendar->GetDate();
+		
+		m_dtNow = dm + myTimeOfDay;
+
+		MakeDateTimeLabel(m_dtNow);
+		RequestRefresh(pParent);
+	}
 }
 
 void otcurrentUIDialog::OnNow( wxCommandEvent& event ){
@@ -355,19 +342,73 @@ void otcurrentUIDialog::SetInterval( wxCommandEvent& event ){
 
 wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime)
 {			
-    const wxString dateLabel(myDateTime.Format( _T( "%a") ));
-    m_staticTextDatetime->SetLabel(dateLabel);
-    
-   // m_datePickerDate->SetValue(myDateTime.GetDateOnly());
-   // m_timePickerTime->SetTime(myDateTime.GetHour(),myDateTime.GetMinute(), myDateTime.GetSecond());
+		wxDateTime dt = myDateTime;
 
-    return dateLabel;
+		wxString s2 = dt.Format ( _T( "%a %d %b %Y"));
+		wxString s = dt.Format(_T("%H:%M")); 
+		wxString dateLabel = s2 + _T(" ") + s;	
+
+		m_textCtrl1->SetValue(dateLabel);				
+
+		return dateLabel;	
 }
 
 void otcurrentUIDialog::About(wxCommandEvent& event)
 {
 	
        wxMessageBox(
-_("Tidal Current\n------------------------------------------------------\n\n\n\n\n\nUse this data with caution.\nUse in conjunction with Tidal Current Atlases and Tidal Diamonds\n\n------------------------------------------------------\n\nNote: 1 Rates shown are for a position corresponding to the centre\nof the base of the arrow. Tidal rate is shown as knots.\n\n")
+_("Tidal Current\n--------------------------------------------------------------\n\n\n\n\n\nUse this data with caution.\nUse in conjunction with Tidal Current Atlases and Tidal Diamonds\n\n--------------------------------------------------------------------\n\nNote: 1 Rates shown are for a position corresponding to the centre\nof the base of the arrow. Tidal rate is shown as knots.\n\n")
      , _("About Tidal Arrows"), wxOK | wxICON_INFORMATION, this);
 }
+
+
+CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxString & title,
+                           const wxPoint & position, const wxSize & size, long style )
+: wxDialog( parent, id, title, position, size, style)
+{
+		
+	wxString dimensions = wxT(""), s;
+	wxPoint p;
+	wxSize  sz;
+ 
+	sz.SetWidth(440);
+	sz.SetHeight(350);
+	
+	p.x = 6; p.y = 2;
+	s.Printf(_(" x = %d y = %d\n"), p.x, p.y);
+	dimensions.append(s);
+	s.Printf(_(" width = %d height = %d\n"), sz.GetWidth(), sz.GetHeight());
+	dimensions.append(s);
+	dimensions.append(wxT("here"));
+ 
+	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, sz, wxCAL_SHOW_HOLIDAYS,_("Tide Calendar"));
+
+	m_staticText = new wxStaticText(this,wxID_ANY,_("Time:"),wxPoint(15,360),wxSize(120,42));
+
+	_timeText = new wxTimeTextCtrl(this,wxID_ANY,wxT("12:00"),wxPoint(210,360),wxSize(120,42));
+
+    _spinCtrl=new wxSpinButton(this,wxID_ANY,wxPoint(136,360),wxSize(40,42),wxSP_VERTICAL|wxSP_ARROW_KEYS);
+	_spinCtrl->Connect( wxEVT_SCROLL_LINEUP, wxSpinEventHandler( CalendarDialog::spinUp ), NULL, this );
+	_spinCtrl->Connect( wxEVT_SCROLL_LINEDOWN, wxSpinEventHandler( CalendarDialog::spinDown ), NULL, this );
+	
+	p.y += sz.GetHeight() + 80;
+	wxButton * c = new wxButton( this, wxID_CANCEL, _("Cancel"), p, wxDefaultSize );	
+	p.x += 220;
+	wxButton * b = new wxButton( this, wxID_OK, _("OK"), p, wxDefaultSize );
+    
+}
+
+
+
+void CalendarDialog::spinUp(wxSpinEvent& event)
+{
+		_timeText->OnArrowUp();
+}
+
+void CalendarDialog::spinDown(wxSpinEvent& event)
+{
+         _timeText->OnArrowDown();
+}
+	
+
+

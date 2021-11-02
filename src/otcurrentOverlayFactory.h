@@ -29,6 +29,23 @@
 #include "bbox.h"
 #include "tcmgr.h"
 
+#ifdef ocpnUSE_GL
+#ifdef __WXMSW__
+#include <GL/glu.h>
+#include "GL/gl.h"  // local copy for Windows
+#else
+
+#ifndef __OCPN__ANDROID__
+#include <GL/gl.h>
+#include <GL/glu.h>
+#else
+#include "GL/gl_private.h"
+#include "qopengl.h"  // this gives us the qt runtime gles2.h
+#endif
+
+#endif
+#endif
+
 using namespace std;
 
 
@@ -47,8 +64,7 @@ public:
 
     ~otcurrentOverlay( void )
     {
-        if(m_iTexture)
-        // glDeleteTextures( 1, &m_iTexture );
+       
         delete m_pDCBitmap, delete[] m_pRGBA;
     }
 
@@ -86,8 +102,6 @@ public:
 	void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
         bool bforce_redraw_currents, bool bdraw_mono_for_mask, wxDateTime myTime);
 
-	wxPoint ScaleCurrentArrow(int index, wxPoint myPoint, int scale);
-
     void Reset();
 	wxImage &DrawGLText( double value, int precision);
 	wxImage &DrawGLTextDir( double value, int precision);
@@ -108,7 +122,6 @@ public:
     bool              m_bShowDirection;
 	bool			  m_bHighResolution;
 	bool              m_bShowFillColour;
-	wxString		  m_sShowScale;
 	wxDateTime        m_dtUseNew;
 
 private:
@@ -136,10 +149,8 @@ private:
     wxSize  m_ParentSize;
 
     wxDC *m_pdc;
-
-#if wxUSE_GRAPHICS_CONTEXT
     wxGraphicsContext *m_gdc;
-#endif
+
     wxFont *m_dFont_map;
     wxFont *m_dFont_war;
 
