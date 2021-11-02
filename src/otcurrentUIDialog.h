@@ -48,12 +48,19 @@
 #include "wx/stattext.h"
 #include "ocpn_plugin.h"
 #include "wx/dialog.h"
-#include <wx/calctrl.h>
+#ifndef __OCPN__ANDROID__
+#include <wx/datectrl.h>
+#endif  //__OCPN__ANDROID__
 #include "wx/window.h"
 #include "timectrl.h"
 #include <wx/colordlg.h>
 #include <wx/event.h>
 
+#ifdef __OCPN__ANDROID__
+	#include "android/wx/datectrl.h"
+#else
+	class wxDatePickerCtrl;
+#endif
 
 
 using namespace std;
