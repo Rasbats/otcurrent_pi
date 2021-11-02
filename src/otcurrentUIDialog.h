@@ -48,19 +48,12 @@
 #include "wx/stattext.h"
 #include "ocpn_plugin.h"
 #include "wx/dialog.h"
-#ifndef __OCPN__ANDROID__
-#include <wx/datectrl.h>
-#endif  //__OCPN__ANDROID__
+#include <wx/calctrl.h>
 #include "wx/window.h"
 #include "timectrl.h"
 #include <wx/colordlg.h>
 #include <wx/event.h>
 
-#ifdef __OCPN__ANDROID__
-	#include "android/wx/datectrl.h"
-#else
-	class wxDatePickerCtrl;
-#endif
 
 
 using namespace std;
@@ -190,22 +183,21 @@ private:
 
 class CalendarDialog: public wxDialog
 {
-#ifdef __OCPN__ANDROID__
-	#include "android/wx/datectrl.h"
-#else
-	#include <wx/calctrl.h>
-	class wxDatePickerCtrl;
-#endif
-
-
 public:
-
+ 
 	CalendarDialog ( wxWindow * parent, wxWindowID id, const wxString & title,
 	              const wxPoint & pos = wxDefaultPosition,
 	              const wxSize & size = wxDefaultSize,
 				  long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 
+#ifdef __OCPN__ANDROID__
+	#include "android/wx/datectrl.h"
 	wxCalendarCtrl* dialogCalendar; 
+#else
+	class wxDatePickerCtrl;
+	wxCalendarCtrl* dialogCalendar; 
+#endif
+
 	wxStaticText *m_staticText; 
 	wxTimeTextCtrl *_timeText;
 	wxSpinButton *_spinCtrl;

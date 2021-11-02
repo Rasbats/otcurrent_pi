@@ -44,11 +44,6 @@
 #include <wx/filepicker.h>
 #include <wx/event.h>
 
-#ifdef __OCPN__ANDROID__
-	#include "android/wx/datectrl.h"
-#else
-	class wxDatePickerCtrl;
-#endif
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -68,9 +63,14 @@ class otcurrentUIDialogBase : public wxDialog
 		//wxStaticText* m_staticText24;
 		wxChoice* m_choice2;
 		
-		wxDatePickerCtrl* m_datePicker1;
-
-		
+#ifdef __OCPN__ANDROID__
+	#include "android/wx/datectrl.h"
+	wxDatePickerCtrl* m_datePicker1;
+#else
+	class wxDatePickerCtrl;
+	wxDatePickerCtrl* m_datePicker1;
+#endif
+				
 		wxBitmapButton* m_bpNext;
 		wxBitmapButton* m_bpNow;
 
