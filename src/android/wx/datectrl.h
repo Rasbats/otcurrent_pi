@@ -41,7 +41,7 @@ public:
     {}
     // wxDatePickerCtrl methods
     void SetValue(const wxDateTime& date) { wxTextCtrl::SetValue(date.FormatISODate()); }
-    wxDateTime GetDateCtrlValue() const { wxDateTime dt; dt.ParseISODate(wxTextCtrl::GetValue()); return dt; }
+    wxDateTime GetDate() const { wxDateTime dt; dt.ParseISODate(wxTextCtrl::GetValue()); return dt; }
 
     bool GetRange(wxDateTime *dt1, wxDateTime *dt2) const {return true;}
     void SetRange(const wxDateTime &dt1, const wxDateTime &dt2) {}
