@@ -381,8 +381,14 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	dimensions.append(s);
 	dimensions.append(wxT("here"));
  
+#ifndef __OCPN__ANDROID__
+	
 	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, sz, wxCAL_SHOW_HOLIDAYS,_("Tide Calendar"));
 
+#else
+	dialogCalendar = new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DEFAULT);
+
+#endif
 	m_staticText = new wxStaticText(this,wxID_ANY,_("Time:"),wxPoint(15,360),wxSize(120,42));
 
 	_timeText = new wxTimeTextCtrl(this,wxID_ANY,wxT("12:00"),wxPoint(210,360),wxSize(120,42));
