@@ -192,7 +192,7 @@ public:
 
 #ifdef __OCPN__ANDROID__
 	#include "android/wx/datectrl.h"
-	wxCalendarCtrl* dialogCalendar; 
+	wxDatePickerCtrl* dialogCalendar; 
 #else
 	class wxDatePickerCtrl;
 	wxCalendarCtrl* dialogCalendar; 
