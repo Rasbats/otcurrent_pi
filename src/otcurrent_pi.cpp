@@ -71,10 +71,29 @@ extern "C" DECL_EXP void destroy_pi(opencpn_plugin* p)
 //---------------------------------------------------------------------------------------------------------
 
 otcurrent_pi::otcurrent_pi(void *ppimgr)
-      :opencpn_plugin_115(ppimgr)
+      :opencpn_plugin_116(ppimgr)
 {
       // Create the PlugIn icons
       initialize_images();
+
+	  wxFileName fn;
+	  wxString tmp_path;
+
+	  tmp_path = GetPluginDataDir("otcurrent_pi");
+	  fn.SetPath(tmp_path);
+	  fn.AppendDir(_T("data"));
+	  fn.SetFullName("otcurrent_panel_icon.png");
+
+	  wxString shareLocn = fn.GetFullPath();  
+	  wxImage panelIcon(shareLocn);
+
+	  if (panelIcon.IsOk())
+		  m_panelBitmap = wxBitmap(panelIcon);
+	  else
+		  wxLogMessage(_("    otcurrent panel icon has NOT been loaded"));
+
+
+
       m_bShowotcurrent = false;
 	  
      
@@ -153,12 +172,14 @@ bool otcurrent_pi::DeInit(void)
 
 int otcurrent_pi::GetAPIVersionMajor()
 {
-      return MY_API_VERSION_MAJOR;
+      return atoi(API_VERSION);
 }
 
 int otcurrent_pi::GetAPIVersionMinor()
 {
-      return MY_API_VERSION_MINOR;
+      std::string v(API_VERSION);
+	size_t dotpos = v.find('.');
+	return atoi(v.substr(dotpos + 1).c_str());
 }
 
 int otcurrent_pi::GetPlugInVersionMajor()
@@ -173,7 +194,7 @@ int otcurrent_pi::GetPlugInVersionMinor()
 
 wxBitmap *otcurrent_pi::GetPlugInBitmap()
 {
-      return _img_otcurrent_pi;
+      return &m_panelBitmap;
 }
 
 wxString otcurrent_pi::GetCommonName()

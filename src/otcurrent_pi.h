@@ -34,19 +34,13 @@
   #include <wx/glcanvas.h>
 #endif //precompiled headers
 
-#define     PLUGIN_VERSION_MAJOR    1
-#define     PLUGIN_VERSION_MINOR    4
-
-#define     MY_API_VERSION_MAJOR    1
-#define     MY_API_VERSION_MINOR    15
-
 #include "ocpn_plugin.h"
 #include "otcurrentOverlayFactory.h"
 #include "otcurrentUIDialog.h"
 
 extern wxString myVColour[5]; 
 
-
+#include "config.h"
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
@@ -54,7 +48,7 @@ extern wxString myVColour[5];
 
 #define otcurrent_TOOL_POSITION    -1          // Request default positioning of toolbar tool
 
-class otcurrent_pi : public opencpn_plugin_115
+class otcurrent_pi : public opencpn_plugin_116
 {
 public:
       otcurrent_pi(void *ppimgr);
@@ -141,7 +135,7 @@ private:
       int              m_height;
 
       bool			   m_bShowotcurrent;
-
+	  wxBitmap		   m_panelBitmap;
 	
 
 };
