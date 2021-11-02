@@ -116,7 +116,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
     MakeDateTimeLabel(m_dtNow);
 
 	//wxMessageBox(m_FolderSelected);
-	
+	/*
     if (m_FolderSelected == wxEmptyString){
         
 		wxString shareLocn;
@@ -154,7 +154,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi, wxWind
 	wxString tzs;
 	tzs = wxString::Format(_T("UTC %+03.0f:%02.0f"), h, m);
 	m_stTimeZone->SetLabel(tzs);
-
+*/
 	DimeWindow( this );
 	
 }
