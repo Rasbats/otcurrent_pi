@@ -190,8 +190,16 @@ private:
 
 class CalendarDialog: public wxDialog
 {
+#ifdef __OCPN__ANDROID__
+	#include "android/wx/datectrl.h"
+#else
+	#include <wx/calctrl.h>
+	class wxDatePickerCtrl;
+#endif
+
+
 public:
- 
+
 	CalendarDialog ( wxWindow * parent, wxWindowID id, const wxString & title,
 	              const wxPoint & pos = wxDefaultPosition,
 	              const wxSize & size = wxDefaultSize,
