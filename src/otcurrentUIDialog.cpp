@@ -118,22 +118,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 
     this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
 
-    m_dtNow = wxDateTime::Now(); 
-    MakeDateTimeLabel(m_dtNow);
-	
-    if (m_FolderSelected == wxEmptyString){
-        wxString g_SData_Locn = *GetpSharedDataLocation();
-        // Establish location of Tide and Current data
-        pTC_Dir = new wxString(_T("tcdata"));
-        pTC_Dir->Prepend(g_SData_Locn);
-        m_FolderSelected = *pTC_Dir;
-
-        m_dirPicker1->SetPath(m_FolderSelected);
-        m_dirPicker1->GetTextCtrlValue();
-    }
-    else{
-        m_dirPicker1->SetPath(m_FolderSelected);
-    }
+   
 
     LoadTCMFile();
 	m_choice1->SetSelection(m_IntervalSelected);
