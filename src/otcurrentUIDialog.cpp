@@ -281,8 +281,8 @@ void otcurrentUIDialog::OnDateTimeChanged( wxDateEvent& event )
     int h, m, s;
  
 #ifndef __OCPN__ANDROID__
-	 m_timePickerTime->GetTime( &h, &m, &s );
-	 mySpan = wxTimeSpan(h, m, s);
+	 tm = m_timePickerTime->GetTimeCtrlValue();
+	 mySpan = wxTimeSpan(1, 1, 1);
 #else	
 	tm = m_timePickerTime->GetTimeCtrlValue();
 	wxString ts = tm.FormatISOTime();
