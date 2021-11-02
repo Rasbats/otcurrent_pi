@@ -17,9 +17,11 @@
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
+#ifndef __OCPN__ANDROID__
 #include <wx/datectrl.h>
-#include <wx/dateevt.h>
 #include <wx/timectrl.h>
+#endif  //__OCPN__ANDROID__
+#include <wx/dateevt.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
