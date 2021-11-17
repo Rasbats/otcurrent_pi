@@ -496,7 +496,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 						  char sbuf[20];
                           if( m_bShowRate ) {
 							snprintf( sbuf, 19, "%3.1f", fabs(tcvalue) );
-							//m_pc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc );
+							m_dc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc );
 							if (!m_bHighResolution){
 								shift = 13;
 							}
@@ -507,7 +507,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 					
 						  if ( m_bShowDirection ) {	
 							snprintf( sbuf, 19, "%03.0f", dir );
-							//m_dc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc + shift );
+							m_dc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc + shift );
                           }
                         }
                     }
