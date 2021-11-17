@@ -123,6 +123,10 @@ public:
 
      void DrawGLLineArray( int n, float *vertex_array, unsigned char *color_array,  bool b_hiqual );
      void DrawGLLineArray( int n, float *vertex_array, float *color_array,  bool b_hiqual );
+
+	 bool ConfigurePen();
+     bool ConfigureBrush();
+
      
 #ifdef ocpnUSE_GL     
      GLfloat     *s_odc_tess_work_buf;
@@ -141,8 +145,6 @@ public:
      #endif
      
 protected:
-     bool ConfigurePen();
-     bool ConfigureBrush();
 
      void GLDrawBlendData(wxCoord x, wxCoord y, wxCoord w, wxCoord h,
                           int format, const unsigned char *data);

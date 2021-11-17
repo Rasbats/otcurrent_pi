@@ -29,26 +29,12 @@
 #include "bbox.h"
 #include "tcmgr.h"
 
-#ifdef ocpnUSE_GL
-#ifdef __WXMSW__
-#include <GL/glu.h>
-#include "GL/gl.h"  // local copy for Windows
-#else
-
-#ifndef __OCPN__ANDROID__
-#include <GL/gl.h>
-#include <GL/glu.h>
-#else
-#include "GL/gl_private.h"
-#include "qopengl.h"  // this gives us the qt runtime gles2.h
-#endif
-
-#endif
-#endif
 
 using namespace std;
 
-
+class plugIn_Viewport;
+class piDC;
+class wxDC;
 
 //----------------------------------------------------------------------------------------------------------
 //    otcurrent Overlay Specification
@@ -63,10 +49,14 @@ public:
     }
 
     ~otcurrentOverlay( void )
+
+    
     {
        
         delete m_pDCBitmap, delete[] m_pRGBA;
     }
+
+    double m_latoff, m_lonoff;
 
     unsigned int m_iTexture; /* opengl mode */
 
@@ -82,6 +72,8 @@ public:
 //----------------------------------------------------------------------------------------------------------
 
 class otcurrentUIDialog;
+class wxGLContext;
+class otcurrentOverlayFactory;
 
 class otcurrentOverlayFactory {
 public:
@@ -96,8 +88,7 @@ public:
 
     void SetMessage( wxString message ) { m_Message = message; }
     void SetParentSize( int w, int h ) { m_ParentSize.SetWidth(w) ; m_ParentSize.SetHeight(h) ;}
-	bool RenderGLotcurrentOverlay( wxGLContext *pcontext, PlugIn_ViewPort *vp );
-    bool RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort *vp );
+	bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
 
 	void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
         bool bforce_redraw_currents, bool bdraw_mono_for_mask, wxDateTime myTime);
@@ -106,23 +97,21 @@ public:
 	wxImage &DrawGLText( double value, int precision);
 	wxImage &DrawGLTextDir( double value, int precision);
 	wxImage &DrawGLTextString( wxString myText);
-	wxImage &DrawGLPolygon();
 
-	void DrawGLLabels(otcurrentOverlayFactory *pof, wxDC *dc,
-                               PlugIn_ViewPort *vp,
-                               wxImage &imageLabel, double myLat, double myLon, int offset);
+	void DrawLine(double x1, double y1, double x2, double y2, const wxColour &color, double width);
 
-	void drawGLPolygons(otcurrentOverlayFactory *pof, wxDC *dc,
-                                PlugIn_ViewPort *vp, 
-                                wxImage &imageLabel, double myLat, double myLon, int offset );
 
-	void DrawGLLine( double x1, double y1, double x2, double y2, double width, wxColour myColour );
     void DrawOLBitmap( const wxBitmap &bitmap, wxCoord x, wxCoord y, bool usemask );
 	bool              m_bShowRate;
     bool              m_bShowDirection;
 	bool			  m_bHighResolution;
 	bool              m_bShowFillColour;
 	wxDateTime        m_dtUseNew;
+	wxColour m_text_color;
+	    std::map < double , wxImage > m_labelCache;
+	std::map < wxString , wxImage > m_labelCacheText;
+	
+	piDC *m_dc;
 
 private:
 
@@ -148,8 +137,6 @@ private:
     wxString m_Message_Hiden;
     wxSize  m_ParentSize;
 
-    wxDC *m_pdc;
-
 #if wxUSE_GRAPHICS_CONTEXT
     wxGraphicsContext *m_gdc;
 #endif
@@ -162,11 +149,10 @@ private:
     bool m_hiDefGraphics;
     bool m_bGradualColors;
 
-    wxColour m_text_color;
-    std::map < double , wxImage > m_labelCache;
-	std::map < wxString , wxImage > m_labelCacheText;
-
+    
 	wxImage m_fillImg;
-    otcurrentUIDialog &m_dlg;
+	otcurrentUIDialog &m_dlg;
+	void DrawGLLine( double x1, double y1, double x2, double y2, double width, wxColour myColour );
+
 
 };

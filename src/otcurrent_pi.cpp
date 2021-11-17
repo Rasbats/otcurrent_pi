@@ -414,29 +414,6 @@ void otcurrent_pi::OnotcurrentDialogClose()
 
 }
 
-bool otcurrent_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
-{
-    if(!m_potcurrentDialog ||
-       !m_potcurrentDialog->IsShown() ||
-       !m_potcurrentOverlayFactory)
-        return false;
-
-    m_potcurrentDialog->SetViewPort( vp );
-    m_potcurrentOverlayFactory->RenderotcurrentOverlay ( dc, vp );
-    return true;
-}
-
-bool otcurrent_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
-{
-    if(!m_potcurrentDialog ||
-       !m_potcurrentDialog->IsShown() ||
-       !m_potcurrentOverlayFactory)
-        return false;
-
-    m_potcurrentDialog->SetViewPort( vp );
-    m_potcurrentOverlayFactory->RenderGLotcurrentOverlay ( pcontext, vp );
-    return true;
-}
 void otcurrent_pi::SetCursorLatLon(double lat, double lon)
 {
     if(m_potcurrentDialog)
@@ -521,5 +498,30 @@ void otcurrent_pi::SetColorScheme(PI_ColorScheme cs)
     DimeWindow(m_potcurrentDialog);
 }
 
+bool otcurrent_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
+{
+    if(!m_potcurrentDialog ||
+       !m_potcurrentDialog->IsShown() ||
+       !m_potcurrentOverlayFactory)
+        return false;
 
+    piDC pidc(dc);
+    m_potcurrentOverlayFactory->RenderOverlay (pidc, *vp );
+    return true;
+}
+
+bool otcurrent_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
+{
+    if(!m_potcurrentDialog ||
+       !m_potcurrentDialog->IsShown() ||
+       !m_potcurrentOverlayFactory)
+        return false;
+
+    piDC piDC;
+    glEnable( GL_BLEND );
+    piDC.SetVP(vp);
+    
+    m_potcurrentOverlayFactory->RenderOverlay ( piDC, *vp );
+    return true;
+}
 

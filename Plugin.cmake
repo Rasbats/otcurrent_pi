@@ -78,6 +78,9 @@ macro(late_init)
   if (OTCURRENT_USE_SVG)
     target_compile_definitions(${PACKAGE_NAME} PUBLIC OTCURRENT_USE_SVG)
   endif ()
+
+  add_definitions(-DocpnUSE_GL)
+  
 endmacro ()
 
 macro(add_plugin_libraries)

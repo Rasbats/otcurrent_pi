@@ -35,11 +35,24 @@
 #include <wx/graphics.h>
 #include <wx/progdlg.h>
 
-#include "otcurrentUIDialog.h"
-#include "otcurrentUIDialogBase.h"
-#include "otcurrentOverlayFactory.h"
+
+#include "otcurrent_pi.h"
 #include <vector>
 #include "bbox.h"
+
+#ifdef __WXOSX__
+# include <OpenGL/OpenGL.h>
+# include <OpenGL/gl3.h>
+#endif
+
+#ifdef __OCPN__ANDROID__
+#include <qopengl.h>
+#include "gl_private.h"
+#endif
+
+#ifdef USE_GLES2
+#include "GLES2/gl2.h"
+#endif
 
 #ifdef __WXMSW__
 #define snprintf _snprintf
@@ -57,6 +70,51 @@ static wxPoint CurrentArrowArray[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), 
         wxPoint( 55, -10 ), wxPoint( 55, -25 ), wxPoint( 100, 0 ), wxPoint( 55, 25 ), wxPoint( 55,
                 10 ), wxPoint( 0, 10 ), wxPoint( 0, 0 )
                                                              };
+static int texture_format;
+static bool glQueried = false;
+
+static GLboolean QueryExtension( const char *extName )
+{
+    /*
+     ** Search for extName in the extensions string. Use of strstr()
+     ** is not sufficient because extension names can be prefixes of
+     ** other extension names. Could use strtok() but the constant
+     ** string returned by glGetString might be in read-only memory.
+     */
+    char *p;
+    char *end;
+    int extNameLen;
+
+    extNameLen = strlen( extName );
+
+    p = (char *) glGetString( GL_EXTENSIONS );
+    if( NULL == p ) {
+        return GL_FALSE;
+    }
+
+    end = p + strlen( p );
+
+    while( p < end ) {
+        int n = strcspn( p, " " );
+        if( ( extNameLen == n ) && ( strncmp( extName, p, n ) == 0 ) ) {
+            return GL_TRUE;
+        }
+        p += ( n + 1 );
+    }
+    return GL_FALSE;
+}
+
+#if defined(__WXMSW__)
+#define systemGetProcAddress(ADDR) wglGetProcAddress(ADDR)
+#elif defined(__WXOSX__)
+#include <dlfcn.h>
+#define systemGetProcAddress(ADDR) dlsym( RTLD_DEFAULT, ADDR)
+#elif defined(__OCPN__ANDROID__)
+#define systemGetProcAddress(ADDR) eglGetProcAddress(ADDR)
+#else
+#define systemGetProcAddress(ADDR) glXGetProcAddress((const GLubyte*)ADDR)
+#endif
+
 
 //----------------------------------------------------------------------------------------------------------
 //    otcurrent Overlay Factory Implementation
@@ -87,33 +145,64 @@ void otcurrentOverlayFactory::Reset()
 
 }
 
-bool otcurrentOverlayFactory::RenderGLotcurrentOverlay( wxGLContext *pcontext, PlugIn_ViewPort *vp )
+bool otcurrentOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
 {
-    m_pdc = NULL;  // inform lower layers that this is OpenGL render
+	m_dc = &dc;	
 
-    DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
+	if (!dc.GetDC()) {
+		if (!glQueried) {
+			
+			glQueried = true;
+		}
+#ifndef USE_GLSL
+		glPushAttrib(GL_LINE_BIT | GL_ENABLE_BIT | GL_HINT_BIT); //Save state
+
+		//      Enable anti-aliased lines, at best quality
+		glEnable(GL_LINE_SMOOTH);
+		glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+#endif
+		glEnable(GL_BLEND);
+	}
+
+	wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+	m_dc->SetFont(font);
+
+	wxColour myColour = wxColour("RED");
+	
+	/*
+	std::vector<Position> mypoints =  m_dlg.my_points;
+	
+	for (std::vector<Position>::iterator it = mypoints.begin(); it != mypoints.end(); it++) {
+
+
+		wxPoint p, pn;
+        GetCanvasPixLL( &vp, &p, (it)->myLat, (it)->myLon);
+		GetCanvasPixLL( &vp, &pn, (it)->myNextLat, (it)->myNextLon);
+
+        DrawLine(p.x, p.y, pn.x, pn.y, myColour, 4);		
+	}
+	*/
+	
+	DrawAllCurrentsInViewPort(&vp,false,false,false, m_dtUseNew);
+
+	DrawLine(140, 140, 220, 220, myColour, 4);
+
+	
     return true;
-
 }
 
-bool otcurrentOverlayFactory::RenderotcurrentOverlay( wxDC &dc, PlugIn_ViewPort *vp )
+void otcurrentOverlayFactory::DrawLine( double x1, double y1, double x2, double y2,
+                                          const wxColour &color, double width )
 {
+	m_dc->ConfigurePen();
+	m_dc->SetPen( wxPen(color, width ) );
+	m_dc->ConfigureBrush();
+    m_dc->SetBrush( *wxTRANSPARENT_BRUSH);
+    m_dc->DrawLine(x1, y1, x2, y2, false);
 
-#if wxUSE_GRAPHICS_CONTEXT
-    wxMemoryDC *pmdc;
-    pmdc = wxDynamicCast(&dc, wxMemoryDC);
-    wxGraphicsContext *pgc = wxGraphicsContext::Create( *pmdc );
-    m_gdc = pgc;
-    m_pdc = &dc;
-#else
-    m_pdc = &dc;
-#endif
-	   
-	m_pdc = &dc;
-
-	DrawAllCurrentsInViewPort(vp,false,false,false, m_dtUseNew);
-    return true;
-
+	//wxMessageBox("here");
 }
 
 
@@ -190,11 +279,11 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 
 	wxBrush brush(colour);
 
-    if( m_pdc ) {
+    if( m_dc ) {
 	    wxPen pen( colour, 2 );
 
-        m_pdc->SetPen( pen );
-        m_pdc->SetBrush( brush);  
+        m_dc->SetPen( pen );
+        m_dc->SetBrush( brush);  
     }
 
     float sin_rot = sin( rot_angle * PI / 180. );
@@ -229,12 +318,10 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 		p_basic[ip].x = 100 + x2;
 		p_basic[ip].y = 100 + y2;
 
-		if (m_pdc){
-			m_pdc->DrawLine( x1 + x, y1 + y, x2 + x, y2 + y );
+		if (m_dc){
+			m_dc->DrawLine( x1 + x, y1 + y, x2 + x, y2 + y );
 		}
-		else{
-			DrawGLLine(x1 + x, y1 + y, x2 + x, y2 + y , 2, colour);
-		}
+
 		p[ip].x = x1 + x; 
         p[ip].y = y1 + y;
 
@@ -245,9 +332,9 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 	//p[9].x = x1;
 	//p[9].y = y1;
 
-	if( m_bShowFillColour && m_pdc){
-		m_pdc->SetBrush(brush);
-		m_pdc->DrawPolygon(9,p);
+	if( m_bShowFillColour && m_dc){
+		m_dc->SetBrush(brush);
+		m_dc->DrawPolygon(9,p);
 	}
 	return true;
 }
@@ -372,8 +459,8 @@ void otcurrentOverlayFactory::DrawOLBitmap( const wxBitmap &bitmap, wxCoord x, w
     } else {
         bmp = bitmap;
     }
-    if( m_pdc )
-        m_pdc->DrawBitmap( bmp, x, y, usemask );
+    if( m_dc )
+        m_dc->DrawBitmap( bmp, x, y, usemask );
     else {
         wxImage image = bmp.ConvertToImage();
         int w = image.GetWidth(), h = image.GetHeight();
@@ -425,264 +512,6 @@ void otcurrentOverlayFactory::DrawOLBitmap( const wxBitmap &bitmap, wxCoord x, w
     }
 }
 
-void otcurrentOverlayFactory::DrawGLLabels(otcurrentOverlayFactory *pof, wxDC *dc,
-                                PlugIn_ViewPort *vp,
-                                wxImage &imageLabel, double myLat, double myLon, int offset )
-{
-
-    //---------------------------------------------------------
-    // Ecrit les labels
-    //---------------------------------------------------------
-        
-         wxPoint ab;
-         GetCanvasPixLL(vp, &ab, myLat, myLon);
-                 
-	     wxPoint cd;
-         GetCanvasPixLL(vp, &cd,myLat, myLon);
-                
-         int w = imageLabel.GetWidth();
-         int h = imageLabel.GetHeight();
-
-         int label_offset = 0;
-         int xd = (ab.x + cd.x-(w+label_offset * 2))/2;
-         int yd = (ab.y + cd.y - h)/2 + offset;
-                
-         if(dc) {
-                    /* don't use alpha for isobars, for some reason draw bitmap ignores
-                       the 4th argument (true or false has same result) */
-                    wxImage img(w, h, imageLabel.GetData(), true);
-                    dc->DrawBitmap(img, xd, yd, false);
-         } 
-		 else { /* opengl */
-                  
-			int w = imageLabel.GetWidth(), h = imageLabel.GetHeight();
-
-            unsigned char *d = imageLabel.GetData();
-            unsigned char *a = imageLabel.GetAlpha();
-
-            unsigned char mr, mg, mb;
-            if( !a && !imageLabel.GetOrFindMaskColour( &mr, &mg, &mb ) ) 
-              wxMessageBox(_T("trying to use mask to draw a bitmap without alpha or mask\n" ));
-
-            unsigned char *e = new unsigned char[4 * w * h];
-            {
-                for( int y = 0; y < h; y++ )
-                    for( int x = 0; x < w; x++ ) {
-                        unsigned char r, g, b;
-                        int off = ( y * w + x );
-                        r = d[off * 3 + 0];
-                        g = d[off * 3 + 1];
-                        b = d[off * 3 + 2];
-
-                        e[off * 4 + 0] = r;
-                        e[off * 4 + 1] = g;
-                        e[off * 4 + 2] = b;
-
-                        e[off * 4 + 3] =
-                                a ? a[off] : ( ( r == mr ) && ( g == mg ) && ( b == mb ) ? 0 : 255 );
-                    }
-            }
-
-            glColor4f( 1, 1, 1, 1 );
-
-            glEnable( GL_BLEND );
-            glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-            glRasterPos2i( xd, yd );
-            glPixelZoom( 1, -1 );
-            glDrawPixels( w, h, GL_RGBA, GL_UNSIGNED_BYTE, e );
-            glPixelZoom( 1, 1 );
-            glDisable( GL_BLEND );
-
-            delete[] ( e );
-
-      }
-
-
-}
-
-wxImage &otcurrentOverlayFactory::DrawGLPolygon(){
-
-	wxImage	img;
-
-	wxColour c_orange = c_GLcolour;
-
-    wxPen penText(c_orange);
-    wxBrush backBrush(c_orange);
-
-    wxMemoryDC mdc(wxNullBitmap);
-
-    int w, h;
-	
-	w = 200;
-	h = 200;
-
-    wxBitmap bm(w, h);
-    mdc.SelectObject(bm);
-    mdc.Clear();
-
-    mdc.SetPen(penText);
-    mdc.SetBrush(backBrush);
-    mdc.SetTextForeground(c_orange);
-    mdc.SetTextBackground(c_orange);
-          
-   // int xd = 0, yd = 0;
-   // mdc.DrawRoundedRectangle(xd, yd, w+(label_offset * 2), h+2, -.25);
-/*
-		
-	                wxPoint p2;  
-					p2.x = 100;
-					p2.y = 100 ;
-
-	                wxPoint z[9];
-					z[0].x = p2.x;
-                    z[0].y = p2.y;
-                    z[1].x = p2.x;
-                    z[1].y = p2.y -10 ;
-                    z[2].x = p2.x + 55;
-                    z[2].y = p2.y - 10;
-                    z[3].x = p2.x + 55;
-                    z[3].y = p2.y -25;
-					z[4].x = p2.x + 100;
-                    z[4].y = p2.y;
-                    z[5].x = p2.x +55;
-                    z[5].y = p2.y + 25 ;
-                    z[6].x = p2.x + 55;
-                    z[6].y = p2.y + 10;
-                    z[7].x = p2.x;
-                    z[7].y = p2.y +10;
-					z[8].x = p2.x;
-                    z[8].y = p2.y;
-
-	*/
-    
-	mdc.DrawPolygon(9,p_basic,0);
-          
-    mdc.SelectObject(wxNullBitmap);
-
-	m_fillImg = bm.ConvertToImage();
-
-	wxImage &image = m_fillImg;
-    image.InitAlpha();
-
-    unsigned char *d = image.GetData();
-    unsigned char *a = image.GetAlpha();
-
-    w = image.GetWidth(), h = image.GetHeight();
-    for( int y = 0; y < h; y++ )
-        for( int x = 0; x < w; x++ ) {
-            int r, g, b;
-            int ioff = (y * w + x);
-            r = d[ioff* 3 + 0];
-            g = d[ioff* 3 + 1];
-            b = d[ioff* 3 + 2];
-
-            a[ioff] = 255-(r+g+b)/3;
-        }
-
-    return image;
-	/*
-	                wxPoint p;  
-					p.x = 200;
-					p.y = 200;
-
-	                wxPoint z[9];
-					z[0].x = p.x;
-                    z[0].y = p.y;
-                    z[1].x = p.x;
-                    z[1].y = p.y -10 ;
-                    z[2].x = p.x + 55;
-                    z[2].y = p.y - 10;
-                    z[3].x = p.x + 55;
-                    z[3].y = p.y -25;
-					z[4].x = p.x + 100;
-                    z[4].y = p.y;
-                    z[5].x = p.x +55;
-                    z[5].y = p.y + 25 ;
-                    z[6].x = p.x + 55;
-                    z[6].y = p.y + 10;
-                    z[7].x = p.x;
-                    z[7].y = p.y +10;
-					z[8].x = p.x;
-                    z[8].y = p.y;
-
-	
-    
-	*/
-
-}
-void otcurrentOverlayFactory::drawGLPolygons(otcurrentOverlayFactory *pof, wxDC *dc,
-                                PlugIn_ViewPort *vp,
-                                wxImage &imageLabel, double myLat, double myLon, int offset )
-{
-
-    //---------------------------------------------------------
-    // Ecrit les labels
-    //---------------------------------------------------------
-        
-         wxPoint ab;
-         GetCanvasPixLL(vp, &ab, myLat, myLon);
-                 
-	     wxPoint cd;
-         GetCanvasPixLL(vp, &cd,myLat, myLon);
-                
-         int w = imageLabel.GetWidth();
-         int h = imageLabel.GetHeight();
-
-         int label_offset = 0;
-         int xd = (ab.x + cd.x-(w+label_offset * 2))/2;
-         int yd = (ab.y + cd.y - h)/2 + offset;
-                
-         if(dc) {
-                    /* don't use alpha for isobars, for some reason draw bitmap ignores
-                       the 4th argument (true or false has same result) */
-                    wxImage img(w, h, imageLabel.GetData(), true);
-                    dc->DrawBitmap(img, xd, yd, false);
-         } 
-		 else { /* opengl */
-                  
-            unsigned char *d = imageLabel.GetData();
-            unsigned char *a = imageLabel.GetAlpha();
-
-            unsigned char mr, mg, mb;
-            if(!a && !imageLabel.GetOrFindMaskColour( &mr, &mg, &mb ) ) 
-                wxMessageBox(_T("trying to use mask to draw a bitmap without alpha or mask\n" ));
-
-            unsigned char *e = new unsigned char[4 * w * h];
-            {
-                for( int y = 0; y < h; y++ )
-                    for( int x = 0; x < w; x++ ) {
-                        unsigned char r, g, b;
-                        int off = ( y * w + x );
-                        r = d[off * 3 + 0];
-                        g = d[off * 3 + 1];
-                        b = d[off * 3 + 2];
-
-                        e[off * 4 + 0] = r;
-                        e[off * 4 + 1] = g;
-                        e[off * 4 + 2] = b;
-
-                        e[off * 4 + 3] =
-                                a ? a[off] : ( ( r == mr ) && ( g == mg ) && ( b == mb ) ? 0 : 255 );
-                    }
-            }
-			
-            glColor4f( 1, 1, 1, 1 );
-
-            glEnable( GL_BLEND );
-            glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-            glRasterPos2i( xd, yd );
-            glPixelZoom( 1, -1 );
-            glDrawPixels( w, h, GL_RGBA, GL_UNSIGNED_BYTE, e );
-            glPixelZoom( 1, 1 );
-            glDisable( GL_BLEND );
-
-            delete[] ( e );
-
-      }
-
-
-}
-
 
 void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
         bool bforce_redraw_currents, bool bdraw_mono_for_mask, wxDateTime myTime)
@@ -725,11 +554,9 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 
 	wxDateTime yn = m_dlg.m_dtNow; 
 
-        pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE, wxString( _T ( "Eurostile Extended" ) ) );
-        if (m_pdc ) {
-            m_pdc->SetFont( *pTCFont );
-        }
-
+	wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+	m_dc->SetFont(font);
+ 
         for( int i = 1; i <  ctcmgr->Get_max_IDX() + 1; i++ ) {
             IDX_entry *pIDX = ctcmgr->GetIDX_entry( i );
             double lon = pIDX->IDX_lon;
@@ -785,14 +612,14 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
                                
 						int shift = 0;
 
-						if ( !m_pdc ) {
+						if ( !m_dc ) {
                            if (rendered && m_bShowFillColour) 
-							  drawGLPolygons(this, m_pdc, BBox, DrawGLPolygon(), lat, lon, shift);
+							  //drawGLPolygons(this, m_dc, BBox, DrawGLPolygon(), lat, lon, shift);
 
 						   if(m_bShowRate){
                           
-							  DrawGLLabels( this, m_pdc, BBox, 
-									  DrawGLText( fabs(tcvalue), 1), lat, lon, 0 ) ;
+							  //DrawGLLabels( this, m_pdc, BBox, 
+									 // DrawGLText( fabs(tcvalue), 1), lat, lon, 0 ) ;
 
 							  if (!m_bHighResolution){
 								  shift = 13;
@@ -803,15 +630,15 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 						   }
 						   if( m_bShowDirection){
 						  
-							  DrawGLLabels( this, m_pdc, BBox, 
-											DrawGLTextDir(dir, 0), lat, lon, shift) ;
+							 // DrawGLLabels( this, m_pdc, BBox, 
+											//DrawGLTextDir(dir, 0), lat, lon, shift) ;
 						   }
 					    }
 						else {
 						  char sbuf[20];
                           if( m_bShowRate ) {
 							snprintf( sbuf, 19, "%3.1f", fabs(tcvalue) );
-							m_pdc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc );
+							//m_pc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc );
 							if (!m_bHighResolution){
 								shift = 13;
 							}
@@ -822,7 +649,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 					
 						  if ( m_bShowDirection ) {	
 							snprintf( sbuf, 19, "%03.0f", dir );
-							m_pdc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc + shift );
+							//m_dc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc + shift );
                           }
                         }
                     }

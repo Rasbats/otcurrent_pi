@@ -38,9 +38,13 @@
 #include "otcurrentOverlayFactory.h"
 #include "otcurrentUIDialog.h"
 
+#include "pidc.h"
+
 extern wxString myVColour[5]; 
 
 #include "config.h"
+
+class piDC;
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
