@@ -119,8 +119,6 @@ private:
     bool DoRenderotcurrentOverlay( PlugIn_ViewPort *vp );
 	void RenderMyArrows(PlugIn_ViewPort *vp );
 
-    void DrawMessageWindow( wxString msg, int x, int y , wxFont *mfont);
-
     wxColour GetSpeedColour(double my_speed);
 
     bool drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate );

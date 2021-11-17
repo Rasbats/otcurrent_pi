@@ -122,9 +122,6 @@ static GLboolean QueryExtension( const char *extName )
 otcurrentOverlayFactory::otcurrentOverlayFactory( otcurrentUIDialog &dlg )
 	: m_dlg(dlg)
 {
-    m_dFont_map = new wxFont( 10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL );
-    m_dFont_war = new wxFont( 16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL );
-    pTCFont = wxTheFontList->FindOrCreateFont( 12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE, wxString( _T ( "Eurostile Extended" ) ) );
 
 	m_last_vp_scale = 0.;
 	m_bShowRate = m_dlg.m_bUseRate;
@@ -204,21 +201,6 @@ void otcurrentOverlayFactory::DrawLine( double x1, double y1, double x2, double 
 
 	//wxMessageBox("here");
 }
-
-
-
-bool otcurrentOverlayFactory::DoRenderotcurrentOverlay( PlugIn_ViewPort *vp )
-{
-    
-    m_Message_Hiden.Empty();
-    m_last_vp_scale = vp->view_scale_ppm;
-	
-    if( !m_Message_Hiden.IsEmpty() )
-        DrawMessageWindow( m_Message_Hiden , vp->pix_width, vp->pix_height, m_dFont_map );
-	    DrawMessageWindow( m_Message_Hiden , vp->pix_width, vp->pix_height, m_dFont_map );
-    return true;
-}
-
 
 
 wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed){
