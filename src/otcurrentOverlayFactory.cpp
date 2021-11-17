@@ -370,34 +370,6 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString( wxString myText ){
     return image;
 }
 
-void otcurrentOverlayFactory::DrawGLLine( double x1, double y1, double x2, double y2, double width, wxColour myColour )
-{
-    {
-        wxColour isoLineColor = myColour;
-		glColor4ub(isoLineColor.Red(), isoLineColor.Green(), isoLineColor.Blue(),
-                     255/*isoLineColor.Alpha()*/);
-
-		glPushAttrib(GL_COLOR_BUFFER_BIT | GL_LINE_BIT | GL_ENABLE_BIT |
-                     GL_POLYGON_BIT | GL_HINT_BIT ); //Save state
-        {
-
-            //      Enable anti-aliased lines, at best quality
-            glEnable( GL_LINE_SMOOTH );
-            glEnable( GL_BLEND );
-            glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-            glHint( GL_LINE_SMOOTH_HINT, GL_NICEST );
-            glLineWidth( width );
-
-            glBegin( GL_LINES );
-            //glVertex2d( x1, y1 );
-            //glVertex2d( x2, y2 );
-            glEnd();
-        }
-
-       // glPopAttrib();
-    }
-}
-
 
 void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
         bool bforce_redraw_currents, bool bdraw_mono_for_mask, wxDateTime myTime)
