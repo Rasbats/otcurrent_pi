@@ -40,7 +40,8 @@ public:
         : wxTextCtrl(parent, id, date.Format(), pos, size, 0, validator, name)
     {}
     // wxDatePickerCtrl methods
-    void SetValue(const wxDateTime& date) { wxTextCtrl::SetValue(date.FormatISODate()); }
+	wxDateTime now = wxDateTime::Now();
+    void SetValue(const wxDateTime& now) { wxTextCtrl::SetValue(now.FormatISODate()); }
     wxDateTime GetDate() const { wxDateTime dt; dt.ParseISODate(wxTextCtrl::GetValue()); return dt; }
 
     bool GetRange(wxDateTime *dt1, wxDateTime *dt2) const {return true;}
