@@ -439,7 +439,7 @@ void otcurrentOverlayFactory::DrawGLLine( double x1, double y1, double x2, doubl
             glEnd();
         }
 
-        glPopAttrib();
+       // glPopAttrib();
     }
 }
 void otcurrentOverlayFactory::DrawOLBitmap( const wxBitmap &bitmap, wxCoord x, wxCoord y, bool usemask )
