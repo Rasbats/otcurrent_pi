@@ -377,9 +377,9 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 
 	_timeText = new wxTimeTextCtrl(this,wxID_ANY,wxT("12:00"),wxPoint(210,360),wxSize(120,42));
 
-    _spinCtrl=new wxSpinButton(this,wxID_ANY,wxPoint(136,360),wxSize(40,42),wxSP_VERTICAL|wxSP_ARROW_KEYS);
-	_spinCtrl->Connect( wxEVT_SCROLL_LINEUP, wxSpinEventHandler( CalendarDialog::spinUp ), NULL, this );
-	_spinCtrl->Connect( wxEVT_SCROLL_LINEDOWN, wxSpinEventHandler( CalendarDialog::spinDown ), NULL, this );
+   // _spinCtrl=new wxSpinButton(this,wxID_ANY,wxPoint(136,360),wxSize(40,42),wxSP_VERTICAL|wxSP_ARROW_KEYS);
+//	_spinCtrl->Connect( wxEVT_SCROLL_LINEUP, wxSpinEventHandler( CalendarDialog::spinUp ), NULL, this );
+//	_spinCtrl->Connect( wxEVT_SCROLL_LINEDOWN, wxSpinEventHandler( CalendarDialog::spinDown ), NULL, this );
 	
 	p.y += sz.GetHeight() + 80;
 	wxButton * c = new wxButton( this, wxID_CANCEL, _("Cancel"), p, wxDefaultSize );	
