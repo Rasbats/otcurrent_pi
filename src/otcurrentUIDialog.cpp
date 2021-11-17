@@ -170,7 +170,7 @@ otcurrentUIDialog::~otcurrentUIDialog()
 		wxString myP = m_choice1->GetString(c);
 		pConf->Write ( _T ( "otcurrentInterval" ), c ); 
 
-		wxString myF = m_dirPicker1->GetPath();
+		wxString myF = m_dirPicker1->GetValue();
 		pConf->Write ( _T ( "otcurrentFolder" ), myF ); 
 
     }
@@ -230,7 +230,8 @@ void otcurrentUIDialog::OpenFile(bool newestFile)
 
 void otcurrentUIDialog::OnFolderSelChanged(wxFileDirPickerEvent& event)
 {
-	m_FolderSelected = m_dirPicker1->GetPath();
+	m_FolderSelected = m_dirPicker1->GetValue();
+	wxMessageBox(m_FolderSelected);
     LoadTCMFile();
 
 	RequestRefresh(pParent);	

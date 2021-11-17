@@ -35,7 +35,8 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	wxStaticBoxSizer* sbSizer4;
 	sbSizer4 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Data Folder") ), wxVERTICAL );
 
-	m_dirPicker1 = new wxDirPickerCtrl( this, wxID_ANY, wxEmptyString, _("Select a folder"), wxDefaultPosition, wxDefaultSize, wxDIRP_CHANGE_DIR|wxDIRP_USE_TEXTCTRL );
+	m_dirPicker1 = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( 170,20 ), wxSIMPLE_BORDER );
+	sbSizer2->Add( m_textCtrl1, 100, wxALL|wxEXPAND, 5);
 	sbSizer4->Add( m_dirPicker1, 0, wxALL|wxEXPAND, 5 );
 
 	bSizer1->Add( sbSizer4, 1, wxEXPAND, 5 );
@@ -86,7 +87,6 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	m_bpPrev->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnPrev ), NULL, this );
 	m_bpNext->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNext ), NULL, this );
 
-	m_dirPicker1->Connect( wxEVT_COMMAND_DIRPICKER_CHANGED, wxFileDirPickerEventHandler( otcurrentUIDialogBase::OnFolderSelChanged ), NULL, this );
  	m_button1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::About ), NULL, this );
 
 
@@ -104,7 +104,6 @@ otcurrentUIDialogBase::~otcurrentUIDialogBase()
 	m_bpPrev->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnPrev ), NULL, this );
 	m_bpNext->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNext ), NULL, this );
 
-	m_dirPicker1->Disconnect( wxEVT_COMMAND_DIRPICKER_CHANGED, wxFileDirPickerEventHandler( otcurrentUIDialogBase::OnFolderSelChanged ), NULL, this );
     m_button1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::About ), NULL, this );
 	
 }
