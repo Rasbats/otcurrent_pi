@@ -35,9 +35,17 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	wxStaticBoxSizer* sbSizer4;
 	sbSizer4 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Data Folder") ), wxVERTICAL );
 
+
+
 	m_dirPicker1 = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( 170,20 ), wxSIMPLE_BORDER );
 	sbSizer2->Add( m_textCtrl1, 100, wxALL|wxEXPAND, 5);
 	sbSizer4->Add( m_dirPicker1, 0, wxALL|wxEXPAND, 5 );
+
+	m_button2 = new wxButton( this, wxID_ANY, wxT("Draw"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button2->SetFont( wxFont( 14, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxT("Arial") ) );
+	sbSizer4->Add( m_button2, 0, wxALL|wxEXPAND, 5 );
+
+
 
 	bSizer1->Add( sbSizer4, 1, wxEXPAND, 5 );
 
@@ -88,6 +96,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	m_bpNext->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNext ), NULL, this );
 
  	m_button1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::About ), NULL, this );
+	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnDraw ), NULL, this );
 
 
 }
@@ -105,7 +114,8 @@ otcurrentUIDialogBase::~otcurrentUIDialogBase()
 	m_bpNext->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNext ), NULL, this );
 
     m_button1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::About ), NULL, this );
-	
+	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnDraw ), NULL, this );
+
 }
 
 otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )

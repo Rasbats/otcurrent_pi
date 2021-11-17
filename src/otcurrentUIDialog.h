@@ -142,7 +142,7 @@ public:
 	time_t myCurrentTime; 
 
 	void OnCalendarShow( wxCommandEvent& event );
-	void OnFolderSelChanged(wxFileDirPickerEvent& event);
+	void OnDraw(wxCommandEvent& event);
 	void OnNow( wxCommandEvent& event );
 	wxString MakeDateTimeLabel(wxDateTime myDateTime);
 

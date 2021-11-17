@@ -228,7 +228,7 @@ void otcurrentUIDialog::OpenFile(bool newestFile)
     LoadTCMFile();
 }
 
-void otcurrentUIDialog::OnFolderSelChanged(wxFileDirPickerEvent& event)
+void otcurrentUIDialog::OnDraw(wxCommandEvent& event)
 {
 	m_FolderSelected = m_dirPicker1->GetValue();
 	wxMessageBox(m_FolderSelected);
