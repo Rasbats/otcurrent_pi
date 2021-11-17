@@ -220,33 +220,6 @@ bool otcurrentOverlayFactory::DoRenderotcurrentOverlay( PlugIn_ViewPort *vp )
 }
 
 
-void otcurrentOverlayFactory::DrawMessageWindow( wxString msg, int x, int y , wxFont *mfont)
-{
-    if(msg.empty())
-        return;
-
-    wxMemoryDC mdc;
-    wxBitmap bm( 1000, 1000 );
-    mdc.SelectObject( bm );
-    mdc.Clear();
-
-    mdc.SetFont( *mfont );
-    mdc.SetPen( *wxTRANSPARENT_PEN);
-    mdc.SetBrush( wxColour(243, 229, 47 ) );
-    int w, h;
-    mdc.GetMultiLineTextExtent( msg, &w, &h );
-    h += 2;
-    int label_offset = 10;
-    int wdraw = w + ( label_offset * 2 );
-    mdc.DrawRectangle( 0, 0, wdraw, h );
-
-    mdc.DrawLabel( msg, wxRect( label_offset, 0, wdraw, h ), wxALIGN_LEFT| wxALIGN_CENTRE_VERTICAL);
-    mdc.SelectObject( wxNullBitmap );
-
-    wxBitmap sbm = bm.GetSubBitmap( wxRect( 0, 0, wdraw, h ) );
-
-    DrawOLBitmap( sbm, 0, y - ( GetChartbarHeight() + h ), false );
-}
 
 wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed){
 	
@@ -440,75 +413,6 @@ void otcurrentOverlayFactory::DrawGLLine( double x1, double y1, double x2, doubl
         }
 
        // glPopAttrib();
-    }
-}
-void otcurrentOverlayFactory::DrawOLBitmap( const wxBitmap &bitmap, wxCoord x, wxCoord y, bool usemask )
-{
-    wxBitmap bmp;
-    if( x < 0 || y < 0 ) {
-        int dx = ( x < 0 ? -x : 0 );
-        int dy = ( y < 0 ? -y : 0 );
-        int w = bitmap.GetWidth() - dx;
-        int h = bitmap.GetHeight() - dy;
-        /* picture is out of viewport */
-        if( w <= 0 || h <= 0 ) return;
-        wxBitmap newBitmap = bitmap.GetSubBitmap( wxRect( dx, dy, w, h ) );
-        x += dx;
-        y += dy;
-        bmp = newBitmap;
-    } else {
-        bmp = bitmap;
-    }
-    if( m_dc )
-        m_dc->DrawBitmap( bmp, x, y, usemask );
-    else {
-        wxImage image = bmp.ConvertToImage();
-        int w = image.GetWidth(), h = image.GetHeight();
-
-        if( usemask ) {
-            unsigned char *d = image.GetData();
-            unsigned char *a = image.GetAlpha();
-
-            unsigned char mr, mg, mb;
-            if(!a && !image.GetOrFindMaskColour( &mr, &mg, &mb ) ) 
-               printf("trying to use mask to draw a bitmap without alpha or mask\n" );
-
-            unsigned char *e = new unsigned char[4 * w * h];
-            {
-                for( int y = 0; y < h; y++ )
-                    for( int x = 0; x < w; x++ ) {
-                        unsigned char r, g, b;
-                        int off = ( y * image.GetWidth() + x );
-                        r = d[off * 3 + 0];
-                        g = d[off * 3 + 1];
-                        b = d[off * 3 + 2];
-
-                        e[off * 4 + 0] = r;
-                        e[off * 4 + 1] = g;
-                        e[off * 4 + 2] = b;
-
-                        e[off * 4 + 3] =
-                                a ? a[off] : ( ( r == mr ) && ( g == mg ) && ( b == mb ) ? 0 : 255 );
-                    }
-            }
-
-            glColor4f( 1, 1, 1, 1 );
-
-            glEnable( GL_BLEND );
-            glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-            glRasterPos2i( x, y );
-            glPixelZoom( 1, -1 );
-            glDrawPixels( w, h, GL_RGBA, GL_UNSIGNED_BYTE, e );
-            glPixelZoom( 1, 1 );
-            glDisable( GL_BLEND );
-
-            delete[] ( e );
-        } else {
-            glRasterPos2i( x, y );
-            glPixelZoom( 1, -1 ); /* draw data from top to bottom */
-            glDrawPixels( w, h, GL_RGB, GL_UNSIGNED_BYTE, image.GetData() );
-            glPixelZoom( 1, 1 );
-        }
     }
 }
 

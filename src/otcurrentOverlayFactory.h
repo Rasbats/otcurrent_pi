@@ -101,7 +101,6 @@ public:
 	void DrawLine(double x1, double y1, double x2, double y2, const wxColour &color, double width);
 
 
-    void DrawOLBitmap( const wxBitmap &bitmap, wxCoord x, wxCoord y, bool usemask );
 	bool              m_bShowRate;
     bool              m_bShowDirection;
 	bool			  m_bHighResolution;
