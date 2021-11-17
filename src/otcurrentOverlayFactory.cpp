@@ -434,8 +434,8 @@ void otcurrentOverlayFactory::DrawGLLine( double x1, double y1, double x2, doubl
             glLineWidth( width );
 
             glBegin( GL_LINES );
-            glVertex2d( x1, y1 );
-            glVertex2d( x2, y2 );
+            //glVertex2d( x1, y1 );
+            //glVertex2d( x2, y2 );
             glEnd();
         }
 
