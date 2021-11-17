@@ -18,7 +18,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	bSizer1 = new wxBoxSizer( wxVERTICAL );
 
 	wxStaticBoxSizer* sbSizer2;
-	sbSizer2 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY|wxEXPAND, _("Date/Time") ), wxHORIZONTAL );
+	sbSizer2 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY|wxEXPAND, _("Date/Time") ), wxVERTICAL);
 
 	m_textCtrl1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( 170,20 ), wxTE_READONLY|wxSIMPLE_BORDER );
 	sbSizer2->Add( m_textCtrl1, 100, wxALL|wxEXPAND, 5 );
