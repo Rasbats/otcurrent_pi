@@ -81,7 +81,6 @@ macro(late_init)
   endif ()
 
   add_definitions(-DocpnUSE_GL)
-  add_definitions(-DUSE_ANDROID_GLES2)
   
 endmacro ()
 
