@@ -13,7 +13,6 @@
 # (at your option) any later version.
 
 
-
 cmake_minimum_required(VERSION 3.1)
 
 find_package(Gettext REQUIRED)
@@ -80,7 +79,6 @@ else ()
 endif ()
 
 include_directories(
-  ${PROJECT_SOURCE_DIR}/libs/AndroidHeaders/include
   ${_qt_include}
   ${_qt_include}/QtWidgets
   ${_qt_include}/QtCore

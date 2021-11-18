@@ -1,6 +1,0 @@
-build
-po/*.pot
-.DS_Store
-thumbs.db
-cache
-buildosx/InstallOSX/otcurrent_pi.pkgproj.in

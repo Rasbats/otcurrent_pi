@@ -16,15 +16,17 @@ set -e
 MANIFEST=$(cd flatpak; ls org.opencpn.OpenCPN.Plugin*yaml)
 echo "Using manifest file: $MANIFEST"
 set -x
+if [ -n "$TRAVIS_BUILD_DIR" ]; then cd $TRAVIS_BUILD_DIR; fi
 
-sudo apt update
+if [ -n "$CI" ]; then
+    sudo apt update
 
+    # Avoid using outdated TLS certificates, see #210.
+    sudo apt install --reinstall  ca-certificates
 
-# Avoid using outdated TLS certificates, see #210.
-sudo apt install --reinstall  ca-certificates
-
-# Install flatpak and flatpak-builder
-sudo apt install flatpak flatpak-builder
+    # Install flatpak and flatpak-builder
+    sudo apt install flatpak flatpak-builder
+fi
 flatpak remote-add --user --if-not-exists \
     flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
@@ -62,11 +64,13 @@ fi
 sed -i "/^runtime-version/s/:.*/: $FLATPAK_BRANCH/" flatpak/$MANIFEST
 
 # The flatpak checksumming needs python3:
-pyenv local $(pyenv versions | sed 's/*//' | awk '{print $1}' | tail -1)
-cp .python-version $HOME
+if ! python3 --version 2>&1 >/dev/null; then
+    pyenv local $(pyenv versions | sed 's/*//' | awk '{print $1}' | tail -1)
+    cp .python-version $HOME
+fi
 
 # Configure and build the plugin tarball and metadata.
-mkdir build; cd build
+rm -rf build-flatpak && mkdir build-flatpak && cd build-flatpak
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j $(nproc) VERBOSE=1 flatpak
 

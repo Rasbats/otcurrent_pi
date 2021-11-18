@@ -5,9 +5,9 @@ debian-steps: &debian-steps
   steps:
     - checkout
     - run: ci/circleci-build-debian.sh
-    - run: sh -c "ldd  build/app/*/lib/opencpn/*.so"
-    - run: cd build; /bin/bash < upload.sh
-    - run: python3 ci/git-push
+    - run: sh -c "ldd build-$OCPN_TARGET/app/*/lib/opencpn/*.so"
+    - run: sh -c "cd build-$OCPN_TARGET; /bin/bash < upload.sh"
+    - run: sh -c "python3 ci/git-push build-$OCPN_TARGET"
 
 flatpak-steps: &flatpak-steps
   steps:
@@ -20,8 +20,8 @@ flatpak-steps: &flatpak-steps
         key: <<parameters.cache-key>>-{{ checksum "ci/circleci-build-flatpak.sh" }}
         paths:
           - /home/circleci/.local/share/flatpak/repo
-    - run: cd build; /bin/bash < upload.sh
-    - run: python3 ci/git-push
+    - run: cd build-flatpak; /bin/bash < upload.sh
+    - run: python3 ci/git-push build-flatpak
 
 jobs:
 
@@ -30,7 +30,8 @@ jobs:
       image: ubuntu-2004:202101-01
     resource_class: arm.medium
     environment:
-      - OCPN_TARGET: flatpak-arm64
+      - OCPN_TARGET: raspbian-armhf
+      - CMAKE_BUILD_PARALLEL_LEVEL: 2
     parameters:
       cache-key:
         type: string
@@ -38,8 +39,8 @@ jobs:
     steps:
       - checkout
       - run: ci/generic-build-raspbian-armhf.sh
-      - run: cd build; /bin/bash < upload.sh
-      - run: python3 ci/git-push
+      - run: cd build-raspbian; /bin/bash < upload.sh
+      - run: python3 ci/git-push build-raspbian
 
   build-flatpak-arm64:
     machine:
@@ -47,6 +48,7 @@ jobs:
     resource_class: arm.medium
     environment:
       - OCPN_TARGET: flatpak-arm64
+      - CMAKE_BUILD_PARALLEL_LEVEL: 2
     parameters:
       cache-key:
         type: string
@@ -58,6 +60,7 @@ jobs:
       image: ubuntu-2004:202010-01
     environment:
       - OCPN_TARGET: flatpak
+      - CMAKE_BUILD_PARALLEL_LEVEL: 2
       - BUILD_1808: "true"
     parameters:
       cache-key:
@@ -70,6 +73,7 @@ jobs:
       image: ubuntu-2004:202010-01
     environment:
       - OCPN_TARGET: flatpak
+      - CMAKE_BUILD_PARALLEL_LEVEL: 2
     parameters:
       cache-key:
         type: string
@@ -82,6 +86,7 @@ jobs:
       xcode: "12.5.1"
     environment:
       - OCPN_TARGET: macos
+      - CMAKE_BUILD_PARALLEL_LEVEL: 2
     steps:
       - checkout
       - run: ci/circleci-build-macos.sh
@@ -94,29 +99,33 @@ jobs:
       - image: circleci/buildpack-deps:xenial-scm
     environment:
       - OCPN_TARGET: xenial
+      - CMAKE_BUILD_PARALLEL_LEVEL: 2
       - USE_DEADSNAKES_PY37: 1
     <<: *debian-steps
 
   build-bionic:
     docker:
-      - image: circleci/buildpack-deps:bionic-scm
+      - image: cimg/base:stable-18.04
     environment:
       - OCPN_TARGET: bionic
+      - CMAKE_BUILD_PARALLEL_LEVEL: 2
     <<: *debian-steps
 
   build-bionic-gtk3:
     docker:
-      - image: circleci/buildpack-deps:bionic-scm
+      - image: cimg/base:stable-18.04
     environment:
       - BUILD_GTK3: true
+      - CMAKE_BUILD_PARALLEL_LEVEL: 2
       - OCPN_TARGET: bionic-gtk3
     <<: *debian-steps
 
   build-focal:
     docker:
-      - image: circleci/buildpack-deps:focal-scm
+      - image: cimg/base:stable-20.04
     environment:
       - OCPN_TARGET: focal
+      - CMAKE_BUILD_PARALLEL_LEVEL: 2
     <<: *debian-steps
 
   build-buster:
@@ -124,6 +133,7 @@ jobs:
       - image: circleci/buildpack-deps:buster-scm
     environment:
       - OCPN_TARGET: buster
+      - CMAKE_BUILD_PARALLEL_LEVEL: 2
     <<: *debian-steps
 
   build-android-arm64:
@@ -131,23 +141,24 @@ jobs:
       - image: circleci/android:api-28-ndk
     environment:
       - OCPN_TARGET: android-aarch64
+      - CMAKE_BUILD_PARALLEL_LEVEL: 2
     steps:
       - checkout
       - run: ci/circleci-build-android.sh
-      - run: cd build; /bin/bash < upload.sh
-      - run: python3 ci/git-push
+      - run: sh -c "cd build-$OCPN_TARGET; /bin/bash < upload.sh"
+      - run: sh -c "python3 ci/git-push build-$OCPN_TARGET"
 
   build-android-armhf:
     docker:
       - image: circleci/android:api-28-ndk
     environment:
       - OCPN_TARGET: android-armhf
+      - CMAKE_BUILD_PARALLEL_LEVEL: 2
     steps:
       - checkout
       - run: ci/circleci-build-android.sh
-      - run: cd build; /bin/bash < upload.sh
-      - run: python3 ci/git-push
-
+      - run: sh -c "cd build-$OCPN_TARGET; /bin/bash < upload.sh"
+      - run: sh -c "python3 ci/git-push build-$OCPN_TARGET"
 
 std-filters: &std-filters
   filters:
