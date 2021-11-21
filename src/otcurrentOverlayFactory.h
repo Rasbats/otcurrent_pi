@@ -36,6 +36,13 @@ class plugIn_Viewport;
 class piDC;
 class wxDC;
 
+#ifdef __OCPN__ANDROID__
+#include <qopengl.h>
+#include "gl_private.h"
+#endif
+
+
+
 //----------------------------------------------------------------------------------------------------------
 //    otcurrent Overlay Specification
 //----------------------------------------------------------------------------------------------------------
@@ -79,12 +86,6 @@ class otcurrentOverlayFactory {
 public:
     otcurrentOverlayFactory( otcurrentUIDialog &dlg );
     ~otcurrentOverlayFactory();
-
-    void SetSettings( bool hiDefGraphics, bool GradualColors )
-    {
-      m_hiDefGraphics = hiDefGraphics;
-      m_bGradualColors = GradualColors;
-    }
 
     void SetMessage( wxString message ) { m_Message = message; }
     void SetParentSize( int w, int h ) { m_ParentSize.SetWidth(w) ; m_ParentSize.SetHeight(h) ;}

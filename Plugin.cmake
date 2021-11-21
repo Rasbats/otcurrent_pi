@@ -69,6 +69,8 @@ set(SRC
 	    src/android/wx/datectrl.h
 	    src/android/wx/timectrl.h
 	    src/gl_private.h
+	    src/pidc.cpp
+	    src/pidc.h
 )
 
 set(PKG_API_LIB api-16)  #  A directory in libs/ e. g., api-17 or api-16
@@ -81,6 +83,10 @@ macro(late_init)
   endif ()
 
   add_definitions(-DocpnUSE_GL)
+
+  if (QT_ANDROID)
+    add_definitions(-DUSE_ANDROID_GLES2)
+  endif ()
   
 endmacro ()
 

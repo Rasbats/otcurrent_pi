@@ -64,6 +64,7 @@ class Position;
 class otcurrentUIDialog;
 class PlugIn_ViewPort;
 class wxBoundingBox;
+class piDC;
 
 #define NUM_CURRENT_ARROW_POINTS 9
 static wxPoint CurrentArrowArray[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -10 ),
@@ -184,7 +185,7 @@ bool otcurrentOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
 	
 	DrawAllCurrentsInViewPort(&vp,false,false,false, m_dtUseNew);
 
-	DrawLine(140, 140, 220, 220, myColour, 4);
+	//DrawLine(140, 140, 220, 220, myColour, 4);
 
 	
     return true;
