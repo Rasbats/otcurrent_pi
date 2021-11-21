@@ -413,7 +413,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 
 	wxDateTime yn = m_dlg.m_dtNow; 
 
-	wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+	wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 	m_dc->SetFont(font);
  
         for( int i = 1; i <  ctcmgr->Get_max_IDX() + 1; i++ ) {
