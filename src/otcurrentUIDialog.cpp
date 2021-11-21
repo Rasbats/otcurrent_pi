@@ -245,9 +245,8 @@ void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 
 	
 	#ifdef __OCPN__ANDROID__
-		wxDateTime now = wxDateTime::Now();
-		wxString nowDate = now.FormatISODate();
-		CalDialog.dialogCalendar->SetValue(nowDate)
+		wxDateTime now = wxDateTime::Now();		
+		CalDialog.dialogCalendar->SetValue(now)
 	#endif
 
 	if ( CalDialog.ShowModal() == wxID_OK ){
