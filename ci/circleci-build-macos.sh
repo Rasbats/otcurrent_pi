@@ -16,7 +16,12 @@ set -xe
 # Load local environment if it exists i. e., this is a local build
 if [ -f ~/.config/local-build.rc ]; then source ~/.config/local-build.rc; fi
 
+# Set up build directory
 if [ -n "$TRAVIS_BUILD_DIR" ]; then cd $TRAVIS_BUILD_DIR; fi
+rm -rf build-osx  && mkdir build-osx
+
+# Create a log file.
+exec > >(tee build-osx/build.log) 2>&1
 
 export MACOSX_DEPLOYMENT_TARGET=10.10
 
@@ -41,7 +46,7 @@ wget -q https://download.opencpn.org/s/MCiRiq4fJcKD56r/download \
 tar -C /tmp -xJf /tmp/wx315_opencpn50_macos1010.tar.xz
 
 # Build and package
-rm -rf build && mkdir build && cd build
+cd build-osx
 cmake \
   -DCMAKE_BUILD_TYPE=Release \
   -DwxWidgets_CONFIG_EXECUTABLE=/tmp/wx315_opencpn50_macos1010/bin/wx-config \
