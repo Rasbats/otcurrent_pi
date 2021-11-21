@@ -241,7 +241,15 @@ void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 {	
 
 	CalendarDialog CalDialog ( this, -1, _("START Date/Time"),
-	                          wxPoint(100, 100), wxSize(400, 500) );
+	                          wxPoint(100, 100), wxSize(-1, -1) );
+
+	
+	#ifdef __OCPN__ANDROID__
+		wxDateTime now = wxDateTime::Now();
+		wxString nowDate = now.FormatISODate();
+		dialogCalendar->SetValue(nowDate)
+	#endif
+
 	if ( CalDialog.ShowModal() == wxID_OK ){
 		
 		wxDateTime dm = CalDialog.dialogCalendar->GetDate();

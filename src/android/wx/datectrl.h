@@ -37,7 +37,7 @@ public:
                      long style = wxDP_DEFAULT | wxDP_SHOWCENTURY,
                      const wxValidator& validator = wxDefaultValidator,
                      const wxString& name = wxDatePickerCtrlNameStr)
-        : wxTextCtrl(parent, id, date.Format(), pos, size, 0, validator, name)
+        : wxTextCtrl(parent, id, date.Format(), pos, size, wxEXPAND, validator, name)
     {}
     // wxDatePickerCtrl methods
 	wxDateTime now = wxDateTime::Now();
