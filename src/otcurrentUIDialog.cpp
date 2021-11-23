@@ -79,6 +79,8 @@ static wxString TToString( const wxDateTime date_time, const int time_zone )
 #define SetBitmap SetBitmapLabel
 #endif
 
+
+
 otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 : otcurrentUIDialogBase(parent), m_ptcmgr(0), m_vp(0)
 {
@@ -140,6 +142,28 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 	DimeWindow( this );
 }
 
+#ifdef __OCPN__ANDROID__ 
+wxPoint g_startPos;
+wxPoint g_startMouse;
+wxPoint g_mouse_pos_screen;
+
+void otcurrentUIDialog::OnMouseEvent( wxMouseEvent& event )
+{
+    g_mouse_pos_screen = ClientToScreen( event.GetPosition() );
+    
+    if(event.Dragging()){
+        int x = wxMax(0, g_startPos.x + (g_mouse_pos_screen.x - g_startMouse.x));
+        int y = wxMax(0, g_startPos.y + (g_mouse_pos_screen.y - g_startMouse.y));
+        int xmax = ::wxGetDisplaySize().x - GetSize().x;
+        x = wxMin(x, xmax);
+        int ymax = ::wxGetDisplaySize().y - (GetSize().y * 2);          // Some fluff at the bottom
+        y = wxMin(y, ymax);
+        
+        g_Window->Move(x, y);
+    }
+}
+#endif
+
 
 void otcurrentUIDialog::LoadTCMFile()
 {
@@ -182,27 +206,6 @@ otcurrentUIDialog::~otcurrentUIDialog()
     delete m_ptcmgr;
 }
 
-#ifdef __OCPN__ANDROID__ 
-wxPoint g_startPos;
-wxPoint g_startMouse;
-wxPoint g_mouse_pos_screen;
-
-void otcurrentUIDialog::OnMouseEvent( wxMouseEvent& event )
-{
-    g_mouse_pos_screen = ClientToScreen( event.GetPosition() );
-    
-    if(event.Dragging()){
-        int x = wxMax(0, g_startPos.x + (g_mouse_pos_screen.x - g_startMouse.x));
-        int y = wxMax(0, g_startPos.y + (g_mouse_pos_screen.y - g_startMouse.y));
-        int xmax = ::wxGetDisplaySize().x - GetSize().x;
-        x = wxMin(x, xmax);
-        int ymax = ::wxGetDisplaySize().y - (GetSize().y * 2);          // Some fluff at the bottom
-        y = wxMin(y, ymax);
-        
-        g_Window->Move(x, y);
-    }
-}
-#endif
 
 void otcurrentUIDialog::SetCursorLatLon( double lat, double lon )
 {

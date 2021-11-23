@@ -147,6 +147,10 @@ public:
 	void OnNow( wxCommandEvent& event );
 	wxString MakeDateTimeLabel(wxDateTime myDateTime);
 
+#ifdef __OCPN__ANDROID__
+    void OnMouseEvent( wxMouseEvent& event );
+#endif
+
     void LoadTCMFile();
 
 private:
@@ -199,9 +203,6 @@ public:
 	wxCalendarCtrl* dialogCalendar; 
 #endif
 
-#ifdef __OCPN__ANDROID__
-    void OnMouseEvent( wxMouseEvent& event );
-#endif
 	wxStaticText *m_staticText; 
 	wxTextCtrl *_timeText;
 
