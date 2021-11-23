@@ -51,6 +51,10 @@
 #include <wx/event.h>
 #include "otcurrent_pi.h"
 
+#include "qtstylesheet.h"
+#ifdef __OCPN__ANDROID__
+wxWindow *g_Window;
+#endif
 
 using namespace std;
 
@@ -75,7 +79,6 @@ static wxString TToString( const wxDateTime date_time, const int time_zone )
 #define SetBitmap SetBitmapLabel
 #endif
 
-
 otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 : otcurrentUIDialogBase(parent), m_ptcmgr(0), m_vp(0)
 {
@@ -83,6 +86,12 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
     pPlugIn = ppi;
 
     wxFileConfig *pConf = GetOCPNConfigObject();
+
+#ifdef __OCPN__ANDROID__
+    g_Window = this;
+    GetHandle()->setStyleSheet( qtStyleSheet);
+    Connect( wxEVT_MOTION, wxMouseEventHandler( Dlg::OnMouseEvent ) );
+#endif
 
     if(pConf) {
         pConf->SetPath ( _T ( "/Plugins/otcurrent" ) );
@@ -172,6 +181,28 @@ otcurrentUIDialog::~otcurrentUIDialog()
     }
     delete m_ptcmgr;
 }
+
+#ifdef __OCPN__ANDROID__ 
+wxPoint g_startPos;
+wxPoint g_startMouse;
+wxPoint g_mouse_pos_screen;
+
+void Dlg::OnMouseEvent( wxMouseEvent& event )
+{
+    g_mouse_pos_screen = ClientToScreen( event.GetPosition() );
+    
+    if(event.Dragging()){
+        int x = wxMax(0, g_startPos.x + (g_mouse_pos_screen.x - g_startMouse.x));
+        int y = wxMax(0, g_startPos.y + (g_mouse_pos_screen.y - g_startMouse.y));
+        int xmax = ::wxGetDisplaySize().x - GetSize().x;
+        x = wxMin(x, xmax);
+        int ymax = ::wxGetDisplaySize().y - (GetSize().y * 2);          // Some fluff at the bottom
+        y = wxMin(y, ymax);
+        
+        g_Window->Move(x, y);
+    }
+}
+#endif
 
 void otcurrentUIDialog::SetCursorLatLon( double lat, double lon )
 {
@@ -388,7 +419,7 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	wxSize  sz;
  
 	sz.SetWidth(440);
-	sz.SetHeight(700);
+	sz.SetHeight(350);
 	
 	p.x = 6; p.y = 2;
 	s.Printf(_(" x = %d y = %d\n"), p.x, p.y);

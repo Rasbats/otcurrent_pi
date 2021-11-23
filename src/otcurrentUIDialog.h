@@ -199,6 +199,9 @@ public:
 	wxCalendarCtrl* dialogCalendar; 
 #endif
 
+#ifdef __OCPN__ANDROID__
+    void OnMouseEvent( wxMouseEvent& event );
+#endif
 	wxStaticText *m_staticText; 
 	wxTextCtrl *_timeText;
 
