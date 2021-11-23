@@ -20,28 +20,27 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	wxStaticBoxSizer* sbSizer2;
 	sbSizer2 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY|wxEXPAND, _("Date/Time") ), wxVERTICAL);
 
-	m_textCtrl1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( 170,20 ), wxTE_READONLY|wxSIMPLE_BORDER );
-	sbSizer2->Add( m_textCtrl1, 100, wxALL|wxEXPAND, 5 );
+	m_textCtrl1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( -1,-1 ), wxTE_READONLY|wxSIMPLE_BORDER);
 	
 	m_button33 = new wxButton( this, wxID_ANY , _("Select"), wxDefaultPosition, wxSize( 80,-1 ), 0 );
 	m_button33->SetToolTip(_("Select date/time for current prediction"));	
-	sbSizer2->Add( m_button33, 0, wxALL, 5 );
-
+	
 	m_bpNow = new wxBitmapButton( this, wxID_ANY, wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW );
 	m_bpNow->SetToolTip( _("Now") );
+
+	sbSizer2->Add( m_textCtrl1, 0, wxALL|wxEXPAND, 5 );
+    sbSizer2->Add( m_button33, 0, wxALL, 5 );
 	sbSizer2->Add( m_bpNow, 0, wxALL, 1 );
 	bSizer1->Add( sbSizer2, 0, wxEXPAND, 5 );
 	
 	wxStaticBoxSizer* sbSizer4;
 	sbSizer4 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Data Folder") ), wxVERTICAL );
 
-
-
 	m_dirPicker1 = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( 170,20 ), wxSIMPLE_BORDER );
 	sbSizer2->Add( m_textCtrl1, 100, wxALL|wxEXPAND, 5);
 	sbSizer4->Add( m_dirPicker1, 0, wxALL|wxEXPAND, 5 );
 
-	m_button2 = new wxButton( this, wxID_ANY, wxT("Draw"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button2 = new wxButton( this, wxID_ANY,_("Select tidal current data"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_button2->SetFont( wxFont( 14, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxT("Arial") ) );
 	sbSizer4->Add( m_button2, 0, wxALL|wxEXPAND, 5 );
 
@@ -96,7 +95,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	m_bpNext->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNext ), NULL, this );
 
  	m_button1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::About ), NULL, this );
-	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnDraw ), NULL, this );
+	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnSelectData ), NULL, this );
 
 
 }
@@ -114,7 +113,7 @@ otcurrentUIDialogBase::~otcurrentUIDialogBase()
 	m_bpNext->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnNext ), NULL, this );
 
     m_button1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::About ), NULL, this );
-	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnDraw ), NULL, this );
+	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( otcurrentUIDialogBase::OnSelectData ), NULL, this );
 
 }
 

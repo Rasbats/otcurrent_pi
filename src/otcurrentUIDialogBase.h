@@ -86,7 +86,7 @@ class otcurrentUIDialogBase : public wxDialog
 		virtual void OnNext( wxCommandEvent& event ) { event.Skip(); }
 		virtual void SetInterval( wxCommandEvent& event ) { event.Skip(); }
 
-		virtual void OnDraw( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnSelectData( wxCommandEvent& event ) { event.Skip(); }
 
 
 		wxButton* m_button2;

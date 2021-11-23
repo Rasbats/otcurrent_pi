@@ -106,8 +106,6 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 		myUseColour[2] = myVColour[2];
 		myUseColour[3] = myVColour[3];
 		myUseColour[4] = myVColour[4];
-		
-
 
     }
 
@@ -117,10 +115,12 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 
 
     this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
-
-   
+	m_dtNow = wxDateTime::Now();
+	MakeDateTimeLabel(m_dtNow);
 
     LoadTCMFile();
+	
+	m_dirPicker1->SetValue(m_FolderSelected);
 	m_choice1->SetSelection(m_IntervalSelected);
 	int i = m_choice1->GetSelection();
 	wxString c = m_choice1->GetString(i);	
@@ -129,10 +129,6 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 	m_dInterval = value;
 
 	DimeWindow( this );
-
-    //Fit();
-    //SetMinSize( GetBestSize() );
-	
 }
 
 
@@ -222,16 +218,43 @@ void otcurrentUIDialog::OpenFile(bool newestFile)
 	m_bUseDirection = pPlugIn->GetCopyDirection();
 	m_bUseHighRes = pPlugIn->GetCopyResolution();
 	m_bUseFillColour = pPlugIn->GetCopyColour();
-
-	m_FolderSelected = pPlugIn->GetFolderSelected();
 	m_IntervalSelected = pPlugIn->GetIntervalSelected();
+	if (m_FolderSelected == wxEmptyString) {
+#ifndef __OCPN__ANDROID__
+		wxDirDialog *d = new wxDirDialog( this, _("Choose the tcdata directory"),
+		                 "", 0, wxDefaultPosition );
+		if ( d->ShowModal() ==  wxID_OK )
+		{ 
+			m_dirPicker1->SetValue(d->GetPath()); 
+			m_FolderSelected = m_dirPicker1->GetValue();
+		}
+#else
+		wxString tc = "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
+		m_dirPicker1->SetValue(tc); 
+		m_FolderSelected = m_dirPicker1->GetValue();
+
+#endif
+	}
+
     LoadTCMFile();
 }
 
-void otcurrentUIDialog::OnDraw(wxCommandEvent& event)
+void otcurrentUIDialog::OnSelectData(wxCommandEvent& event)
 {
+#ifndef __OCPN__ANDROID__
+	wxDirDialog *d = new wxDirDialog( this, _("Choose a directory"),
+		                 "", 0, wxDefaultPosition );
+	if ( d->ShowModal() ==  wxID_OK )
+	{ 
+		m_dirPicker1->SetValue(d->GetPath()); 
+		m_FolderSelected = m_dirPicker1->GetValue();
+	}
+#else
+	wxString tc = "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
+	m_dirPicker1->SetValue(tc); 
 	m_FolderSelected = m_dirPicker1->GetValue();
-	wxMessageBox(m_FolderSelected);
+#endif
+
     LoadTCMFile();
 
 	RequestRefresh(pParent);	
@@ -365,7 +388,7 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	wxSize  sz;
  
 	sz.SetWidth(440);
-	sz.SetHeight(350);
+	sz.SetHeight(700);
 	
 	p.x = 6; p.y = 2;
 	s.Printf(_(" x = %d y = %d\n"), p.x, p.y);
@@ -383,30 +406,13 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 #endif
 	m_staticText = new wxStaticText(this,wxID_ANY,_("Time:"),wxPoint(15,360),wxSize(120,42));
 
-	_timeText = new wxTimeTextCtrl(this,wxID_ANY,wxT("12:00"),wxPoint(210,360),wxSize(120,42));
-
-   // _spinCtrl=new wxSpinButton(this,wxID_ANY,wxPoint(136,360),wxSize(40,42),wxSP_VERTICAL|wxSP_ARROW_KEYS);
-//	_spinCtrl->Connect( wxEVT_SCROLL_LINEUP, wxSpinEventHandler( CalendarDialog::spinUp ), NULL, this );
-//	_spinCtrl->Connect( wxEVT_SCROLL_LINEDOWN, wxSpinEventHandler( CalendarDialog::spinDown ), NULL, this );
+	_timeText = new wxTextCtrl(this,wxID_ANY, "12:00",wxPoint(210,360),wxSize(120,42), 0);
 	
 	p.y += sz.GetHeight() + 80;
 	wxButton * c = new wxButton( this, wxID_CANCEL, _("Cancel"), p, wxDefaultSize );	
 	p.x += 220;
 	wxButton * b = new wxButton( this, wxID_OK, _("OK"), p, wxDefaultSize );
     
-}
-
-
-
-void CalendarDialog::spinUp(wxSpinEvent& event)
-{
-		_timeText->OnArrowUp();
-}
-
-void CalendarDialog::spinDown(wxSpinEvent& event)
-{
-         _timeText->OnArrowDown();
-}
-	
+}	
 
 

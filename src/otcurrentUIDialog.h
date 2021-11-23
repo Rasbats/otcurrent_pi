@@ -53,6 +53,7 @@
 #include "timectrl.h"
 #include <wx/colordlg.h>
 #include <wx/event.h>
+#include <wx/dirdlg.h>
 
 
 
@@ -142,7 +143,7 @@ public:
 	time_t myCurrentTime; 
 
 	void OnCalendarShow( wxCommandEvent& event );
-	void OnDraw(wxCommandEvent& event);
+	void OnSelectData(wxCommandEvent& event);
 	void OnNow( wxCommandEvent& event );
 	wxString MakeDateTimeLabel(wxDateTime myDateTime);
 
@@ -199,12 +200,7 @@ public:
 #endif
 
 	wxStaticText *m_staticText; 
-	wxTimeTextCtrl *_timeText;
-	wxSpinButton *_spinCtrl;
-	wxString GetText();
-
-	void spinUp(wxSpinEvent& event);
-	void spinDown(wxSpinEvent& event);
+	wxTextCtrl *_timeText;
 
 private:
 	void OnOk( wxCommandEvent & event );
