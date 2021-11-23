@@ -125,7 +125,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
     m_bpNow->SetBitmap(*_img_Clock );
 
 
-    this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
+    //this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
 	m_dtNow = wxDateTime::Now();
 	MakeDateTimeLabel(m_dtNow);
 
@@ -225,7 +225,7 @@ void otcurrentUIDialog::OnClose( wxCloseEvent& event )
 {
     pPlugIn->OnotcurrentDialogClose();
 }
-
+/*
 void otcurrentUIDialog::OnMove( wxMoveEvent& event )
 {
     //    Record the dialog position
@@ -235,7 +235,7 @@ void otcurrentUIDialog::OnMove( wxMoveEvent& event )
 
     event.Skip();
 }
-
+*/
 void otcurrentUIDialog::OnSize( wxSizeEvent& event )
 {
     //    Record the dialog size
