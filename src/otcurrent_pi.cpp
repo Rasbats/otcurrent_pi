@@ -172,6 +172,9 @@ bool otcurrent_pi::DeInit(void)
         delete m_potcurrentDialog;
         m_potcurrentDialog = NULL;
 
+		m_CopyFolderSelected = m_potcurrentDialog->m_FolderSelected;
+	    m_CopyIntervalSelected = m_potcurrentDialog->m_IntervalSelected;
+
 		m_botcurrentShowIcon = false;
         SetToolbarItemState(m_leftclick_tool_id, m_botcurrentShowIcon);
     }
@@ -300,11 +303,7 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 		 }
 		
          if(m_potcurrentDialog )
-		 {	
-
-			 m_potcurrentDialog->m_FolderSelected = m_CopyFolderSelected;
-			 m_potcurrentDialog->m_IntervalSelected = m_CopyIntervalSelected;
-			 m_potcurrentDialog->m_dirPicker1->SetValue(m_CopyFolderSelected);			 		 
+		 {			 		 
 
 			 m_potcurrentDialog->m_bUseRate = m_bCopyUseRate;
 			 m_potcurrentDialog->m_bUseDirection = m_bCopyUseDirection; 
@@ -423,6 +422,9 @@ void otcurrent_pi::OnotcurrentDialogClose()
 {
     m_bShowotcurrent = false;
     SetToolbarItemState( m_leftclick_tool_id, m_bShowotcurrent );
+
+	m_CopyFolderSelected = m_potcurrentDialog->m_FolderSelected;
+	m_CopyIntervalSelected = m_potcurrentDialog->m_IntervalSelected;
 
     m_potcurrentDialog->Hide();
 

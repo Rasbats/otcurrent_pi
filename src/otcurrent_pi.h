@@ -97,9 +97,12 @@ public:
 
 	  wxString GetFolderSelected() {return m_CopyFolderSelected;}
 	  int      GetIntervalSelected() {return m_CopyIntervalSelected;}
+
+	  
   
       otcurrentOverlayFactory *GetotcurrentOverlayFactory(){ return m_potcurrentOverlayFactory; }
-
+      wxString          m_CopyFolderSelected;
+	  int               m_CopyIntervalSelected;
 
 private:
       bool LoadConfig(void);
@@ -124,8 +127,7 @@ private:
       bool              m_bCopyUseDirection;
 	  bool				m_bCopyUseHighRes;
 
-	  wxString          m_CopyFolderSelected;
-	  int               m_CopyIntervalSelected;
+	  
 	  
 
       int              m_bTimeZone;

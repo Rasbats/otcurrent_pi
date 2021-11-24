@@ -226,7 +226,9 @@ void otcurrentUIDialog::SetViewPort( PlugIn_ViewPort *vp )
 
 void otcurrentUIDialog::OnClose( wxCloseEvent& event )
 {
-    pPlugIn->OnotcurrentDialogClose();
+	pPlugIn->m_CopyFolderSelected = m_FolderSelected;
+	pPlugIn->m_CopyIntervalSelected = m_IntervalSelected;
+	pPlugIn->OnotcurrentDialogClose();
 }
 /*
 void otcurrentUIDialog::OnMove( wxMoveEvent& event )
@@ -258,6 +260,8 @@ void otcurrentUIDialog::OpenFile(bool newestFile)
 	m_IntervalSelected = pPlugIn->GetIntervalSelected();
 	if (m_FolderSelected == wxEmptyString) {
 #ifndef __OCPN__ANDROID__
+		m_FolderSelected = pPlugIn->GetFolderSelected();
+		m_dirPicker1->SetValue(m_FolderSelected);
 		wxDirDialog *d = new wxDirDialog( this, _("Choose the tcdata directory"),
 		                 "", 0, wxDefaultPosition );
 		if ( d->ShowModal() ==  wxID_OK )
@@ -268,7 +272,7 @@ void otcurrentUIDialog::OpenFile(bool newestFile)
 #else
 		wxString tc = "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
 		m_dirPicker1->SetValue(tc); 
-		m_FolderSelected = m_dirPicker1->GetValue();
+		m_FolderSelected = tc;
 
 #endif
 	}
@@ -289,7 +293,7 @@ void otcurrentUIDialog::OnSelectData(wxCommandEvent& event)
 #else
 	wxString tc = "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
 	m_dirPicker1->SetValue(tc); 
-	m_FolderSelected = m_dirPicker1->GetValue();
+	m_FolderSelected = tc;
 #endif
 
     LoadTCMFile();
