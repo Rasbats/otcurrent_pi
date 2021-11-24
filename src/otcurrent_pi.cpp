@@ -120,8 +120,8 @@ int otcurrent_pi::Init(void)
       AddLocaleCatalog( _T("opencpn-otcurrent_pi") );
 
       // Set some default private member parameters
-      m_otcurrent_dialog_x = 0;
-      m_otcurrent_dialog_y = 0;
+      m_otcurrent_dialog_x = 40;
+      m_otcurrent_dialog_y = 80;
       m_otcurrent_dialog_sx = 200;
       m_otcurrent_dialog_sy = 400;
       m_potcurrentDialog = NULL;
@@ -453,6 +453,12 @@ bool otcurrent_pi::LoadConfig(void)
     m_otcurrent_dialog_sy = pConf->Read ( _T( "otcurrentDialogSizeY" ), 540L );
     m_otcurrent_dialog_x =  pConf->Read ( _T( "otcurrentDialogPosX" ), 20L );
     m_otcurrent_dialog_y =  pConf->Read ( _T( "otcurrentDialogPosY" ), 170L );
+
+	if ((m_otcurrent_dialog_x < 0) || (m_otcurrent_dialog_x > m_display_width))
+            m_otcurrent_dialog_x = 40;
+        if ((m_otcurrent_dialog_y < 0) || (m_otcurrent_dialog_y > m_display_height))
+            m_otcurrent_dialog_y = 140;
+
 	
     pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
     pConf->Read( _T("VColour1"), &myVColour[1], myVColour[1] );
