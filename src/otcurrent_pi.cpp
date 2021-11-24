@@ -171,10 +171,16 @@ bool otcurrent_pi::DeInit(void)
         m_potcurrentDialog->Close();
         delete m_potcurrentDialog;
         m_potcurrentDialog = NULL;
+
+		m_botcurrentShowIcon = false;
+        SetToolbarItemState(m_leftclick_tool_id, m_botcurrentShowIcon);
     }
 
     delete m_potcurrentOverlayFactory;
     m_potcurrentOverlayFactory = NULL;
+
+	SaveConfig();
+    RequestRefresh(m_parent_window); // refresh main window
 
     return true;
 }
