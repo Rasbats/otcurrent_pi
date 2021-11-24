@@ -92,7 +92,7 @@ void otcurrentUIDialog::OnMouseEvent( wxMouseEvent& event )
         int y = wxMax(0, g_startPos.y + (g_mouse_pos_screen.y - g_startMouse.y));
         int xmax = ::wxGetDisplaySize().x - GetSize().x;
         x = wxMin(x, xmax);
-        int ymax = ::wxGetDisplaySize().y - (GetSize().y * 2);          // Some fluff at the bottom
+        int ymax = ::wxGetDisplaySize().y - (GetSize().y);          // Some fluff at the bottom
         y = wxMin(y, ymax);
         
         g_Window->Move(x, y);
