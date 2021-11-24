@@ -113,6 +113,10 @@ public:
     otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi);
     ~otcurrentUIDialog();
 
+#ifdef __OCPN__ANDROID__
+    void OnMouseEvent( wxMouseEvent& event );
+#endif
+
     void OpenFile( bool newestFile = false );
     
     void SetCursorLatLon( double lat, double lon );
@@ -147,9 +151,7 @@ public:
 	void OnNow( wxCommandEvent& event );
 	wxString MakeDateTimeLabel(wxDateTime myDateTime);
 
-#ifdef __OCPN__ANDROID__
-    void OnMouseEvent( wxMouseEvent& event );
-#endif
+
 
     void LoadTCMFile();
 

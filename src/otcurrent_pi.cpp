@@ -331,14 +331,12 @@ void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
 void otcurrent_pi::OnToolbarToolCallback(int id)
 {
     
-	if(!m_potcurrentDialog)
+	if(NULL == m_potcurrentDialog)
     {
 		       		
 		m_potcurrentDialog = new otcurrentUIDialog(m_parent_window, this);
         wxPoint p = wxPoint(m_otcurrent_dialog_x, m_otcurrent_dialog_y);
-        m_potcurrentDialog->Move(0,0);        // workaround for gtk autocentre dialog behavior
         m_potcurrentDialog->Move(p);
-
 		m_potcurrentDialog->SetSize(m_otcurrent_dialog_sx, m_otcurrent_dialog_sy);
 
         // Create the drawing factory
