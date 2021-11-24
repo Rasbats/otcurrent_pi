@@ -346,7 +346,7 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
         m_potcurrentOverlayFactory->SetParentSize( m_display_width, m_display_height);		
         
     }
-
+	/*
       // Qualify the otcurrent dialog position
             bool b_reset_pos = false;
 
@@ -386,11 +386,14 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
                   m_otcurrent_dialog_sy = 540;
             }
 
+*/
       //Toggle otcurrent overlay display
       m_bShowotcurrent = !m_bShowotcurrent;
 
       //    Toggle dialog?
       if(m_bShowotcurrent) {
+		  m_potcurrentDialog->Move(m_otcurrent_dialog_x, m_otcurrent_dialog_y);
+		  m_potcurrentDialog->SetSize(m_otcurrent_dialog_sx, m_otcurrent_dialog_sy);
           m_potcurrentDialog->Show();
       } else {
           m_potcurrentDialog->Hide();         
@@ -399,6 +402,16 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
       // Toggle is handled by the toolbar but we must keep plugin manager b_toggle updated
       // to actual status to ensure correct status upon toolbar rebuild
       SetToolbarItemState( m_leftclick_tool_id, m_bShowotcurrent );
+
+	  // Capture dialog position
+    wxPoint p = m_potcurrentDialog->GetPosition();
+    wxRect r = m_potcurrentDialog->GetRect();
+    SetotcurrentDialogX(p.x);
+    SetotcurrentDialogY(p.y);
+    SetotcurrentDialogSizeX(r.GetWidth());
+    SetotcurrentDialogSizeY(r.GetHeight());
+
+
       RequestRefresh(m_parent_window); // refresh main window
 }
 
