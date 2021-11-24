@@ -119,7 +119,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 	wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(pConf) {
-        pConf->SetPath ( _T ( "/Plugins/otcurrent" ) );
+        pConf->SetPath ( _T ( "/PlugIns/otcurrent" ) );
 
 		pConf->Read ( _T ( "otcurrentUseRate" ), &m_bUseRate );
         pConf->Read ( _T ( "otcurrentUseDirection" ), &m_bUseDirection);
@@ -183,7 +183,7 @@ otcurrentUIDialog::~otcurrentUIDialog()
     wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(pConf) {
-        pConf->SetPath ( _T ( "/Plugins/otcurrent" ) );
+        pConf->SetPath ( _T ( "/PlugIns/otcurrent" ) );
 
 		pConf->Write ( _T ( "otcurrentUseRate" ), m_bUseRate );
 		pConf->Write ( _T ( "otcurrentUseDirection" ), m_bUseDirection );

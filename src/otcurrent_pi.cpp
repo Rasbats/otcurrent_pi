@@ -452,7 +452,7 @@ bool otcurrent_pi::LoadConfig(void)
 	m_bCopyUseHighRes = pConf->Read(_T("otcurrentUseHighResolution"), 1);
 	m_botcurrentUseHiDef = pConf->Read ( _T( "otcurrentUseFillColour" ), 1);
 
-	m_CopyFolderSelected = pConf->Read ( _T( "otcurrentFolder" ), "");
+	m_CopyFolderSelected = pConf->Read ( _T( "otcurrentFolder" ), "tcdata");
 	m_CopyIntervalSelected = pConf->Read ( _T ( "otcurrentInterval"), 20L);
 
     m_otcurrent_dialog_sx = pConf->Read ( _T( "otcurrentDialogSizeX" ), 300L );
