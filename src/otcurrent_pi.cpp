@@ -473,9 +473,7 @@ bool otcurrent_pi::SaveConfig(void)
 {
     wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
 
-    if(!pConf)
-        return false;
-
+    if(pConf) {
     pConf->SetPath ( _T( "/PlugIns/otcurrent" ) );
     pConf->Write ( _T( "otcurrentUseRate" ), m_bCopyUseRate );
     pConf->Write ( _T( "otcurrentUseDirection" ), m_bCopyUseDirection );
@@ -495,9 +493,10 @@ bool otcurrent_pi::SaveConfig(void)
 	pConf->Write( _T("VColour2"), myVColour[2] );
 	pConf->Write( _T("VColour3"), myVColour[3] );
 	pConf->Write( _T("VColour4"), myVColour[4] );
+	return true;
 
-
-    return true;
+   } else
+        return false;
 }
 
 void otcurrent_pi::SetColorScheme(PI_ColorScheme cs)
