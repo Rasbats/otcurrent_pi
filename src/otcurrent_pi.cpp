@@ -445,7 +445,7 @@ bool otcurrent_pi::LoadConfig(void)
     if(!pConf)
         return false;
 
-    pConf->SetPath ( _T( "/PlugIns/otcurrent" ) );
+    pConf->SetPath ( _T( "/Settings/otcurrent_pi" ) );
 
 	m_bCopyUseRate = pConf->Read ( _T( "otcurrentUseRate" ),1);
     m_bCopyUseDirection = pConf->Read ( _T( "otcurrentUseDirection" ), 1);
@@ -480,7 +480,7 @@ bool otcurrent_pi::SaveConfig(void)
     wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
 
     if(pConf) {
-    pConf->SetPath ( _T( "/PlugIns/otcurrent" ) );
+    pConf->SetPath ( _T( "/Settings/otcurrent_pi" ) );
     pConf->Write ( _T( "otcurrentUseRate" ), m_bCopyUseRate );
     pConf->Write ( _T( "otcurrentUseDirection" ), m_bCopyUseDirection );
 	pConf->Write(_T("otcurrentUseHighResolution"), m_bCopyUseHighRes);

@@ -119,7 +119,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 	wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(pConf) {
-        pConf->SetPath ( _T ( "/PlugIns/otcurrent" ) );
+        pConf->SetPath ( _T ( "/Settings/otcurrent_pi" ) );
 
 		pConf->Read ( _T ( "otcurrentUseRate" ), &m_bUseRate );
         pConf->Read ( _T ( "otcurrentUseDirection" ), &m_bUseDirection);
@@ -180,10 +180,12 @@ void otcurrentUIDialog::LoadTCMFile()
 
 otcurrentUIDialog::~otcurrentUIDialog()
 {
-    wxFileConfig *pConf = GetOCPNConfigObject();
+
+}
+  /*  wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(pConf) {
-        pConf->SetPath ( _T ( "/PlugIns/otcurrent" ) );
+        pConf->SetPath ( _T ( "/Settings/otcurrent_pi" ) );
 
 		pConf->Write ( _T ( "otcurrentUseRate" ), m_bUseRate );
 		pConf->Write ( _T ( "otcurrentUseDirection" ), m_bUseDirection );
@@ -206,7 +208,7 @@ otcurrentUIDialog::~otcurrentUIDialog()
     }
     delete m_ptcmgr;
 }
-
+*/
 
 void otcurrentUIDialog::SetCursorLatLon( double lat, double lon )
 {
