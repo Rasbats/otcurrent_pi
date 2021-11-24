@@ -52,7 +52,6 @@
 #include "wx/window.h"
 #include "timectrl.h"
 #include <wx/colordlg.h>
-#include <wx/event.h>
 #include <wx/dirdlg.h>
 
 

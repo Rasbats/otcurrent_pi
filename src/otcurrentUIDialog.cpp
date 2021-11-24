@@ -48,7 +48,6 @@
 #include <memory.h> 
 
 #include <wx/colordlg.h>
-#include <wx/event.h>
 #include "otcurrent_pi.h"
 
 #include "qtstylesheet.h"
