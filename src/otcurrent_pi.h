@@ -98,7 +98,7 @@ public:
 	  wxString GetFolderSelected() {return m_CopyFolderSelected;}
 	  int      GetIntervalSelected() {return m_CopyIntervalSelected;}
 
-	  
+	  void OnClose();
   
       otcurrentOverlayFactory *GetotcurrentOverlayFactory(){ return m_potcurrentOverlayFactory; }
       wxString          m_CopyFolderSelected;

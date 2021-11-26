@@ -147,6 +147,7 @@ public:
 
 	void OnCalendarShow( wxCommandEvent& event );
 	void OnSelectData(wxCommandEvent& event);
+	void OnSelectInterval(wxCommandEvent& event);
 	void OnNow( wxCommandEvent& event );
 	wxString MakeDateTimeLabel(wxDateTime myDateTime);
 

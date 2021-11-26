@@ -172,8 +172,8 @@ bool otcurrent_pi::DeInit(void)
         delete m_potcurrentDialog;
         m_potcurrentDialog = NULL;
 
-		m_CopyFolderSelected = m_potcurrentDialog->m_FolderSelected;
-	    m_CopyIntervalSelected = m_potcurrentDialog->m_IntervalSelected;
+		//m_CopyFolderSelected = m_potcurrentDialog->m_FolderSelected;
+	    //m_CopyIntervalSelected = m_potcurrentDialog->m_IntervalSelected;
 
 		m_botcurrentShowIcon = false;
         SetToolbarItemState(m_leftclick_tool_id, m_botcurrentShowIcon);
@@ -415,16 +415,13 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
     SetotcurrentDialogSizeY(r.GetHeight());
 
 
-      RequestRefresh(m_parent_window); // refresh main window
+    RequestRefresh(m_parent_window); // refresh main window
 }
 
 void otcurrent_pi::OnotcurrentDialogClose()
 {
     m_bShowotcurrent = false;
-    SetToolbarItemState( m_leftclick_tool_id, m_bShowotcurrent );
-
-	m_CopyFolderSelected = m_potcurrentDialog->m_FolderSelected;
-	m_CopyIntervalSelected = m_potcurrentDialog->m_IntervalSelected;
+    SetToolbarItemState( m_leftclick_tool_id, m_bShowotcurrent );	
 
     m_potcurrentDialog->Hide();
 
@@ -432,6 +429,17 @@ void otcurrent_pi::OnotcurrentDialogClose()
 
     RequestRefresh(m_parent_window); // refresh main window
 
+}
+
+void otcurrent_pi::OnClose()
+{
+	if (m_potcurrentDialog) {
+		// Just to make sure
+		m_CopyFolderSelected = m_potcurrentDialog->m_FolderSelected;		
+		m_CopyIntervalSelected = m_potcurrentDialog->m_IntervalSelected;
+	}
+
+	SaveConfig();
 }
 
 void otcurrent_pi::SetCursorLatLon(double lat, double lon)
@@ -447,15 +455,15 @@ bool otcurrent_pi::LoadConfig(void)
     if(!pConf)
         return false;
 
-    pConf->SetPath ( _T( "/Settings/otcurrent_pi" ) );
+    pConf->SetPath ( _T( "/PlugIns/otcurrent_pi" ) );
 
 	m_bCopyUseRate = pConf->Read ( _T( "otcurrentUseRate" ),1);
     m_bCopyUseDirection = pConf->Read ( _T( "otcurrentUseDirection" ), 1);
 	m_bCopyUseHighRes = pConf->Read(_T("otcurrentUseHighResolution"), 1);
 	m_botcurrentUseHiDef = pConf->Read ( _T( "otcurrentUseFillColour" ), 1);
 
-	m_CopyFolderSelected = pConf->Read ( _T( "otcurrentFolder" ), "tcdata");
-	m_CopyIntervalSelected = pConf->Read ( _T ( "otcurrentInterval"), 20L);
+	m_CopyFolderSelected = pConf->Read ( _T( "otcurrentFolder" ), "");	
+	m_CopyIntervalSelected = pConf->Read ( _T ( "otcurrentInterval"), 1L);
 
     m_otcurrent_dialog_sx = pConf->Read ( _T( "otcurrentDialogSizeX" ), 300L );
     m_otcurrent_dialog_sy = pConf->Read ( _T( "otcurrentDialogSizeY" ), 540L );
@@ -482,7 +490,7 @@ bool otcurrent_pi::SaveConfig(void)
     wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
 
     if(pConf) {
-    pConf->SetPath ( _T( "/Settings/otcurrent_pi" ) );
+    pConf->SetPath ( _T( "/PlugIns/otcurrent_pi" ) );
     pConf->Write ( _T( "otcurrentUseRate" ), m_bCopyUseRate );
     pConf->Write ( _T( "otcurrentUseDirection" ), m_bCopyUseDirection );
 	pConf->Write(_T("otcurrentUseHighResolution"), m_bCopyUseHighRes);

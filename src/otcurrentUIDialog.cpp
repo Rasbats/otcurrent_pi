@@ -119,15 +119,12 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 	wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(pConf) {
-        pConf->SetPath ( _T ( "/Settings/otcurrent_pi" ) );
+        pConf->SetPath ( _T ( "/PlugIns/otcurrent_pi" ) );
 
 		pConf->Read ( _T ( "otcurrentUseRate" ), &m_bUseRate );
         pConf->Read ( _T ( "otcurrentUseDirection" ), &m_bUseDirection);
 		pConf->Read(_T("otcurrentUseHighResolution"), &m_bUseHighRes);
 		pConf->Read ( _T ( "otcurrentUseFillColour" ), &m_bUseFillColour);
-
-		pConf->Read ( _T ( "otcurrentInterval" ), &m_IntervalSelected);
-		pConf->Read ( _T ( "otcurrentFolder" ), &m_FolderSelected);
 
 		pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
 		pConf->Read( _T("VColour1"), &myVColour[1], myVColour[1] );
@@ -152,10 +149,14 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 	m_dtNow = wxDateTime::Now();
 	MakeDateTimeLabel(m_dtNow);
 
-    LoadTCMFile();
-	
+	m_IntervalSelected = pPlugIn->GetIntervalSelected();
+	m_FolderSelected = pPlugIn->GetFolderSelected();
+    
 	m_dirPicker1->SetValue(m_FolderSelected);
 	m_choice1->SetSelection(m_IntervalSelected);
+    
+	LoadTCMFile();
+	
 	int i = m_choice1->GetSelection();
 	wxString c = m_choice1->GetString(i);	
 	double value;
@@ -181,11 +182,10 @@ void otcurrentUIDialog::LoadTCMFile()
 otcurrentUIDialog::~otcurrentUIDialog()
 {
 
-}
-  /*  wxFileConfig *pConf = GetOCPNConfigObject();
+    wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(pConf) {
-        pConf->SetPath ( _T ( "/Settings/otcurrent_pi" ) );
+        pConf->SetPath ( _T ( "/PlugIns/otcurrent_pi" ) );
 
 		pConf->Write ( _T ( "otcurrentUseRate" ), m_bUseRate );
 		pConf->Write ( _T ( "otcurrentUseDirection" ), m_bUseDirection );
@@ -199,8 +199,9 @@ otcurrentUIDialog::~otcurrentUIDialog()
 		pConf->Write( _T("VColour4"), myVColour[4] );
 
 		int c = m_choice1->GetSelection();
+		m_IntervalSelected = c;
 		wxString myP = m_choice1->GetString(c);
-		pConf->Write ( _T ( "otcurrentInterval" ), c ); 
+		pConf->Write ( _T ( "otcurrentInterval" ), myP ); 
 
 		wxString myF = m_dirPicker1->GetValue();
 		pConf->Write ( _T ( "otcurrentFolder" ), myF ); 
@@ -208,7 +209,7 @@ otcurrentUIDialog::~otcurrentUIDialog()
     }
     delete m_ptcmgr;
 }
-*/
+
 
 void otcurrentUIDialog::SetCursorLatLon( double lat, double lon )
 {
@@ -226,8 +227,14 @@ void otcurrentUIDialog::SetViewPort( PlugIn_ViewPort *vp )
 
 void otcurrentUIDialog::OnClose( wxCloseEvent& event )
 {
+	
+	m_FolderSelected = m_dirPicker1->GetValue();
 	pPlugIn->m_CopyFolderSelected = m_FolderSelected;
+	
+	int i = m_choice1->GetSelection();
+	m_IntervalSelected = i;
 	pPlugIn->m_CopyIntervalSelected = m_IntervalSelected;
+
 	pPlugIn->OnotcurrentDialogClose();
 }
 /*
@@ -289,18 +296,26 @@ void otcurrentUIDialog::OnSelectData(wxCommandEvent& event)
 	{ 
 		m_dirPicker1->SetValue(d->GetPath()); 
 		m_FolderSelected = m_dirPicker1->GetValue();
+		pPlugIn->m_CopyFolderSelected = m_FolderSelected;
 	}
 #else
 	wxString tc = "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
 	m_dirPicker1->SetValue(tc); 
 	m_FolderSelected = tc;
+	pPlugIn->m_CopyFolderSelected = m_FolderSelected;
 #endif
 
     LoadTCMFile();
-
 	RequestRefresh(pParent);	
 }
 
+void otcurrentUIDialog::OnSelectInterval(wxCommandEvent& event)
+{
+	int i = m_choice1->GetSelection();
+	m_IntervalSelected = i;
+	pPlugIn->m_CopyIntervalSelected = m_IntervalSelected;
+
+}
 void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 {	
 
