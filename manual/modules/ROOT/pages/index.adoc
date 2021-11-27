@@ -5,8 +5,6 @@ image::otcurrent_pi.png[]
 == Links
 
 * Source: https://github.com/Rasbats/otcurrent_pi[Github Repository]
-* Download: https://opencpn.org/OpenCPN/plugins/otcurrent.html[Website
-Download]
 * Forum:
 http://www.cruisersforum.com/forums/f134/otcurrent-plugin-129161.html[oTCurrent
 Thread]
@@ -31,14 +29,14 @@ publications.
 
 Install and enable using the Plugin Manager.
 
-The plugin assumes that you are using the 'HARMONIC.IDX' file installed
-in the 'tcdata' folder of your setup. The plugin is not able to work
-with 'tcd' files. If you are using a different 'HARMONIC.IDX' you can
+The plugin needs the _HARMONIC.IDX_ file installed
+in the 'tcdata' folder of OpenCPN 5.2.4 or earlier. The plugin is not able to work
+with 'tcd' files in OpenCPN 5.6. For using the _HARMONIC.IDX_ file you can
 select the folder where this file is located.
 
 == 3. Standard actions
 
-Enable the plugin by using Tools/Options and pressing the Enable button.
+Enable the plugin by using Options->Plugins and ticking the Enable box.
 
 image::ot_preferences.png[]
 
@@ -47,12 +45,14 @@ can decide whether text values of rate and direction are shown against
 the tidal arrows. Arrows can be 'solid fill' or 'outline'. 'Fill Colour'
 makes the arrows 'solid fill'.
 
-The color of the arrows can be changed.
+The colour of the arrows can be changed.
 
 For users with a high resolution display there is an option to adjust
 the plugin dialog to match those displays.
 
 These selections are saved in the Config file.
+
+NOTE: For Android 'solid fill'and arrow colour are not implemented.
 
 image::ot_colours.png[]
 
@@ -82,29 +82,28 @@ Dates in the future can be chosen, using the 'Select' button.
 
 image::ot_select_button.png[]
 
-If you have a 'Harmonic.idx' file on your computer, other than the one
-installed as part of the standard OpenCPN installation, this file can be
-selected with the 'Browse' button.
-
+You will need a _Harmonic.idx_ file on your computer, other than the one
+installed as part of the standard OpenCPN 5.6 installation, this file can be
+selected with the 'Select tidal current data' button. 
 image::ot_browse_button.png[]
 
 == 4. Options
 
 Return to 'Tools/Options/Preferences' if you wish to change whether text
 is displayed for direction or rate. Also to change the color used for a
-range of speed. For high resolution displays there is an option to
-improve the plugin dialog for those displays.
+range of speed (Not Android). For high resolution displays there is an option to
+improve the plugin output for those displays.
 
 == 5. FAQ
 
 *No arrows are shown.* How do I show them?
 Is the chart zoomed in to a sufficiently large scale? Are you using a
-'Harmonic.idx' file?
+_Harmonic.idx_ file?
 
 *My sailing area is Europe.* Can tidal currents (streams) be
 displayed?
-Unofficial 'Harmonic.idx' files are available for some European waters.
+Unofficial _Harmonic.idx_ files are available for some European waters.
 
-*For Linux users:* If you are using V10 please rename HARMONIC.idx as
-HARMONIC.IDX. Without this change you will not see any arrows or current
+*For Linux users:* If you are using V10 please rename _HARMONIC.idx_ as
+_HARMONIC.IDX_. Without this change you will not see any arrows or current
 information with the plugin.
