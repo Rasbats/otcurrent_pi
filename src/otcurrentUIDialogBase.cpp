@@ -22,7 +22,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 
 	m_textCtrl1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( -1,-1 ), wxTE_READONLY|wxSIMPLE_BORDER);
 	
-	m_button33 = new wxButton( this, wxID_ANY , _("Select"), wxDefaultPosition, wxSize( 80,-1 ), 0 );
+	m_button33 = new wxButton( this, wxID_ANY , _("Select"), wxDefaultPosition, wxSize( -1,-1 ), 0 );
 	m_button33->SetToolTip(_("Select date/time for current prediction"));	
 	
 	m_bpNow = new wxBitmapButton( this, wxID_ANY, wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW );
@@ -36,7 +36,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	wxStaticBoxSizer* sbSizer4;
 	sbSizer4 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Data Folder") ), wxVERTICAL );
 
-	m_dirPicker1 = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( 170,20 ), wxSIMPLE_BORDER );
+	m_dirPicker1 = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition,  wxSize( -1,-1 ), wxSIMPLE_BORDER );
 	sbSizer2->Add( m_textCtrl1, 100, wxALL|wxEXPAND, 5);
 	sbSizer4->Add( m_dirPicker1, 0, wxALL|wxEXPAND, 5 );
 
@@ -51,7 +51,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	wxStaticBoxSizer* sbSizer3;
 	sbSizer3 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Step (Minutes)") ), wxHORIZONTAL );
 	
-	sbSizer3->SetMinSize( wxSize( -1,30 ) ); 
+	sbSizer3->SetMinSize( wxSize( -1,-1 ) ); 
 	
 	wxArrayString m_choice1Choices;
 	m_choice1Choices.Add(_T("60"));
@@ -68,11 +68,11 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	m_button1 = new wxButton( this, wxID_ANY, _("Help"), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizer3->Add( m_button1, 0, wxALL, 5 );	
 
-	m_bpPrev = new wxBitmapButton( this, wxID_ANY, wxNullBitmap, wxDefaultPosition, wxSize( 30,-1 ), 0  );
+	m_bpPrev = new wxBitmapButton( this, wxID_ANY, wxNullBitmap, wxDefaultPosition, wxSize( -1,-1 ), 0  );
 	m_bpPrev->SetToolTip( _("Previous") );	
 	sbSizer3->Add( m_bpPrev, 0, wxALL, 1 );
 
-	m_bpNext = new wxBitmapButton( this, wxID_ANY, wxNullBitmap, wxDefaultPosition, wxSize( 30,-1 ), 0  );
+	m_bpNext = new wxBitmapButton( this, wxID_ANY, wxNullBitmap, wxDefaultPosition, wxSize( -1,-1 ), 0  );
 	m_bpNext->SetToolTip( _("Next") );
 	sbSizer3->Add( m_bpNext, 0, wxALL, 1 );
 
