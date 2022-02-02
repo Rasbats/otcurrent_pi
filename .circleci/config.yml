@@ -54,19 +54,6 @@ jobs:
         default: "fp-arm20-v2"
     <<: *flatpak-steps
 
-  build-flatpak-x86-1808:
-    machine:
-      image: ubuntu-2004:202010-01
-    environment:
-      - OCPN_TARGET: flatpak
-      - CMAKE_BUILD_PARALLEL_LEVEL: 2
-      - BUILD_1808: "true"
-    parameters:
-      cache-key:
-        type: string
-        default: "fp-x86-18-v2"
-    <<: *flatpak-steps
-
   build-flatpak-x86-2008:
     machine:
       image: ubuntu-2004:202010-01
@@ -93,15 +80,6 @@ jobs:
           sh -c "otool -L build-osx/app/*/OpenCPN.app/Contents/PlugIns/*.dylib"
       - run: cd build-osx; /bin/bash < upload.sh
       - run: ci/git-push.sh  build-osx
-
-  build-xenial:
-    docker:
-      - image: circleci/buildpack-deps:xenial-scm
-    environment:
-      - OCPN_TARGET: xenial
-      - CMAKE_BUILD_PARALLEL_LEVEL: 2
-      - USE_DEADSNAKES_PY37: 1
-    <<: *debian-steps
 
   build-bionic:
     docker:
@@ -175,16 +153,10 @@ workflows:
       - build-flatpak-arm64:
           <<: *std-filters
 
-      - build-flatpak-x86-1808:
-          <<: *std-filters
-
       - build-flatpak-x86-2008:
           <<: *std-filters
 
       - build-macos:
-          <<: *std-filters
-
-      - build-xenial:
           <<: *std-filters
 
       - build-bionic-gtk3:
