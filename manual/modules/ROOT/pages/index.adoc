@@ -29,10 +29,8 @@ publications.
 
 Install and enable using the Plugin Manager.
 
-The plugin needs the _HARMONIC.IDX_ file installed
-in the 'tcdata' folder of OpenCPN 5.2.4 or earlier. The plugin is not able to work
-with 'tcd' files in OpenCPN 5.6. For using the _HARMONIC.IDX_ file you can
-select the folder where this file is located.
+Select the 'tcdata' folder of OpenCPN. The plugin can work with the 'tcd' files from OpenCPN 5.6.
+It can also work with a _HARMONIC.IDX_ file. Select the folder where the file is located.
 
 == 3. Standard actions
 
