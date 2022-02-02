@@ -63,14 +63,29 @@ set(SRC
         src/icons.h
         src/icons.cpp
         src/tcmgr.cpp
+        src/tcmgr.h
         src/timectrl.cpp
         src/timectrl.h
-        src/tcmgr.h
 	    src/android/wx/datectrl.h
 	    src/android/wx/timectrl.h
 	    src/gl_private.h
 	    src/pidc.cpp
 	    src/pidc.h
+	    src/IDX_entry.cpp
+	    src/IDX_entry.h
+	    src/logger.cpp
+	    src/logger.h
+	    src/Station_Data.cpp
+	    src/Station_Data.h
+	    src/TC_Error_Code.h
+	    src/TCDataFactory.cpp
+	    src/TCDataFactory.h
+	    src/TCDataSource.cpp
+	    src/TCDataSource.h
+	    src/TCDS_Ascii_Harmonic.cpp
+	    src/TCDS_Ascii_Harmonic.h
+	    src/TCDS_Binary_Harmonic.cpp
+	    src/TCDS_Binary_Harmonic.h
 )
 
 set(PKG_API_LIB api-16)  #  A directory in libs/ e. g., api-17 or api-16

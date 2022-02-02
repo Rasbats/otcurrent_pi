@@ -102,7 +102,7 @@ void otcurrentUIDialog::OnMouseEvent( wxMouseEvent& event )
 
 
 otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
-: otcurrentUIDialogBase(parent), m_ptcmgr(0), m_vp(0)
+: otcurrentUIDialogBase(parent), ptcmgr(0), m_vp(0)
 {
     this->Fit();
 	pParent = parent;
@@ -156,6 +156,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 	m_choice1->SetSelection(m_IntervalSelected);
     
 	LoadTCMFile();
+	LoadHarmonics();
 	
 	int i = m_choice1->GetSelection();
 	wxString c = m_choice1->GetString(i);	
@@ -165,17 +166,64 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 
 }
 
+void otcurrentUIDialog::LoadHarmonics() {
+  if (!ptcmgr) {
+    ptcmgr = new TCMgr;
+    ptcmgr->LoadDataSources(TideCurrentDataSet);
+  }else {
+    bool b_newdataset = false;
+
+    //      Test both ways
+    wxArrayString test = ptcmgr->GetDataSet();
+    for (unsigned int i = 0; i < test.GetCount(); i++) {
+      bool b_foundi = false;
+      for (unsigned int j = 0; j < TideCurrentDataSet.GetCount(); j++) {
+        if (TideCurrentDataSet[j] == test[i]) {
+          b_foundi = true;
+          break;  // j loop
+        }
+      }
+      if (!b_foundi) {
+        b_newdataset = true;
+        break;  //  i loop
+      }
+    }
+
+    test = TideCurrentDataSet;
+    for (unsigned int i = 0; i < test.GetCount(); i++) {
+      bool b_foundi = false;
+      for (unsigned int j = 0; j < ptcmgr->GetDataSet().GetCount(); j++) {
+        if (ptcmgr->GetDataSet()[j] == test[i]) {
+          b_foundi = true;
+          break;  // j loop
+        }
+      }
+      if (!b_foundi) {
+        b_newdataset = true;
+        break;  //  i loop
+      }
+    }
+
+    if (b_newdataset) ptcmgr->LoadDataSources(TideCurrentDataSet);
+  }
+}
 
 
 void otcurrentUIDialog::LoadTCMFile()
 {
-    delete m_ptcmgr;
+    
     wxString TCDir = m_FolderSelected;
     TCDir.Append(wxFileName::GetPathSeparator());
     wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
 
-    wxString cache_locn = TCDir; 
-    m_ptcmgr = new TCMgr(TCDir, cache_locn);
+	wxString default_tcdata0 = TCDir + _T("harmonics-dwf-20210110-free.tcd");
+	wxString default_tcdata1 = TCDir + _T("HARMONIC.IDX");
+
+	//if (!TideCurrentDataSet.GetCount()) {
+		TideCurrentDataSet.Add(default_tcdata0);
+		TideCurrentDataSet.Add(default_tcdata1);
+	//}
+	
 }
 
 
@@ -207,7 +255,7 @@ otcurrentUIDialog::~otcurrentUIDialog()
 		pConf->Write ( _T ( "otcurrentFolder" ), myF ); 
 
     }
-    delete m_ptcmgr;
+    delete ptcmgr;
 }
 
 
@@ -306,6 +354,7 @@ void otcurrentUIDialog::OnSelectData(wxCommandEvent& event)
 #endif
 
     LoadTCMFile();
+	LoadHarmonics();
 	RequestRefresh(pParent);	
 }
 

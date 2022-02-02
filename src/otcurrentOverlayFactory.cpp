@@ -408,16 +408,17 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
     double lon_last = 0.;
     
     double lat_last = 0.;
-    TCMgr *ctcmgr = m_dlg.m_ptcmgr;
+    TCMgr *ctcmgr = m_dlg.ptcmgr;
 
 
 	wxDateTime yn = m_dlg.m_dtNow; 
+	time_t myTimeNow = yn.GetTicks();
 
 	wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 	m_dc->SetFont(font);
  
         for( int i = 1; i <  ctcmgr->Get_max_IDX() + 1; i++ ) {
-            IDX_entry *pIDX = ctcmgr->GetIDX_entry( i );
+            const IDX_entry *pIDX = ctcmgr->GetIDX_entry( i );
             double lon = pIDX->IDX_lon;
             double lat = pIDX->IDX_lat;
 
@@ -449,7 +450,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
                     d[3].x = r.x - dd;
                     d[3].y = r.y;
 					 
-					if( ctcmgr->GetTideOrCurrent15( yn, i, tcvalue, dir, bnew_val) ) {
+					if( ctcmgr->GetTideOrCurrent15( myTimeNow, i, tcvalue, dir, bnew_val) ) {
 
 					  if( type == 'c' ) {
                         									

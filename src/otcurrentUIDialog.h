@@ -44,6 +44,7 @@
 #include <vector>
 
 #include "tcmgr.h"
+
 #include "wx/dateevt.h"
 #include "wx/stattext.h"
 #include "ocpn_plugin.h"
@@ -53,7 +54,7 @@
 #include "timectrl.h"
 #include <wx/colordlg.h>
 #include <wx/dirdlg.h>
-
+#include <wx/arrstr.h>
 
 
 using namespace std;
@@ -77,6 +78,7 @@ class PositionRecordSet;
 class wxFileConfig;
 class otcurrent_pi;
 class wxGraphicsContext;
+class IDX_entry;
 
 class Position
 {
@@ -140,7 +142,7 @@ public:
 	bool onPrev;
 
     wxString m_FolderSelected;
-    TCMgr           *m_ptcmgr;
+    TCMgr    *ptcmgr;
 	int m_IntervalSelected;
 	
 	time_t myCurrentTime; 
@@ -151,9 +153,10 @@ public:
 	void OnNow( wxCommandEvent& event );
 	wxString MakeDateTimeLabel(wxDateTime myDateTime);
 
-
+	wxArrayString TideCurrentDataSet;
 
     void LoadTCMFile();
+	void LoadHarmonics();
 
 private:
 
