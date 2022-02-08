@@ -369,7 +369,7 @@ void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 {	
 
 	CalendarDialog CalDialog ( this, -1, _("START Date/Time"),
-	                          wxPoint(100, 100), wxSize(-1, -1) );
+	                          wxPoint(100, 100), wxSize(-1,-1) );
 
 	
 	#ifdef __OCPN__ANDROID__
@@ -492,8 +492,8 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	wxPoint p;
 	wxSize  sz;
  
-	sz.SetWidth(440);
-	sz.SetHeight(350);
+	sz.SetWidth(200);
+	sz.SetHeight(400);
 	
 	p.x = 6; p.y = 2;
 	s.Printf(_(" x = %d y = %d\n"), p.x, p.y);
@@ -503,11 +503,13 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	dimensions.append(wxT("here"));
  
 #ifndef __OCPN__ANDROID__
-	
-	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, sz, wxCAL_SHOW_HOLIDAYS,_("Tide Calendar"));
+		
+	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, wxDefaultSize, wxCAL_SHOW_HOLIDAYS,_("Tide Calendar"));
 
 #else
-   	dialogCalendar = new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DEFAULT);
+	sz.SetWidth(100);
+	sz.SetHeight(200);
+   	dialogCalendar = new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, sz, wxDP_DEFAULT);
 #endif
 	m_staticText = new wxStaticText(this,wxID_ANY,_("Time:"),wxPoint(15,360),wxSize(120,42));
 
