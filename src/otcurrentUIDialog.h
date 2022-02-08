@@ -216,6 +216,7 @@ public:
 	wxButton * c;
 	wxButton * b;
 	
+	wxStaticText *m_staticTextDate; 
 	wxStaticText *m_staticText; 
 	wxTextCtrl *_timeText;
 

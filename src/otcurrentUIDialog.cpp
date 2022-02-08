@@ -502,16 +502,18 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	dimensions.append(s);
 	dimensions.append(wxT("here"));
  
-	itemBoxSizerFinal = new wxBoxSizer( wxVERTICAL );	   
+	itemBoxSizerFinal = new wxBoxSizer( wxVERTICAL );
+
+
 
 #ifndef __OCPN__ANDROID__
 		
 	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime,wxDefaultPosition, wxDefaultSize, wxCAL_SHOW_HOLIDAYS,_("Tide Calendar"));
 
 #else
-	sz.SetWidth(100);
-	sz.SetHeight(200);
-   	dialogCalendar = new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, sz, wxDP_DEFAULT);
+    m_staticTextDate = new wxStaticText(this,wxID_ANY,_("Date:"), wxDefaultPosition, wxDefaultSize);
+	itemBoxSizerFinal->Add( m_staticTextDate,  0, wxEXPAND | wxALL, 10 );
+   	dialogCalendar = new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition,  wxDefaultSize, wxDP_DEFAULT);
 #endif
 	
 	itemBoxSizerFinal->Add(dialogCalendar,  0, wxEXPAND | wxALL, 10 );
