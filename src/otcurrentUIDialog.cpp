@@ -295,7 +295,7 @@ void otcurrentUIDialog::OnMove( wxMoveEvent& event )
 
     event.Skip();
 }
-*/
+
 void otcurrentUIDialog::OnSize( wxSizeEvent& event )
 {
     //    Record the dialog size
@@ -304,7 +304,7 @@ void otcurrentUIDialog::OnSize( wxSizeEvent& event )
     pPlugIn->SetotcurrentDialogSizeY( p.y );
 
     event.Skip();
-}
+}*/
 
 void otcurrentUIDialog::OpenFile(bool newestFile)
 {
@@ -368,7 +368,7 @@ void otcurrentUIDialog::OnSelectInterval(wxCommandEvent& event)
 void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
 {	
 
-	CalendarDialog CalDialog ( this, -1, _("START Date/Time"),
+	CalendarDialog CalDialog( this, -1, _("START Date/Time"),
 	                          wxPoint(100, 100), wxSize(-1,-1) );
 
 	
@@ -493,7 +493,7 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	wxSize  sz;
  
 	sz.SetWidth(200);
-	sz.SetHeight(400);
+	sz.SetHeight(600);
 	
 	p.x = 6; p.y = 2;
 	s.Printf(_(" x = %d y = %d\n"), p.x, p.y);
@@ -502,24 +502,42 @@ CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxStrin
 	dimensions.append(s);
 	dimensions.append(wxT("here"));
  
+	itemBoxSizerFinal = new wxBoxSizer( wxVERTICAL );	   
+
 #ifndef __OCPN__ANDROID__
 		
-	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime, p, wxDefaultSize, wxCAL_SHOW_HOLIDAYS,_("Tide Calendar"));
+	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime,wxDefaultPosition, wxDefaultSize, wxCAL_SHOW_HOLIDAYS,_("Tide Calendar"));
 
 #else
 	sz.SetWidth(100);
 	sz.SetHeight(200);
    	dialogCalendar = new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, sz, wxDP_DEFAULT);
 #endif
-	m_staticText = new wxStaticText(this,wxID_ANY,_("Time:"),wxPoint(15,360),wxSize(120,42));
-
-	_timeText = new wxTextCtrl(this,wxID_ANY, "12:00",wxPoint(210,360),wxSize(120,42), 0);
 	
-	p.y += sz.GetHeight() + 80;
-	wxButton * c = new wxButton( this, wxID_CANCEL, _("Cancel"), p, wxDefaultSize );	
-	p.x += 220;
-	wxButton * b = new wxButton( this, wxID_OK, _("OK"), p, wxDefaultSize );
-    
+	itemBoxSizerFinal->Add(dialogCalendar,  0, wxEXPAND | wxALL, 10 );
+
+	itemBoxSizer1 = new wxBoxSizer( wxHORIZONTAL );	
+	m_staticText = new wxStaticText(this,wxID_ANY,_("Time:"), wxDefaultPosition, wxDefaultSize);
+	_timeText = new wxTextCtrl(this,wxID_ANY, "12:00", wxDefaultPosition, wxDefaultSize, 0 );
+
+	itemBoxSizer1->Add(m_staticText, 1, wxEXPAND | wxALL, 10 );
+	itemBoxSizer1->Add(_timeText, 1, wxEXPAND | wxALL, 10 );
+
+	itemBoxSizerFinal->Add(itemBoxSizer1,  0, wxEXPAND | wxALL, 10 );
+
+	itemBoxSizer2 = new wxBoxSizer( wxHORIZONTAL );
+	
+	c = new wxButton( this, wxID_CANCEL, _("Cancel"), p, wxDefaultSize );		
+	b = new wxButton( this, wxID_OK, _("OK"), p, wxDefaultSize );
+
+	itemBoxSizer2->Add(c, 1, wxEXPAND | wxALL, 10 );
+	itemBoxSizer2->Add(b, 1, wxEXPAND | wxALL, 10 );
+	
+	itemBoxSizerFinal->Add(itemBoxSizer2,  0, wxEXPAND | wxALL, 10 );
+
+	this->SetSizer(itemBoxSizerFinal);
+	this->Layout();
+	itemBoxSizerFinal->Fit( this );
 }	
 
 

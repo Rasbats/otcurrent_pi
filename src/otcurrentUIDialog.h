@@ -55,6 +55,7 @@
 #include <wx/colordlg.h>
 #include <wx/dirdlg.h>
 #include <wx/arrstr.h>
+#include <wx/sizer.h>
 
 
 using namespace std;
@@ -162,7 +163,7 @@ private:
 
     void OnClose( wxCloseEvent& event );
    // void OnMove( wxMoveEvent& event );
-    void OnSize( wxSizeEvent& event );
+   // void OnSize( wxSizeEvent& event );
 	
 	void OnPrev( wxCommandEvent& event );
     void OnNext( wxCommandEvent& event );
@@ -207,7 +208,14 @@ public:
 	class wxDatePickerCtrl;
 	wxCalendarCtrl* dialogCalendar; 
 #endif
+	wxBoxSizer* itemBoxSizer;
+	wxBoxSizer* itemBoxSizer1;
+	wxBoxSizer* itemBoxSizer2;
+	wxBoxSizer* itemBoxSizerFinal;
 
+	wxButton * c;
+	wxButton * b;
+	
 	wxStaticText *m_staticText; 
 	wxTextCtrl *_timeText;
 
