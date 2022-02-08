@@ -349,6 +349,8 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
         m_potcurrentOverlayFactory->SetParentSize( m_display_width, m_display_height);		
         
     }
+
+	 m_potcurrentDialog->Fit();
 	/*
       // Qualify the otcurrent dialog position
             bool b_reset_pos = false;
