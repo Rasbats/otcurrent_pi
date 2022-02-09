@@ -299,13 +299,14 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 		polyPoints[2] = p[2];
 		polyPoints[3] = p[3];
 		polyPoints[4] = p[4];
-		polyPoints[5] = p[8];
+		polyPoints[5] = p[5];
+		polyPoints[6] = p[8];
 
 		m_dc->ConfigurePen();
-		m_dc->SetPen( wxPen(colour, 1 ));
+		m_dc->SetPen( wxPen(colour, 2 ));
 		m_dc->ConfigureBrush();
 		m_dc->SetBrush(colour);
-		m_dc->DrawPolygon(6, polyPoints, 0, 0, 1.0, 0);
+		m_dc->DrawPolygon(7, polyPoints, 0, 0, 1.0, 0);
 
 	}
 	return true;
