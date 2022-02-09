@@ -113,8 +113,8 @@ public:
 	
 	piDC *m_dc;
 
-	wxPoint p[10];
-	wxPoint polyPoints[4];
+	wxPoint p[9];
+	wxPoint polyPoints[9];
 
 private:
 
