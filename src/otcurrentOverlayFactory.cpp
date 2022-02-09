@@ -285,10 +285,11 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
         y1 = y2;            			
      }
 
-	//p[9].x = x1;
-	//p[9].y = y1;
+	p[9].x = x1;
+	p[9].y = y1;
 
 	if( m_bShowFillColour && m_dc){
+
 		m_dc->SetBrush(brush);
 		m_dc->DrawPolygon(9,p);
 	}
