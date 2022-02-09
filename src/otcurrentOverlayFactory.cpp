@@ -224,7 +224,7 @@ wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed){
 bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate )
 {   	
 	double m_rate = fabs(rate);
-	wxPoint p[10];
+	
 
     wxColour colour;	
 	colour = GetSpeedColour( m_rate );
