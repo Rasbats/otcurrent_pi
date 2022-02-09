@@ -258,6 +258,9 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 	p[0].x = x;
 	p[0].y = y;
 
+	p[9].x = x;
+	p[9].y = y;
+
 	p_basic[0].x = 100;
 	p_basic[0].y = 100;
 
@@ -285,8 +288,7 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
         y1 = y2;            			
      }
 
-	p[9].x = x;
-	p[9].y = y;
+	
 
 	if( m_bShowFillColour && m_dc){
 		m_dc->ConfigurePen();
