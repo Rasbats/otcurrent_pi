@@ -289,7 +289,9 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 	p[9].y = y1;
 
 	if( m_bShowFillColour && m_dc){
-
+		m_dc->ConfigurePen();
+		m_dc->SetPen( wxPen(colour, 1 ));
+		m_dc->ConfigureBrush();
 		m_dc->SetBrush(brush);
 		m_dc->DrawPolygon(9,p);
 	}
