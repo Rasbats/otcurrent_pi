@@ -256,10 +256,7 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
     int y1 = (int) ( yp * scale );
 
 	p[0].x = x1 + x;
-	p[0].y = y1 + x;
-
-	p[9].x = x1 + x;
-	p[9].y = y1 + x;
+	p[0].y = y1 + y;
 
 	p_basic[0].x = 100;
 	p_basic[0].y = 100;
@@ -295,12 +292,12 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 		m_dc->SetPen( wxPen(colour, 1 ));
 		m_dc->ConfigureBrush();
 		m_dc->SetBrush(brush);
-		m_dc->DrawPolygon(10, p, 0, 0, 1.0, 0);
+		//m_dc->DrawPolygon(10, p, 0, 0, 1.0, 0);
 
-		polyPoints[0] = wxPoint(48, 160);
-		polyPoints[1] = wxPoint(108, 160);
-		polyPoints[2] = wxPoint(108, 220);
-		polyPoints[3] = wxPoint(48, 160);
+		polyPoints[0] = p[0];
+		polyPoints[1] = p[3];
+		polyPoints[2] = p[5];
+		polyPoints[3] = p[8];
 
 		m_dc->ConfigurePen();
 		m_dc->SetPen( wxPen(colour, 1 ));
