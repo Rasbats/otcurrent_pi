@@ -1471,150 +1471,7 @@ void piDC::DrawPolygon(int n, wxPoint points[], wxCoord xoffset,
     SetGLAttrs(true);
 #endif
 
-#ifdef USE_ANDROID_GLES2
 
-    ConfigurePen();
-    glEnable(GL_BLEND);
-
-    if (n > 4) {
-      if (ConfigureBrush())  // Check for transparent brush
-        DrawPolygonTessellated(n, points, xoffset, yoffset);
-
-      // Draw the ouline
-      //  Grow the work buffer as necessary
-      if (workBufSize < (size_t)n * 2) {
-        workBuf = (float *)realloc(workBuf, (n * 4) * sizeof(float));
-        workBufSize = n * 4;
-      }
-
-      for (int i = 0; i < n; i++) {
-        workBuf[i * 2] = (points[i].x * scale);      // + xoffset;
-        workBuf[i * 2 + 1] = (points[i].y * scale);  // + yoffset;
-      }
-
-      glUseProgram(color_tri_shader_program);
-
-      // Get pointers to the attributes in the program.
-      GLint mPosAttrib =
-          glGetAttribLocation(color_tri_shader_program, "position");
-
-      // Disable VBO's (vertex buffer objects) for attributes.
-      glBindBuffer(GL_ARRAY_BUFFER, 0);
-      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-      glVertexAttribPointer(mPosAttrib, 2, GL_FLOAT, GL_FALSE, 0, workBuf);
-      glEnableVertexAttribArray(mPosAttrib);
-
-      //  Border color
-      float bcolorv[4];
-      bcolorv[0] = m_pen.GetColour().Red() / float(256);
-      bcolorv[1] = m_pen.GetColour().Green() / float(256);
-      bcolorv[2] = m_pen.GetColour().Blue() / float(256);
-      bcolorv[3] = m_pen.GetColour().Alpha() / float(256);
-
-      GLint bcolloc = glGetUniformLocation(color_tri_shader_program, "color");
-      glUniform4fv(bcolloc, 1, bcolorv);
-
-      // Rotate
-      mat4x4 I, Q;
-      mat4x4_identity(I);
-      mat4x4_rotate_Z(Q, I, angle);
-
-      // Translate
-      Q[3][0] = xoffset;
-      Q[3][1] = yoffset;
-
-      mat4x4 X;
-      mat4x4_mul(
-          X, (float(*)[4])gFrame->GetPrimaryCanvas()->GetpVP()->vp_transform,
-          Q);
-
-      GLint matloc = glGetUniformLocation(color_tri_shader_program, "MVMatrix");
-      glUniformMatrix4fv(matloc, 1, GL_FALSE, (const GLfloat *)X);
-
-      // Perform the actual drawing.
-      glDrawArrays(GL_LINE_LOOP, 0, n);
-
-    } else {  // n = 3 or 4, most common case for pre-tesselated shapes
-
-      //  Grow the work buffer as necessary
-      if (workBufSize < (size_t)n * 2) {
-        workBuf = (float *)realloc(workBuf, (n * 4) * sizeof(float));
-        workBufSize = n * 4;
-      }
-
-      for (int i = 0; i < n; i++) {
-        workBuf[i * 2] = (points[i].x * scale);      // + xoffset;
-        workBuf[i * 2 + 1] = (points[i].y * scale);  // + yoffset;
-      }
-
-      glUseProgram(color_tri_shader_program);
-
-      // Get pointers to the attributes in the program.
-      GLint mPosAttrib =
-          glGetAttribLocation(color_tri_shader_program, "position");
-
-      // Disable VBO's (vertex buffer objects) for attributes.
-      glBindBuffer(GL_ARRAY_BUFFER, 0);
-      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-      glVertexAttribPointer(mPosAttrib, 2, GL_FLOAT, GL_FALSE, 0, workBuf);
-      glEnableVertexAttribArray(mPosAttrib);
-
-      //  Border color
-      float bcolorv[4];
-      bcolorv[0] = m_pen.GetColour().Red() / float(256);
-      bcolorv[1] = m_pen.GetColour().Green() / float(256);
-      bcolorv[2] = m_pen.GetColour().Blue() / float(256);
-      bcolorv[3] = m_pen.GetColour().Alpha() / float(256);
-
-      GLint bcolloc = glGetUniformLocation(color_tri_shader_program, "color");
-      glUniform4fv(bcolloc, 1, bcolorv);
-
-      // Rotate
-      mat4x4 I, Q;
-      mat4x4_identity(I);
-      mat4x4_rotate_Z(Q, I, angle);
-
-      // Translate
-      Q[3][0] = xoffset;
-      Q[3][1] = yoffset;
-
-      mat4x4 X;
-      mat4x4_mul(
-          X, (float(*)[4])gFrame->GetPrimaryCanvas()->GetpVP()->vp_transform,
-          Q);
-      GLint matloc = glGetUniformLocation(color_tri_shader_program, "MVMatrix");
-      glUniformMatrix4fv(matloc, 1, GL_FALSE, (const GLfloat *)X);
-
-      // Perform the actual drawing.
-      glDrawArrays(GL_LINE_LOOP, 0, n);
-
-      //  Fill color
-      bcolorv[0] = m_brush.GetColour().Red() / float(256);
-      bcolorv[1] = m_brush.GetColour().Green() / float(256);
-      bcolorv[2] = m_brush.GetColour().Blue() / float(256);
-      bcolorv[3] = m_brush.GetColour().Alpha() / float(256);
-
-      glUniform4fv(bcolloc, 1, bcolorv);
-
-      // For the simple common case of a convex rectangle...
-      //  swizzle the array points to enable GL_TRIANGLE_STRIP
-      if (n == 4) {
-        float x1 = workBuf[4];
-        float y1 = workBuf[5];
-        workBuf[4] = workBuf[6];
-        workBuf[5] = workBuf[7];
-        workBuf[6] = x1;
-        workBuf[7] = y1;
-
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-      } else if (n == 3) {
-        glDrawArrays(GL_TRIANGLES, 0, 3);
-      }
-    }
-
-#else
 
     glPushMatrix();
     glTranslatef(xoffset, yoffset, 0);
@@ -1645,7 +1502,7 @@ void piDC::DrawPolygon(int n, wxPoint points[], wxCoord xoffset,
 
     SetGLAttrs(false);
   }
-#endif
+
 }
 
 #ifdef ocpnUSE_GL
