@@ -224,7 +224,7 @@ wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed){
 bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate )
 {   	
 	double m_rate = fabs(rate);
-	wxPoint p[9];
+	wxPoint p[10];
 
     wxColour colour;	
 	colour = GetSpeedColour( m_rate );
@@ -285,15 +285,15 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
         y1 = y2;            			
      }
 
-	p[9].x = x1;
-	p[9].y = y1;
+	p[9].x = x;
+	p[9].y = y;
 
 	if( m_bShowFillColour && m_dc){
 		m_dc->ConfigurePen();
 		m_dc->SetPen( wxPen(colour, 1 ));
 		m_dc->ConfigureBrush();
 		m_dc->SetBrush(brush);
-		m_dc->DrawPolygon(9,p);
+		m_dc->DrawPolygon(10, p, 0, 0, 1.0, 0);
 	}
 	return true;
 }
