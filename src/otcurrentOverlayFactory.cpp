@@ -255,11 +255,11 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
     int x1 = (int) ( xp * scale );
     int y1 = (int) ( yp * scale );
 
-	p[0].x = x;
-	p[0].y = y;
+	p[0].x = x1 + x;
+	p[0].y = y1 + x;
 
-	p[9].x = x;
-	p[9].y = y;
+	p[9].x = x1 + x;
+	p[9].y = y1 + x;
 
 	p_basic[0].x = 100;
 	p_basic[0].y = 100;
@@ -281,8 +281,8 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 			m_dc->DrawLine( x1 + x, y1 + y, x2 + x, y2 + y );
 		}
 
-		p[ip].x = x1 + x; 
-        p[ip].y = y1 + y;
+		p[ip].x = x2 + x; 
+        p[ip].y = y2 + y;
 
 		x1 = x2;
         y1 = y2;            			
