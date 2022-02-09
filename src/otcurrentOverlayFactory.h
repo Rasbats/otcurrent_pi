@@ -113,6 +113,8 @@ public:
 	
 	piDC *m_dc;
 
+	wxPoint polyPoints[4];
+
 private:
 
 	bool inGL;
