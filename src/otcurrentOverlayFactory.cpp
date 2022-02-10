@@ -288,11 +288,7 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 	
 
 	if( m_bShowFillColour && m_dc){
-		m_dc->ConfigurePen();
-		m_dc->SetPen( wxPen(colour, 1 ));
-		m_dc->ConfigureBrush();
-		m_dc->SetBrush(brush);
-		//m_dc->DrawPolygon(10, p, 0, 0, 1.0, 0);
+		
 
 	/*
    *           3
@@ -317,10 +313,10 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 
 		//polyPoints[4] = p[8];
 
-		m_dc->ConfigurePen();
-		m_dc->SetPen( wxPen(colour, 1 ));
+		brush.SetStyle(wxBRUSHSTYLE_SOLID);
+		m_dc->SetBrush(brush);
 		m_dc->ConfigureBrush();
-		m_dc->SetBrush(colour);
+		
 		m_dc->DrawPolygon(6, polyPoints, 0, 0);
 
 	}
