@@ -294,7 +294,22 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 		m_dc->SetBrush(brush);
 		//m_dc->DrawPolygon(10, p, 0, 0, 1.0, 0);
 
-		polyPoints[0] = p[1];
+	/*
+   *           3
+   *          /\
+   *         /  \
+   *        /    \
+   *     2 /      \ 4
+   *      /_ 1   5_\
+   *        |    |
+   *        |    | 
+   *        |    |
+   *        |____|
+   *       0      6
+   */
+
+
+		polyPoints[0] = p[0];
 		polyPoints[1] = p[2];
 		polyPoints[2] = p[3];
 		polyPoints[3] = p[4];
