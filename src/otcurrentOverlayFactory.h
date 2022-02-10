@@ -115,6 +115,7 @@ public:
 
 	wxPoint p[9];
 	wxPoint polyPoints[7];
+	wxPoint rectPoints[7];
 
 private:
 

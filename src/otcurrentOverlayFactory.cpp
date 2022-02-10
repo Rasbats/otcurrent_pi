@@ -291,26 +291,28 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 		
 
 	/*
-   *           3
+   *           4
    *          /\
    *         /  \
    *        /    \
-   *     2 /      \ 4
-   *      /_ 1   5_\
+   *     3 /      \ 5
+   *      /_ 2   6_\
    *        |    |
    *        |    | 
    *        |    |
    *        |____|
-   *       0      6
+   *       1   0  7
    */
 
-		polyPoints[0] = p[0];
-		polyPoints[1] = p[2];
-		polyPoints[2] = p[3];
-		polyPoints[3] = p[4];
-		polyPoints[4] = p[5];
-		polyPoints[5] = p[6];
 
+		polyPoints[0] = p[3];
+		polyPoints[1] = p[4];
+		polyPoints[2] = p[5];
+	
+		rectPoints[0] = p[1];
+		rectPoints[1] = p[2];
+		rectPoints[2] = p[6];
+		rectPoints[3] = p[7];
 
 		//polyPoints[4] = p[8];
 
@@ -318,8 +320,8 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 		m_dc->SetBrush(brush);
 		m_dc->ConfigureBrush();
 		
-		m_dc->DrawPolygon(6, polyPoints, 0, 0);
-
+		m_dc->DrawPolygon(3, polyPoints, 0, 0);
+		m_dc->DrawPolygon(4, rectPoints, 0, 0);
 	}
 	return true;
 }
