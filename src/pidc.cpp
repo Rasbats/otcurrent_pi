@@ -1329,7 +1329,7 @@ void piDC::DrawEllipse( wxCoord x, wxCoord y, wxCoord width, wxCoord height )
     }
 #endif
 }
-/*
+
 void piDC::DrawPolygon( int n, wxPoint points[], wxCoord xoffset, wxCoord yoffset, float scale, float angle )
 {
     if( dc )
@@ -1449,60 +1449,6 @@ void piDC::DrawPolygon( int n, wxPoint points[], wxCoord xoffset, wxCoord yoffse
 
     }
 #endif
-}
-*/
-
-//----------------------------------------------------------------------------
-//   constants
-//----------------------------------------------------------------------------
-#ifndef PI
-#define PI 3.1415926535897931160E0 /* pi */
-#endif
-
-void piDC::DrawPolygon(int n, wxPoint points[], wxCoord xoffset,
-                         wxCoord yoffset, float scale, float angle) {
-  if (dc) dc->DrawPolygon(n, points, xoffset, yoffset);
-#ifdef ocpnUSE_GL
-  else {
-#ifdef __WXQT__
-    SetGLAttrs(false);  // Some QT platforms (Android) have trouble with
-                        // GL_BLEND / GL_LINE_SMOOTH
-#else
-    SetGLAttrs(true);
-#endif
-
-
-
-    glPushMatrix();
-    glTranslatef(xoffset, yoffset, 0);
-
-    float deg = 180 / PI * (angle);
-    glRotatef(deg, 0, 0, 1);
-
-    if (ConfigureBrush()) {
-      glEnable(GL_POLYGON_SMOOTH);
-      glBegin(GL_POLYGON);
-      for (int i = 0; i < n; i++)
-        glVertex2f((points[i].x * scale), (points[i].y * scale));
-      glEnd();
-      glDisable(GL_POLYGON_SMOOTH);
-    }
-
-    if (ConfigurePen()) {
-      glEnable(GL_LINE_SMOOTH);
-      glBegin(GL_LINE_LOOP);
-      for (int i = 0; i < n; i++)
-        glVertex2f((points[i].x * scale), (points[i].y * scale));
-      glEnd();
-      glDisable(GL_LINE_SMOOTH);
-    }
-
-    glPopMatrix();
-#endif
-
-    SetGLAttrs(false);
-  }
-
 }
 
 #ifdef ocpnUSE_GL
