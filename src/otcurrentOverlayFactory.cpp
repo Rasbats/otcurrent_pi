@@ -452,45 +452,32 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
             const IDX_entry *pIDX = ctcmgr->GetIDX_entry( i );
             double lon = pIDX->IDX_lon;
             double lat = pIDX->IDX_lat;
-
+            bool b_dup = false;
+			
             char type = pIDX->IDX_type;             // Entry "TCtcIUu" identifier
             
 			if( ( ( type == 'c' ) || ( type == 'C' ) ) && ( 1/*pIDX->IDX_Useable*/) ) {
 
-//  TODO This is a ---HACK---
-//  try to avoid double current arrows.  Select the first in the list only
-//  Proper fix is to correct the TCDATA index file for depth indication
-                bool b_dup = false;
-                if( ( type == 'c' ) && ( lat == lat_last ) && ( lon == lon_last ) ) b_dup = true;
-				
+				if ((lat == lat_last) && (lon == lon_last)) {
+				b_dup = true;
+				lon_last = lon;
+				lat_last = lat;
+				continue;
+			}						
 				wxBoundingBox LLBBox( BBox->lon_min, BBox->lat_min , BBox->lon_max, BBox->lat_max );
 							
 				if( !b_dup && LLBBox.PointInBox( lon, lat, 0 )   )  {
 
-                    wxPoint r;
-					GetCanvasPixLL( BBox, &r,lat, lon );
 
-                    wxPoint d[4];
-                    int dd = 2;
-                    d[0].x = r.x;
-                    d[0].y = r.y + dd;
-                    d[1].x = r.x + dd;
-                    d[1].y = r.y;
-                    d[2].x = r.x;
-                    d[2].y = r.y - dd;
-                    d[3].x = r.x - dd;
-                    d[3].y = r.y;
-					 
 					if( ctcmgr->GetTideOrCurrent15( myTimeNow, i, tcvalue, dir, bnew_val) ) {
 
-					  if( type == 'c' ) {
+					  if( type == 'c' || type == 'C' ) {
                         									
 						int pixxc, pixyc;
 						wxPoint cpoint;
                         GetCanvasPixLL(BBox,&cpoint, lat, lon);
                         pixxc = cpoint.x;
-                        pixyc = cpoint.y;  
-                          
+                        pixyc = cpoint.y;                          
 
 						//    Adjust drawing size using logarithmic scale
                         double a1 = fabs( tcvalue ) * 10;
@@ -503,29 +490,6 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
                                
 						int shift = 0;
 
-						if ( !m_dc ) {
-                           if (rendered && m_bShowFillColour) 
-							  //drawGLPolygons(this, m_dc, BBox, DrawGLPolygon(), lat, lon, shift);
-
-						   if(m_bShowRate){
-                          
-							  //DrawGLLabels( this, m_pdc, BBox, 
-									 // DrawGLText( fabs(tcvalue), 1), lat, lon, 0 ) ;
-
-							  if (!m_bHighResolution){
-								  shift = 13;
-							  }
-							  else {
-								  shift = 26;
-							  }
-						   }
-						   if( m_bShowDirection){
-						  
-							 // DrawGLLabels( this, m_pdc, BBox, 
-											//DrawGLTextDir(dir, 0), lat, lon, shift) ;
-						   }
-					    }
-						else {
 						  char sbuf[20];
                           if( m_bShowRate ) {
 							snprintf( sbuf, 19, "%3.1f", fabs(tcvalue) );
@@ -542,15 +506,15 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 							snprintf( sbuf, 19, "%03.0f", dir );
 							m_dc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc + shift );
                           }
-                        }
-                    }
-                  }
+					  }
+					}
 
-                }
+				
+				lon_last = lon;
+				lat_last = lat;
+				
+				}                
+            } 
 
-                lon_last = lon;
-                lat_last = lat;
-
-            }
         }
 }        
