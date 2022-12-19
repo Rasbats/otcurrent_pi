@@ -18,6 +18,9 @@
 # Copy the contents of the filename mentioned after @include into the new
 # manifest.
 #  - Filename is relative to the project top-level directory.
+#  - The line with @include must start with a '-'.
+#  - The included file must have a hyphen ('-') at column 0 in the first
+#    non-comment line.
 #  - The indentation of the '-' char is added to each line in the included
 #    file.
 
@@ -46,13 +49,14 @@ function(configure_manifest manifest new_manifest_path)
   if ("${app_id}" STREQUAL "")
     message(FATAL_ERROR "Cannot find a proper id: line in ${manifest}")
   endif ()
-  message(STATUS "Using app_id: ${app_id}")
-
 
   # Process @include
   #
   file(STRINGS ${manifest} lines)
   foreach (line ${lines})
+    if ("${line}" MATCHES "[ \t]*\#")
+      continue ()
+    endif ()
     if ("${line}" MATCHES "@include")
       string(REGEX REPLACE "-.*" "" indent ${line})
       string(REGEX REPLACE ".*@include" "" path "${line}")
