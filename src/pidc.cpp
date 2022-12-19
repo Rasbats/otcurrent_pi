@@ -56,9 +56,9 @@
 
 #ifdef __OCPN__ANDROID__
 #include "qdebug.h"
-#endif
-
+#else
 #include "GL/glext.h"
+#endif
 
 static float GLMinSymbolLineWidth;
 static wxArrayPtrVoid pi_gTesselatorVertices;
