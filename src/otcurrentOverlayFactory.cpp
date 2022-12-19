@@ -471,7 +471,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
                 pixxc = cpoint.x;
                 pixyc = cpoint.y;      
 											
-				if( !b_dup && myRect.Contains(cpoint.x, cpoint.y) {
+				if( !b_dup && myRect.Contains(cpoint.x, cpoint.y)) {
 
 
 					if( ctcmgr->GetTideOrCurrent15( myTimeNow, i, tcvalue, dir, bnew_val) ) {
