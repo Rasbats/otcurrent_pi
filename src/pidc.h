@@ -55,7 +55,6 @@
 
 #ifdef __MSVC__
 #include "GL/gl.h"
-#include "GL/glext.h"
 #endif
 
 
