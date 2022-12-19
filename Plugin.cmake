@@ -50,9 +50,7 @@ set(PKG_IS_OPEN_SOURCE "yes")
 set(PKG_HOMEPAGE https://github.com/Rasbats/otcurrent_pi)
 set(PKG_INFO_URL https://opencpn.org/OpenCPN/plugins/otcurrent.html)
 
-set(SRC
-        src/bbox.cpp
-        src/bbox.h		
+set(SRC	
         src/otcurrent_pi.h
         src/otcurrent_pi.cpp
         src/otcurrentOverlayFactory.cpp
