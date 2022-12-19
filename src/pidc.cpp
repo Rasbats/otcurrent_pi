@@ -58,6 +58,8 @@
 #include "qdebug.h"
 #endif
 
+#include "GL/glext.h"
+
 static float GLMinSymbolLineWidth;
 static wxArrayPtrVoid pi_gTesselatorVertices;
 
