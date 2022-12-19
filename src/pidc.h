@@ -53,6 +53,10 @@
 //#include "GL/glext.h"
 #endif
 
+#ifdef __MSVC__
+#include "GL/gl.h"
+#endif
+
 
 #ifndef DECL_EXP
 #ifdef __WXMSW__
