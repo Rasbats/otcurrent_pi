@@ -26,7 +26,6 @@
 
 #include <map>
 #include <wx/string.h>
-#include "bbox.h"
 #include "tcmgr.h"
 
 

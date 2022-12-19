@@ -38,7 +38,6 @@
 
 #include "otcurrent_pi.h"
 #include <vector>
-#include "bbox.h"
 
 #ifdef __WXOSX__
 # include <OpenGL/OpenGL.h>
