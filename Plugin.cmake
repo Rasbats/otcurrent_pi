@@ -86,7 +86,9 @@ set(SRC
 	    src/TCDS_Binary_Harmonic.cpp
 	    src/TCDS_Binary_Harmonic.h
 	    src/georef.cpp
-	    src/georef.h	    
+	    src/georef.h
+	    src/GL/gl.h
+	    src/GL/glext.h	    
 )
 
 set(PKG_API_LIB api-16)  #  A directory in libs/ e. g., api-17 or api-16
