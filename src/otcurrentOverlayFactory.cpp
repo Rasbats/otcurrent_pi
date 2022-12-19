@@ -447,6 +447,8 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 
 	wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 	m_dc->SetFont(font);
+	wxRect myRect = BBox->rv_rect;
+
  
         for( int i = 1; i <  ctcmgr->Get_max_IDX() + 1; i++ ) {
             const IDX_entry *pIDX = ctcmgr->GetIDX_entry( i );
@@ -464,20 +466,18 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 				lat_last = lat;
 				continue;
 			}						
-				wxBoundingBox LLBBox( BBox->lon_min, BBox->lat_min , BBox->lon_max, BBox->lat_max );
-							
-				if( !b_dup && LLBBox.PointInBox( lon, lat, 0 )   )  {
+				int pixxc, pixyc;
+				wxPoint cpoint;
+                GetCanvasPixLL(BBox,&cpoint, lat, lon);
+                pixxc = cpoint.x;
+                pixyc = cpoint.y;      
+											
+				if( !b_dup && myRect.Contains(cpoint.x, cpoint.y) {
 
 
 					if( ctcmgr->GetTideOrCurrent15( myTimeNow, i, tcvalue, dir, bnew_val) ) {
 
-					  if( type == 'c' || type == 'C' ) {
-                        									
-						int pixxc, pixyc;
-						wxPoint cpoint;
-                        GetCanvasPixLL(BBox,&cpoint, lat, lon);
-                        pixxc = cpoint.x;
-                        pixyc = cpoint.y;                          
+					  if( type == 'c' || type == 'C' ) {                        														                  
 
 						//    Adjust drawing size using logarithmic scale
                         double a1 = fabs( tcvalue ) * 10;
