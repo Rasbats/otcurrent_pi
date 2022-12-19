@@ -49,10 +49,7 @@
 
 #include "pidc.h"
 
-#ifdef __MSVC__
-#include "GL/gl.h"
-#include "GL/glext.h"
-#endif
+
 
 #include "linmath.h"
 #include "pi_shaders.h"
