@@ -118,4 +118,8 @@ macro(add_plugin_libraries)
 
   add_subdirectory("libs/plugingl")
   target_link_libraries(${PACKAGE_NAME} ocpn::plugingl)
+  
+  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/opencpn-glu")
+  target_link_libraries(${PACKAGE_NAME} ocpn::opencpn-glu)
+  
 endmacro ()
