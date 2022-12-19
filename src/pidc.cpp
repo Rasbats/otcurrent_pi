@@ -57,12 +57,10 @@
 #ifdef __OCPN__ANDROID__
 #include "qdebug.h"
 #else
+#ifndef __APPLE__
 #include "GL/glext.h"
 #endif
-
-
-
-
+#endif
 
 static float GLMinSymbolLineWidth;
 static wxArrayPtrVoid pi_gTesselatorVertices;
@@ -147,7 +145,7 @@ piDC::piDC() :
 #endif
 
     GLint parms[2];
-    glGetIntegerv(GL_SMOOTH_LINE_WIDTH_RANGE, &parms[0] );
+    glGetIntegerv( GL_SMOOTH_LINE_WIDTH_RANGE, &parms[0] );
     GLMinSymbolLineWidth = wxMax(parms[0], 1);
 
     pi_loadShaders();
