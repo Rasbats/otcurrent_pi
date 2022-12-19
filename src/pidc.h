@@ -49,7 +49,7 @@
 #include "OpenGL/gl.h"
 #include "OpenGL/glu.h"
 #else
-#include "GL/gl.h"
+#include "include/GL/gl.h"
 #include "GL/glext.h"
 #endif
 
