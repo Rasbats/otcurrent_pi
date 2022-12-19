@@ -5119,7 +5119,7 @@ typedef void (APIENTRY *GLDEBUGPROCAMD)(GLuint id,GLenum category,GLenum severit
 #endif
 
 #ifndef GL_NV_vdpau_interop
-typedef GLintptr; GLvdpauSurfaceNV;
+typedef GLintptr GLvdpauSurfaceNV;
 #endif
 
 #ifndef GL_VERSION_1_2
