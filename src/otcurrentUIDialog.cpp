@@ -285,26 +285,6 @@ void otcurrentUIDialog::OnClose( wxCloseEvent& event )
 
 	pPlugIn->OnotcurrentDialogClose();
 }
-/*
-void otcurrentUIDialog::OnMove( wxMoveEvent& event )
-{
-    //    Record the dialog position
-    wxPoint p = GetPosition();
-    pPlugIn->SetotcurrentDialogX( p.x );
-    pPlugIn->SetotcurrentDialogY( p.y );
-
-    event.Skip();
-}
-
-void otcurrentUIDialog::OnSize( wxSizeEvent& event )
-{
-    //    Record the dialog size
-    wxSize p = event.GetSize();
-    pPlugIn->SetotcurrentDialogSizeX( p.x );
-    pPlugIn->SetotcurrentDialogSizeY( p.y );
-
-    event.Skip();
-}*/
 
 void otcurrentUIDialog::OpenFile(bool newestFile)
 {

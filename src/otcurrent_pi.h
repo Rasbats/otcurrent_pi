@@ -39,6 +39,7 @@
 #include "otcurrentUIDialog.h"
 
 #include "pidc.h"
+#include <wx/window.h>
 
 extern wxString myVColour[5]; 
 
@@ -97,12 +98,13 @@ public:
 
 	  wxString GetFolderSelected() {return m_CopyFolderSelected;}
 	  int      GetIntervalSelected() {return m_CopyIntervalSelected;}
-
-	  void OnClose();
   
       otcurrentOverlayFactory *GetotcurrentOverlayFactory(){ return m_potcurrentOverlayFactory; }
       wxString          m_CopyFolderSelected;
 	  int               m_CopyIntervalSelected;
+      int m_otcurrent_dialog_x, m_otcurrent_dialog_y;
+      int m_otcurrent_dialog_sx, m_otcurrent_dialog_sy;
+
 
 private:
       bool LoadConfig(void);
@@ -117,8 +119,6 @@ private:
       int              m_display_width, m_display_height;
       int              m_leftclick_tool_id;
 
-      int              m_otcurrent_dialog_x, m_otcurrent_dialog_y;
-      int              m_otcurrent_dialog_sx, m_otcurrent_dialog_sy;
 
       // preference data
       bool              m_botcurrentUseHiDef;

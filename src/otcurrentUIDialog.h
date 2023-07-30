@@ -161,10 +161,7 @@ public:
 
 private:
 
-    void OnClose( wxCloseEvent& event );
-   // void OnMove( wxMoveEvent& event );
-   // void OnSize( wxSizeEvent& event );
-	
+    void OnClose( wxCloseEvent& event );	
 	void OnPrev( wxCommandEvent& event );
     void OnNext( wxCommandEvent& event );
     void SetInterval( wxCommandEvent& event );

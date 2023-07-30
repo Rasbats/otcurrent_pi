@@ -342,7 +342,7 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
 		m_potcurrentDialog = new otcurrentUIDialog(m_parent_window, this);
         wxPoint p = wxPoint(m_otcurrent_dialog_x, m_otcurrent_dialog_y);
         m_potcurrentDialog->Move(p);
-		//m_potcurrentDialog->SetSize(m_otcurrent_dialog_sx, m_otcurrent_dialog_sy);
+		m_potcurrentDialog->SetSize(m_otcurrent_dialog_sx, m_otcurrent_dialog_sy);
 
         // Create the drawing factory
         m_potcurrentOverlayFactory = new otcurrentOverlayFactory( *m_potcurrentDialog );
@@ -350,49 +350,6 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
         
     }
 
-	 m_potcurrentDialog->Fit();
-	/*
-      // Qualify the otcurrent dialog position
-            bool b_reset_pos = false;
-
-#ifdef __WXMSW__
-        //  Support MultiMonitor setups which an allow negative window positions.
-        //  If the requested window does not intersect any installed monitor,
-        //  then default to simple primary monitor positioning.
-            RECT frame_title_rect;
-            frame_title_rect.left =   m_otcurrent_dialog_x;
-            frame_title_rect.top =    m_otcurrent_dialog_y;
-            frame_title_rect.right =  m_otcurrent_dialog_x + m_otcurrent_dialog_sx;
-            frame_title_rect.bottom = m_otcurrent_dialog_y + 30;
-
-
-            if(NULL == MonitorFromRect(&frame_title_rect, MONITOR_DEFAULTTONULL))
-                  b_reset_pos = true;
-#else
-       //    Make sure drag bar (title bar) of window on Client Area of screen, with a little slop...
-            wxRect window_title_rect;                    // conservative estimate
-            window_title_rect.x = m_otcurrent_dialog_x;
-            window_title_rect.y = m_otcurrent_dialog_y;
-            window_title_rect.width = m_otcurrent_dialog_sx;
-            window_title_rect.height = 30;
-
-            wxRect ClientRect = wxGetClientDisplayRect();
-            ClientRect.Deflate(60, 60);      // Prevent the new window from being too close to the edge
-            if(!ClientRect.Intersects(window_title_rect))
-                  b_reset_pos = true;
-
-#endif
-
-            if(b_reset_pos)
-            {
-                  m_otcurrent_dialog_x = 20;
-                  m_otcurrent_dialog_y = 170;
-                  m_otcurrent_dialog_sx = 300;
-                  m_otcurrent_dialog_sy = 540;
-            }
-
-*/
-      //Toggle otcurrent overlay display
       m_bShowotcurrent = !m_bShowotcurrent;
 
       //    Toggle dialog?
@@ -407,7 +364,7 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
       // Toggle is handled by the toolbar but we must keep plugin manager b_toggle updated
       // to actual status to ensure correct status upon toolbar rebuild
       SetToolbarItemState( m_leftclick_tool_id, m_bShowotcurrent );
-
+          
 	  // Capture dialog position
     wxPoint p = m_potcurrentDialog->GetPosition();
     wxRect r = m_potcurrentDialog->GetRect();
@@ -416,7 +373,6 @@ void otcurrent_pi::OnToolbarToolCallback(int id)
     SetotcurrentDialogSizeX(r.GetWidth());
     SetotcurrentDialogSizeY(r.GetHeight());
 
-
     RequestRefresh(m_parent_window); // refresh main window
 }
 
@@ -424,24 +380,11 @@ void otcurrent_pi::OnotcurrentDialogClose()
 {
     m_bShowotcurrent = false;
     SetToolbarItemState( m_leftclick_tool_id, m_bShowotcurrent );	
-
     m_potcurrentDialog->Hide();
 
     SaveConfig();
-
     RequestRefresh(m_parent_window); // refresh main window
 
-}
-
-void otcurrent_pi::OnClose()
-{
-	if (m_potcurrentDialog) {
-		// Just to make sure
-		m_CopyFolderSelected = m_potcurrentDialog->m_FolderSelected;		
-		m_CopyIntervalSelected = m_potcurrentDialog->m_IntervalSelected;
-	}
-
-	SaveConfig();
 }
 
 void otcurrent_pi::SetCursorLatLon(double lat, double lon)
@@ -467,10 +410,10 @@ bool otcurrent_pi::LoadConfig(void)
 	m_CopyFolderSelected = pConf->Read ( _T( "otcurrentFolder" ), "");	
 	m_CopyIntervalSelected = pConf->Read ( _T ( "otcurrentInterval"), 1L);
 
-    m_otcurrent_dialog_sx = pConf->Read ( _T( "otcurrentDialogSizeX" ), 300L );
-    m_otcurrent_dialog_sy = pConf->Read ( _T( "otcurrentDialogSizeY" ), 540L );
-    m_otcurrent_dialog_x =  pConf->Read ( _T( "otcurrentDialogPosX" ), 20L );
-    m_otcurrent_dialog_y =  pConf->Read ( _T( "otcurrentDialogPosY" ), 170L );
+    m_otcurrent_dialog_sx = pConf->Read ("otcurrentDialogSizeX", 300L);
+    m_otcurrent_dialog_sy = pConf->Read ("otcurrentDialogSizeY", 540L);
+    m_otcurrent_dialog_x =  pConf->Read ("otcurrentDialogPosX", 20L);
+    m_otcurrent_dialog_y =  pConf->Read ("otcurrentDialogPosY", 170L);
 
 	if ((m_otcurrent_dialog_x < 0) || (m_otcurrent_dialog_x > m_display_width))
             m_otcurrent_dialog_x = 40;
@@ -488,11 +431,11 @@ bool otcurrent_pi::LoadConfig(void)
 }
 
 bool otcurrent_pi::SaveConfig(void)
-{
+{    
     wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
 
     if(pConf) {
-    pConf->SetPath ( _T( "/PlugIns/otcurrent_pi" ) );
+    pConf->SetPath ("/PlugIns/otcurrent_pi");
     pConf->Write ( _T( "otcurrentUseRate" ), m_bCopyUseRate );
     pConf->Write ( _T( "otcurrentUseDirection" ), m_bCopyUseDirection );
 	pConf->Write(_T("otcurrentUseHighResolution"), m_bCopyUseHighRes);
@@ -501,10 +444,10 @@ bool otcurrent_pi::SaveConfig(void)
 	pConf->Write ( _T( "otcurrentFolder" ), m_CopyFolderSelected); 
 	pConf->Write ( _T( "otcurrentInterval" ), m_CopyIntervalSelected);
 
-    pConf->Write ( _T( "otcurrentDialogSizeX" ),  m_otcurrent_dialog_sx );
-    pConf->Write ( _T( "otcurrentDialogSizeY" ),  m_otcurrent_dialog_sy );
-    pConf->Write ( _T( "otcurrentDialogPosX" ),   m_otcurrent_dialog_x );
-    pConf->Write ( _T( "otcurrentDialogPosY" ),   m_otcurrent_dialog_y );
+    pConf->Write ("otcurrentDialogSizeX", m_otcurrent_dialog_sx);
+    pConf->Write ("otcurrentDialogSizeY", m_otcurrent_dialog_sy);
+    pConf->Write ("otcurrentDialogPosX", m_otcurrent_dialog_x);
+    pConf->Write ("otcurrentDialogPosY", m_otcurrent_dialog_y);
 
 	pConf->Write( _T("VColour0"), myVColour[0] );
 	pConf->Write( _T("VColour1"), myVColour[1] );
