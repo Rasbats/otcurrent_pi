@@ -382,6 +382,14 @@ void otcurrent_pi::OnotcurrentDialogClose()
     SetToolbarItemState( m_leftclick_tool_id, m_bShowotcurrent );	
     m_potcurrentDialog->Hide();
 
+    // Capture dialog position
+    wxPoint p = m_potcurrentDialog->GetPosition();
+    wxRect r = m_potcurrentDialog->GetRect();
+    SetotcurrentDialogX(p.x);
+    SetotcurrentDialogY(p.y);
+    SetotcurrentDialogSizeX(r.GetWidth());
+    SetotcurrentDialogSizeY(r.GetHeight());
+
     SaveConfig();
     RequestRefresh(m_parent_window); // refresh main window
 
