@@ -444,7 +444,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 	wxDateTime yn = m_dlg.m_dtNow; 
 	time_t myTimeNow = yn.GetTicks();
 
-	wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+	wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 	#ifdef __WXMSW__
 		double factor = (double)(GetOCPNCanvasWindow()->ToDIP(100)) / 100.;
 		font.Scale(1. / factor);
@@ -502,7 +502,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, b
 								shift = 13;
 							}
 							else {
-								shift = 26;
+								shift = 35;
 							}
 						  }
 					
