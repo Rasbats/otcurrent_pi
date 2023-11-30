@@ -34,6 +34,7 @@
 #include <wx/glcanvas.h>
 #include <wx/graphics.h>
 #include <wx/progdlg.h>
+#include "pidc.h"
 
 
 #include "otcurrent_pi.h"
@@ -190,12 +191,11 @@ bool otcurrentOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
     return true;
 }
 
+
 void otcurrentOverlayFactory::DrawLine( double x1, double y1, double x2, double y2,
                                           const wxColour &color, double width )
 {
-	m_dc->ConfigurePen();
 	m_dc->SetPen( wxPen(color, width ) );
-	m_dc->ConfigureBrush();
     m_dc->SetBrush( *wxTRANSPARENT_BRUSH);
     m_dc->DrawLine(x1, y1, x2, y2, false);
 
@@ -317,7 +317,6 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, d
 
 		brush.SetStyle(wxBRUSHSTYLE_SOLID);
 		m_dc->SetBrush(brush);
-		m_dc->ConfigureBrush();
 		
 		m_dc->DrawPolygon(3, polyPoints, 0, 0);
 		m_dc->DrawPolygon(4, rectPoints, 0, 0);
