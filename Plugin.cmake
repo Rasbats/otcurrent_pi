@@ -67,7 +67,6 @@ set(SRC
         src/timectrl.h
         src/android/wx/datectrl.h
         src/android/wx/timectrl.h
-        src/gl_private.h
         src/pidc.cpp
         src/pidc.h
         src/IDX_entry.cpp
@@ -87,8 +86,6 @@ set(SRC
         src/TCDS_Binary_Harmonic.h
         src/georef.cpp
         src/georef.h
-        src/GL/gl.h
-        src/GL/glext.h
 )
 
 set(PKG_API_LIB api-16)  #  A directory in libs/ e. g., api-17 or api-16
@@ -116,7 +113,8 @@ macro(add_plugin_libraries)
   add_subdirectory("libs/wxJSON")
   target_link_libraries(${PACKAGE_NAME} ocpn::wxjson)
 
-  add_subdirectory("libs/plugingl")
-  target_link_libraries(${PACKAGE_NAME} ocpn::plugingl)
+  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/plugin_dc")
+  target_link_libraries(${PACKAGE_NAME} ocpn::plugin-dc)
+
 
 endmacro ()
