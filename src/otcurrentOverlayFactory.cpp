@@ -34,7 +34,6 @@
 #include <wx/glcanvas.h>
 #include <wx/graphics.h>
 #include <wx/progdlg.h>
-#include "pidc.h"
 
 
 #include "otcurrent_pi.h"
@@ -43,11 +42,6 @@
 #ifdef __WXOSX__
 # include <OpenGL/OpenGL.h>
 # include <OpenGL/gl3.h>
-#endif
-
-#ifdef __OCPN__ANDROID__
-#include <qopengl.h>
-#include "gl_private.h"
 #endif
 
 #ifdef USE_GLES2

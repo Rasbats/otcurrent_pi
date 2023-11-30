@@ -27,6 +27,7 @@
 #include <map>
 #include <wx/string.h>
 #include "tcmgr.h"
+#include "pidc.h"
 
 
 using namespace std;
@@ -37,10 +38,7 @@ class wxDC;
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
-#include "GL/gl.h"
-#include "GL/glext.h"
-#include "GL/glu.h"
-
+#include "gl_private.h"
 #elif defined(__APPLE__)
 #include "OpenGL/gl.h"
 #include "OpenGL/glu.h"
