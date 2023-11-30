@@ -38,7 +38,7 @@ class wxDC;
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
-#include "gl_private.h"
+#include "GL/gl_private.h"
 #elif defined(__APPLE__)
 #include "OpenGL/gl.h"
 #include "OpenGL/glu.h"
