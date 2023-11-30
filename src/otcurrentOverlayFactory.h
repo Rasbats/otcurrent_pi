@@ -37,8 +37,8 @@ class wxDC;
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include "GL/gl_private.h"
-#include "GL/gl.h"
 #include <qopengl.h>
+typedef double GLdouble;
 #elif defined(__APPLE__)
 #include "OpenGL/gl.h"
 #include "OpenGL/glu.h"
