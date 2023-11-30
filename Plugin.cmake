@@ -67,8 +67,6 @@ set(SRC
         src/timectrl.h
         src/android/wx/datectrl.h
         src/android/wx/timectrl.h
-        src/pidc.cpp
-        src/pidc.h
         src/IDX_entry.cpp
         src/IDX_entry.h
         src/logger.cpp
