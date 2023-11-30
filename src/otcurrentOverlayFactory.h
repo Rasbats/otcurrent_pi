@@ -36,6 +36,7 @@ class piDC;
 class wxDC;
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
+#include "GL/gl_private.h"
 #include <qopengl.h>
 #elif defined(__APPLE__)
 #include "OpenGL/gl.h"
