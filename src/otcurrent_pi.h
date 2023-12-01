@@ -38,7 +38,7 @@
 #include "otcurrentOverlayFactory.h"
 #include "otcurrentUIDialog.h"
 
-#include "pidc.h"
+
 #include <wx/window.h>
 
 extern wxString myVColour[5]; 
