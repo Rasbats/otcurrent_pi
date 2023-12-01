@@ -179,7 +179,10 @@ bool otcurrentOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
 	
 	DrawAllCurrentsInViewPort(&vp,false,false,false, m_dtUseNew);
 
-	//DrawLine(140, 140, 220, 220, myColour, 4);
+  wxPen pen("RED", 2);
+
+  m_dc->SetPen(pen);
+	m_dc->DrawLine(140, 140, 220, 220);
 
 	
     return true;
