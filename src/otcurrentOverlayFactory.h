@@ -28,6 +28,7 @@
 #include <wx/string.h>
 #include "tcmgr.h"
 #include "pidc.h"
+#include <wx/brush.h>
 
 using namespace std;
 
