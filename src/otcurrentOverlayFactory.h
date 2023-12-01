@@ -106,7 +106,7 @@ public:
 	wxImage &DrawGLTextDir( double value, int precision);
 	wxImage &DrawGLTextString( wxString myText);
 
-	void DrawLine(double x1, double y1, double x2, double y2, const wxColour &color, double width);
+	//void DrawLine(double x1, double y1, double x2, double y2, const wxColour &color, double width);
 
 
 	bool              m_bShowRate;

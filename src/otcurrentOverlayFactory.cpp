@@ -185,7 +185,7 @@ bool otcurrentOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
     return true;
 }
 
-
+/*
 void otcurrentOverlayFactory::DrawLine( double x1, double y1, double x2, double y2,
                                           const wxColour &color, double width )
 {
@@ -195,7 +195,7 @@ void otcurrentOverlayFactory::DrawLine( double x1, double y1, double x2, double 
 
 	//wxMessageBox("here");
 }
-
+*/
 
 wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed){
 	
