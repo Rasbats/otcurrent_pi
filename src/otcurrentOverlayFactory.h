@@ -29,14 +29,11 @@
 #include "tcmgr.h"
 #include "pidc.h"
 
-
 using namespace std;
 
 class plugIn_Viewport;
 class piDC;
 class wxDC;
-
-
 
 //----------------------------------------------------------------------------------------------------------
 //    otcurrent Overlay Specification
@@ -44,29 +41,26 @@ class wxDC;
 
 class otcurrentOverlay {
 public:
-    otcurrentOverlay( void )
-    {
-        m_iTexture = 0;
-        m_pDCBitmap = NULL, m_pRGBA = NULL;
-    }
+  otcurrentOverlay(void) {
+    m_iTexture = 0;
+    m_pDCBitmap = NULL, m_pRGBA = NULL;
+  }
 
-    ~otcurrentOverlay( void )
+  ~otcurrentOverlay(void)
 
-    
-    {
-       
-        delete m_pDCBitmap, delete[] m_pRGBA;
-    }
+  {
+    delete m_pDCBitmap, delete[] m_pRGBA;
+  }
 
-    double m_latoff, m_lonoff;
+  double m_latoff, m_lonoff;
 
-    unsigned int m_iTexture; /* opengl mode */
+  unsigned int m_iTexture; /* opengl mode */
 
-    wxBitmap *m_pDCBitmap; /* dc mode */
-    unsigned char *m_pRGBA;
+  wxBitmap *m_pDCBitmap; /* dc mode */
+  unsigned char *m_pRGBA;
 
-    int m_width;
-    int m_height;
+  int m_width;
+  int m_height;
 };
 
 //----------------------------------------------------------------------------------------------------------
@@ -79,75 +73,73 @@ class otcurrentOverlayFactory;
 
 class otcurrentOverlayFactory {
 public:
-    otcurrentOverlayFactory( otcurrentUIDialog &dlg );
-    ~otcurrentOverlayFactory();
+  otcurrentOverlayFactory(otcurrentUIDialog &dlg);
+  ~otcurrentOverlayFactory();
 
-    void SetMessage( wxString message ) { m_Message = message; }
-    void SetParentSize( int w, int h ) { m_ParentSize.SetWidth(w) ; m_ParentSize.SetHeight(h) ;}
-	bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
+  void SetMessage(wxString message) { m_Message = message; }
+  void SetParentSize(int w, int h) {
+    m_ParentSize.SetWidth(w);
+    m_ParentSize.SetHeight(h);
+  }
+  bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
 
-	void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
-        bool bforce_redraw_currents, bool bdraw_mono_for_mask, wxDateTime myTime);
+  void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
+                                 bool bforce_redraw_currents,
+                                 bool bdraw_mono_for_mask, wxDateTime myTime);
 
-    void Reset();
-	wxImage &DrawGLText( double value, int precision);
-	wxImage &DrawGLTextDir( double value, int precision);
-	wxImage &DrawGLTextString( wxString myText);
+  void Reset();
+  wxImage &DrawGLText(double value, int precision);
+  wxImage &DrawGLTextDir(double value, int precision);
+  wxImage &DrawGLTextString(wxString myText);
 
-	//void DrawLine(double x1, double y1, double x2, double y2, const wxColour &color, double width);
+  // void DrawLine(double x1, double y1, double x2, double y2, const wxColour
+  // &color, double width);
 
+  bool m_bShowRate;
+  bool m_bShowDirection;
+  bool m_bHighResolution;
+  bool m_bShowFillColour;
+  wxDateTime m_dtUseNew;
+  wxColour m_text_color;
+  std::map<double, wxImage> m_labelCache;
+  std::map<wxString, wxImage> m_labelCacheText;
 
-	bool              m_bShowRate;
-    bool              m_bShowDirection;
-	bool			  m_bHighResolution;
-	bool              m_bShowFillColour;
-	wxDateTime        m_dtUseNew;
-	wxColour m_text_color;
-	    std::map < double , wxImage > m_labelCache;
-	std::map < wxString , wxImage > m_labelCacheText;
-	
-	piDC *m_dc;
+  piDC *m_dc;
 
-	wxPoint p[9];
-	wxPoint polyPoints[7];
-	wxPoint rectPoints[7];
+  wxPoint p[9];
+  wxPoint polyPoints[7];
+  wxPoint rectPoints[7];
 
 private:
+  bool inGL;
 
-	bool inGL;
-	
-    bool DoRenderotcurrentOverlay( PlugIn_ViewPort *vp );
-	void RenderMyArrows(PlugIn_ViewPort *vp );
+  wxColour GetSpeedColour(double my_speed);
 
-    wxColour GetSpeedColour(double my_speed);
+  bool drawCurrentArrow(int x, int y, double rot_angle, double scale,
+                        double rate);
 
-    bool drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate );
+  double m_last_vp_scale;
 
-
-    double m_last_vp_scale;
-
-	//  for GL
-	wxColour c_GLcolour;
-	wxPoint p_basic[9];
-	//
-    wxString m_Message;
-    wxString m_Message_Hiden;
-    wxSize  m_ParentSize;
+  //  for GL
+  wxColour c_GLcolour;
+  wxPoint p_basic[9];
+  //
+  wxString m_Message;
+  wxString m_Message_Hiden;
+  wxSize m_ParentSize;
 
 #if wxUSE_GRAPHICS_CONTEXT
-    wxGraphicsContext *m_gdc;
+  wxGraphicsContext *m_gdc;
 #endif
 
-    wxFont *m_dFont_map;
-    wxFont *m_dFont_war;
+  wxFont *m_dFont_map;
+  wxFont *m_dFont_war;
 
-    wxFont *pTCFont;
+  wxFont *pTCFont;
 
-    bool m_hiDefGraphics;
-    bool m_bGradualColors;
+  bool m_hiDefGraphics;
+  bool m_bGradualColors;
 
-    
-	wxImage m_fillImg;
-	otcurrentUIDialog &m_dlg;
-
+  wxImage m_fillImg;
+  otcurrentUIDialog &m_dlg;
 };
