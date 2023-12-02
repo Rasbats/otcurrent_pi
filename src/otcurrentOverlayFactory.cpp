@@ -295,8 +295,8 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     brush.SetStyle(wxBRUSHSTYLE_SOLID);
     m_dc->SetBrush(brush);
 
-    m_dc->DrawPolygon(3, polyPoints);
-    m_dc->DrawPolygon(4, rectPoints);
+    m_dc->DrawPolygonTessellated(3, polyPoints);
+    m_dc->DrawPolygonTessellated(4, rectPoints);
   }
   return true;
 }

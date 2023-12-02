@@ -29,6 +29,7 @@
 #include "tcmgr.h"
 #include "pidc.h"
 #include <wx/brush.h>
+#include <wx/gdicmn.h>
 
 using namespace std;
 
