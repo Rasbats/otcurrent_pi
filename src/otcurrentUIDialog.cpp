@@ -148,6 +148,7 @@ wxPoint g_startMouse;
 wxPoint g_mouse_pos_screen;
 
 void otcurrentUIDialog::OnMouseEvent(wxMouseEvent& event) {
+  wxMessageBox(_("Mouse"));
   g_mouse_pos_screen = ClientToScreen(event.GetPosition());
 
   if (event.Dragging()) {
