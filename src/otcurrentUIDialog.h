@@ -29,9 +29,9 @@
 
 #include "wx/wxprec.h"
 
-#ifndef  WX_PRECOMP
+#ifndef WX_PRECOMP
 #include "wx/wx.h"
-#endif //precompiled headers
+#endif  // precompiled headers
 
 #include <wx/fileconf.h>
 #include <wx/glcanvas.h>
@@ -58,11 +58,10 @@
 #include <wx/sizer.h>
 #include "qtstylesheet.h"
 
-
 using namespace std;
 
 #ifndef PI
-#define PI        3.1415926535897931160E0      /* pi */
+#define PI 3.1415926535897931160E0 /* pi */
 #endif
 
 #if !defined(NAN)
@@ -70,163 +69,142 @@ static const long long lNaN = 0xfff8000000000000;
 #define NAN (*(double*)&lNaN)
 #endif
 
-#define RT_RCDATA2           MAKEINTRESOURCE(999)
+#define RT_RCDATA2 MAKEINTRESOURCE(999)
 
 class otcurrentOverlayFactory;
 class PlugIn_ViewPort;
 class PositionRecordSet;
-
 
 class wxFileConfig;
 class otcurrent_pi;
 class wxGraphicsContext;
 class IDX_entry;
 
-class Position
-{
+class Position {
 public:
-	double latD, lonD;
-    wxString lat, lon;
-	wxString port_num;
+  double latD, lonD;
+  wxString lat, lon;
+  wxString port_num;
 
-	wxString minus_6, minus_5, minus_4, minus_3 ,minus_2, minus_1, zero;
-	wxString plus_1, plus_2,  plus_3, plus_4, plus_5, plus_6;
-    Position *prev, *next; /* doubly linked circular list of positions */
+  wxString minus_6, minus_5, minus_4, minus_3, minus_2, minus_1, zero;
+  wxString plus_1, plus_2, plus_3, plus_4, plus_5, plus_6;
+  Position *prev, *next; /* doubly linked circular list of positions */
 };
 
-class PortTides
-{
+class PortTides {
 public:
-
-	wxString m_portID, m_portName, m_IDX;
-	double m_spRange, m_npRange;
-
+  wxString m_portID, m_portName, m_IDX;
+  double m_spRange, m_npRange;
 };
 
-class StandardPort
-{
+class StandardPort {
 public:
-	wxString PORT_NUMBER,PORT_NAME,MEAN_SPRING_RANGE,MEAN_NEAP_RANGE,EXTRA,IDX;
+  wxString PORT_NUMBER, PORT_NAME, MEAN_SPRING_RANGE, MEAN_NEAP_RANGE, EXTRA,
+      IDX;
 };
 
-
-class otcurrentUIDialog: public otcurrentUIDialogBase {
+class otcurrentUIDialog : public otcurrentUIDialogBase {
 public:
-
-    otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi);
-    ~otcurrentUIDialog();
+  otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi);
+  ~otcurrentUIDialog();
 
 #ifdef __ANDROID__
-    void OnMouseEvent(wxMouseEvent& event);
-    wxPoint m_resizeStartPoint;
-    wxSize m_resizeStartSize;
-    bool m_binResize;
-    bool m_binResize2;
-
+  void OnMouseEvent(wxMouseEvent& event);
 #endif
 
-    void OpenFile( bool newestFile = false );
-    
-    void SetCursorLatLon( double lat, double lon );
-    void SetFactoryOptions( bool set_val = false );
+  void OpenFile(bool newestFile = false);
 
-    void SetViewPort( PlugIn_ViewPort *vp );
-	PlugIn_ViewPort *vp;
+  void SetCursorLatLon(double lat, double lon);
+  void SetViewPort(PlugIn_ViewPort* vp);
+  PlugIn_ViewPort* vp;
 
-	int round(double c);
+  int round(double c);
 
-	bool m_bUseRate;    
-	bool m_bUseDirection; 
-	bool m_bUseHighRes;
-	bool m_bUseFillColour;
+  bool m_bUseRate;
+  bool m_bUseDirection;
+  bool m_bUseHighRes;
+  bool m_bUseFillColour;
 
-	wxString myUseColour[5];
+  wxString myUseColour[5];
 
-	wxDateTime m_dtNow;
-	double m_dInterval;
+  wxDateTime m_dtNow;
+  double m_dInterval;
 
-	bool onNext;
-	bool onPrev;
+  bool onNext;
+  bool onPrev;
 
-    wxString m_FolderSelected;
-    TCMgr    *ptcmgr;
-	int m_IntervalSelected;
-	
-	time_t myCurrentTime; 
+  wxString m_FolderSelected;
+  TCMgr* ptcmgr;
+  int m_IntervalSelected;
 
-	void OnCalendarShow( wxCommandEvent& event );
-	void OnSelectData(wxCommandEvent& event);
-	void OnSelectInterval(wxCommandEvent& event);
-	void OnNow( wxCommandEvent& event );
-	wxString MakeDateTimeLabel(wxDateTime myDateTime);
+  time_t myCurrentTime;
 
-	wxArrayString TideCurrentDataSet;
+  void OnCalendarShow(wxCommandEvent& event);
+  void OnSelectData(wxCommandEvent& event);
+  void OnSelectInterval(wxCommandEvent& event);
+  void OnNow(wxCommandEvent& event);
+  wxString MakeDateTimeLabel(wxDateTime myDateTime);
 
-    void LoadTCMFile();
-	void LoadHarmonics();
+  wxArrayString TideCurrentDataSet;
+
+  void LoadTCMFile();
+  void LoadHarmonics();
 
 private:
+  void OnClose(wxCloseEvent& event);
+  void OnPrev(wxCommandEvent& event);
+  void OnNext(wxCommandEvent& event);
+  void SetInterval(wxCommandEvent& event);
+  void About(wxCommandEvent& event);
 
-    void OnClose( wxCloseEvent& event );	
-	void OnPrev( wxCommandEvent& event );
-    void OnNext( wxCommandEvent& event );
-    void SetInterval( wxCommandEvent& event );
-	void About(wxCommandEvent& event);
+  //    Data
+  wxWindow* pParent;
+  otcurrent_pi* pPlugIn;
 
+  PlugIn_ViewPort* m_vp;
 
-    //    Data
-    wxWindow *pParent;
-    otcurrent_pi *pPlugIn;
+  double m_cursor_lat, m_cursor_lon;
+  wxString g_SData_Locn;
+  wxString* pTC_Dir;
 
-    PlugIn_ViewPort  *m_vp;
- 
-    double m_cursor_lat, m_cursor_lon;
-	wxString         g_SData_Locn;
-	wxString        *pTC_Dir;
+  int m_corr_mins;
+  wxString m_stz;
+  int m_t_graphday_00_at_station;
+  wxDateTime m_graphday;
+  int m_plot_y_offset;
 
-	int         m_corr_mins;
-    wxString    m_stz;
-    int         m_t_graphday_00_at_station;
-    wxDateTime  m_graphday;
-    int         m_plot_y_offset;
-
-	bool isNowButton;
-	wxTimeSpan  myTimeOfDay;
-
+  bool isNowButton;
+  wxTimeSpan myTimeOfDay;
 };
 
-class CalendarDialog: public wxDialog
-{
+class CalendarDialog : public wxDialog {
 public:
- 
-	CalendarDialog ( wxWindow * parent, wxWindowID id, const wxString & title,
-	              const wxPoint & pos = wxDefaultPosition,
-	              const wxSize & size = wxDefaultSize,
-				  long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+  CalendarDialog(wxWindow* parent, wxWindowID id, const wxString& title,
+                 const wxPoint& pos = wxDefaultPosition,
+                 const wxSize& size = wxDefaultSize,
+                 long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 
 #ifdef __OCPN__ANDROID__
-	#include "android/wx/datectrl.h"
-	wxDatePickerCtrl* dialogCalendar; 
+#include "android/wx/datectrl.h"
+  wxDatePickerCtrl* dialogCalendar;
 #else
-	class wxDatePickerCtrl;
-	wxCalendarCtrl* dialogCalendar; 
+  class wxDatePickerCtrl;
+  wxCalendarCtrl* dialogCalendar;
 #endif
-	wxBoxSizer* itemBoxSizer;
-	wxBoxSizer* itemBoxSizer1;
-	wxBoxSizer* itemBoxSizer2;
-	wxBoxSizer* itemBoxSizerFinal;
+  wxBoxSizer* itemBoxSizer;
+  wxBoxSizer* itemBoxSizer1;
+  wxBoxSizer* itemBoxSizer2;
+  wxBoxSizer* itemBoxSizerFinal;
 
-	wxButton * c;
-	wxButton * b;
-	
-	wxStaticText *m_staticTextDate; 
-	wxStaticText *m_staticText; 
-	wxTextCtrl *_timeText;
+  wxButton* c;
+  wxButton* b;
+
+  wxStaticText* m_staticTextDate;
+  wxStaticText* m_staticText;
+  wxTextCtrl* _timeText;
 
 private:
-	void OnOk( wxCommandEvent & event );
-
+  void OnOk(wxCommandEvent& event);
 };
 
 #endif
-

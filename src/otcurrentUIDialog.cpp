@@ -45,100 +45,99 @@
 #ifdef __WXMSW__
 #include <windows.h>
 #endif
-#include <memory.h> 
+#include <memory.h>
 
 #include <wx/colordlg.h>
 #include "otcurrent_pi.h"
 
-
 #ifdef __OCPN__ANDROID__
-wxWindow *g_Window;
+wxWindow* g_Window;
 #endif
 
 using namespace std;
 
+#define FAIL(X)  \
+  do {           \
+    error = X;   \
+    goto failed; \
+  } while (0)
 
-#define FAIL(X) do { error = X; goto failed; } while(0)
-
-
-//date/time in the desired time zone format
-static wxString TToString( const wxDateTime date_time, const int time_zone )
-{
-    wxDateTime t( date_time );
-    t.MakeFromTimezone( wxDateTime::UTC );
-    if( t.IsDST() ) t.Subtract( wxTimeSpan( 1, 0, 0, 0 ) );
-    switch( time_zone ) {
-        case 0: return t.Format( _T(" %a %d-%b-%Y  %H:%M LOC"), wxDateTime::Local );
-        case 1:
-        default: return t.Format( _T(" %a %d-%b-%Y %H:%M  UTC"), wxDateTime::UTC );
-    }
+// date/time in the desired time zone format
+static wxString TToString(const wxDateTime date_time, const int time_zone) {
+  wxDateTime t(date_time);
+  t.MakeFromTimezone(wxDateTime::UTC);
+  if (t.IsDST()) t.Subtract(wxTimeSpan(1, 0, 0, 0));
+  switch (time_zone) {
+    case 0:
+      return t.Format(_T(" %a %d-%b-%Y  %H:%M LOC"), wxDateTime::Local);
+    case 1:
+    default:
+      return t.Format(_T(" %a %d-%b-%Y %H:%M  UTC"), wxDateTime::UTC);
+  }
 }
 
-#if !wxCHECK_VERSION(2,9,4) /* to work with wx 2.8 */
+#if !wxCHECK_VERSION(2, 9, 4) /* to work with wx 2.8 */
 #define SetBitmap SetBitmapLabel
 #endif
 
-otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
-: otcurrentUIDialogBase(parent), ptcmgr(0), m_vp(0)
-{
-    this->Fit();
-	pParent = parent;
-    pPlugIn = ppi;
+otcurrentUIDialog::otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi)
+    : otcurrentUIDialogBase(parent), ptcmgr(0), m_vp(0) {
+  this->Fit();
+  pParent = parent;
+  pPlugIn = ppi;
 
-	wxFileConfig *pConf = GetOCPNConfigObject();
+  wxFileConfig* pConf = GetOCPNConfigObject();
 
-    if(pConf) {
-        pConf->SetPath ( _T ( "/PlugIns/otcurrent_pi" ) );
+  if (pConf) {
+    pConf->SetPath(_T ( "/PlugIns/otcurrent_pi" ));
 
-		pConf->Read ( _T ( "otcurrentUseRate" ), &m_bUseRate );
-        pConf->Read ( _T ( "otcurrentUseDirection" ), &m_bUseDirection);
-		pConf->Read(_T("otcurrentUseHighResolution"), &m_bUseHighRes);
-		pConf->Read ( _T ( "otcurrentUseFillColour" ), &m_bUseFillColour);
+    pConf->Read(_T ( "otcurrentUseRate" ), &m_bUseRate);
+    pConf->Read(_T ( "otcurrentUseDirection" ), &m_bUseDirection);
+    pConf->Read(_T("otcurrentUseHighResolution"), &m_bUseHighRes);
+    pConf->Read(_T ( "otcurrentUseFillColour" ), &m_bUseFillColour);
 
-		pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
-		pConf->Read( _T("VColour1"), &myVColour[1], myVColour[1] );
-		pConf->Read( _T("VColour2"), &myVColour[2], myVColour[2] );
-		pConf->Read( _T("VColour3"), &myVColour[3], myVColour[3] );
-		pConf->Read( _T("VColour4"), &myVColour[4], myVColour[4] );
-		
-		myUseColour[0] = myVColour[0];
-		myUseColour[1] = myVColour[1];
-		myUseColour[2] = myVColour[2];
-		myUseColour[3] = myVColour[3];
-		myUseColour[4] = myVColour[4];
+    pConf->Read(_T("VColour0"), &myVColour[0], myVColour[0]);
+    pConf->Read(_T("VColour1"), &myVColour[1], myVColour[1]);
+    pConf->Read(_T("VColour2"), &myVColour[2], myVColour[2]);
+    pConf->Read(_T("VColour3"), &myVColour[3], myVColour[3]);
+    pConf->Read(_T("VColour4"), &myVColour[4], myVColour[4]);
 
-    }
+    myUseColour[0] = myVColour[0];
+    myUseColour[1] = myVColour[1];
+    myUseColour[2] = myVColour[2];
+    myUseColour[3] = myVColour[3];
+    myUseColour[4] = myVColour[4];
+  }
 
-    m_bpPrev->SetBitmap(wxBitmap( prev1 ));
-    m_bpNext->SetBitmap(wxBitmap( next1 ));
-    m_bpNow->SetBitmap(*_img_Clock );
+  m_bpPrev->SetBitmap(wxBitmap(prev1));
+  m_bpNext->SetBitmap(wxBitmap(next1));
+  m_bpNow->SetBitmap(*_img_Clock);
 
+  // this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove )
+  // );
+  m_dtNow = wxDateTime::Now();
+  MakeDateTimeLabel(m_dtNow);
 
-    //this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove ) );
-	m_dtNow = wxDateTime::Now();
-	MakeDateTimeLabel(m_dtNow);
+  m_IntervalSelected = pPlugIn->GetIntervalSelected();
+  m_FolderSelected = pPlugIn->GetFolderSelected();
 
-	m_IntervalSelected = pPlugIn->GetIntervalSelected();
-	m_FolderSelected = pPlugIn->GetFolderSelected();
-    
-	m_dirPicker1->SetValue(m_FolderSelected);
-	m_choice1->SetSelection(m_IntervalSelected);
-    
-	LoadTCMFile();
-	LoadHarmonics();
-	
-	int i = m_choice1->GetSelection();
-	wxString c = m_choice1->GetString(i);	
-	double value;
-	c.ToDouble(&value);
-	m_dInterval = value;
+  m_dirPicker1->SetValue(m_FolderSelected);
+  m_choice1->SetSelection(m_IntervalSelected);
 
-  #ifdef __OCPN__ANDROID__
-        g_Window = this;
-        GetHandle()->setStyleSheet(qtStyleSheet);
-        Connect(wxEVT_MOTION, wxMouseEventHandler(Dlg::OnMouseEvent));
+  LoadTCMFile();
+  LoadHarmonics();
+
+  int i = m_choice1->GetSelection();
+  wxString c = m_choice1->GetString(i);
+  double value;
+  c.ToDouble(&value);
+  m_dInterval = value;
+
+#ifdef __OCPN__ANDROID__
+  g_Window = this;
+  GetHandle()->setStyleSheet(qtStyleSheet);
+  Connect(wxEVT_MOTION, wxMouseEventHandler(otcurrentUIDialog::OnMouseEvent));
 #endif
-
 }
 
 #ifdef __OCPN__ANDROID__
@@ -146,23 +145,20 @@ g_Window = this;
 GetHandle()->setStyleSheet(qtStyleSheet);
 Connect(wxEVT_MOTION, wxMouseEventHandler(otcurrentUIDialog::OnMouseEvent));
 
-
 void otcurrentUIDialog::OnMouseEvent(wxMouseEvent& event) {
-        g_mouse_pos_screen = ClientToScreen(event.GetPosition());
+  g_mouse_pos_screen = ClientToScreen(event.GetPosition());
 
-        if (event.Dragging()) {
-                int x = wxMax(
-                    0, g_startPos.x + (g_mouse_pos_screen.x - g_startMouse.x));
-                int y = wxMax(
-                    0, g_startPos.y + (g_mouse_pos_screen.y - g_startMouse.y));
-                int xmax = ::wxGetDisplaySize().x - GetSize().x;
-                x = wxMin(x, xmax);
-                int ymax = ::wxGetDisplaySize().y -
-                           (GetSize().y * 2);  // Some fluff at the bottom
-                y = wxMin(y, ymax);
+  if (event.Dragging()) {
+    int x = wxMax(0, g_startPos.x + (g_mouse_pos_screen.x - g_startMouse.x));
+    int y = wxMax(0, g_startPos.y + (g_mouse_pos_screen.y - g_startMouse.y));
+    int xmax = ::wxGetDisplaySize().x - GetSize().x;
+    x = wxMin(x, xmax);
+    int ymax =
+        ::wxGetDisplaySize().y - (GetSize().y * 2);  // Some fluff at the bottom
+    y = wxMin(y, ymax);
 
-                g_Window->Move(x, y);
-        }
+    g_Window->Move(x, y);
+  }
 }
 
 #endif
@@ -171,7 +167,7 @@ void otcurrentUIDialog::LoadHarmonics() {
   if (!ptcmgr) {
     ptcmgr = new TCMgr;
     ptcmgr->LoadDataSources(TideCurrentDataSet);
-  }else {
+  } else {
     bool b_newdataset = false;
 
     //      Test both ways
@@ -209,318 +205,297 @@ void otcurrentUIDialog::LoadHarmonics() {
   }
 }
 
+void otcurrentUIDialog::LoadTCMFile() {
+  wxString TCDir = m_FolderSelected;
+  TCDir.Append(wxFileName::GetPathSeparator());
+  wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
 
-void otcurrentUIDialog::LoadTCMFile()
-{
-    
-    wxString TCDir = m_FolderSelected;
-    TCDir.Append(wxFileName::GetPathSeparator());
-    wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
+  wxString default_tcdata0 = TCDir + _T("harmonics-dwf-20210110-free.tcd");
+  wxString default_tcdata1 = TCDir + _T("HARMONIC.IDX");
 
-	wxString default_tcdata0 = TCDir + _T("harmonics-dwf-20210110-free.tcd");
-	wxString default_tcdata1 = TCDir + _T("HARMONIC.IDX");
-
-	//if (!TideCurrentDataSet.GetCount()) {
-		TideCurrentDataSet.Add(default_tcdata0);
-		TideCurrentDataSet.Add(default_tcdata1);
-	//}
-	
+  // if (!TideCurrentDataSet.GetCount()) {
+  TideCurrentDataSet.Add(default_tcdata0);
+  TideCurrentDataSet.Add(default_tcdata1);
+  //}
 }
 
+otcurrentUIDialog::~otcurrentUIDialog() {
+  wxFileConfig* pConf = GetOCPNConfigObject();
 
-otcurrentUIDialog::~otcurrentUIDialog()
-{
+  if (pConf) {
+    pConf->SetPath(_T ( "/PlugIns/otcurrent_pi" ));
 
-    wxFileConfig *pConf = GetOCPNConfigObject();
+    pConf->Write(_T ( "otcurrentUseRate" ), m_bUseRate);
+    pConf->Write(_T ( "otcurrentUseDirection" ), m_bUseDirection);
+    pConf->Write(_T("otcurrentUseHighResolution"), m_bUseHighRes);
+    pConf->Write(_T ( "otcurrentUseFillColour" ), m_bUseFillColour);
 
-    if(pConf) {
-        pConf->SetPath ( _T ( "/PlugIns/otcurrent_pi" ) );
+    pConf->Write(_T("VColour0"), myVColour[0]);
+    pConf->Write(_T("VColour1"), myVColour[1]);
+    pConf->Write(_T("VColour2"), myVColour[2]);
+    pConf->Write(_T("VColour3"), myVColour[3]);
+    pConf->Write(_T("VColour4"), myVColour[4]);
 
-		pConf->Write ( _T ( "otcurrentUseRate" ), m_bUseRate );
-		pConf->Write ( _T ( "otcurrentUseDirection" ), m_bUseDirection );
-		pConf->Write(_T("otcurrentUseHighResolution"), m_bUseHighRes);
-		pConf->Write ( _T ( "otcurrentUseFillColour" ), m_bUseFillColour );
+    int c = m_choice1->GetSelection();
+    m_IntervalSelected = c;
+    wxString myP = m_choice1->GetString(c);
+    pConf->Write(_T ( "otcurrentInterval" ), myP);
 
-		pConf->Write( _T("VColour0"), myVColour[0] );
-		pConf->Write( _T("VColour1"), myVColour[1] );
-		pConf->Write( _T("VColour2"), myVColour[2] );
-		pConf->Write( _T("VColour3"), myVColour[3] );
-		pConf->Write( _T("VColour4"), myVColour[4] );
+    wxString myF = m_dirPicker1->GetValue();
+    pConf->Write(_T ( "otcurrentFolder" ), myF);
+  }
+  delete ptcmgr;
+}
 
-		int c = m_choice1->GetSelection();
-		m_IntervalSelected = c;
-		wxString myP = m_choice1->GetString(c);
-		pConf->Write ( _T ( "otcurrentInterval" ), myP ); 
+void otcurrentUIDialog::SetCursorLatLon(double lat, double lon) {
+  m_cursor_lon = lon;
+  m_cursor_lat = lat;
+}
 
-		wxString myF = m_dirPicker1->GetValue();
-		pConf->Write ( _T ( "otcurrentFolder" ), myF ); 
+void otcurrentUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
+  if (m_vp == vp) return;
 
+  delete m_vp;
+  m_vp = new PlugIn_ViewPort(*vp);
+}
+
+void otcurrentUIDialog::OnClose(wxCloseEvent& event) {
+  m_FolderSelected = m_dirPicker1->GetValue();
+  pPlugIn->m_CopyFolderSelected = m_FolderSelected;
+
+  int i = m_choice1->GetSelection();
+  m_IntervalSelected = i;
+  pPlugIn->m_CopyIntervalSelected = m_IntervalSelected;
+
+  pPlugIn->OnotcurrentDialogClose();
+}
+
+void otcurrentUIDialog::OpenFile(bool newestFile) {
+  m_bUseRate = pPlugIn->GetCopyRate();
+  m_bUseDirection = pPlugIn->GetCopyDirection();
+  m_bUseHighRes = pPlugIn->GetCopyResolution();
+  m_bUseFillColour = pPlugIn->GetCopyColour();
+  m_IntervalSelected = pPlugIn->GetIntervalSelected();
+  if (m_FolderSelected == wxEmptyString) {
+#ifndef __OCPN__ANDROID__
+    m_FolderSelected = pPlugIn->GetFolderSelected();
+    m_dirPicker1->SetValue(m_FolderSelected);
+    wxDirDialog* d = new wxDirDialog(this, _("Choose the tcdata directory"), "",
+                                     0, wxDefaultPosition);
+    if (d->ShowModal() == wxID_OK) {
+      m_dirPicker1->SetValue(d->GetPath());
+      m_FolderSelected = m_dirPicker1->GetValue();
     }
-    delete ptcmgr;
-}
-
-
-void otcurrentUIDialog::SetCursorLatLon( double lat, double lon )
-{
-    m_cursor_lon = lon;
-    m_cursor_lat = lat;
-}
-
-void otcurrentUIDialog::SetViewPort( PlugIn_ViewPort *vp )
-{
-    if(m_vp == vp)  return;
-
-    delete m_vp;
-    m_vp = new PlugIn_ViewPort(*vp);
-}
-
-void otcurrentUIDialog::OnClose( wxCloseEvent& event )
-{
-	
-	m_FolderSelected = m_dirPicker1->GetValue();
-	pPlugIn->m_CopyFolderSelected = m_FolderSelected;
-	
-	int i = m_choice1->GetSelection();
-	m_IntervalSelected = i;
-	pPlugIn->m_CopyIntervalSelected = m_IntervalSelected;
-
-	pPlugIn->OnotcurrentDialogClose();
-}
-
-void otcurrentUIDialog::OpenFile(bool newestFile)
-{
-	m_bUseRate = pPlugIn->GetCopyRate();
-	m_bUseDirection = pPlugIn->GetCopyDirection();
-	m_bUseHighRes = pPlugIn->GetCopyResolution();
-	m_bUseFillColour = pPlugIn->GetCopyColour();
-	m_IntervalSelected = pPlugIn->GetIntervalSelected();
-	if (m_FolderSelected == wxEmptyString) {
-#ifndef __OCPN__ANDROID__
-		m_FolderSelected = pPlugIn->GetFolderSelected();
-		m_dirPicker1->SetValue(m_FolderSelected);
-		wxDirDialog *d = new wxDirDialog( this, _("Choose the tcdata directory"),
-		                 "", 0, wxDefaultPosition );
-		if ( d->ShowModal() ==  wxID_OK )
-		{ 
-			m_dirPicker1->SetValue(d->GetPath()); 
-			m_FolderSelected = m_dirPicker1->GetValue();
-		}
 #else
-		wxString tc = "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
-		m_dirPicker1->SetValue(tc); 
-		m_FolderSelected = tc;
+    wxString tc =
+        "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
+    m_dirPicker1->SetValue(tc);
+    m_FolderSelected = tc;
 
 #endif
-	}
+  }
 
-    LoadTCMFile();
+  LoadTCMFile();
 }
 
-void otcurrentUIDialog::OnSelectData(wxCommandEvent& event)
-{
+void otcurrentUIDialog::OnSelectData(wxCommandEvent& event) {
 #ifndef __OCPN__ANDROID__
-	wxDirDialog *d = new wxDirDialog( this, _("Choose a directory"),
-		                 "", 0, wxDefaultPosition );
-	if ( d->ShowModal() ==  wxID_OK )
-	{ 
-		m_dirPicker1->SetValue(d->GetPath()); 
-		m_FolderSelected = m_dirPicker1->GetValue();
-		pPlugIn->m_CopyFolderSelected = m_FolderSelected;
-	}
+  wxDirDialog* d =
+      new wxDirDialog(this, _("Choose a directory"), "", 0, wxDefaultPosition);
+  if (d->ShowModal() == wxID_OK) {
+    m_dirPicker1->SetValue(d->GetPath());
+    m_FolderSelected = m_dirPicker1->GetValue();
+    pPlugIn->m_CopyFolderSelected = m_FolderSelected;
+  }
 #else
-	wxString tc = "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
-	m_dirPicker1->SetValue(tc); 
-	m_FolderSelected = tc;
-	pPlugIn->m_CopyFolderSelected = m_FolderSelected;
+  wxString tc =
+      "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
+  m_dirPicker1->SetValue(tc);
+  m_FolderSelected = tc;
+  pPlugIn->m_CopyFolderSelected = m_FolderSelected;
 #endif
 
-    LoadTCMFile();
-	LoadHarmonics();
-	RequestRefresh(pParent);	
+  LoadTCMFile();
+  LoadHarmonics();
+  RequestRefresh(pParent);
 }
 
-void otcurrentUIDialog::OnSelectInterval(wxCommandEvent& event)
-{
-	int i = m_choice1->GetSelection();
-	m_IntervalSelected = i;
-	pPlugIn->m_CopyIntervalSelected = m_IntervalSelected;
-
+void otcurrentUIDialog::OnSelectInterval(wxCommandEvent& event) {
+  int i = m_choice1->GetSelection();
+  m_IntervalSelected = i;
+  pPlugIn->m_CopyIntervalSelected = m_IntervalSelected;
 }
-void otcurrentUIDialog::OnCalendarShow( wxCommandEvent& event )
-{	
+void otcurrentUIDialog::OnCalendarShow(wxCommandEvent& event) {
+  CalendarDialog CalDialog(this, -1, _("START Date/Time"), wxPoint(100, 100),
+                           wxSize(-1, -1));
 
-	CalendarDialog CalDialog( this, -1, _("START Date/Time"),
-	                          wxPoint(100, 100), wxSize(-1,-1) );
+#ifdef __OCPN__ANDROID__
+  wxDateTime now = wxDateTime::Now();
+  CalDialog.dialogCalendar->SetValue(now);
+#endif
 
-	
-	#ifdef __OCPN__ANDROID__
-		wxDateTime now = wxDateTime::Now();		
-		CalDialog.dialogCalendar->SetValue(now);
-	#endif
+  if (CalDialog.ShowModal() == wxID_OK) {
+    wxDateTime dm = CalDialog.dialogCalendar->GetDate();
+    wxString myTime = CalDialog._timeText->GetValue();
+    wxString val = myTime.Mid(0, 1);
 
-	if ( CalDialog.ShowModal() == wxID_OK ){
-		
-		wxDateTime dm = CalDialog.dialogCalendar->GetDate();
-		wxString myTime = CalDialog._timeText->GetValue();
-        wxString val = myTime.Mid(0,1);
+    if (val == wxT(" ")) {
+      myTime = wxT("0") + myTime.Mid(1, 5);
+    }
 
-		if ( val == wxT(" ")){
-			myTime = wxT("0") + myTime.Mid(1,5);
-		}
-	
-		wxDateTime dt;
-		dt.ParseTime(myTime);
-				
-		wxString todayHours = dt.Format(_T("%H"));
-        wxString todayMinutes = dt.Format(_T("%M"));
-		
-		double h;
-		double m;
+    wxDateTime dt;
+    dt.ParseTime(myTime);
 
-		todayHours.ToDouble(&h);
-		todayMinutes.ToDouble(&m);
-		myTimeOfDay = wxTimeSpan(h,m,0,0);	
+    wxString todayHours = dt.Format(_T("%H"));
+    wxString todayMinutes = dt.Format(_T("%M"));
 
-		dm = CalDialog.dialogCalendar->GetDate();
-		
-		m_dtNow = dm + myTimeOfDay;
+    double h;
+    double m;
 
-		MakeDateTimeLabel(m_dtNow);
-		RequestRefresh(pParent);
-	}
+    todayHours.ToDouble(&h);
+    todayMinutes.ToDouble(&m);
+    myTimeOfDay = wxTimeSpan(h, m, 0, 0);
+
+    dm = CalDialog.dialogCalendar->GetDate();
+
+    m_dtNow = dm + myTimeOfDay;
+
+    MakeDateTimeLabel(m_dtNow);
+    RequestRefresh(pParent);
+  }
 }
 
-void otcurrentUIDialog::OnNow( wxCommandEvent& event ){
-	
-	m_dtNow = wxDateTime::Now();
-	MakeDateTimeLabel(m_dtNow);
+void otcurrentUIDialog::OnNow(wxCommandEvent& event) {
+  m_dtNow = wxDateTime::Now();
+  MakeDateTimeLabel(m_dtNow);
 
-	RequestRefresh( pParent );
+  RequestRefresh(pParent);
 
-	onPrev = false;
-	onNext = false;	
+  onPrev = false;
+  onNext = false;
 }
 
-void otcurrentUIDialog::OnPrev( wxCommandEvent& event ){
+void otcurrentUIDialog::OnPrev(wxCommandEvent& event) {
+  int i = m_choice1->GetSelection();
+  wxString c = m_choice1->GetString(i);
+  double value;
+  c.ToDouble(&value);
+  m_dInterval = value;
 
-	int i = m_choice1->GetSelection();
-	wxString c = m_choice1->GetString(i);	
-	double value;
-    c.ToDouble(&value);
-	m_dInterval = value;
+  wxTimeSpan m_ts = wxTimeSpan::Minutes(m_dInterval);
+  m_dtNow.Subtract(m_ts);
+  MakeDateTimeLabel(m_dtNow);
 
-	wxTimeSpan m_ts = wxTimeSpan::Minutes(m_dInterval) ;
-	m_dtNow.Subtract(m_ts);
-	MakeDateTimeLabel(m_dtNow);
-
-	RequestRefresh( pParent );
-
+  RequestRefresh(pParent);
 }
 
-void otcurrentUIDialog::OnNext( wxCommandEvent& event ){
-	
-    int i = m_choice1->GetSelection();
-	wxString c = m_choice1->GetString(i);	
+void otcurrentUIDialog::OnNext(wxCommandEvent& event) {
+  int i = m_choice1->GetSelection();
+  wxString c = m_choice1->GetString(i);
 
-	double value;
-	c.ToDouble(&value);
-	m_dInterval = value;
+  double value;
+  c.ToDouble(&value);
+  m_dInterval = value;
 
-	wxTimeSpan m_ts = wxTimeSpan::Minutes(m_dInterval) ;
-	m_dtNow.Add(m_ts);
-	MakeDateTimeLabel(m_dtNow);
+  wxTimeSpan m_ts = wxTimeSpan::Minutes(m_dInterval);
+  m_dtNow.Add(m_ts);
+  MakeDateTimeLabel(m_dtNow);
 
-	RequestRefresh( pParent );
-
+  RequestRefresh(pParent);
 }
 
-void otcurrentUIDialog::SetInterval( wxCommandEvent& event ){
-	int i = m_choice1->GetSelection();
-	wxString c = m_choice1->GetString(i);	
-	double value;
-	c.ToDouble(&value);
-	m_dInterval = value;
+void otcurrentUIDialog::SetInterval(wxCommandEvent& event) {
+  int i = m_choice1->GetSelection();
+  wxString c = m_choice1->GetString(i);
+  double value;
+  c.ToDouble(&value);
+  m_dInterval = value;
 }
 
-wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime)
-{			
-		wxDateTime dt = myDateTime;
+wxString otcurrentUIDialog::MakeDateTimeLabel(wxDateTime myDateTime) {
+  wxDateTime dt = myDateTime;
 
-		wxString s2 = dt.Format ( _T( "%a %d %b %Y"));
-		wxString s = dt.Format(_T("%H:%M")); 
-		wxString dateLabel = s2 + _T(" ") + s;	
+  wxString s2 = dt.Format(_T( "%a %d %b %Y"));
+  wxString s = dt.Format(_T("%H:%M"));
+  wxString dateLabel = s2 + _T(" ") + s;
 
-		m_textCtrl1->SetValue(dateLabel);				
+  m_textCtrl1->SetValue(dateLabel);
 
-		return dateLabel;	
+  return dateLabel;
 }
 
-void otcurrentUIDialog::About(wxCommandEvent& event)
-{
-	
-       wxMessageBox(
-_("Tidal Current\n--------------------------------------------------------------\n\n\n\n\n\nUse this data with caution.\nUse in conjunction with Tidal Current Atlases and Tidal Diamonds\n\n--------------------------------------------------------------------\n\nNote: 1 Rates shown are for a position corresponding to the centre\nof the base of the arrow. Tidal rate is shown as knots.\n\n")
-     , _("About Tidal Arrows"), wxOK | wxICON_INFORMATION, this);
+void otcurrentUIDialog::About(wxCommandEvent& event) {
+  wxMessageBox(_("Tidal "
+                 "Current\n----------------------------------------------------"
+                 "----------\n\n\n\n\n\nUse this data with caution.\nUse in "
+                 "conjunction with Tidal Current Atlases and Tidal "
+                 "Diamonds\n\n-------------------------------------------------"
+                 "-------------------\n\nNote: 1 Rates shown are for a "
+                 "position corresponding to the centre\nof the base of the "
+                 "arrow. Tidal rate is shown as knots.\n\n"),
+               _("About Tidal Arrows"), wxOK | wxICON_INFORMATION, this);
 }
 
+CalendarDialog::CalendarDialog(wxWindow* parent, wxWindowID id,
+                               const wxString& title, const wxPoint& position,
+                               const wxSize& size, long style)
+    : wxDialog(parent, id, title, position, size, style) {
+  wxString dimensions = wxT(""), s;
+  wxPoint p;
+  wxSize sz;
 
-CalendarDialog::CalendarDialog ( wxWindow * parent, wxWindowID id, const wxString & title,
-                           const wxPoint & position, const wxSize & size, long style )
-: wxDialog( parent, id, title, position, size, style)
-{
-		
-	wxString dimensions = wxT(""), s;
-	wxPoint p;
-	wxSize  sz;
- 
-	sz.SetWidth(200);
-	sz.SetHeight(600);
-	
-	p.x = 6; p.y = 2;
-	s.Printf(_(" x = %d y = %d\n"), p.x, p.y);
-	dimensions.append(s);
-	s.Printf(_(" width = %d height = %d\n"), sz.GetWidth(), sz.GetHeight());
-	dimensions.append(s);
-	dimensions.append(wxT("here"));
- 
-	itemBoxSizerFinal = new wxBoxSizer( wxVERTICAL );
+  sz.SetWidth(200);
+  sz.SetHeight(600);
 
+  p.x = 6;
+  p.y = 2;
+  s.Printf(_(" x = %d y = %d\n"), p.x, p.y);
+  dimensions.append(s);
+  s.Printf(_(" width = %d height = %d\n"), sz.GetWidth(), sz.GetHeight());
+  dimensions.append(s);
+  dimensions.append(wxT("here"));
 
+  itemBoxSizerFinal = new wxBoxSizer(wxVERTICAL);
 
 #ifndef __OCPN__ANDROID__
-		
-	dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime,wxDefaultPosition, wxDefaultSize, wxCAL_SHOW_HOLIDAYS,_("Tide Calendar"));
+
+  dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime,
+                                      wxDefaultPosition, wxDefaultSize,
+                                      wxCAL_SHOW_HOLIDAYS, _("Tide Calendar"));
 
 #else
-    m_staticTextDate = new wxStaticText(this,wxID_ANY,_("Date:"), wxDefaultPosition, wxDefaultSize);
-	itemBoxSizerFinal->Add( m_staticTextDate,  0, wxEXPAND | wxALL, 10 );
-   	dialogCalendar = new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition,  wxDefaultSize, wxDP_DEFAULT);
+  m_staticTextDate = new wxStaticText(this, wxID_ANY, _("Date:"),
+                                      wxDefaultPosition, wxDefaultSize);
+  itemBoxSizerFinal->Add(m_staticTextDate, 0, wxEXPAND | wxALL, 10);
+  dialogCalendar =
+      new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition,
+                           wxDefaultSize, wxDP_DEFAULT);
 #endif
-	
-	itemBoxSizerFinal->Add(dialogCalendar,  0, wxEXPAND | wxALL, 10 );
 
-	itemBoxSizer1 = new wxBoxSizer( wxHORIZONTAL );	
-	m_staticText = new wxStaticText(this,wxID_ANY,_("Time:"), wxDefaultPosition, wxDefaultSize);
-	_timeText = new wxTextCtrl(this,wxID_ANY, "12:00", wxDefaultPosition, wxDefaultSize, 0 );
+  itemBoxSizerFinal->Add(dialogCalendar, 0, wxEXPAND | wxALL, 10);
 
-	itemBoxSizer1->Add(m_staticText, 1, wxEXPAND | wxALL, 10 );
-	itemBoxSizer1->Add(_timeText, 1, wxEXPAND | wxALL, 10 );
+  itemBoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
+  m_staticText = new wxStaticText(this, wxID_ANY, _("Time:"), wxDefaultPosition,
+                                  wxDefaultSize);
+  _timeText = new wxTextCtrl(this, wxID_ANY, "12:00", wxDefaultPosition,
+                             wxDefaultSize, 0);
 
-	itemBoxSizerFinal->Add(itemBoxSizer1,  0, wxEXPAND | wxALL, 10 );
+  itemBoxSizer1->Add(m_staticText, 1, wxEXPAND | wxALL, 10);
+  itemBoxSizer1->Add(_timeText, 1, wxEXPAND | wxALL, 10);
 
-	itemBoxSizer2 = new wxBoxSizer( wxHORIZONTAL );
-	
-	c = new wxButton( this, wxID_CANCEL, _("Cancel"), p, wxDefaultSize );		
-	b = new wxButton( this, wxID_OK, _("OK"), p, wxDefaultSize );
+  itemBoxSizerFinal->Add(itemBoxSizer1, 0, wxEXPAND | wxALL, 10);
 
-	itemBoxSizer2->Add(c, 1, wxEXPAND | wxALL, 10 );
-	itemBoxSizer2->Add(b, 1, wxEXPAND | wxALL, 10 );
-	
-	itemBoxSizerFinal->Add(itemBoxSizer2,  0, wxEXPAND | wxALL, 10 );
+  itemBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
 
-	this->SetSizer(itemBoxSizerFinal);
-	this->Layout();
-	itemBoxSizerFinal->Fit( this );
-}	
+  c = new wxButton(this, wxID_CANCEL, _("Cancel"), p, wxDefaultSize);
+  b = new wxButton(this, wxID_OK, _("OK"), p, wxDefaultSize);
 
+  itemBoxSizer2->Add(c, 1, wxEXPAND | wxALL, 10);
+  itemBoxSizer2->Add(b, 1, wxEXPAND | wxALL, 10);
 
+  itemBoxSizerFinal->Add(itemBoxSizer2, 0, wxEXPAND | wxALL, 10);
+
+  this->SetSizer(itemBoxSizerFinal);
+  this->Layout();
+  itemBoxSizerFinal->Fit(this);
+}
