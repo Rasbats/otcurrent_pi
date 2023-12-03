@@ -419,7 +419,7 @@ bool otcurrent_pi::LoadConfig(void)
 	m_CopyIntervalSelected = pConf->Read ( _T ( "otcurrentInterval"), 1L);
 
     m_otcurrent_dialog_sx = pConf->Read ("otcurrentDialogSizeX", 300L);
-    m_otcurrent_dialog_sy = pConf->Read ("otcurrentDialogSizeY", 540L);
+    m_otcurrent_dialog_sy = pConf->Read ("otcurrentDialogSizeY", 300L);
     m_otcurrent_dialog_x =  pConf->Read ("otcurrentDialogPosX", 20L);
     m_otcurrent_dialog_y =  pConf->Read ("otcurrentDialogPosY", 170L);
 
