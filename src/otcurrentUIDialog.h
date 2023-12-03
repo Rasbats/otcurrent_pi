@@ -50,7 +50,7 @@
 #include "ocpn_plugin.h"
 #include "wx/dialog.h"
 #include <wx/calctrl.h>
-#include "wx/window.h"
+#include <wx/window.h>
 #include "timectrl.h"
 #include <wx/colordlg.h>
 #include <wx/dirdlg.h>
