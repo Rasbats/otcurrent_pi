@@ -57,6 +57,10 @@
 #include <wx/arrstr.h>
 #include <wx/sizer.h>
 #include <wx/event.h>
+#include <wx/menu.h>
+
+#define ID_SOMETHING 2001
+#define ID_SOMETHING_ELSE 2002
 
 
 using namespace std;

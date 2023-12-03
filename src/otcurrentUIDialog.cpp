@@ -170,7 +170,8 @@ void otcurrentUIDialog::OnDLeftClick(wxMouseEvent& event) {
   mnu.Append(ID_SOMETHING, "Resize...");
   // mnu.Append(ID_SOMETHING_ELSE, "Do something else");
   mnu.Connect(wxEVT_COMMAND_MENU_SELECTED,
-              wxCommandEventHandler(Dlg::OnPopupClick), NULL, this);
+              wxCommandEventHandler(otcurrentUIDialog::OnPopupClick), NULL,
+              this);
   PopupMenu(&mnu);
 }
 
