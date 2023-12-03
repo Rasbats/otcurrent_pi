@@ -51,7 +51,7 @@
 #include "otcurrent_pi.h"
 #include "qtstylesheet.h"
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
 wxWindow* g_Window;
 #endif
 
