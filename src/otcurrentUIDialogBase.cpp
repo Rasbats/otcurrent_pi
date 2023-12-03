@@ -60,7 +60,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	m_bpNow->SetToolTip( _("Now") );
 	m_bpNow->SetMinSize( wxSize( 45,45 ) );
 
-	bSizer6->Add( m_bpNow, 0, wxALIGN_CENTER|wxALL|wxEXPAND, 5 );
+	bSizer6->Add( m_bpNow, 0, wxALL|wxEXPAND, 5 );
 
 
 	bSizerMain->Add( bSizer6, 0, wxEXPAND, 5 );
@@ -87,7 +87,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase( wxWindow* parent, wxWindowID id, c
 	sbSizerFolder->Add( bSizer5, 0, wxEXPAND, 5 );
 
 
-	bSizerMain->Add( sbSizerFolder, 0, 0, 5 );
+	bSizerMain->Add( sbSizerFolder, 0, wxEXPAND, 5 );
 
 
 	this->SetSizer( bSizerMain );
