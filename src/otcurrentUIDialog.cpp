@@ -90,8 +90,6 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi)
   wxFileConfig* pConf = GetOCPNConfigObject();
 #ifdef __ANDROID__
 
-  m_binResize = false;
-
   g_Window = this;
   GetHandle()->setStyleSheet(qtStyleSheet);
   
