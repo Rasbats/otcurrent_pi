@@ -59,9 +59,6 @@
 #include <wx/event.h>
 #include <wx/menu.h>
 
-#define ID_SOMETHING 2001
-#define ID_SOMETHING_ELSE 2002
-
 
 using namespace std;
 
@@ -117,12 +114,6 @@ public:
   void OnMouseEvent(wxMouseEvent& event);
   wxPoint m_resizeStartPoint;
   wxSize m_resizeStartSize;
-  bool m_binResize;
-  bool m_binResize2;
-
-  void OnPopupClick(wxCommandEvent& evt);
-  void OnDLeftClick(wxMouseEvent& event);
-
 #endif
 
 
