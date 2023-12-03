@@ -147,13 +147,12 @@ wxPoint g_startPos;
 wxPoint g_startMouse;
 wxPoint g_mouse_pos_screen;
 
-void otcurrentUIDialog::OnMouseEvent(wxMouseEvent& event) {
-  wxMessageBox(_("Mouse"));
-  g_mouse_pos_screen = ClientToScreen(event.GetPosition());
+void otcurrentUIDialog::OnMouseEvent(wxMouseEvent& event) {  
+  g_mouse_pos_screen = event.GetPosition();
 
   if (event.Dragging()) {
-    int x = wxMax(0, g_startPos.x + (g_mouse_pos_screen.x - g_startMouse.x));
-    int y = wxMax(0, g_startPos.y + (g_mouse_pos_screen.y - g_startMouse.y));
+    int x = wxMax(0, g_mouse_pos_screen.x);
+    int y = wxMax(0, g_mouse_pos_screen.y);
     int xmax = ::wxGetDisplaySize().x - GetSize().x;
     x = wxMin(x, xmax);
     int ymax =
