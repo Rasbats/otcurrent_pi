@@ -109,9 +109,18 @@ public:
   otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi);
   ~otcurrentUIDialog();
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
   void OnMouseEvent(wxMouseEvent& event);
+  wxPoint m_resizeStartPoint;
+  wxSize m_resizeStartSize;
+  bool m_binResize;
+  bool m_binResize2;
+
+  void OnPopupClick(wxCommandEvent& evt);
+  void OnDLeftClick(wxMouseEvent& event);
+
 #endif
+
 
   void OpenFile(bool newestFile = false);
 
