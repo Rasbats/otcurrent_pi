@@ -50,7 +50,7 @@
 #include <wx/colordlg.h>
 #include "otcurrent_pi.h"
 
-#include "qtstylesheet.h"
+
 #ifdef __OCPN__ANDROID__
 wxWindow *g_Window;
 #endif
@@ -84,14 +84,6 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
     this->Fit();
 	pParent = parent;
     pPlugIn = ppi;
-
-    
-
-#ifdef __OCPN__ANDROID__
-    g_Window = this;
-    GetHandle()->setStyleSheet( qtStyleSheet);
-    Connect( wxEVT_MOTION, wxMouseEventHandler( otcurrentUIDialog::OnMouseEvent ) );
-#endif
 
 	wxFileConfig *pConf = GetOCPNConfigObject();
 
@@ -141,12 +133,19 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow *parent, otcurrent_pi *ppi)
 	c.ToDouble(&value);
 	m_dInterval = value;
 
+  #ifdef __OCPN__ANDROID__
+        g_Window = this;
+        GetHandle()->setStyleSheet(qtStyleSheet);
+        Connect(wxEVT_MOTION, wxMouseEventHandler(Dlg::OnMouseEvent));
+#endif
+
 }
 
 #ifdef __OCPN__ANDROID__
-wxPoint g_startPos;
-wxPoint g_startMouse;
-wxPoint g_mouse_pos_screen;
+g_Window = this;
+GetHandle()->setStyleSheet(qtStyleSheet);
+Connect(wxEVT_MOTION, wxMouseEventHandler(otcurrentUIDialog::OnMouseEvent));
+
 
 void otcurrentUIDialog::OnMouseEvent(wxMouseEvent& event) {
         g_mouse_pos_screen = ClientToScreen(event.GetPosition());
@@ -165,8 +164,8 @@ void otcurrentUIDialog::OnMouseEvent(wxMouseEvent& event) {
                 g_Window->Move(x, y);
         }
 }
-#endif
 
+#endif
 
 void otcurrentUIDialog::LoadHarmonics() {
   if (!ptcmgr) {
