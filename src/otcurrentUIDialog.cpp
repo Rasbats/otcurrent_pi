@@ -137,13 +137,14 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi)
   g_Window = this;
   GetHandle()->setStyleSheet(qtStyleSheet);
   Connect(wxEVT_MOTION, wxMouseEventHandler(otcurrentUIDialog::OnMouseEvent));
+
 #endif
 }
 
 #ifdef __OCPN__ANDROID__
-g_Window = this;
-GetHandle()->setStyleSheet(qtStyleSheet);
-Connect(wxEVT_MOTION, wxMouseEventHandler(otcurrentUIDialog::OnMouseEvent));
+wxPoint g_startPos;
+wxPoint g_startMouse;
+wxPoint g_mouse_pos_screen;
 
 void otcurrentUIDialog::OnMouseEvent(wxMouseEvent& event) {
   g_mouse_pos_screen = ClientToScreen(event.GetPosition());

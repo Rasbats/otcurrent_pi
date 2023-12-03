@@ -108,7 +108,7 @@ public:
   otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi);
   ~otcurrentUIDialog();
 
-#ifdef __ANDROID__
+#ifdef __OCPN__ANDROID__
   void OnMouseEvent(wxMouseEvent& event);
 #endif
 
@@ -204,7 +204,7 @@ public:
   wxTextCtrl* _timeText;
 
 private:
-  void OnOk(wxCommandEvent& event);
+
 };
 
 #endif
