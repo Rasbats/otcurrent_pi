@@ -56,7 +56,8 @@
 #include <wx/dirdlg.h>
 #include <wx/arrstr.h>
 #include <wx/sizer.h>
-#include "qtstylesheet.h"
+#include <wx/event.h>
+
 
 using namespace std;
 

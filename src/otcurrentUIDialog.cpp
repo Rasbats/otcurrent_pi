@@ -49,6 +49,7 @@
 
 #include <wx/colordlg.h>
 #include "otcurrent_pi.h"
+#include "qtstylesheet.h"
 
 #ifdef __OCPN__ANDROID__
 wxWindow* g_Window;
