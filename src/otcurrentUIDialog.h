@@ -37,8 +37,6 @@
 #include <wx/glcanvas.h>
 
 #include "otcurrentUIDialogBase.h"
-
-#include "tinyxml.h"
 #include <wx/progdlg.h>
 #include <list>
 #include <vector>
