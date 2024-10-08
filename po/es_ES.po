@@ -3,167 +3,205 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-08 11:06-0300\n"
-"PO-Revision-Date: 2018-02-08 09:11-0500\n"
-"Last-Translator: nohal <pavel@kalian.cz>\n"
+"PO-Revision-Date: 2024-10-08 08:02\n"
+"Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Project-ID: 49843\n"
 "X-Crowdin-Language: es-ES\n"
 "X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
-#
-msgid "      < 0.5 knots"
-msgstr "      < 0,5 nudos"
-#
-msgid "(UTC)"
-msgstr ""
-#
-msgid "1"
-msgstr ""
-#
-msgid "10"
-msgstr ""
-#
-msgid "15"
-msgstr ""
-#
-msgid "2"
-msgstr ""
-#
-msgid "3"
-msgstr ""
-#
-msgid "30"
-msgstr ""
-#
-msgid "4"
-msgstr ""
-#
-msgid "5"
-msgstr ""
-#
-msgid "6"
-msgstr ""
-#
-msgid "60"
-msgstr ""
-#
-msgid "7"
-msgstr ""
-#
-msgid "8"
-msgstr ""
-#
-msgid "9"
-msgstr ""
-#
-msgid ">= 0.5 and < 1.5"
-msgstr ">= 0.5 y < 1.5"
-#
-msgid ">= 1.5 and < 2.5"
-msgstr ">= 1.5 y < 2.5"
-#
-msgid ">= 2.5 and < 3.5"
-msgstr ">= 2.5 y < 3.5"
-#
-msgid ">= 3.5 knots    "
-msgstr ">= 3.5 nudos    "
-#
-msgid "About Tidal Arrows"
-msgstr "Sobre las flechas de mareas"
-#
-msgid "Arrow Scaling"
-msgstr ""
-#
-msgid "Currents"
-msgstr ""
-#
-msgid "Date/Time"
-msgstr "Fecha/hora"
-#
-msgid "Day"
-msgstr ""
-#
-msgid "Display tidal direction"
-msgstr "Mostrar dirección marea"
-#
-msgid "Display tidal rates (knots)"
-msgstr "Mostrar velocidad de mareas (nudos)"
-#
-msgid "Fill Colour"
-msgstr "Rellenar de color"
-#
-msgid "Help"
-msgstr "Ayuda"
-#
-msgid "High Resolution Display"
-msgstr ""
-#
-msgid "Next"
-msgstr "Siguiente"
-#
-msgid "Now"
-msgstr "Ahora"
-#
-msgid "Preferences"
-msgstr "Preferencias"
-#
-msgid "Previous"
-msgstr "Anterior"
-#
-msgid "Scale   x"
-msgstr ""
-#
-msgid "Select a folder"
-msgstr "Seleccionar una carpeta"
-#
-msgid "Step (Minutes)"
-msgstr "Paso (minutos)"
-#
-msgid ""
-"Tidal Current\n"
-"------------------------------------------------------\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"Use this data with caution.\n"
-"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n"
-"\n"
-"------------------------------------------------------\n"
-"\n"
-"Note: 1 Rates shown are for a position corresponding to the centre\n"
-"of the base of the arrow. Tidal rate is shown as knots.\n"
-"\n"
-msgstr ""
-#
-msgid "Tidal Current Arrow Colour"
-msgstr "Color de flecha corriente de marea"
-#
-msgid "Tidal Data Folder"
-msgstr "Carpeta de datos de marea"
-#
+"X-Crowdin-File-ID: 157\n"
+
+#: src/otcurrentUIDialog.cpp:159
 msgid "Using Tide/Current data from:  "
 msgstr "Utilizando los datos de marea/corriente de:  "
-#
+
+#: src/otcurrentUIDialog.cpp:344
+msgid "Tidal Current\n"
+"------------------------------------------------------\n\n\n\n\n\n"
+"Use this data with caution.\n"
+"Use in conjunction with Tidal Current Atlases and Tidal Diamonds\n\n"
+"------------------------------------------------------\n\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n\n"
+msgstr "Corriente de marea\n"
+"------------------------------------------------------\n\n\n\n\n\n"
+"Usa esta información con precaución.\n"
+"Usar junto con los atlas actuales de marea y los diamantes de marea\n\n"
+"------------------------------------------------------\n\n"
+"Nota: 1 Las tasas que se muestran corresponden a una posición correspondiente al centro\n"
+"de la base de la flecha. La tasa de marea se muestra como nudos.\n\n"
+
+#: src/otcurrentUIDialog.cpp:345
+msgid "About Tidal Arrows"
+msgstr "Sobre las flechas de mareas"
+
+#: src/otcurrentUIDialog.h:118
+msgid "Currents"
+msgstr "Corrientes"
+
+#: src/otcurrentUIDialogBase.cpp:20
+msgid "Date/Time"
+msgstr "Fecha/hora"
+
+#: src/otcurrentUIDialogBase.cpp:22
+msgid "Day"
+msgstr "Día"
+
+#: src/otcurrentUIDialogBase.cpp:35
+msgid "(UTC)"
+msgstr "(UTC)"
+
+#: src/otcurrentUIDialogBase.cpp:42
+msgid "Now"
+msgstr "Ahora"
+
+#: src/otcurrentUIDialogBase.cpp:51
+msgid "Tidal Data Folder"
+msgstr "Carpeta de datos de marea"
+
+#: src/otcurrentUIDialogBase.cpp:53
+msgid "Select a folder"
+msgstr "Seleccionar una carpeta"
+
+#: src/otcurrentUIDialogBase.cpp:60
+msgid "Step (Minutes)"
+msgstr "Paso (minutos)"
+
+#: src/otcurrentUIDialogBase.cpp:62
+msgid "60"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:62
+msgid "30"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:62
+msgid "15"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:71
+msgid "Help"
+msgstr "Ayuda"
+
+#: src/otcurrentUIDialogBase.cpp:75
+msgid "Previous"
+msgstr "Anterior"
+
+#: src/otcurrentUIDialogBase.cpp:81
+msgid "Next"
+msgstr "Siguiente"
+
+#: src/otcurrentUIDialogBase.cpp:131
+msgid "Display tidal rates (knots)"
+msgstr "Mostrar velocidad de mareas (nudos)"
+
+#: src/otcurrentUIDialogBase.cpp:134
+msgid "Display tidal direction"
+msgstr "Mostrar dirección marea"
+
+#: src/otcurrentUIDialogBase.cpp:137
+msgid "Fill Colour"
+msgstr "Rellenar de color"
+
+#: src/otcurrentUIDialogBase.cpp:140
+msgid "High Resolution Display"
+msgstr "Pantalla de alta resolución"
+
+#: src/otcurrentUIDialogBase.cpp:150
+msgid "Tidal Current Arrow Colour"
+msgstr "Color de flecha corriente de marea"
+
+#: src/otcurrentUIDialogBase.cpp:158
+msgid "      < 0.5 knots"
+msgstr "      < 0,5 nudos"
+
+#: src/otcurrentUIDialogBase.cpp:165
+msgid ">= 0.5 and < 1.5"
+msgstr ">= 0.5 y < 1.5"
+
+#: src/otcurrentUIDialogBase.cpp:172
+msgid ">= 1.5 and < 2.5"
+msgstr ">= 1.5 y < 2.5"
+
+#: src/otcurrentUIDialogBase.cpp:179
+msgid ">= 2.5 and < 3.5"
+msgstr ">= 2.5 y < 3.5"
+
+#: src/otcurrentUIDialogBase.cpp:186
+msgid ">= 3.5 knots    "
+msgstr ">= 3.5 nudos    "
+
+#: src/otcurrentUIDialogBase.cpp:200
+msgid "Arrow Scaling"
+msgstr "Escala de flecha"
+
+#: src/otcurrentUIDialogBase.cpp:208
+msgid "Scale   x"
+msgstr "Escala x"
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "1"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "2"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "3"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "4"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "5"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "6"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "7"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "8"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "9"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.cpp:212
+msgid "10"
+msgstr ""
+
+#: src/otcurrentUIDialogBase.h:110
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: src/otcurrent_pi.cpp:123 src/otcurrent_pi.cpp:126
 msgid "otcurrent"
 msgstr "otcurrent"
-#
+
+#: src/otcurrent_pi.cpp:188
 msgid "otcurrent PlugIn for OpenCPN"
 msgstr "PlugIn otcurrent para OpenCPN"
-#
-msgid ""
-"otcurrent PlugIn for OpenCPN\n"
-"Provides an overlay of Tidal Current (Stream) Arrows.\n"
-"\n"
+
+#: src/otcurrent_pi.cpp:194
+msgid "otcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
 "\t\t\t   "
-msgstr ""
-"Plugin Otcurrent para OpenCPN\n"
-"Muestra una capa con flechas de corrientes de marea.\n"
-"\n"
+msgstr "Plugin Otcurrent para OpenCPN\n"
+"Muestra una capa con flechas de corrientes de marea.\n\n"
 "\t\t\t   "
+

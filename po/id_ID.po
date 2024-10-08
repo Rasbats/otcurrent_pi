@@ -3,23 +3,23 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-08 11:06-0300\n"
-"PO-Revision-Date: 2024-10-08 08:04\n"
+"PO-Revision-Date: 2024-10-08 08:02\n"
 "Last-Translator: \n"
-"Language-Team: German\n"
-"Language: de_DE\n"
+"Language-Team: Indonesian\n"
+"Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Project-ID: 49843\n"
-"X-Crowdin-Language: de\n"
+"X-Crowdin-Language: id\n"
 "X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
 "X-Crowdin-File-ID: 157\n"
 
 #: src/otcurrentUIDialog.cpp:159
 msgid "Using Tide/Current data from:  "
-msgstr "Mit den Gezeiten/Strömungsdaten aus:  "
+msgstr "Menggunakan data Tide / Current dari:  "
 
 #: src/otcurrentUIDialog.cpp:344
 msgid "Tidal Current\n"
@@ -29,23 +29,29 @@ msgid "Tidal Current\n"
 "------------------------------------------------------\n\n"
 "Note: 1 Rates shown are for a position corresponding to the centre\n"
 "of the base of the arrow. Tidal rate is shown as knots.\n\n"
-msgstr ""
+msgstr "Arus Pasang Surut\n"
+"------------------------------------------------------\n\n\n\n\n\n"
+"Gunakan data ini hati-hati.\n"
+"Gunakan pada hubungan dengan Asur Pasang Surut Atlas dan Pasang Surut Ubin\n\n"
+"------------------------------------------------------\n\n"
+"Catatan: 1 Tarif yang ditampilkan adalah untuk posisi yang sesuai dengan pusat\n"
+"dari dasar panah. Tingkat pasang surut ditampilkan sebagai knot.\n\n"
 
 #: src/otcurrentUIDialog.cpp:345
 msgid "About Tidal Arrows"
-msgstr "Über Gezeitenströmungs Pfeile"
+msgstr "Tentang Tidal Arrows"
 
 #: src/otcurrentUIDialog.h:118
 msgid "Currents"
-msgstr "Strömungen"
+msgstr "Arus"
 
 #: src/otcurrentUIDialogBase.cpp:20
 msgid "Date/Time"
-msgstr "Datum/Uhrzeit"
+msgstr "Tanggal/Waktu"
 
 #: src/otcurrentUIDialogBase.cpp:22
 msgid "Day"
-msgstr "Tag"
+msgstr "Hari"
 
 #: src/otcurrentUIDialogBase.cpp:35
 msgid "(UTC)"
@@ -53,19 +59,19 @@ msgstr "(UTC)"
 
 #: src/otcurrentUIDialogBase.cpp:42
 msgid "Now"
-msgstr "Jetzt"
+msgstr "Sekarang"
 
 #: src/otcurrentUIDialogBase.cpp:51
 msgid "Tidal Data Folder"
-msgstr "Gezeiten-Datenordner"
+msgstr "Folder Data Pasang Surut"
 
 #: src/otcurrentUIDialogBase.cpp:53
 msgid "Select a folder"
-msgstr "Ordner auswählen"
+msgstr "Memilih sebuah folder"
 
 #: src/otcurrentUIDialogBase.cpp:60
 msgid "Step (Minutes)"
-msgstr "Schritte (in Minuten)"
+msgstr "Langkah (Menit)"
 
 #: src/otcurrentUIDialogBase.cpp:62
 msgid "60"
@@ -81,63 +87,63 @@ msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:71
 msgid "Help"
-msgstr "Hilfe"
+msgstr "Membantu"
 
 #: src/otcurrentUIDialogBase.cpp:75
 msgid "Previous"
-msgstr "vorherige"
+msgstr "Sebelumnya"
 
 #: src/otcurrentUIDialogBase.cpp:81
 msgid "Next"
-msgstr "Nächste"
+msgstr "Selanjutnya"
 
 #: src/otcurrentUIDialogBase.cpp:131
 msgid "Display tidal rates (knots)"
-msgstr "Anzeige Tidengeschwindigkeit (Knoten)"
+msgstr "Menampilkan tingkat pasang surut (knot)"
 
 #: src/otcurrentUIDialogBase.cpp:134
 msgid "Display tidal direction"
-msgstr "Anzeige der Gezeitenstromrichtung"
+msgstr "Tampilkan arah pasang surut"
 
 #: src/otcurrentUIDialogBase.cpp:137
 msgid "Fill Colour"
-msgstr "Füllfarbe"
+msgstr "Isi Warna"
 
 #: src/otcurrentUIDialogBase.cpp:140
 msgid "High Resolution Display"
-msgstr "Hochauflösende Anzeige"
+msgstr "Tampilan Resolusi Tinggi"
 
 #: src/otcurrentUIDialogBase.cpp:150
 msgid "Tidal Current Arrow Colour"
-msgstr "Gezeitenstrom Pfeil Farbe"
+msgstr "Warna Panah Arus Pasang Surut"
 
 #: src/otcurrentUIDialogBase.cpp:158
 msgid "      < 0.5 knots"
-msgstr "      < 0,5 Knoten"
+msgstr "      < 0.5 knot"
 
 #: src/otcurrentUIDialogBase.cpp:165
 msgid ">= 0.5 and < 1.5"
-msgstr ">= 0.5 und < 1.5"
+msgstr ">= 0.5 dan < 1.5"
 
 #: src/otcurrentUIDialogBase.cpp:172
 msgid ">= 1.5 and < 2.5"
-msgstr ">= 1.5 und < 2.5"
+msgstr ">= 1.5 and < 2.5"
 
 #: src/otcurrentUIDialogBase.cpp:179
 msgid ">= 2.5 and < 3.5"
-msgstr ">= 2.5 und < 3.5"
+msgstr ">= 2.5 dan < 3.5"
 
 #: src/otcurrentUIDialogBase.cpp:186
 msgid ">= 3.5 knots    "
-msgstr "> = 3,5 Knoten    "
+msgstr ">= 3.5 knot    "
 
 #: src/otcurrentUIDialogBase.cpp:200
 msgid "Arrow Scaling"
-msgstr "Pfeil-Skalierung"
+msgstr "Penskalaan Panah"
 
 #: src/otcurrentUIDialogBase.cpp:208
 msgid "Scale   x"
-msgstr "Maßstab  x"
+msgstr "Skala x"
 
 #: src/otcurrentUIDialogBase.cpp:212
 msgid "1"
@@ -181,7 +187,7 @@ msgstr ""
 
 #: src/otcurrentUIDialogBase.h:110
 msgid "Preferences"
-msgstr "Einstellungen"
+msgstr "Preferensi"
 
 #: src/otcurrent_pi.cpp:123 src/otcurrent_pi.cpp:126
 msgid "otcurrent"
@@ -189,11 +195,13 @@ msgstr ""
 
 #: src/otcurrent_pi.cpp:188
 msgid "otcurrent PlugIn for OpenCPN"
-msgstr ""
+msgstr "plugin arus untuk OpenCPN"
 
 #: src/otcurrent_pi.cpp:194
 msgid "otcurrent PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
 "\t\t\t   "
-msgstr ""
+msgstr "plugin otcurrent untuk OpenCPN\n"
+"Menyediakan hamparan Panah Tidal Current (Aliran).\n\n"
+"\t\t\t   "
 

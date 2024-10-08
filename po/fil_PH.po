@@ -3,23 +3,23 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-08 11:06-0300\n"
-"PO-Revision-Date: 2024-10-08 08:04\n"
+"PO-Revision-Date: 2024-10-08 08:02\n"
 "Last-Translator: \n"
-"Language-Team: German\n"
-"Language: de_DE\n"
+"Language-Team: Filipino\n"
+"Language: fil_PH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Project-ID: 49843\n"
-"X-Crowdin-Language: de\n"
+"X-Crowdin-Language: fil\n"
 "X-Crowdin-File: /plugins/otcurrent_pi/po/otcurrent_pi.pot\n"
 "X-Crowdin-File-ID: 157\n"
 
 #: src/otcurrentUIDialog.cpp:159
 msgid "Using Tide/Current data from:  "
-msgstr "Mit den Gezeiten/Strömungsdaten aus:  "
+msgstr "Gumamit ng datos ng Taog/Alon mula sa:  "
 
 #: src/otcurrentUIDialog.cpp:344
 msgid "Tidal Current\n"
@@ -29,23 +29,29 @@ msgid "Tidal Current\n"
 "------------------------------------------------------\n\n"
 "Note: 1 Rates shown are for a position corresponding to the centre\n"
 "of the base of the arrow. Tidal rate is shown as knots.\n\n"
-msgstr ""
+msgstr "Taogang Alon\n"
+"------------------------------------------------------\n\n\n\n\n\n\n"
+"Gamitin ang datos na ito nang may pag-iingat.\n"
+"Gamitin sa pagsabay ng mga Atlas ng Taogang Alon at mga Daloy ng Taog\n\n"
+"------------------------------------------------------\n\n"
+"Tandaan 1: Ang mga Tulin na naipakita ay para sa isang posisyong katumbas nang nasa gitna\n"
+"ng pundasyon ng palaso.\n\n"
 
 #: src/otcurrentUIDialog.cpp:345
 msgid "About Tidal Arrows"
-msgstr "Über Gezeitenströmungs Pfeile"
+msgstr "Tungkol sa Palaso ng Taog"
 
 #: src/otcurrentUIDialog.h:118
 msgid "Currents"
-msgstr "Strömungen"
+msgstr "Mga Alon"
 
 #: src/otcurrentUIDialogBase.cpp:20
 msgid "Date/Time"
-msgstr "Datum/Uhrzeit"
+msgstr "Petsa/Oras"
 
 #: src/otcurrentUIDialogBase.cpp:22
 msgid "Day"
-msgstr "Tag"
+msgstr "Araw"
 
 #: src/otcurrentUIDialogBase.cpp:35
 msgid "(UTC)"
@@ -53,19 +59,19 @@ msgstr "(UTC)"
 
 #: src/otcurrentUIDialogBase.cpp:42
 msgid "Now"
-msgstr "Jetzt"
+msgstr "Ngayon"
 
 #: src/otcurrentUIDialogBase.cpp:51
 msgid "Tidal Data Folder"
-msgstr "Gezeiten-Datenordner"
+msgstr "Polder ng Datos sa Taog"
 
 #: src/otcurrentUIDialogBase.cpp:53
 msgid "Select a folder"
-msgstr "Ordner auswählen"
+msgstr "Pumili ng Polder"
 
 #: src/otcurrentUIDialogBase.cpp:60
 msgid "Step (Minutes)"
-msgstr "Schritte (in Minuten)"
+msgstr "Hakbang (mga Minuto)"
 
 #: src/otcurrentUIDialogBase.cpp:62
 msgid "60"
@@ -81,63 +87,63 @@ msgstr ""
 
 #: src/otcurrentUIDialogBase.cpp:71
 msgid "Help"
-msgstr "Hilfe"
+msgstr "Tulong"
 
 #: src/otcurrentUIDialogBase.cpp:75
 msgid "Previous"
-msgstr "vorherige"
+msgstr "Nakaraan"
 
 #: src/otcurrentUIDialogBase.cpp:81
 msgid "Next"
-msgstr "Nächste"
+msgstr "Kasunod"
 
 #: src/otcurrentUIDialogBase.cpp:131
 msgid "Display tidal rates (knots)"
-msgstr "Anzeige Tidengeschwindigkeit (Knoten)"
+msgstr "I-displey ang tulin ng taog (knots)"
 
 #: src/otcurrentUIDialogBase.cpp:134
 msgid "Display tidal direction"
-msgstr "Anzeige der Gezeitenstromrichtung"
+msgstr "I-displey ang Direksyon ng Taog"
 
 #: src/otcurrentUIDialogBase.cpp:137
 msgid "Fill Colour"
-msgstr "Füllfarbe"
+msgstr "Punan ng Kulay"
 
 #: src/otcurrentUIDialogBase.cpp:140
 msgid "High Resolution Display"
-msgstr "Hochauflösende Anzeige"
+msgstr "Mataas na Resolusyon ng Displey"
 
 #: src/otcurrentUIDialogBase.cpp:150
 msgid "Tidal Current Arrow Colour"
-msgstr "Gezeitenstrom Pfeil Farbe"
+msgstr "Kulay ng Palaso sa Taogang Alon"
 
 #: src/otcurrentUIDialogBase.cpp:158
 msgid "      < 0.5 knots"
-msgstr "      < 0,5 Knoten"
+msgstr "      < 0.5 na knots"
 
 #: src/otcurrentUIDialogBase.cpp:165
 msgid ">= 0.5 and < 1.5"
-msgstr ">= 0.5 und < 1.5"
+msgstr ">= 0.5 at < 1.5"
 
 #: src/otcurrentUIDialogBase.cpp:172
 msgid ">= 1.5 and < 2.5"
-msgstr ">= 1.5 und < 2.5"
+msgstr ">= 1.5 at < 2.5"
 
 #: src/otcurrentUIDialogBase.cpp:179
 msgid ">= 2.5 and < 3.5"
-msgstr ">= 2.5 und < 3.5"
+msgstr ">= 2.5 at < 3.5"
 
 #: src/otcurrentUIDialogBase.cpp:186
 msgid ">= 3.5 knots    "
-msgstr "> = 3,5 Knoten    "
+msgstr ">= 3.5 na knots    "
 
 #: src/otcurrentUIDialogBase.cpp:200
 msgid "Arrow Scaling"
-msgstr "Pfeil-Skalierung"
+msgstr "Pag-iskala sa Palaso"
 
 #: src/otcurrentUIDialogBase.cpp:208
 msgid "Scale   x"
-msgstr "Maßstab  x"
+msgstr "Iskalang   x"
 
 #: src/otcurrentUIDialogBase.cpp:212
 msgid "1"
@@ -181,19 +187,21 @@ msgstr ""
 
 #: src/otcurrentUIDialogBase.h:110
 msgid "Preferences"
-msgstr "Einstellungen"
+msgstr "Mga Preperensya"
 
 #: src/otcurrent_pi.cpp:123 src/otcurrent_pi.cpp:126
 msgid "otcurrent"
-msgstr ""
+msgstr "otcurrent"
 
 #: src/otcurrent_pi.cpp:188
 msgid "otcurrent PlugIn for OpenCPN"
-msgstr ""
+msgstr "PlugIn na otcurrent para sa OpenCPN"
 
 #: src/otcurrent_pi.cpp:194
 msgid "otcurrent PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
 "\t\t\t   "
-msgstr ""
+msgstr "plugIn na otcurrent para sa OpenCRM\n"
+"Nagbibigay ng kalupkupan ng mga Palaso ng Taogang Alon (Daloy).\n\n"
+"\t\t\t   "
 
