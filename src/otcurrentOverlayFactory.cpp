@@ -413,8 +413,19 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
   wxDateTime yn = m_dlg.m_dtNow;
   time_t myTimeNow = yn.GetTicks();
 
-  wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-              wxFONTWEIGHT_NORMAL);
+  wxFont font;
+   if (!m_bHighResolution) {
+    wxFont fontsmall(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                wxFONTWEIGHT_NORMAL);
+     font = fontsmall; 
+   } else {
+     wxFont fontlarge(16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                      wxFONTWEIGHT_NORMAL);
+     font = fontlarge; 
+   }
+
+   
+
 #ifdef __WXMSW__
   double factor = (double)(GetOCPNCanvasWindow()->ToDIP(100)) / 100.;
   font.Scale(1. / factor);
