@@ -101,6 +101,7 @@ public:
   bool m_bShowDirection;
   bool m_bHighResolution;
   bool m_bShowFillColour;
+  int m_iArrowScale;
   wxDateTime m_dtUseNew;
   wxColour m_text_color;
   std::map<double, wxImage> m_labelCache;

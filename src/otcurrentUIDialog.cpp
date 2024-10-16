@@ -104,6 +104,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi)
     pConf->Read(_T ( "otcurrentUseDirection" ), &m_bUseDirection);
     pConf->Read(_T("otcurrentUseHighResolution"), &m_bUseHighRes);
     pConf->Read(_T ( "otcurrentUseFillColour" ), &m_bUseFillColour);
+    pConf->Read("otcurrentArrowScale", &m_arrow_scale);
 
     pConf->Read(_T("VColour0"), &myVColour[0], myVColour[0]);
     pConf->Read(_T("VColour1"), &myVColour[1], myVColour[1]);
@@ -234,6 +235,7 @@ otcurrentUIDialog::~otcurrentUIDialog() {
     pConf->Write(_T ( "otcurrentUseDirection" ), m_bUseDirection);
     pConf->Write(_T("otcurrentUseHighResolution"), m_bUseHighRes);
     pConf->Write(_T ( "otcurrentUseFillColour" ), m_bUseFillColour);
+    pConf->Write("otcurrentArrowScale", m_arrow_scale);
 
     pConf->Write(_T("VColour0"), myVColour[0]);
     pConf->Write(_T("VColour1"), myVColour[1]);
@@ -280,6 +282,8 @@ void otcurrentUIDialog::OpenFile(bool newestFile) {
   m_bUseDirection = pPlugIn->GetCopyDirection();
   m_bUseHighRes = pPlugIn->GetCopyResolution();
   m_bUseFillColour = pPlugIn->GetCopyColour();
+  m_arrow_scale = pPlugIn->GetCopyArrowScale();
+
   m_IntervalSelected = pPlugIn->GetIntervalSelected();
   if (m_FolderSelected == wxEmptyString) {
 #ifndef __OCPN__ANDROID__

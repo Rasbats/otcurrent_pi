@@ -29,19 +29,18 @@
 
 #include "wx/wxprec.h"
 
-#ifndef  WX_PRECOMP
-  #include "wx/wx.h"
-  #include <wx/glcanvas.h>
-#endif //precompiled headers
+#ifndef WX_PRECOMP
+#include "wx/wx.h"
+#include <wx/glcanvas.h>
+#endif  // precompiled headers
 
 #include "ocpn_plugin.h"
 #include "otcurrentOverlayFactory.h"
 #include "otcurrentUIDialog.h"
 
-
 #include <wx/window.h>
 
-extern wxString myVColour[5]; 
+extern wxString myVColour[5];
 
 #include "config.h"
 
@@ -51,114 +50,108 @@ class piDC;
 //    The PlugIn Class Definition
 //----------------------------------------------------------------------------------------------------------
 
-#define otcurrent_TOOL_POSITION    -1          // Request default positioning of toolbar tool
+#define otcurrent_TOOL_POSITION \
+  -1  // Request default positioning of toolbar tool
 
-class otcurrent_pi : public opencpn_plugin_116
-{
+class otcurrent_pi : public opencpn_plugin_116 {
 public:
-      otcurrent_pi(void *ppimgr);
-      ~otcurrent_pi(void);
+  otcurrent_pi(void *ppimgr);
+  ~otcurrent_pi(void);
 
-//    The required PlugIn Methods
-      int Init(void);
-      bool DeInit(void);
+  //    The required PlugIn Methods
+  int Init(void);
+  bool DeInit(void);
 
-      int GetAPIVersionMajor();
-      int GetAPIVersionMinor();
-      int GetPlugInVersionMajor();
-      int GetPlugInVersionMinor();
-      wxBitmap *GetPlugInBitmap();
-      wxString GetCommonName();
-      wxString GetShortDescription();
-      wxString GetLongDescription();
+  int GetAPIVersionMajor();
+  int GetAPIVersionMinor();
+  int GetPlugInVersionMajor();
+  int GetPlugInVersionMinor();
+  wxBitmap *GetPlugInBitmap();
+  wxString GetCommonName();
+  wxString GetShortDescription();
+  wxString GetLongDescription();
 
-//    The override PlugIn Methods
-      bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
-	  bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
-      void SetCursorLatLon(double lat, double lon);
-      void SendTimelineMessage(wxDateTime time);
-      void SetDefaults(void);
-      int  GetToolbarToolCount(void);
-      void ShowPreferencesDialog( wxWindow* parent );
-      void OnToolbarToolCallback(int id);
+  //    The override PlugIn Methods
+  bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
+  bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
+  void SetCursorLatLon(double lat, double lon);
+  void SendTimelineMessage(wxDateTime time);
+  void SetDefaults(void);
+  int GetToolbarToolCount(void);
+  void ShowPreferencesDialog(wxWindow *parent);
+  void OnToolbarToolCallback(int id);
 
-// Other public methods
-      void SetotcurrentDialogX    (int x){ m_otcurrent_dialog_x = x;};
-      void SetotcurrentDialogY    (int x){ m_otcurrent_dialog_y = x;}
-      void SetotcurrentDialogSizeX(int x){ m_otcurrent_dialog_sx = x;}
-      void SetotcurrentDialogSizeY(int x){ m_otcurrent_dialog_sy = x;}
-      void SetColorScheme(PI_ColorScheme cs);
+  // Other public methods
+  void SetotcurrentDialogX(int x) { m_otcurrent_dialog_x = x; };
+  void SetotcurrentDialogY(int x) { m_otcurrent_dialog_y = x; }
+  void SetotcurrentDialogSizeX(int x) { m_otcurrent_dialog_sx = x; }
+  void SetotcurrentDialogSizeY(int x) { m_otcurrent_dialog_sy = x; }
+  void SetColorScheme(PI_ColorScheme cs);
 
-      void OnotcurrentDialogClose();
+  void OnotcurrentDialogClose();
 
-      bool GetCopyRate() { return  m_bCopyUseRate; }
-      bool GetCopyDirection() { return  m_bCopyUseDirection; }
-	  bool GetCopyResolution() { return  m_bCopyUseHighRes; }
-	  bool GetCopyColour() { return m_botcurrentUseHiDef ; }
+  bool GetCopyRate() { return m_bCopyUseRate; }
+  bool GetCopyDirection() { return m_bCopyUseDirection; }
+  bool GetCopyResolution() { return m_bCopyUseHighRes; }
+  bool GetCopyColour() { return m_botcurrentUseHiDef; }
+  int GetCopyArrowScale() { return m_CopyArrowScale; }
 
-	  wxString GetFolderSelected() {return m_CopyFolderSelected;}
-	  int      GetIntervalSelected() {return m_CopyIntervalSelected;}
-  
-      otcurrentOverlayFactory *GetotcurrentOverlayFactory(){ return m_potcurrentOverlayFactory; }
-      wxString          m_CopyFolderSelected;
-	  int               m_CopyIntervalSelected;
-      int m_otcurrent_dialog_x, m_otcurrent_dialog_y;
-      int m_otcurrent_dialog_sx, m_otcurrent_dialog_sy;
+  wxString GetFolderSelected() { return m_CopyFolderSelected; }
+  int GetIntervalSelected() { return m_CopyIntervalSelected; }
 
+  otcurrentOverlayFactory *GetotcurrentOverlayFactory() {
+    return m_potcurrentOverlayFactory;
+  }
+  wxString m_CopyFolderSelected;
+  int m_CopyIntervalSelected;
+  int m_otcurrent_dialog_x, m_otcurrent_dialog_y;
+  int m_otcurrent_dialog_sx, m_otcurrent_dialog_sy;
 
 private:
-      bool LoadConfig(void);
-      bool SaveConfig(void);
+  bool LoadConfig(void);
+  bool SaveConfig(void);
 
-      wxFileConfig     *m_pconfig;
-      wxWindow         *m_parent_window;
+  wxFileConfig *m_pconfig;
+  wxWindow *m_parent_window;
 
-      otcurrentUIDialog     *m_potcurrentDialog;
-      otcurrentOverlayFactory *m_potcurrentOverlayFactory;
+  otcurrentUIDialog *m_potcurrentDialog;
+  otcurrentOverlayFactory *m_potcurrentOverlayFactory;
 
-      int              m_display_width, m_display_height;
-      int              m_leftclick_tool_id;
+  int m_display_width, m_display_height;
+  int m_leftclick_tool_id;
 
+  // preference data
+  bool m_botcurrentUseHiDef;
+  bool m_botcurrentUseGradualColors;
+  bool m_bCopyUseRate;
+  bool m_bCopyUseDirection;
+  bool m_bCopyUseHighRes;
+  int m_CopyArrowScale;
 
-      // preference data
-      bool              m_botcurrentUseHiDef;
-      bool              m_botcurrentUseGradualColors;
-	  bool              m_bCopyUseRate;
-      bool              m_bCopyUseDirection;
-	  bool				m_bCopyUseHighRes;
+  int m_bTimeZone;
 
-	  
-	  
+  int m_bStartOptions;
+  wxString m_RequestConfig;
+  wxString *pTC_Dir;
 
-      int              m_bTimeZone;
-     
-      int              m_bStartOptions;
-      wxString         m_RequestConfig;
-      wxString         *pTC_Dir;
-      
-      bool             m_botcurrentShowIcon;
+  bool m_botcurrentShowIcon;
 
-      int              m_height;
+  int m_height;
 
-      bool			   m_bShowotcurrent;
-	  wxBitmap		   m_panelBitmap;
-	
-
+  bool m_bShowotcurrent;
+  wxBitmap m_panelBitmap;
 };
 
 //----------------------------------------------------------------------------------------
 // Prefrence dialog definition
 //----------------------------------------------------------------------------------------
 
-class otcurrentPreferencesDialog : public otcurrentPreferencesDialogBase
-{
+class otcurrentPreferencesDialog : public otcurrentPreferencesDialogBase {
 public:
-		
-	otcurrentPreferencesDialog( wxWindow *pparent)
-    : otcurrentPreferencesDialogBase(pparent) {}
-    ~otcurrentPreferencesDialog() {}
+  otcurrentPreferencesDialog(wxWindow *pparent)
+      : otcurrentPreferencesDialogBase(pparent) {}
+  ~otcurrentPreferencesDialog() {}
 
 private:
-    
 };
 #endif

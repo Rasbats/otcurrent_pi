@@ -118,6 +118,7 @@ otcurrentOverlayFactory::otcurrentOverlayFactory(otcurrentUIDialog &dlg)
   m_bShowDirection = m_dlg.m_bUseDirection;
   m_bHighResolution = m_dlg.m_bUseHighRes;
   m_bShowFillColour = m_dlg.m_bUseFillColour;
+  m_iArrowScale = m_dlg.m_arrow_scale + 1;
 
   m_dtUseNew = m_dlg.m_dtNow;
 }
@@ -414,6 +415,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
   time_t myTimeNow = yn.GetTicks();
 
   wxFont font;
+
    if (!m_bHighResolution) {
     wxFont fontsmall(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
                 wxFONTWEIGHT_NORMAL);
@@ -463,7 +465,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
             a1 = wxMax(1.0, a1);  // Current values less than 0.1 knot
                                   // will be displayed as 0
             double a2 = log10(a1);
-            double scale = current_draw_scaler * a2;
+            double scale = current_draw_scaler * a2 * m_iArrowScale;
 
             bool rendered = drawCurrentArrow(pixxc, pixyc, dir - 90 + rot_vp,
                                              scale / 100, tcvalue);

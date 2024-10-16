@@ -127,6 +127,7 @@ public:
   bool m_bUseDirection;
   bool m_bUseHighRes;
   bool m_bUseFillColour;
+  int m_arrow_scale;
 
   wxString myUseColour[5];
 

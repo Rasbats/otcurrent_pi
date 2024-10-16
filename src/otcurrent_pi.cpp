@@ -24,13 +24,12 @@
  ***************************************************************************
  */
 
-
 #include "wx/wxprec.h"
 
-#ifndef  WX_PRECOMP
-  #include "wx/wx.h"
-  #include <wx/glcanvas.h>
-#endif //precompiled headers
+#ifndef WX_PRECOMP
+#include "wx/wx.h"
+#include <wx/glcanvas.h>
+#endif  // precompiled headers
 
 #include <wx/fileconf.h>
 #include <wx/stdpaths.h>
@@ -39,21 +38,17 @@
 #include "otcurrentUIDialogBase.h"
 #include "otcurrentUIDialog.h"
 
-wxString myVColour[] = {_T("rgb(127, 0, 255)"), _T("rgb(0, 166, 80)"),  _T("rgb(253, 184, 19)"),  _T("rgb(248, 128, 64)"),  _T("rgb(248, 0, 0)")};
+wxString myVColour[] = {_T("rgb(127, 0, 255)"), _T("rgb(0, 166, 80)"),
+                        _T("rgb(253, 184, 19)"), _T("rgb(248, 128, 64)"),
+                        _T("rgb(248, 0, 0)")};
 
 // the class factories, used to create and destroy instances of the PlugIn
 
-extern "C" DECL_EXP opencpn_plugin* create_pi(void *ppimgr)
-{
-    return new otcurrent_pi(ppimgr);
+extern "C" DECL_EXP opencpn_plugin *create_pi(void *ppimgr) {
+  return new otcurrent_pi(ppimgr);
 }
 
-extern "C" DECL_EXP void destroy_pi(opencpn_plugin* p)
-{
-    delete p;
-}
-
-
+extern "C" DECL_EXP void destroy_pi(opencpn_plugin *p) { delete p; }
 
 //---------------------------------------------------------------------------------------------------------
 //
@@ -63,440 +58,384 @@ extern "C" DECL_EXP void destroy_pi(opencpn_plugin* p)
 
 #include "icons.h"
 
-
 //---------------------------------------------------------------------------------------------------------
 //
 //          PlugIn initialization and de-init
 //
 //---------------------------------------------------------------------------------------------------------
 
-otcurrent_pi::otcurrent_pi(void *ppimgr)
-      :opencpn_plugin_116(ppimgr)
-{
-      // Create the PlugIn icons
-      initialize_images();
+otcurrent_pi::otcurrent_pi(void *ppimgr) : opencpn_plugin_116(ppimgr) {
+  // Create the PlugIn icons
+  initialize_images();
 
-	  wxFileName fn;
-	  wxString tmp_path;
+  wxFileName fn;
+  wxString tmp_path;
 
-	  tmp_path = GetPluginDataDir("otcurrent_pi");
-	  fn.SetPath(tmp_path);
-	  fn.AppendDir(_T("data"));
-	  fn.SetFullName("otcurrent_panel_icon.png");
+  tmp_path = GetPluginDataDir("otcurrent_pi");
+  fn.SetPath(tmp_path);
+  fn.AppendDir(_T("data"));
+  fn.SetFullName("otcurrent_panel_icon.png");
 
-	  wxString shareLocn = fn.GetFullPath();  
+  wxString shareLocn = fn.GetFullPath();
 
-	  wxInitAllImageHandlers();
+  wxInitAllImageHandlers();
 
-		wxLogDebug(wxString("Using icon path: ") + shareLocn);
-		if (!wxImage::CanRead(shareLocn)) {
-			wxLogDebug("Initiating image handlers.");
-			wxInitAllImageHandlers();
-		}
+  wxLogDebug(wxString("Using icon path: ") + shareLocn);
+  if (!wxImage::CanRead(shareLocn)) {
+    wxLogDebug("Initiating image handlers.");
+    wxInitAllImageHandlers();
+  }
 
-	  wxImage panelIcon(shareLocn);
+  wxImage panelIcon(shareLocn);
 
-	  if (panelIcon.IsOk())
-		  m_panelBitmap = wxBitmap(panelIcon);
-	  else
-		  wxLogMessage(_("    otcurrent panel icon has NOT been loaded"));
+  if (panelIcon.IsOk())
+    m_panelBitmap = wxBitmap(panelIcon);
+  else
+    wxLogMessage(_("    otcurrent panel icon has NOT been loaded"));
 
-
-
-      m_bShowotcurrent = false;
-	  
-     
-
+  m_bShowotcurrent = false;
 }
 
-otcurrent_pi::~otcurrent_pi(void)
-{
-      delete _img_otcurrent_pi;
-      delete _img_otcurrent;
+otcurrent_pi::~otcurrent_pi(void) {
+  delete _img_otcurrent_pi;
+  delete _img_otcurrent;
 }
 
-int otcurrent_pi::Init(void)
-{
-      AddLocaleCatalog( _T("opencpn-otcurrent_pi") );
+int otcurrent_pi::Init(void) {
+  AddLocaleCatalog(_T("opencpn-otcurrent_pi"));
 
-      // Set some default private member parameters
-      m_otcurrent_dialog_x = 40;
-      m_otcurrent_dialog_y = 80;
-      m_otcurrent_dialog_sx = 200;
-      m_otcurrent_dialog_sy = 400;
-      m_potcurrentDialog = NULL;
-      m_potcurrentOverlayFactory = NULL;
-      m_botcurrentShowIcon = true;
+  // Set some default private member parameters
+  m_otcurrent_dialog_x = 40;
+  m_otcurrent_dialog_y = 80;
+  m_otcurrent_dialog_sx = 200;
+  m_otcurrent_dialog_sy = 400;
+  m_potcurrentDialog = NULL;
+  m_potcurrentOverlayFactory = NULL;
+  m_botcurrentShowIcon = true;
 
-      ::wxDisplaySize(&m_display_width, &m_display_height);
+  ::wxDisplaySize(&m_display_width, &m_display_height);
 
-      //    Get a pointer to the opencpn configuration object
-      m_pconfig = GetOCPNConfigObject();
-	 
-      //    And load the configuration items
-      LoadConfig();
+  //    Get a pointer to the opencpn configuration object
+  m_pconfig = GetOCPNConfigObject();
 
+  //    And load the configuration items
+  LoadConfig();
 
+  // Get a pointer to the opencpn display canvas, to use as a parent for the
+  // otcurrent dialog
+  m_parent_window = GetOCPNCanvasWindow();
 
-      // Get a pointer to the opencpn display canvas, to use as a parent for the otcurrent dialog
-      m_parent_window = GetOCPNCanvasWindow();
-
-	
-
-      //    This PlugIn needs a toolbar icon, so request its insertion if enabled locally
-      if(m_botcurrentShowIcon) {
+  //    This PlugIn needs a toolbar icon, so request its insertion if enabled
+  //    locally
+  if (m_botcurrentShowIcon) {
 #ifdef OTCURRENT_USE_SVG
-          m_leftclick_tool_id = InsertPlugInToolSVG(_T( "otcurrent" ), _svg_otcurrent, _svg_otcurrent_rollover, _svg_otcurrent_toggled,
-            wxITEM_CHECK, _("otcurrent"), _T( "" ), NULL, otcurrent_TOOL_POSITION, 0, this);
+    m_leftclick_tool_id = InsertPlugInToolSVG(
+        _T( "otcurrent" ), _svg_otcurrent, _svg_otcurrent_rollover,
+        _svg_otcurrent_toggled, wxITEM_CHECK, _("otcurrent"), _T( "" ), NULL,
+        otcurrent_TOOL_POSITION, 0, this);
 #else
-          m_leftclick_tool_id = InsertPlugInTool(_T(""), _img_otcurrent, _img_otcurrent, wxITEM_CHECK,
-                                                 _("otcurrent"), _T(""), NULL,
-                                                 otcurrent_TOOL_POSITION, 0, this);	  
+    m_leftclick_tool_id = InsertPlugInTool(
+        _T(""), _img_otcurrent, _img_otcurrent, wxITEM_CHECK, _("otcurrent"),
+        _T(""), NULL, otcurrent_TOOL_POSITION, 0, this);
 #endif
-      }
-      return (WANTS_OVERLAY_CALLBACK |
-              WANTS_OPENGL_OVERLAY_CALLBACK |
-              WANTS_CURSOR_LATLON       |
-              WANTS_TOOLBAR_CALLBACK    |
-              INSTALLS_TOOLBAR_TOOL     |
-              WANTS_CONFIG              |
-              WANTS_PREFERENCES         
-              //WANTS_PLUGIN_MESSAGING
-            );
+  }
+  return (WANTS_OVERLAY_CALLBACK | WANTS_OPENGL_OVERLAY_CALLBACK |
+          WANTS_CURSOR_LATLON | WANTS_TOOLBAR_CALLBACK | INSTALLS_TOOLBAR_TOOL |
+          WANTS_CONFIG | WANTS_PREFERENCES
+          // WANTS_PLUGIN_MESSAGING
+  );
 }
 
-bool otcurrent_pi::DeInit(void)
-{
-    if(m_potcurrentDialog) {
-        m_potcurrentDialog->Close();
-        delete m_potcurrentDialog;
-        m_potcurrentDialog = NULL;
+bool otcurrent_pi::DeInit(void) {
+  if (m_potcurrentDialog) {
+    m_potcurrentDialog->Close();
+    delete m_potcurrentDialog;
+    m_potcurrentDialog = NULL;
 
-		//m_CopyFolderSelected = m_potcurrentDialog->m_FolderSelected;
-	    //m_CopyIntervalSelected = m_potcurrentDialog->m_IntervalSelected;
+    // m_CopyFolderSelected = m_potcurrentDialog->m_FolderSelected;
+    // m_CopyIntervalSelected = m_potcurrentDialog->m_IntervalSelected;
 
-		m_botcurrentShowIcon = false;
-        SetToolbarItemState(m_leftclick_tool_id, m_botcurrentShowIcon);
-    }
+    m_botcurrentShowIcon = false;
+    SetToolbarItemState(m_leftclick_tool_id, m_botcurrentShowIcon);
+  }
 
-    delete m_potcurrentOverlayFactory;
-    m_potcurrentOverlayFactory = NULL;
+  delete m_potcurrentOverlayFactory;
+  m_potcurrentOverlayFactory = NULL;
 
-	SaveConfig();
-    RequestRefresh(m_parent_window); // refresh main window
+  SaveConfig();
+  RequestRefresh(m_parent_window);  // refresh main window
 
-    return true;
+  return true;
 }
 
-int otcurrent_pi::GetAPIVersionMajor()
-{
-      return atoi(API_VERSION);
+int otcurrent_pi::GetAPIVersionMajor() { return atoi(API_VERSION); }
+
+int otcurrent_pi::GetAPIVersionMinor() {
+  std::string v(API_VERSION);
+  size_t dotpos = v.find('.');
+  return atoi(v.substr(dotpos + 1).c_str());
 }
 
-int otcurrent_pi::GetAPIVersionMinor()
-{
-      std::string v(API_VERSION);
-	size_t dotpos = v.find('.');
-	return atoi(v.substr(dotpos + 1).c_str());
+int otcurrent_pi::GetPlugInVersionMajor() { return PLUGIN_VERSION_MAJOR; }
+
+int otcurrent_pi::GetPlugInVersionMinor() { return PLUGIN_VERSION_MINOR; }
+
+wxBitmap *otcurrent_pi::GetPlugInBitmap() { return &m_panelBitmap; }
+
+wxString otcurrent_pi::GetCommonName() { return _T("otcurrent"); }
+
+wxString otcurrent_pi::GetShortDescription() {
+  return _("otcurrent PlugIn for OpenCPN");
 }
 
-int otcurrent_pi::GetPlugInVersionMajor()
-{
-      return PLUGIN_VERSION_MAJOR;
-}
-
-int otcurrent_pi::GetPlugInVersionMinor()
-{
-      return PLUGIN_VERSION_MINOR;
-}
-
-wxBitmap *otcurrent_pi::GetPlugInBitmap()
-{
-      return &m_panelBitmap;
-}
-
-wxString otcurrent_pi::GetCommonName()
-{
-      return _T("otcurrent");
-}
-
-
-wxString otcurrent_pi::GetShortDescription()
-{
-      return _("otcurrent PlugIn for OpenCPN");
-}
-
-
-wxString otcurrent_pi::GetLongDescription()
-{
-      return _("otcurrent PlugIn for OpenCPN\nProvides an overlay of Tidal Current (Stream) Arrows.\n\n\
+wxString otcurrent_pi::GetLongDescription() {
+  return _(
+      "otcurrent PlugIn for OpenCPN\nProvides an overlay of Tidal Current (Stream) Arrows.\n\n\
 			   ");
 }
 
-void otcurrent_pi::SetDefaults(void)
-{
-}
+void otcurrent_pi::SetDefaults(void) {}
 
+int otcurrent_pi::GetToolbarToolCount(void) { return 1; }
 
-int otcurrent_pi::GetToolbarToolCount(void)
-{
-      return 1;
-}
+void otcurrent_pi::ShowPreferencesDialog(wxWindow *parent) {
+  otcurrentPreferencesDialog *Pref = new otcurrentPreferencesDialog(parent);
 
-void otcurrent_pi::ShowPreferencesDialog( wxWindow* parent )
-{
-    otcurrentPreferencesDialog *Pref = new otcurrentPreferencesDialog(parent);
+  Pref->m_cbUseRate->SetValue(m_bCopyUseRate);
+  Pref->m_cbUseDirection->SetValue(m_bCopyUseDirection);
+  Pref->m_cbUseHighRes->SetValue(m_bCopyUseHighRes);
+  Pref->m_cbFillColour->SetValue(m_botcurrentUseHiDef);
+  Pref->m_cScale->SetSelection(m_CopyArrowScale);
 
-    Pref->m_cbUseRate->SetValue(m_bCopyUseRate);
-    Pref->m_cbUseDirection->SetValue(m_bCopyUseDirection);
-	Pref->m_cbUseHighRes->SetValue(m_bCopyUseHighRes);
-	Pref->m_cbFillColour->SetValue(m_botcurrentUseHiDef);
-	
+  wxColour myC0 = wxColour(myVColour[0]);
+  Pref->myColourPicker0->SetColour(myC0);
 
-	wxColour myC0 = wxColour(myVColour[0]);
-	Pref->myColourPicker0->SetColour(myC0);
-    
-	wxColour myC1 = wxColour(myVColour[1]);
-	Pref->myColourPicker1->SetColour(myC1);
+  wxColour myC1 = wxColour(myVColour[1]);
+  Pref->myColourPicker1->SetColour(myC1);
 
-	wxColour myC2 = wxColour(myVColour[2]);
-	Pref->myColourPicker2->SetColour(myC2);
+  wxColour myC2 = wxColour(myVColour[2]);
+  Pref->myColourPicker2->SetColour(myC2);
 
-	wxColour myC3 = wxColour(myVColour[3]);
-	Pref->myColourPicker3->SetColour(myC3);
+  wxColour myC3 = wxColour(myVColour[3]);
+  Pref->myColourPicker3->SetColour(myC3);
 
-	wxColour myC4 = wxColour(myVColour[4]);
-	Pref->myColourPicker4->SetColour(myC4);
+  wxColour myC4 = wxColour(myVColour[4]);
+  Pref->myColourPicker4->SetColour(myC4);
 
+  if (Pref->ShowModal() == wxID_OK) {
+    // bool copyFillColour = true;
 
- if( Pref->ShowModal() == wxID_OK ) {
+    myVColour[0] = Pref->myColourPicker0->GetColour().GetAsString();
+    myVColour[1] = Pref->myColourPicker1->GetColour().GetAsString();
+    myVColour[2] = Pref->myColourPicker2->GetColour().GetAsString();
+    myVColour[3] = Pref->myColourPicker3->GetColour().GetAsString();
+    myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
 
-	 //bool copyFillColour = true;
-    
-	 myVColour[0] = Pref->myColourPicker0->GetColour().GetAsString();
-	 myVColour[1] = Pref->myColourPicker1->GetColour().GetAsString();
-	 myVColour[2] = Pref->myColourPicker2->GetColour().GetAsString();
-	 myVColour[3] = Pref->myColourPicker3->GetColour().GetAsString();
-	 myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
+    bool copyrate = Pref->m_cbUseRate->GetValue();
+    bool copydirection = Pref->m_cbUseDirection->GetValue();
+    bool copyresolution = Pref->m_cbUseHighRes->GetValue();
 
+    bool FillColour = Pref->m_cbFillColour->GetValue();
+    int copy_scale = Pref->m_cScale->GetSelection();
 
-     bool copyrate = Pref->m_cbUseRate->GetValue();
-     bool copydirection = Pref->m_cbUseDirection->GetValue();
-	 bool copyresolution = Pref->m_cbUseHighRes->GetValue();
-
-	 bool FillColour = Pref->m_cbFillColour->GetValue();
-
-		 if (m_bCopyUseRate != copyrate) {
-			 m_bCopyUseRate = copyrate;
-		 }
-
-		 if (m_bCopyUseDirection != copydirection) {
-			 m_bCopyUseDirection = copydirection;
-		 }
-
-		 if (m_bCopyUseHighRes != copyresolution) {
-			 m_bCopyUseHighRes = copyresolution;
-		 }
-
-		 if (m_botcurrentUseHiDef != FillColour){
-			 m_botcurrentUseHiDef = FillColour;
-		 }
-		
-         if(m_potcurrentDialog )
-		 {			 		 
-
-			 m_potcurrentDialog->m_bUseRate = m_bCopyUseRate;
-			 m_potcurrentDialog->m_bUseDirection = m_bCopyUseDirection; 
-			 m_potcurrentDialog->m_bUseHighRes = m_bCopyUseHighRes;	
-			 m_potcurrentDialog->m_bUseFillColour = m_botcurrentUseHiDef;
-			
-
-			 m_potcurrentDialog->myUseColour[0] = myVColour[0];
- 			 m_potcurrentDialog->myUseColour[1] = myVColour[1];
- 			 m_potcurrentDialog->myUseColour[2] = myVColour[2];
- 			 m_potcurrentDialog->myUseColour[3] = myVColour[3];
- 			 m_potcurrentDialog->myUseColour[4] = myVColour[4];			 
-		 }
-
-		 if (m_potcurrentOverlayFactory)
-		 {			 
-			 m_potcurrentOverlayFactory->m_bShowRate = m_bCopyUseRate;
-			 m_potcurrentOverlayFactory->m_bShowDirection = m_bCopyUseDirection;
-			 m_potcurrentOverlayFactory->m_bHighResolution = m_bCopyUseHighRes;
-			 m_potcurrentOverlayFactory->m_bShowFillColour = m_botcurrentUseHiDef;
-		 }
-
-         SaveConfig();
-		 
-		 RequestRefresh(m_parent_window); // refresh main window
-     }
-	
-}
-
-void otcurrent_pi::OnToolbarToolCallback(int id)
-{
-    
-	if(NULL == m_potcurrentDialog)
-    {
-		       		
-		m_potcurrentDialog = new otcurrentUIDialog(m_parent_window, this);
-        wxPoint p = wxPoint(m_otcurrent_dialog_x, m_otcurrent_dialog_y);
-        m_potcurrentDialog->Move(p);
-		m_potcurrentDialog->SetSize(m_otcurrent_dialog_sx, m_otcurrent_dialog_sy);
-
-        // Create the drawing factory
-        m_potcurrentOverlayFactory = new otcurrentOverlayFactory( *m_potcurrentDialog );
-        m_potcurrentOverlayFactory->SetParentSize( m_display_width, m_display_height);		
-        
+    if (m_bCopyUseRate != copyrate) {
+      m_bCopyUseRate = copyrate;
     }
 
-      m_bShowotcurrent = !m_bShowotcurrent;
+    if (m_bCopyUseDirection != copydirection) {
+      m_bCopyUseDirection = copydirection;
+    }
 
-      //    Toggle dialog?
-      if(m_bShowotcurrent) {
-		  m_potcurrentDialog->Move(m_otcurrent_dialog_x, m_otcurrent_dialog_y);
-		  m_potcurrentDialog->SetSize(m_otcurrent_dialog_sx, m_otcurrent_dialog_sy);
-          m_potcurrentDialog->Show();
-      } else {
-          m_potcurrentDialog->Hide();         
-          }
+    if (m_bCopyUseHighRes != copyresolution) {
+      m_bCopyUseHighRes = copyresolution;
+    }
 
-      // Toggle is handled by the toolbar but we must keep plugin manager b_toggle updated
-      // to actual status to ensure correct status upon toolbar rebuild
-      SetToolbarItemState( m_leftclick_tool_id, m_bShowotcurrent );
-          
-	  // Capture dialog position
-    wxPoint p = m_potcurrentDialog->GetPosition();
-    wxRect r = m_potcurrentDialog->GetRect();
-    SetotcurrentDialogX(p.x);
-    SetotcurrentDialogY(p.y);
-    SetotcurrentDialogSizeX(r.GetWidth());
-    SetotcurrentDialogSizeY(r.GetHeight());
+    if (m_botcurrentUseHiDef != FillColour) {
+      m_botcurrentUseHiDef = FillColour;
+    }
 
-    RequestRefresh(m_parent_window); // refresh main window
-}
+    if (m_CopyArrowScale != copy_scale) {
+      m_CopyArrowScale = copy_scale;
+    }
 
-void otcurrent_pi::OnotcurrentDialogClose()
-{
-    m_bShowotcurrent = false;
-    SetToolbarItemState( m_leftclick_tool_id, m_bShowotcurrent );	
-    m_potcurrentDialog->Hide();
+    if (m_potcurrentDialog) {
+      m_potcurrentDialog->m_bUseRate = m_bCopyUseRate;
+      m_potcurrentDialog->m_bUseDirection = m_bCopyUseDirection;
+      m_potcurrentDialog->m_bUseHighRes = m_bCopyUseHighRes;
+      m_potcurrentDialog->m_bUseFillColour = m_botcurrentUseHiDef;
+      m_potcurrentDialog->m_arrow_scale = m_CopyArrowScale + 1; // dropdown index 0 = 1.
 
-    // Capture dialog position
-    wxPoint p = m_potcurrentDialog->GetPosition();
-    wxRect r = m_potcurrentDialog->GetRect();
-    SetotcurrentDialogX(p.x);
-    SetotcurrentDialogY(p.y);
-    SetotcurrentDialogSizeX(r.GetWidth());
-    SetotcurrentDialogSizeY(r.GetHeight());
+      m_potcurrentDialog->myUseColour[0] = myVColour[0];
+      m_potcurrentDialog->myUseColour[1] = myVColour[1];
+      m_potcurrentDialog->myUseColour[2] = myVColour[2];
+      m_potcurrentDialog->myUseColour[3] = myVColour[3];
+      m_potcurrentDialog->myUseColour[4] = myVColour[4];
+    }
+
+    if (m_potcurrentOverlayFactory) {
+      m_potcurrentOverlayFactory->m_bShowRate = m_bCopyUseRate;
+      m_potcurrentOverlayFactory->m_bShowDirection = m_bCopyUseDirection;
+      m_potcurrentOverlayFactory->m_bHighResolution = m_bCopyUseHighRes;
+      m_potcurrentOverlayFactory->m_bShowFillColour = m_botcurrentUseHiDef;
+      m_potcurrentOverlayFactory->m_iArrowScale = m_CopyArrowScale + 1;
+    }
 
     SaveConfig();
-    RequestRefresh(m_parent_window); // refresh main window
 
+    RequestRefresh(m_parent_window);  // refresh main window
+  }
 }
 
-void otcurrent_pi::SetCursorLatLon(double lat, double lon)
-{
-    if(m_potcurrentDialog)
-        m_potcurrentDialog->SetCursorLatLon(lat, lon);
+void otcurrent_pi::OnToolbarToolCallback(int id) {
+  if (NULL == m_potcurrentDialog) {
+    m_potcurrentDialog = new otcurrentUIDialog(m_parent_window, this);
+    wxPoint p = wxPoint(m_otcurrent_dialog_x, m_otcurrent_dialog_y);
+    m_potcurrentDialog->Move(p);
+    m_potcurrentDialog->SetSize(m_otcurrent_dialog_sx, m_otcurrent_dialog_sy);
+
+    // Create the drawing factory
+    m_potcurrentOverlayFactory =
+        new otcurrentOverlayFactory(*m_potcurrentDialog);
+    m_potcurrentOverlayFactory->SetParentSize(m_display_width,
+                                              m_display_height);
+  }
+
+  m_bShowotcurrent = !m_bShowotcurrent;
+
+  //    Toggle dialog?
+  if (m_bShowotcurrent) {
+    m_potcurrentDialog->Move(m_otcurrent_dialog_x, m_otcurrent_dialog_y);
+    m_potcurrentDialog->SetSize(m_otcurrent_dialog_sx, m_otcurrent_dialog_sy);
+    m_potcurrentDialog->Show();
+  } else {
+    m_potcurrentDialog->Hide();
+  }
+
+  // Toggle is handled by the toolbar but we must keep plugin manager b_toggle
+  // updated to actual status to ensure correct status upon toolbar rebuild
+  SetToolbarItemState(m_leftclick_tool_id, m_bShowotcurrent);
+
+  // Capture dialog position
+  wxPoint p = m_potcurrentDialog->GetPosition();
+  wxRect r = m_potcurrentDialog->GetRect();
+  SetotcurrentDialogX(p.x);
+  SetotcurrentDialogY(p.y);
+  SetotcurrentDialogSizeX(r.GetWidth());
+  SetotcurrentDialogSizeY(r.GetHeight());
+
+  RequestRefresh(m_parent_window);  // refresh main window
 }
 
-bool otcurrent_pi::LoadConfig(void)
-{
-    wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
+void otcurrent_pi::OnotcurrentDialogClose() {
+  m_bShowotcurrent = false;
+  SetToolbarItemState(m_leftclick_tool_id, m_bShowotcurrent);
+  m_potcurrentDialog->Hide();
 
-    if(!pConf)
-        return false;
+  // Capture dialog position
+  wxPoint p = m_potcurrentDialog->GetPosition();
+  wxRect r = m_potcurrentDialog->GetRect();
+  SetotcurrentDialogX(p.x);
+  SetotcurrentDialogY(p.y);
+  SetotcurrentDialogSizeX(r.GetWidth());
+  SetotcurrentDialogSizeY(r.GetHeight());
 
-    pConf->SetPath ( _T( "/PlugIns/otcurrent_pi" ) );
+  SaveConfig();
+  RequestRefresh(m_parent_window);  // refresh main window
+}
 
-	m_bCopyUseRate = pConf->Read ( _T( "otcurrentUseRate" ),1);
-    m_bCopyUseDirection = pConf->Read ( _T( "otcurrentUseDirection" ), 1);
-	m_bCopyUseHighRes = pConf->Read(_T("otcurrentUseHighResolution"), 1);
-	m_botcurrentUseHiDef = pConf->Read ( _T( "otcurrentUseFillColour" ), 1);
+void otcurrent_pi::SetCursorLatLon(double lat, double lon) {
+  if (m_potcurrentDialog) m_potcurrentDialog->SetCursorLatLon(lat, lon);
+}
 
-	m_CopyFolderSelected = pConf->Read ( _T( "otcurrentFolder" ), "");	
-	m_CopyIntervalSelected = pConf->Read ( _T ( "otcurrentInterval"), 1L);
+bool otcurrent_pi::LoadConfig(void) {
+  wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
 
-    m_otcurrent_dialog_sx = pConf->Read ("otcurrentDialogSizeX", 500L);
-    m_otcurrent_dialog_sy = pConf->Read ("otcurrentDialogSizeY", 300L);
-    m_otcurrent_dialog_x =  pConf->Read ("otcurrentDialogPosX", 20L);
-    m_otcurrent_dialog_y =  pConf->Read ("otcurrentDialogPosY", 170L);
+  if (!pConf) return false;
 
-	if ((m_otcurrent_dialog_x < 0) || (m_otcurrent_dialog_x > m_display_width))
-            m_otcurrent_dialog_x = 40;
-        if ((m_otcurrent_dialog_y < 0) || (m_otcurrent_dialog_y > m_display_height))
-            m_otcurrent_dialog_y = 140;
+  pConf->SetPath(_T( "/PlugIns/otcurrent_pi" ));
 
-	
-    pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
-    pConf->Read( _T("VColour1"), &myVColour[1], myVColour[1] );
-	pConf->Read( _T("VColour2"), &myVColour[2], myVColour[2] );
-	pConf->Read( _T("VColour3"), &myVColour[3], myVColour[3] );
-	pConf->Read( _T("VColour4"), &myVColour[4], myVColour[4] );
-	
+  m_bCopyUseRate = pConf->Read(_T( "otcurrentUseRate" ), 1);
+  m_bCopyUseDirection = pConf->Read(_T( "otcurrentUseDirection" ), 1);
+  m_bCopyUseHighRes = pConf->Read(_T("otcurrentUseHighResolution"), 1);
+  m_botcurrentUseHiDef = pConf->Read(_T( "otcurrentUseFillColour" ), 1);
+  m_CopyArrowScale = pConf->Read("otcurrentArrowScale", 1L);
+
+
+  m_CopyFolderSelected = pConf->Read(_T( "otcurrentFolder" ), "");
+  m_CopyIntervalSelected = pConf->Read(_T ( "otcurrentInterval"), 1L);
+
+  m_otcurrent_dialog_sx = pConf->Read("otcurrentDialogSizeX", 500L);
+  m_otcurrent_dialog_sy = pConf->Read("otcurrentDialogSizeY", 300L);
+  m_otcurrent_dialog_x = pConf->Read("otcurrentDialogPosX", 20L);
+  m_otcurrent_dialog_y = pConf->Read("otcurrentDialogPosY", 170L);
+
+  if ((m_otcurrent_dialog_x < 0) || (m_otcurrent_dialog_x > m_display_width))
+    m_otcurrent_dialog_x = 40;
+  if ((m_otcurrent_dialog_y < 0) || (m_otcurrent_dialog_y > m_display_height))
+    m_otcurrent_dialog_y = 140;
+
+  pConf->Read(_T("VColour0"), &myVColour[0], myVColour[0]);
+  pConf->Read(_T("VColour1"), &myVColour[1], myVColour[1]);
+  pConf->Read(_T("VColour2"), &myVColour[2], myVColour[2]);
+  pConf->Read(_T("VColour3"), &myVColour[3], myVColour[3]);
+  pConf->Read(_T("VColour4"), &myVColour[4], myVColour[4]);
+
+  return true;
+}
+
+bool otcurrent_pi::SaveConfig(void) {
+  wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
+
+  if (pConf) {
+    pConf->SetPath("/PlugIns/otcurrent_pi");
+    pConf->Write(_T( "otcurrentUseRate" ), m_bCopyUseRate);
+    pConf->Write(_T( "otcurrentUseDirection" ), m_bCopyUseDirection);
+    pConf->Write(_T("otcurrentUseHighResolution"), m_bCopyUseHighRes);
+    pConf->Write(_T( "otcurrentUseFillColour" ), m_botcurrentUseHiDef);
+    pConf->Write("otcurrentArrowScale", m_CopyArrowScale);
+
+    pConf->Write(_T( "otcurrentFolder" ), m_CopyFolderSelected);
+    pConf->Write(_T( "otcurrentInterval" ), m_CopyIntervalSelected);
+
+    pConf->Write("otcurrentDialogSizeX", m_otcurrent_dialog_sx);
+    pConf->Write("otcurrentDialogSizeY", m_otcurrent_dialog_sy);
+    pConf->Write("otcurrentDialogPosX", m_otcurrent_dialog_x);
+    pConf->Write("otcurrentDialogPosY", m_otcurrent_dialog_y);
+
+    pConf->Write(_T("VColour0"), myVColour[0]);
+    pConf->Write(_T("VColour1"), myVColour[1]);
+    pConf->Write(_T("VColour2"), myVColour[2]);
+    pConf->Write(_T("VColour3"), myVColour[3]);
+    pConf->Write(_T("VColour4"), myVColour[4]);
     return true;
+
+  } else
+    return false;
 }
 
-bool otcurrent_pi::SaveConfig(void)
-{    
-    wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
-
-    if(pConf) {
-    pConf->SetPath ("/PlugIns/otcurrent_pi");
-    pConf->Write ( _T( "otcurrentUseRate" ), m_bCopyUseRate );
-    pConf->Write ( _T( "otcurrentUseDirection" ), m_bCopyUseDirection );
-	pConf->Write(_T("otcurrentUseHighResolution"), m_bCopyUseHighRes);
-	pConf->Write ( _T( "otcurrentUseFillColour" ), m_botcurrentUseHiDef );
-
-	pConf->Write ( _T( "otcurrentFolder" ), m_CopyFolderSelected); 
-	pConf->Write ( _T( "otcurrentInterval" ), m_CopyIntervalSelected);
-
-    pConf->Write ("otcurrentDialogSizeX", m_otcurrent_dialog_sx);
-    pConf->Write ("otcurrentDialogSizeY", m_otcurrent_dialog_sy);
-    pConf->Write ("otcurrentDialogPosX", m_otcurrent_dialog_x);
-    pConf->Write ("otcurrentDialogPosY", m_otcurrent_dialog_y);
-
-	pConf->Write( _T("VColour0"), myVColour[0] );
-	pConf->Write( _T("VColour1"), myVColour[1] );
-	pConf->Write( _T("VColour2"), myVColour[2] );
-	pConf->Write( _T("VColour3"), myVColour[3] );
-	pConf->Write( _T("VColour4"), myVColour[4] );
-	return true;
-
-   } else
-        return false;
+void otcurrent_pi::SetColorScheme(PI_ColorScheme cs) {
+  DimeWindow(m_potcurrentDialog);
 }
 
-void otcurrent_pi::SetColorScheme(PI_ColorScheme cs)
-{
-    DimeWindow(m_potcurrentDialog);
+bool otcurrent_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
+  if (!m_potcurrentDialog || !m_potcurrentDialog->IsShown() ||
+      !m_potcurrentOverlayFactory)
+    return false;
+
+  piDC pidc(dc);
+  m_potcurrentOverlayFactory->RenderOverlay(pidc, *vp);
+  return true;
 }
 
-bool otcurrent_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
-{
-    if(!m_potcurrentDialog ||
-       !m_potcurrentDialog->IsShown() ||
-       !m_potcurrentOverlayFactory)
-        return false;
+bool otcurrent_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp) {
+  if (!m_potcurrentDialog || !m_potcurrentDialog->IsShown() ||
+      !m_potcurrentOverlayFactory)
+    return false;
 
-    piDC pidc(dc);
-    m_potcurrentOverlayFactory->RenderOverlay (pidc, *vp );
-    return true;
+  piDC piDC;
+  glEnable(GL_BLEND);
+  piDC.SetVP(vp);
+
+  m_potcurrentOverlayFactory->RenderOverlay(piDC, *vp);
+  return true;
 }
-
-bool otcurrent_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
-{
-    if(!m_potcurrentDialog ||
-       !m_potcurrentDialog->IsShown() ||
-       !m_potcurrentOverlayFactory)
-        return false;
-
-    piDC piDC;
-    glEnable( GL_BLEND );
-    piDC.SetVP(vp);
-    
-    m_potcurrentOverlayFactory->RenderOverlay ( piDC, *vp );
-    return true;
-}
-
