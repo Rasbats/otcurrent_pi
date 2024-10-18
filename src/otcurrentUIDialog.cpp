@@ -282,7 +282,7 @@ void otcurrentUIDialog::OpenFile(bool newestFile) {
   m_bUseDirection = pPlugIn->GetCopyDirection();
   m_bUseHighRes = pPlugIn->GetCopyResolution();
   m_bUseFillColour = pPlugIn->GetCopyColour();
-  m_arrow_scale = pPlugIn->GetCopyArrowScale();
+  m_arrow_scale = pPlugIn->GetCopyArrowScale() + 1;
 
   m_IntervalSelected = pPlugIn->GetIntervalSelected();
   if (m_FolderSelected == wxEmptyString) {

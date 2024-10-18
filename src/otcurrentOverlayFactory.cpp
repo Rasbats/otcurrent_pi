@@ -421,7 +421,8 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
                 wxFONTWEIGHT_NORMAL);
      font = fontsmall; 
    } else {
-     wxFont fontlarge(16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+
+     wxFont fontlarge(30, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
                       wxFONTWEIGHT_NORMAL);
      font = fontlarge; 
    }
