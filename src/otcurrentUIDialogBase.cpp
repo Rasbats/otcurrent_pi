@@ -226,6 +226,8 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase(
       sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition,
       wxDefaultSize, wxBU_AUTODRAW | 0);
 
+  fgSizerColours->Add(myColourPicker1, 1, wxALL | wxEXPAND, 5);
+
   staticText1525 = new wxStaticText(sbSizerColours->GetStaticBox(), wxID_ANY,
                                     _(">= 1.5 and < 2.5"), wxDefaultPosition,
                                     wxDefaultSize, 0);
@@ -235,6 +237,8 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase(
   myColourPicker2 = new ODColourPickerCtrl(
       sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition,
       wxDefaultSize, wxBU_AUTODRAW | 0);
+
+  fgSizerColours->Add(myColourPicker2, 1, wxALL | wxEXPAND, 5);
 
   staticText2535 = new wxStaticText(sbSizerColours->GetStaticBox(), wxID_ANY,
                                     _(">= 2.5 and < 3.5"), wxDefaultPosition,
@@ -246,6 +250,8 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase(
       sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition,
       wxDefaultSize, wxBU_AUTODRAW | 0);
 
+  fgSizerColours->Add(myColourPicker3, 1, wxALL | wxEXPAND, 5);
+
   m_staticTextMore35 = new wxStaticText(sbSizerColours->GetStaticBox(),
                                         wxID_ANY, _(">= 3.5 knots    "),
                                         wxDefaultPosition, wxDefaultSize, 0);
@@ -256,6 +262,8 @@ otcurrentPreferencesDialogBase::otcurrentPreferencesDialogBase(
   myColourPicker4 = new ODColourPickerCtrl(
       sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition,
       wxDefaultSize, wxBU_AUTODRAW | 0);
+
+  fgSizerColours->Add(myColourPicker4, 1, wxALL | wxEXPAND, 5);
 
   sbSizerColours->Add(fgSizerColours, 1, wxEXPAND, 5);
 
