@@ -56,7 +56,7 @@
 #include <wx/sizer.h>
 #include <wx/event.h>
 #include <wx/menu.h>
-
+#include "ODPlatform.h"
 
 using namespace std;
 
