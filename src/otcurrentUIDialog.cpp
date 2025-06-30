@@ -282,7 +282,7 @@ void otcurrentUIDialog::OpenFile(bool newestFile) {
 
   m_IntervalSelected = pPlugIn->GetIntervalSelected();
   if (m_FolderSelected == wxEmptyString) {
-#ifndef __OCPN__ANDROID__
+#ifndef __ANDROID__
     m_FolderSelected = pPlugIn->GetFolderSelected();
     m_dirPicker1->SetValue(m_FolderSelected);
     wxDirDialog* d = new wxDirDialog(this, _("Choose the tcdata directory"), "",
@@ -304,7 +304,7 @@ void otcurrentUIDialog::OpenFile(bool newestFile) {
 }
 
 void otcurrentUIDialog::OnSelectData(wxCommandEvent& event) {
-#ifndef __OCPN__ANDROID__
+#ifndef __ANDROID__
   wxDirDialog* d =
       new wxDirDialog(this, _("Choose a directory"), "", 0, wxDefaultPosition);
   if (d->ShowModal() == wxID_OK) {
@@ -338,7 +338,7 @@ void otcurrentUIDialog::OnCalendarShow(wxCommandEvent& event) {
   CalendarDialog CalDialog(this, -1, _("START Date/Time"), wxPoint(100, 100),
                            wxSize(-1, -1));
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
   wxDateTime now = wxDateTime::Now();
   CalDialog.dialogCalendar->SetValue(now);
 #endif
@@ -466,7 +466,7 @@ CalendarDialog::CalendarDialog(wxWindow* parent, wxWindowID id,
 
   itemBoxSizerFinal = new wxBoxSizer(wxVERTICAL);
 
-#ifndef __OCPN__ANDROID__
+#ifndef __ANDROID__
 
   dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime,
                                       wxDefaultPosition, wxDefaultSize,

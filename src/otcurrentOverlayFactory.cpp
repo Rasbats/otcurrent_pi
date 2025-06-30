@@ -102,7 +102,7 @@ static GLboolean QueryExtension(const char *extName) {
 #elif defined(__WXOSX__)
 #include <dlfcn.h>
 #define systemGetProcAddress(ADDR) dlsym(RTLD_DEFAULT, ADDR)
-#elif defined(__OCPN__ANDROID__)
+#elif defined(__ANDROID__)
 #define systemGetProcAddress(ADDR) eglGetProcAddress(ADDR)
 #else
 #define systemGetProcAddress(ADDR) glXGetProcAddress((const GLubyte *)ADDR)

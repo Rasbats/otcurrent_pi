@@ -188,7 +188,7 @@ public:
                  const wxSize& size = wxDefaultSize,
                  long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
 #include "android/wx/datectrl.h"
   wxDatePickerCtrl* dialogCalendar;
 #else
