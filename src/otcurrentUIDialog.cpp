@@ -92,7 +92,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi)
 
   g_Window = this;
   GetHandle()->setStyleSheet(qtStyleSheet);
-  
+
   Connect(wxEVT_MOTION, wxMouseEventHandler(otcurrentUIDialog::OnMouseEvent));
 
 #endif
@@ -142,8 +142,6 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi)
   double value;
   c.ToDouble(&value);
   m_dInterval = value;
-
-
 }
 
 #ifdef __ANDROID__
@@ -166,8 +164,6 @@ void otcurrentUIDialog::OnMouseEvent(wxMouseEvent& event) {
   }
 }
 #endif  // End of Android functions for move/resize
-
-
 
 void otcurrentUIDialog::LoadHarmonics() {
   if (!ptcmgr) {
@@ -317,11 +313,15 @@ void otcurrentUIDialog::OnSelectData(wxCommandEvent& event) {
     pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   }
 #else
-  wxString tc =
-      "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
-  m_dirPicker1->SetValue(tc);
-  m_FolderSelected = tc;
-  pPlugIn->m_CopyFolderSelected = m_FolderSelected;
+  wxString dir_spec;
+  int response = PlatformDirSelectorDialog(g_Window, &dir_spec,
+                                           _("Choose Harmonics Directory"),
+                                           m_dirPicker1->GetValue());
+  if (response == wxID_OK) {
+    m_dirPicker1->SetValue(dir_spec);
+    m_FolderSelected = dir_spec;
+    pPlugIn->m_CopyFolderSelected = m_FolderSelected;
+  }
 #endif
 
   LoadTCMFile();
