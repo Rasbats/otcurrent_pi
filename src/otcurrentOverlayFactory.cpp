@@ -216,14 +216,16 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
   c_GLcolour = colour;  // for filling GL arrows
   if (scale <= 1e-2) return false;
 
-  wxBrush brush(*wxTRANSPARENT_BRUSH);
+  wxBrush brush(colour);
 
   if (m_dc) {
     wxPen pen(colour, 2);
-    wxPen pen1("BLACK", 2);
 
     m_dc->SetPen(pen);
-    m_dc->SetBrush(brush);
+    m_dc->SetBrush(
+        *wxTheBrushList->FindOrCreateBrush(colour, wxBRUSHSTYLE_TRANSPARENT));
+    m_dc->SetGLStipple();
+    
   }
 
   //Test drawing 
