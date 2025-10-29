@@ -216,7 +216,7 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
   c_GLcolour = colour;  // for filling GL arrows
   if (scale <= 1e-2) return false;
 
-  wxBrush brush(colour);
+  wxBrush brush(*wxTRANSPARENT_BRUSH);
 
   if (m_dc) {
     wxPen pen(colour, 2);
