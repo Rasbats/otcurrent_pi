@@ -42,7 +42,6 @@ wxString myVColour[] = {_T("rgb(127, 0, 255)"), _T("rgb(0, 166, 80)"),
                         _T("rgb(253, 184, 19)"), _T("rgb(248, 128, 64)"),
                         _T("rgb(248, 0, 0)")};
 
-
 // the class factories, used to create and destroy instances of the PlugIn
 
 extern "C" DECL_EXP opencpn_plugin *create_pi(void *ppimgr) {
@@ -418,29 +417,25 @@ void otcurrent_pi::SetColorScheme(PI_ColorScheme cs) {
   DimeWindow(m_potcurrentDialog);
 }
 
-bool otcurrent_pi::RenderGLOverlay(wxGLContext *pcontext,
-                                    PlugIn_ViewPort *pivp) {
+bool otcurrent_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
   if (!m_potcurrentDialog || !m_potcurrentDialog->IsShown() ||
       !m_potcurrentOverlayFactory)
     return false;
 
-  g_bOpenGL = true;
-  return RenderGLOverlays(pcontext, pivp);
+  piDC pidc(dc);
+  m_potcurrentOverlayFactory->RenderOverlay(pidc, *vp);
+  return true;
 }
 
-bool otcurrent_pi::RenderGLOverlays(wxGLContext *pcontext,
-                                     PlugIn_ViewPort *pivp) {
-  m_pcontext = pcontext;
-  m_VP = *pivp;
-  g_VP = *pivp;
-  m_chart_scale = pivp->chart_scale;
-  m_view_scale = pivp->view_scale_ppm;
+bool otcurrent_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp) {
+  if (!m_potcurrentDialog || !m_potcurrentDialog->IsShown() ||
+      !m_potcurrentOverlayFactory)
+    return false;
 
-  g_pDC = new piDC(pcontext);
-  g_pDC->SetVP(pivp);
+  piDC piDC;
+  glEnable(GL_BLEND);
+  piDC.SetVP(vp);
 
-  m_potcurrentOverlayFactory->DrawGL(*pivp);
-
-  delete g_pDC;
-  return TRUE;
+  m_potcurrentOverlayFactory->RenderOverlay(piDC, *vp);
+  return true;
 }

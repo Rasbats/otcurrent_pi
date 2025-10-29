@@ -127,35 +127,58 @@ otcurrentOverlayFactory::~otcurrentOverlayFactory() {}
 
 void otcurrentOverlayFactory::Reset() {}
 
-<<<<<<< Updated upstream
 bool otcurrentOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
   m_dc = &dc;
   m_dc->SetVP(&vp);
-=======
->>>>>>> Stashed changes
 
-void otcurrentOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
-#ifdef ocpnUSE_GL
-  /* determine color and width */
-  wxPenStyle style = wxPENSTYLE_SOLID;
-  int width = 4;
+  if (!dc.GetDC()) {
+    if (!glQueried) {
+      glQueried = true;
+    }
+#ifndef USE_GLSL
+    glPushAttrib(GL_LINE_BIT | GL_ENABLE_BIT | GL_HINT_BIT);  // Save state
 
-  int j = 0;
-  wxPoint r;
+    //      Enable anti-aliased lines, at best quality
+    glEnable(GL_LINE_SMOOTH);
+    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
 
-  wxFont *font = GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
-
-  g_pDC->SetFont(*font);
-  g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
-  g_pDC->SetBrush(
-      *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
-  g_pDC->SetGLStipple();
-
-  RenderMyArrows(&g_VP);
-  DrawAllCurrentsInViewPort(&vp, false, false, false, m_dtUseNew);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 #endif
-}
+    glEnable(GL_BLEND);
+  }
 
+  wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+              wxFONTWEIGHT_NORMAL);
+  m_dc->SetFont(font);
+
+  wxColour myColour = wxColour("RED");
+
+  /*
+  std::vector<Position> mypoints =  m_dlg.my_points;
+
+  for (std::vector<Position>::iterator it = mypoints.begin(); it !=
+  mypoints.end(); it++) {
+
+
+          wxPoint p, pn;
+  GetCanvasPixLL( &vp, &p, (it)->myLat, (it)->myLon);
+          GetCanvasPixLL( &vp, &pn, (it)->myNextLat, (it)->myNextLon);
+
+  DrawLine(p.x, p.y, pn.x, pn.y, myColour, 4);
+  }
+  */
+
+  DrawAllCurrentsInViewPort(&vp, false, false, false, m_dtUseNew);
+
+  /*
+  wxPen pen("RED", 2);
+
+  m_dc->SetPen(pen);
+        m_dc->DrawLine(140, 140, 220, 220);
+  */
+
+  return true;
+}
 
 wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed) {
   wxColour c_blue = wxColour(m_dlg.myUseColour[0]);           // 127, 0, 255);
