@@ -127,11 +127,12 @@ otcurrentOverlayFactory::~otcurrentOverlayFactory() {}
 
 void otcurrentOverlayFactory::Reset() {}
 
-bool otcurrentOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
-  m_dc = &dc;
-  m_dc->SetVP(&vp);
+bool otcurrentOverlayFactory::RenderOverlay(piDC &g_pDC,
+                                            PlugIn_ViewPort &piVP) {
+  m_dc = &g_pDC;
+  m_dc->SetVP(&piVP);
 
-  if (!dc.GetDC()) {
+  if (!g_pDC.GetDC()) {
     if (!glQueried) {
       glQueried = true;
     }
@@ -168,7 +169,7 @@ bool otcurrentOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
   }
   */
 
-  DrawAllCurrentsInViewPort(&vp, false, false, false, m_dtUseNew);
+  DrawAllCurrentsInViewPort(&piVP, false, false, false, m_dtUseNew);
 
   /*
   wxPen pen("RED", 2);

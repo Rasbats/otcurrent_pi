@@ -120,7 +120,6 @@ public:
   std::map<double, wxImage> m_labelCache;
   std::map<wxString, wxImage> m_labelCacheText;
 
-  piDC *m_dc;
 
   wxPoint p[9];
   wxPoint polyPoints[7];
@@ -128,7 +127,7 @@ public:
 
 private:
   bool inGL;
-
+  piDC *m_dc;
   wxColour GetSpeedColour(double my_speed);
 
   bool drawCurrentArrow(int x, int y, double rot_angle, double scale,
