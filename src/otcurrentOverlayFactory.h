@@ -96,11 +96,13 @@ public:
     m_ParentSize.SetWidth(w);
     m_ParentSize.SetHeight(h);
   }
-  bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
+  
 
   void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
                                  bool bforce_redraw_currents,
                                  bool bdraw_mono_for_mask, wxDateTime myTime);
+
+  void DrawGL(PlugIn_ViewPort &piVP);
 
   void Reset();
   wxImage &DrawGLText(double value, int precision);
