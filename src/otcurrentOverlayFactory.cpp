@@ -220,6 +220,7 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
 
   if (m_dc) {
     wxPen pen(colour, 2);
+    wxPen pen1("BLACK", 2);
 
     m_dc->SetPen(pen);
     m_dc->SetBrush(brush);
