@@ -129,6 +129,7 @@ void otcurrentOverlayFactory::Reset() {}
 
 bool otcurrentOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
   m_dc = &dc;
+  m_dc->SetVP(&vp);
 
   if (!dc.GetDC()) {
     if (!glQueried) {
@@ -227,7 +228,7 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
   //Test drawing 
   wxPoint point1(30, 30);
   wxPoint point2(200, 200);
-  m_dc->DrawLine(30,30,200,200,true);
+  m_dc->DrawLine(30,30,200,200);
 
   float sin_rot = sin(rot_angle * PI / 180.);
   float cos_rot = cos(rot_angle * PI / 180.);
