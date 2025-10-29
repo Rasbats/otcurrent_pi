@@ -224,6 +224,11 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     m_dc->SetBrush(brush);
   }
 
+  //Test drawing 
+  wxPoint point1(30, 30);
+  wxPoint point2(200, 200);
+  m_dc->DrawLine(30,30,200,200,true);
+
   float sin_rot = sin(rot_angle * PI / 180.);
   float cos_rot = cos(rot_angle * PI / 180.);
 
