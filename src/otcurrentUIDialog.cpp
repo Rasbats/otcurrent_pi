@@ -307,11 +307,7 @@ void otcurrentUIDialog::OpenFile(bool newestFile) {
     if (response == wxID_OK) {
       m_dirPicker1->SetValue(dir_spec);
       m_FolderSelected = dir_spec;
-      pPlugIn->m_CopyFolderSelected = m_FolderSelected;
-      TCDir = m_dirPicker1->GetValue();
     }
-
-    m_FolderSelected = tc;
 
 #endif
   }
