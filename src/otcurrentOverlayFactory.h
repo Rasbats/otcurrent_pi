@@ -31,6 +31,8 @@
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
 
+#include "globals.h"
+
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
 #include "GL/gl_private.h"
@@ -58,20 +60,20 @@ class otcurrentOverlay {
 public:
   otcurrentOverlay(void) {
     m_iTexture = 0;
-    m_pDCBitmap = NULL, m_pRGBA = NULL;
+    g_pDCBitmap = NULL, m_pRGBA = NULL;
   }
 
   ~otcurrentOverlay(void)
 
   {
-    delete m_pDCBitmap, delete[] m_pRGBA;
+    delete g_pDCBitmap, delete[] m_pRGBA;
   }
 
   double m_latoff, m_lonoff;
 
   unsigned int m_iTexture; /* opengl mode */
 
-  wxBitmap *m_pDCBitmap; /* dc mode */
+  wxBitmap *g_pDCBitmap; /* dc mode */
   unsigned char *m_pRGBA;
 
   int m_width;
@@ -96,11 +98,9 @@ public:
     m_ParentSize.SetWidth(w);
     m_ParentSize.SetHeight(h);
   }
-  bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
+  bool RenderOverlay(PlugIn_ViewPort &vp);
 
-  void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
-                                 bool bforce_redraw_currents,
-                                 bool bdraw_mono_for_mask, wxDateTime myTime);
+  void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox);
 
   void Reset();
   wxImage &DrawGLText(double value, int precision);
@@ -127,7 +127,7 @@ public:
 
 private:
   bool inGL;
-  piDC *m_dc;
+
   wxColour GetSpeedColour(double my_speed);
 
   bool drawCurrentArrow(int x, int y, double rot_angle, double scale,

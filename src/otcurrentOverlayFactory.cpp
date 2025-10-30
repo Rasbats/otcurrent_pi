@@ -127,58 +127,32 @@ otcurrentOverlayFactory::~otcurrentOverlayFactory() {}
 
 void otcurrentOverlayFactory::Reset() {}
 
-bool otcurrentOverlayFactory::RenderOverlay(piDC &g_pDC,
-                                            PlugIn_ViewPort &piVP) {
-  m_dc = &g_pDC;
-  m_dc->SetVP(&piVP);
+bool otcurrentOverlayFactory::RenderOverlay(PlugIn_ViewPort &piVP) {
+#ifdef ocpnUSE_GL
+  /* determine color and width */
+  wxPenStyle style = wxPENSTYLE_SOLID;
+  int width = 4;
 
-  if (!g_pDC.GetDC()) {
-    if (!glQueried) {
-      glQueried = true;
-    }
-#ifndef USE_GLSL
-    glPushAttrib(GL_LINE_BIT | GL_ENABLE_BIT | GL_HINT_BIT);  // Save state
+  int j = 0;
+  wxPoint r;
 
-    //      Enable anti-aliased lines, at best quality
-    glEnable(GL_LINE_SMOOTH);
-    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+  wxFont *font = GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
 
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  g_pDC->SetFont(*font);
+  g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
+  g_pDC->SetBrush(
+      *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
+  g_pDC->SetGLStipple();
+
+  DrawAllCurrentsInViewPort(&g_VP);
+
 #endif
-    glEnable(GL_BLEND);
-  }
 
-  wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-              wxFONTWEIGHT_NORMAL);
-  m_dc->SetFont(font);
-
-  wxColour myColour = wxColour("RED");
-
-  /*
-  std::vector<Position> mypoints =  m_dlg.my_points;
-
-  for (std::vector<Position>::iterator it = mypoints.begin(); it !=
-  mypoints.end(); it++) {
+wxColour myColour = wxColour("RED");
 
 
-          wxPoint p, pn;
-  GetCanvasPixLL( &vp, &p, (it)->myLat, (it)->myLon);
-          GetCanvasPixLL( &vp, &pn, (it)->myNextLat, (it)->myNextLon);
 
-  DrawLine(p.x, p.y, pn.x, pn.y, myColour, 4);
-  }
-  */
-
-  DrawAllCurrentsInViewPort(&piVP, false, false, false, m_dtUseNew);
-
-  /*
-  wxPen pen("RED", 2);
-
-  m_dc->SetPen(pen);
-        m_dc->DrawLine(140, 140, 220, 220);
-  */
-
-  return true;
+return true;
 }
 
 wxColour otcurrentOverlayFactory::GetSpeedColour(double my_speed) {
@@ -219,20 +193,19 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
 
   wxBrush brush(colour);
 
-  if (m_dc) {
+  if (g_pDC) {
     wxPen pen(colour, 2);
 
-    m_dc->SetPen(pen);
-    m_dc->SetBrush(
+    g_pDC->SetPen(pen);
+    g_pDC->SetBrush(
         *wxTheBrushList->FindOrCreateBrush(colour, wxBRUSHSTYLE_TRANSPARENT));
-    m_dc->SetGLStipple();
-    
+    g_pDC->SetGLStipple();
   }
 
-  //Test drawing 
+  // Test drawing
   wxPoint point1(30, 30);
   wxPoint point2(200, 200);
-  m_dc->DrawLine(30,30,200,200);
+  g_pDC->DrawLine(30, 30, 200, 200);
 
   float sin_rot = sin(rot_angle * PI / 180.);
   float cos_rot = cos(rot_angle * PI / 180.);
@@ -266,8 +239,8 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     p_basic[ip].x = 100 + x2;
     p_basic[ip].y = 100 + y2;
 
-    if (m_dc) {
-      m_dc->DrawLine(x1 + x, y1 + y, x2 + x, y2 + y);
+    if (g_pDC) {
+      g_pDC->DrawLine(x1 + x, y1 + y, x2 + x, y2 + y);
     }
 
     p[ip].x = x2 + x;
@@ -277,7 +250,7 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     y1 = y2;
   }
 
-  if (m_bShowFillColour && m_dc) {
+  if (m_bShowFillColour && g_pDC) {
     /*
      *           4
      *          /\
@@ -294,7 +267,7 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
 
     polyPoints[0] = p[3];
     polyPoints[1] = p[4];
-    polyPoints[2] = p[5];   
+    polyPoints[2] = p[5];
 
     rectPoints[0] = p[1];
     rectPoints[1] = p[2];
@@ -304,10 +277,10 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     // polyPoints[4] = p[8];
 
     brush.SetStyle(wxBRUSHSTYLE_SOLID);
-    m_dc->SetBrush(brush);
+    g_pDC->SetBrush(brush);
 
-    m_dc->DrawPolygonTessellated(3, polyPoints);
-    m_dc->DrawPolygonTessellated(4, rectPoints);
+    g_pDC->DrawPolygonTessellated(3, polyPoints);
+    g_pDC->DrawPolygonTessellated(4, rectPoints);
   }
   return true;
 }
@@ -385,11 +358,11 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString(wxString myText) {
 }
 
 void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
-    PlugIn_ViewPort *BBox, bool bRebuildSelList, bool bforce_redraw_currents,
-    bool bdraw_mono_for_mask, wxDateTime myTime) {
+    PlugIn_ViewPort *BBox) {
   if (BBox->chart_scale > 1000000) {
     return;
   }
+
   wxColour text_color;
 
   GetGlobalColor(_T ("UINFD" ), &text_color);
@@ -424,15 +397,14 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
   wxDateTime yn = m_dlg.m_dtNow;
   time_t myTimeNow = yn.GetTicks();
 
-   wxFont *font = GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
-   
+  wxFont *font = GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
 
 #ifdef __WXMSW__
   double factor = (double)(GetOCPNCanvasWindow()->ToDIP(100)) / 100.;
   font->Scale(1. / factor);
 #endif
 
-  m_dc->SetFont(*font);
+  g_pDC->SetFont(*font);
   wxRect myRect = BBox->rv_rect;
 
   for (int i = 1; i < ctcmgr->Get_max_IDX() + 1; i++) {
@@ -474,7 +446,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
             char sbuf[20];
             if (m_bShowRate) {
               snprintf(sbuf, 19, "%3.1f", fabs(tcvalue));
-              m_dc->DrawText(wxString(sbuf, wxConvUTF8), pixxc, pixyc);
+              g_pDC->DrawText(wxString(sbuf, wxConvUTF8), pixxc, pixyc);
               if (!m_bHighResolution) {
                 shift = 13;
               } else {
@@ -484,7 +456,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
 
             if (m_bShowDirection) {
               snprintf(sbuf, 19, "%03.0f", dir);
-              m_dc->DrawText(wxString(sbuf, wxConvUTF8), pixxc, pixyc + shift);
+              g_pDC->DrawText(wxString(sbuf, wxConvUTF8), pixxc, pixyc + shift);
             }
           }
         }

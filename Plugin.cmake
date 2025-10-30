@@ -86,6 +86,7 @@ set(SRC
         src/georef.h
         src/ODPlatform.cpp
         src/ODPlatform.h
+        src/globals.h
 )
 
 set(PKG_API_LIB api-16)  #  A directory in libs/ e. g., api-17 or api-16

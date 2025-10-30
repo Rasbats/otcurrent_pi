@@ -39,6 +39,8 @@
 #include "otcurrentUIDialog.h"
 
 #include <wx/window.h>
+#include "pidc.h"
+#include "globals.h"
 
 extern wxString myVColour[5];
 
@@ -74,7 +76,7 @@ public:
   wxString GetLongDescription();
 
   //    The override PlugIn Methods
-  bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
+  bool RenderOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
   bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
   void SetCursorLatLon(double lat, double lon);
   void SendTimelineMessage(wxDateTime time);

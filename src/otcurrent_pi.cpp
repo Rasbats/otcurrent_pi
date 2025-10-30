@@ -38,6 +38,9 @@
 #include "otcurrentUIDialogBase.h"
 #include "otcurrentUIDialog.h"
 
+piDC *g_pDC;
+PlugIn_ViewPort g_VP;
+
 wxString myVColour[] = {_T("rgb(127, 0, 255)"), _T("rgb(0, 166, 80)"),
                         _T("rgb(253, 184, 19)"), _T("rgb(248, 128, 64)"),
                         _T("rgb(248, 0, 0)")};
@@ -263,7 +266,8 @@ void otcurrent_pi::ShowPreferencesDialog(wxWindow *parent) {
       m_potcurrentDialog->m_bUseDirection = m_bCopyUseDirection;
       m_potcurrentDialog->m_bUseHighRes = m_bCopyUseHighRes;
       m_potcurrentDialog->m_bUseFillColour = m_botcurrentUseHiDef;
-      m_potcurrentDialog->m_arrow_scale = m_CopyArrowScale + 1; // dropdown index 0 = 1.
+      m_potcurrentDialog->m_arrow_scale =
+          m_CopyArrowScale + 1;  // dropdown index 0 = 1.
 
       m_potcurrentDialog->myUseColour[0] = myVColour[0];
       m_potcurrentDialog->myUseColour[1] = myVColour[1];
@@ -360,7 +364,6 @@ bool otcurrent_pi::LoadConfig(void) {
   m_botcurrentUseHiDef = pConf->Read(_T( "otcurrentUseFillColour" ), 1);
   m_CopyArrowScale = pConf->Read("otcurrentArrowScale", 1L);
 
-
   m_CopyFolderSelected = pConf->Read(_T( "otcurrentFolder" ), "");
   m_CopyIntervalSelected = pConf->Read(_T ( "otcurrentInterval"), 1L);
 
@@ -417,14 +420,13 @@ void otcurrent_pi::SetColorScheme(PI_ColorScheme cs) {
   DimeWindow(m_potcurrentDialog);
 }
 
-bool otcurrent_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
+bool otcurrent_pi::RenderOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp) {
   if (!m_potcurrentDialog || !m_potcurrentDialog->IsShown() ||
       !m_potcurrentOverlayFactory)
     return false;
-
-  piDC pidc(dc);
-  m_potcurrentOverlayFactory->RenderOverlay(pidc, *vp);
-  return true;
+ 
+ return RenderGLOverlay(pcontext, vp);
+  
 }
 
 bool otcurrent_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp) {
@@ -432,10 +434,14 @@ bool otcurrent_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp) {
       !m_potcurrentOverlayFactory)
     return false;
 
-  piDC piDC;
-  glEnable(GL_BLEND);
-  piDC.SetVP(vp);
+  
+  g_VP = *vp;
+  
+  g_pDC = new piDC(pcontext);
+  g_pDC->SetVP(vp);
+  m_potcurrentOverlayFactory->RenderOverlay(*vp);
 
-  m_potcurrentOverlayFactory->RenderOverlay(piDC, *vp);
-  return true;
+  delete g_pDC;
+
+  return TRUE;
 }
