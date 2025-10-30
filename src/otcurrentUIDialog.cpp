@@ -82,7 +82,7 @@ static wxString TToString(const wxDateTime date_time, const int time_zone) {
 #endif
 
 otcurrentUIDialog::otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi)
-    : otcurrentUIDialogBase(parent) {
+    : otcurrentUIDialogBase(parent), ptcmgr(0), m_vp(0) {
   this->Fit();
   pParent = parent;
   pPlugIn = ppi;
