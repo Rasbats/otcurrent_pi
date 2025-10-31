@@ -202,11 +202,6 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     g_pDC->SetGLStipple();
   }
 
-  // Test drawing
-  wxPoint point1(30, 30);
-  wxPoint point2(200, 200);
-  g_pDC->DrawLine(30, 30, 200, 200);
-
   float sin_rot = sin(rot_angle * PI / 180.);
   float cos_rot = cos(rot_angle * PI / 180.);
 
@@ -359,7 +354,7 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString(wxString myText) {
 
 void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
     PlugIn_ViewPort *BBox) {
-  if (BBox->chart_scale > 1000000) {
+  if (BBox->chart_scale > 1400000) {
     return;
   }
 
