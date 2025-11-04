@@ -110,10 +110,11 @@ public:
   int m_CopyIntervalSelected;
   int m_otcurrent_dialog_x, m_otcurrent_dialog_y;
   int m_otcurrent_dialog_sx, m_otcurrent_dialog_sy;
+  bool SaveConfig(void);
 
 private:
   bool LoadConfig(void);
-  bool SaveConfig(void);
+  
 
   wxFileConfig *m_pconfig;
   wxWindow *m_parent_window;
