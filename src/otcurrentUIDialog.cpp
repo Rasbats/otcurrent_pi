@@ -163,7 +163,7 @@ void otcurrentUIDialog::OnMouseEvent(wxMouseEvent& event) {
     g_Window->Move(x, y);
   }
 }
-#endif  // End of Android functions for move/resize
+#endif  // End of Android functions for move/resize/ish
 
 void otcurrentUIDialog::LoadHarmonics() {
   if (!ptcmgr) {
