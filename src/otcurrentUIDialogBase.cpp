@@ -49,7 +49,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase(wxWindow* parent, wxWindowID id,
   wxBoxSizer* bSizer6;
   bSizer6 = new wxBoxSizer(wxHORIZONTAL);
 
-  m_button33 = new wxButton(this, wxID_ANY, _(" Select Date/Time"),
+  m_button33 = new wxButton(this, wxID_ANY, _("   Select Date/Time  "),
                             wxDefaultPosition, wxDefaultSize, 0);
   bSizer6->Add(m_button33, 0, wxALIGN_CENTER_VERTICAL | wxALL | wxEXPAND, 5);
 
@@ -89,7 +89,7 @@ otcurrentUIDialogBase::otcurrentUIDialogBase(wxWindow* parent, wxWindowID id,
   bSizer5 = new wxBoxSizer(wxHORIZONTAL);
 
   m_button2 = new wxButton(sbSizerFolder->GetStaticBox(), wxID_ANY,
-                           _("Select tidal current data"), wxDefaultPosition,
+                           _("   Select tidal current data   "), wxDefaultPosition,
                            wxDefaultSize, 0);
   bSizer5->Add(m_button2, 0, wxALL | wxEXPAND, 5);
 
