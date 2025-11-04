@@ -103,8 +103,6 @@ public:
       IDX;
 };
 
-enum { ID_DASH_PREFS = 999, ID_DASH_RESIZE };
-
 class otcurrentUIDialog : public otcurrentUIDialogBase {
 public:
   otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi);
