@@ -57,7 +57,7 @@ class piDC;
 #define otcurrent_TOOL_POSITION \
   -1  // Request default positioning of toolbar tool
 
-class otcurrent_pi : public opencpn_plugin_116 {
+class otcurrent_pi : public opencpn_plugin_118 {
 public:
   otcurrent_pi(void *ppimgr);
   ~otcurrent_pi(void);
