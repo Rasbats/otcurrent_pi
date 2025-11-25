@@ -12,6 +12,7 @@ Build-Depends: debhelper (>= 9),
  base-files (<< 10) | libwxgtk3.2-dev | libwxgtk3.0-gtk3-dev,
  base-files (<< 10) | libwxgtk-webview3.2-dev | libwxgtk-webview3.0-gtk3-dev,
  libwxsvg-dev | base-files (<< 11),
+ libglew-dev,
  python3-pip,
  python3-setuptools,
  python3-wheel
