@@ -63,6 +63,13 @@ if (WIN32)
 endif ()
 
 #
+# GLEW
+#
+find_package(GLEW)
+target_link_libraries(project_target PRIVATE GLEW::GLEW)
+
+
+#
 # wxWidgets
 #
 set(wxWidgets_USE_DEBUG OFF)
