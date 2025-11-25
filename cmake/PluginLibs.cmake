@@ -41,17 +41,6 @@ endif ()
 if (NOT OPENGL_GLU_FOUND)
   message(WARNING "Cannot find OpenGL GLU extension.")
 endif ()
-
-# Same as above but for glew.
-# https://cmake.org/cmake/help/latest/module/FindGLEW.html
-find_package(GLEW REQUIRED)
-if (TARGET OpenGL::GL)
-# This links libraries against a target, the target being the executable we just added.
-target_link_libraries(${PACKAGE_NAME} GLEW::glew)
-#else
-  message(WARNING "Cannot locate usable GLEW libs and headers.")
-endif ()
-
 if (APPLE)
   # As of 3.19.2, cmake's FindOpenGL does not link to the directory
   # containing gl.h. cmake bug? Intended due to missing subdir GL/gl.h?
@@ -85,7 +74,6 @@ set(WX_COMPONENTS base core net xml html adv stc aui)
 if (TARGET OpenGL::OpenGL OR TARGET OpenGL::GL)
   list(APPEND WX_COMPONENTS gl)
 endif ()
-
 
 find_package(wxWidgets REQUIRED ${WX_COMPONENTS})
 include(${wxWidgets_USE_FILE})
