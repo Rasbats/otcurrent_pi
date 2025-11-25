@@ -45,6 +45,9 @@
 #include "GL/glext.h"
 #endif
 
+#if defined(__MSVC__)
+#include <GL/glew.h>
+#endif
 
 using namespace std;
 
