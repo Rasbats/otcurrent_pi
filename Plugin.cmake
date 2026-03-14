@@ -34,7 +34,7 @@ option(OTCURRENT_USE_SVG "Use SVG graphics" ON)
 # -------  Plugin setup --------
 #
 set(PKG_NAME otcurrent_pi)
-set(PKG_VERSION  4.5.3)
+set(PKG_VERSION  4.6.0)
 set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME otcurrent)    # Dialogs, installer artifacts, ...
@@ -65,8 +65,6 @@ set(SRC
         src/tcmgr.h
         src/timectrl.cpp
         src/timectrl.h
-        src/android/wx/datectrl.h
-        src/android/wx/timectrl.h
         src/IDX_entry.cpp
         src/IDX_entry.h
         src/logger.cpp
@@ -84,9 +82,6 @@ set(SRC
         src/TCDS_Binary_Harmonic.h
         src/georef.cpp
         src/georef.h
-        src/ODPlatform.cpp
-        src/ODPlatform.h
-        src/globals.h
 )
 
 set(PKG_API_LIB api-18)  #  A directory in libs/ e. g., api-17 or api-16

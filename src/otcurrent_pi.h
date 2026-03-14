@@ -39,16 +39,12 @@
 #include "otcurrentUIDialog.h"
 
 #include <wx/window.h>
-#include "pidc.h"
-#include "globals.h"
 
 extern wxString myVColour[5];
 
 #include "config.h"
 
 class piDC;
-
-
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
@@ -57,7 +53,7 @@ class piDC;
 #define otcurrent_TOOL_POSITION \
   -1  // Request default positioning of toolbar tool
 
-class otcurrent_pi : public opencpn_plugin_118 {
+class otcurrent_pi : public opencpn_plugin_116 {
 public:
   otcurrent_pi(void *ppimgr);
   ~otcurrent_pi(void);
@@ -76,7 +72,7 @@ public:
   wxString GetLongDescription();
 
   //    The override PlugIn Methods
-  bool RenderOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
+  bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
   bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
   void SetCursorLatLon(double lat, double lon);
   void SendTimelineMessage(wxDateTime time);

@@ -92,7 +92,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi)
 
   g_Window = this;
   GetHandle()->setStyleSheet(qtStyleSheet);
-
+  
   Connect(wxEVT_MOTION, wxMouseEventHandler(otcurrentUIDialog::OnMouseEvent));
 
 #endif
@@ -142,6 +142,8 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi)
   double value;
   c.ToDouble(&value);
   m_dInterval = value;
+
+
 }
 
 #ifdef __ANDROID__
@@ -163,7 +165,9 @@ void otcurrentUIDialog::OnMouseEvent(wxMouseEvent& event) {
     g_Window->Move(x, y);
   }
 }
-#endif  // End of Android functions for move/resize/ish
+#endif  // End of Android functions for move/resize
+
+
 
 void otcurrentUIDialog::LoadHarmonics() {
   if (!ptcmgr) {
@@ -212,20 +216,13 @@ void otcurrentUIDialog::LoadTCMFile() {
   TCDir.Append(wxFileName::GetPathSeparator());
   wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
 
-  #ifndef __ANDROID__
   wxString default_tcdata0 = TCDir + _T("harmonics-dwf-20210110-free.tcd");
   wxString default_tcdata1 = TCDir + _T("HARMONIC.IDX");
 
   // if (!TideCurrentDataSet.GetCount()) {
   TideCurrentDataSet.Add(default_tcdata0);
   TideCurrentDataSet.Add(default_tcdata1);
-
-#else
-  wxString tcdata_android = TCDir + _T("HARMONIC.IDX");
-  TideCurrentDataSet.Add(tcdata_android);
-#endif
- 
-
+  //}
 }
 
 otcurrentUIDialog::~otcurrentUIDialog() {
@@ -289,7 +286,7 @@ void otcurrentUIDialog::OpenFile(bool newestFile) {
 
   m_IntervalSelected = pPlugIn->GetIntervalSelected();
   if (m_FolderSelected == wxEmptyString) {
-#ifndef __ANDROID__
+#ifndef __OCPN__ANDROID__
     m_FolderSelected = pPlugIn->GetFolderSelected();
     m_dirPicker1->SetValue(m_FolderSelected);
     wxDirDialog* d = new wxDirDialog(this, _("Choose the tcdata directory"), "",
@@ -299,15 +296,10 @@ void otcurrentUIDialog::OpenFile(bool newestFile) {
       m_FolderSelected = m_dirPicker1->GetValue();
     }
 #else
-
-    wxString dir_spec;
-    int response = PlatformDirSelectorDialog(g_Window, &dir_spec,
-                                             _("Choose Harmonics Directory"),
-                                             m_dirPicker1->GetValue());
-    if (response == wxID_OK) {
-      m_dirPicker1->SetValue(dir_spec);
-      m_FolderSelected = dir_spec;
-    }
+    wxString tc =
+        "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
+    m_dirPicker1->SetValue(tc);
+    m_FolderSelected = tc;
 
 #endif
   }
@@ -316,7 +308,7 @@ void otcurrentUIDialog::OpenFile(bool newestFile) {
 }
 
 void otcurrentUIDialog::OnSelectData(wxCommandEvent& event) {
-#ifndef __ANDROID__
+#ifndef __OCPN__ANDROID__
   wxDirDialog* d =
       new wxDirDialog(this, _("Choose a directory"), "", 0, wxDefaultPosition);
   if (d->ShowModal() == wxID_OK) {
@@ -325,15 +317,11 @@ void otcurrentUIDialog::OnSelectData(wxCommandEvent& event) {
     pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   }
 #else
-  wxString dir_spec;
-  int response = PlatformDirSelectorDialog(g_Window, &dir_spec,
-                                           _("Choose Harmonics Directory"),
-                                           m_dirPicker1->GetValue());
-  if (response == wxID_OK) {
-    m_dirPicker1->SetValue(dir_spec);
-    m_FolderSelected = dir_spec;
-    pPlugIn->m_CopyFolderSelected = m_FolderSelected;
-  }
+  wxString tc =
+      "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
+  m_dirPicker1->SetValue(tc);
+  m_FolderSelected = tc;
+  pPlugIn->m_CopyFolderSelected = m_FolderSelected;
 #endif
 
   LoadTCMFile();
@@ -350,7 +338,7 @@ void otcurrentUIDialog::OnCalendarShow(wxCommandEvent& event) {
   CalendarDialog CalDialog(this, -1, _("START Date/Time"), wxPoint(100, 100),
                            wxSize(-1, -1));
 
-#ifdef __ANDROID__
+#ifdef __OCPN__ANDROID__
   wxDateTime now = wxDateTime::Now();
   CalDialog.dialogCalendar->SetValue(now);
 #endif
@@ -478,7 +466,7 @@ CalendarDialog::CalendarDialog(wxWindow* parent, wxWindowID id,
 
   itemBoxSizerFinal = new wxBoxSizer(wxVERTICAL);
 
-#ifndef __ANDROID__
+#ifndef __OCPN__ANDROID__
 
   dialogCalendar = new wxCalendarCtrl(this, -1, wxDefaultDateTime,
                                       wxDefaultPosition, wxDefaultSize,

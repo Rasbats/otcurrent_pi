@@ -31,21 +31,6 @@
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
 
-#include "globals.h"
-
-#if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
-#include <qopengl.h>
-#include "GL/gl_private.h"
-#elif defined(__APPLE__)
-#include "OpenGL/gl.h"
-#include "OpenGL/glu.h"
-#else
-#include "GL/gl.h"
-#include "GL/glu.h"
-#include "GL/glext.h"
-#endif
-
-
 using namespace std;
 
 class plugIn_Viewport;
@@ -60,20 +45,20 @@ class otcurrentOverlay {
 public:
   otcurrentOverlay(void) {
     m_iTexture = 0;
-    g_pDCBitmap = NULL, m_pRGBA = NULL;
+    m_pDCBitmap = NULL, m_pRGBA = NULL;
   }
 
   ~otcurrentOverlay(void)
 
   {
-    delete g_pDCBitmap, delete[] m_pRGBA;
+    delete m_pDCBitmap, delete[] m_pRGBA;
   }
 
   double m_latoff, m_lonoff;
 
   unsigned int m_iTexture; /* opengl mode */
 
-  wxBitmap *g_pDCBitmap; /* dc mode */
+  wxBitmap *m_pDCBitmap; /* dc mode */
   unsigned char *m_pRGBA;
 
   int m_width;
@@ -98,9 +83,11 @@ public:
     m_ParentSize.SetWidth(w);
     m_ParentSize.SetHeight(h);
   }
-  bool RenderOverlay(PlugIn_ViewPort &vp);
+  bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
 
-  void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox);
+  void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
+                                 bool bforce_redraw_currents,
+                                 bool bdraw_mono_for_mask, wxDateTime myTime);
 
   void Reset();
   wxImage &DrawGLText(double value, int precision);
@@ -120,6 +107,7 @@ public:
   std::map<double, wxImage> m_labelCache;
   std::map<wxString, wxImage> m_labelCacheText;
 
+  piDC *m_dc;
 
   wxPoint p[9];
   wxPoint polyPoints[7];

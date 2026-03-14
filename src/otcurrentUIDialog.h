@@ -56,7 +56,7 @@
 #include <wx/sizer.h>
 #include <wx/event.h>
 #include <wx/menu.h>
-#include "ODPlatform.h"
+
 
 using namespace std;
 
@@ -188,7 +188,7 @@ public:
                  const wxSize& size = wxDefaultSize,
                  long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 
-#ifdef __ANDROID__
+#ifdef __OCPN__ANDROID__
 #include "android/wx/datectrl.h"
   wxDatePickerCtrl* dialogCalendar;
 #else
