@@ -146,9 +146,8 @@ bool otcurrentOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
     glEnable(GL_BLEND);
   }
 
-  wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-              wxFONTWEIGHT_NORMAL);
-  m_dc->SetFont(font);
+  wxFont *font = GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
+  m_dc->SetFont(*font);
 
   wxColour myColour = wxColour("RED");
 
@@ -284,7 +283,7 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
 
     polyPoints[0] = p[3];
     polyPoints[1] = p[4];
-    polyPoints[2] = p[5];   
+    polyPoints[2] = p[5];
 
     rectPoints[0] = p[1];
     rectPoints[1] = p[2];
@@ -377,7 +376,7 @@ wxImage &otcurrentOverlayFactory::DrawGLTextString(wxString myText) {
 void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
     PlugIn_ViewPort *BBox, bool bRebuildSelList, bool bforce_redraw_currents,
     bool bdraw_mono_for_mask, wxDateTime myTime) {
-  if (BBox->chart_scale > 1000000) {
+  if (BBox->chart_scale > 1400000) {
     return;
   }
   wxColour text_color;
@@ -414,27 +413,14 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
   wxDateTime yn = m_dlg.m_dtNow;
   time_t myTimeNow = yn.GetTicks();
 
-  wxFont font;
-
-   if (!m_bHighResolution) {
-    wxFont fontsmall(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-                wxFONTWEIGHT_NORMAL);
-     font = fontsmall; 
-   } else {
-
-     wxFont fontlarge(30, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-                      wxFONTWEIGHT_NORMAL);
-     font = fontlarge; 
-   }
-
-   
+ wxFont *font = GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
 
 #ifdef __WXMSW__
   double factor = (double)(GetOCPNCanvasWindow()->ToDIP(100)) / 100.;
-  font.Scale(1. / factor);
+  font->Scale(1. / factor);
 #endif
 
-  m_dc->SetFont(font);
+  m_dc->SetFont(*font);
   wxRect myRect = BBox->rv_rect;
 
   for (int i = 1; i < ctcmgr->Get_max_IDX() + 1; i++) {
