@@ -107,4 +107,4 @@ ldd app/*/lib/opencpn/*.so
 if [ -d /ci-source ]; then
     sudo chown --reference=/ci-source -R . ../cache || :
 fi
-if [ -z "$CI" ]; then sudo chmod --reference=.. .; fi
+sudo chmod --reference=.. .
