@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 #
-# Build the flatpak artifacts.
+# Build the Flatpak artifacts.
 #
 
-# Copyright (c) 2021 Alec Leamas
+# Copyright (c) 2021-2026 Alec Leamas
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,6 +15,24 @@ set -e
 MANIFEST=$(cd flatpak; ls org.opencpn.OpenCPN.Plugin*yaml)
 echo "Using manifest file: $MANIFEST"
 set -x
+
+if [[ "$BRANCH" == 2208 ]]; then
+  export SDK=22.08
+  export FLATHUB_REPO=flathub
+  export FLATHUB_BRANCH=stable
+elif [[ "$BRANCH" == 2408 ]]; then
+  export SDK=24.08
+  export FLATHUB_REPO=flathub
+  export FLATHUB_BRANCH=stable
+elif [[  "$BRANCH" == 2508 ]]; then
+  export SDK=25.08
+  export FLATHUB_REPO=flathub-beta
+  export FLATHUB_BRANCH=beta
+else
+  echo "Wrong branch: \"$BRANCH\""
+  exit 1
+fi
+
 
 # Load local environment if it exists i. e., this is a local build
 if [ -f ~/.config/local-build.rc ]; then source ~/.config/local-build.rc; fi
@@ -64,26 +82,25 @@ flatpak remote-add --user --if-not-exists flathub-beta \
     https://flathub.org/beta-repo/flathub-beta.flatpakrepo
 flatpak remote-add --user --if-not-exists \
     flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-    # FIXME (leamas) revert to stable when 058 is published there
 flatpak install --user -y --noninteractive \
-    flathub org.freedesktop.Sdk//22.08
+    flathub org.freedesktop.Sdk//${SDK:-22.08}
 
 set -x
 cd $builddir
 
 # Patch the manifest to use correct branch and runtime unconditionally
 manifest=$(ls ../flatpak/org.opencpn.OpenCPN.Plugin*yaml)
-    # FIXME (leamas) restore beta -> stable when O58 is published
-sed -i  '/^runtime-version/s/:.*/: beta/'  $manifest
+sed -i  '/^runtime-version/s/:.*/:'" ${FLATHUB_BRANCH:-stable}/"  $manifest
+sed -i  '/^sdk:/s|//.*|//'"${SDK:-24.08}|"  $manifest
 
 flatpak install --user -y --or-update --noninteractive \
-    flathub-beta  org.opencpn.OpenCPN
-flatpak remote-add --user --if-not-exists \
-    flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    ${FLATHUB_REPO:-flathub}  org.opencpn.OpenCPN
 
 # Configure and build the plugin tarball and metadata.
-cmake -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE:-Release} ..
+cmake \
+    -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE:-Release} \
+    -DOCPN_TARGET_TUPLE="flatpak-$(uname -m);${SDK};$(uname -m)" \
+    ..
 # Do not build flatpak in parallel; make becomes unreliable
 make -j 1 VERBOSE=1 flatpak
 
