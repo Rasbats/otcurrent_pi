@@ -12,6 +12,7 @@ wxBitmap *_img_otcurrent;
 wxBitmap *_img_Clock;
 
 #ifdef OTCURRENT_USE_SVG
+#include <cstdint>
 #include "ocpn_plugin.h"
 wxString _svg_otcurrent;
 wxString _svg_otcurrent_rollover;

@@ -43,7 +43,6 @@
 extern wxString myVColour[5];
 
 #include "config.h"
-#include <cstdint>
 
 class piDC;
 
