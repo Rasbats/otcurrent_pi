@@ -53,7 +53,7 @@ class piDC;
 #define otcurrent_TOOL_POSITION \
   -1  // Request default positioning of toolbar tool
 
-class otcurrent_pi : public opencpn_plugin_116 {
+class otcurrent_pi : public opencpn_plugin_118 {
 public:
   otcurrent_pi(void *ppimgr);
   ~otcurrent_pi(void);
@@ -62,14 +62,19 @@ public:
   int Init(void);
   bool DeInit(void);
 
-  int GetAPIVersionMajor();
-  int GetAPIVersionMinor();
-  int GetPlugInVersionMajor();
-  int GetPlugInVersionMinor();
-  wxBitmap *GetPlugInBitmap();
-  wxString GetCommonName();
-  wxString GetShortDescription();
-  wxString GetLongDescription();
+  int GetAPIVersionMajor() override;
+  int GetAPIVersionMinor() override;
+  int GetPlugInVersionMajor() override;
+  int GetPlugInVersionMinor() override;
+  int GetPlugInVersionPatch() override;
+  int GetPlugInVersionPost() override;
+  const char *GetPlugInVersionPre() override;
+  const char *GetPlugInVersionBuild() override;
+
+  wxBitmap *GetPlugInBitmap() override;
+  wxString GetCommonName() override;
+  wxString GetShortDescription() override;
+  wxString GetLongDescription() override;
 
   //    The override PlugIn Methods
   bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
@@ -106,6 +111,8 @@ public:
   int m_CopyIntervalSelected;
   int m_otcurrent_dialog_x, m_otcurrent_dialog_y;
   int m_otcurrent_dialog_sx, m_otcurrent_dialog_sy;
+
+  wxBitmap m_panel_bitmap;
 
 private:
   bool LoadConfig(void);

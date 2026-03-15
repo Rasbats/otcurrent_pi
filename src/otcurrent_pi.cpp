@@ -64,7 +64,7 @@ extern "C" DECL_EXP void destroy_pi(opencpn_plugin *p) { delete p; }
 //
 //---------------------------------------------------------------------------------------------------------
 
-otcurrent_pi::otcurrent_pi(void *ppimgr) : opencpn_plugin_116(ppimgr) {
+otcurrent_pi::otcurrent_pi(void *ppimgr) : opencpn_plugin_118(ppimgr) {
   // Create the PlugIn icons
   initialize_images();
 
@@ -180,19 +180,19 @@ int otcurrent_pi::GetPlugInVersionMajor() { return PLUGIN_VERSION_MAJOR; }
 
 int otcurrent_pi::GetPlugInVersionMinor() { return PLUGIN_VERSION_MINOR; }
 
-wxBitmap *otcurrent_pi::GetPlugInBitmap() { return &m_panelBitmap; }
 
-wxString otcurrent_pi::GetCommonName() { return _T("otcurrent"); }
 
-wxString otcurrent_pi::GetShortDescription() {
-  return _("otcurrent PlugIn for OpenCPN");
-}
+int GetPlugInVersionPatch() { return PLUGIN_VERSION_PATCH; }
+int GetPlugInVersionPost() { return PLUGIN_VERSION_TWEAK; }
+const char *GetPlugInVersionPre() { return PKG_PRERELEASE; }
+const char *GetPlugInVersionBuild() { return PKG_BUILD_INFO; }
+wxBitmap *otcurrent_pi::GetPlugInBitmap() { return &m_panel_bitmap; }
 
-wxString otcurrent_pi::GetLongDescription() {
-  return _(
-      "otcurrent PlugIn for OpenCPN\nProvides an overlay of Tidal Current (Stream) Arrows.\n\n\
-			   ");
-}
+wxString otcurrent_pi::GetCommonName() { return PLUGIN_API_NAME; }
+
+wxString otcurrent_pi::GetShortDescription() { return PKG_SUMMARY; }
+
+wxString otcurrent_pi::GetLongDescription() { return PKG_DESCRIPTION; }
 
 void otcurrent_pi::SetDefaults(void) {}
 
@@ -263,7 +263,8 @@ void otcurrent_pi::ShowPreferencesDialog(wxWindow *parent) {
       m_potcurrentDialog->m_bUseDirection = m_bCopyUseDirection;
       m_potcurrentDialog->m_bUseHighRes = m_bCopyUseHighRes;
       m_potcurrentDialog->m_bUseFillColour = m_botcurrentUseHiDef;
-      m_potcurrentDialog->m_arrow_scale = m_CopyArrowScale + 1; // dropdown index 0 = 1.
+      m_potcurrentDialog->m_arrow_scale =
+          m_CopyArrowScale + 1;  // dropdown index 0 = 1.
 
       m_potcurrentDialog->myUseColour[0] = myVColour[0];
       m_potcurrentDialog->myUseColour[1] = myVColour[1];
@@ -359,7 +360,6 @@ bool otcurrent_pi::LoadConfig(void) {
   m_bCopyUseHighRes = pConf->Read(_T("otcurrentUseHighResolution"), 1);
   m_botcurrentUseHiDef = pConf->Read(_T( "otcurrentUseFillColour" ), 1);
   m_CopyArrowScale = pConf->Read("otcurrentArrowScale", 1L);
-
 
   m_CopyFolderSelected = pConf->Read(_T( "otcurrentFolder" ), "");
   m_CopyIntervalSelected = pConf->Read(_T ( "otcurrentInterval"), 1L);
