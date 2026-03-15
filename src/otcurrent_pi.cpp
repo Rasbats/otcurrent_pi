@@ -37,6 +37,8 @@
 #include "otcurrent_pi.h"
 #include "otcurrentUIDialogBase.h"
 #include "otcurrentUIDialog.h"
+#include "plug_utils.h"
+
 
 wxString myVColour[] = {_T("rgb(127, 0, 255)"), _T("rgb(0, 166, 80)"),
                         _T("rgb(253, 184, 19)"), _T("rgb(248, 128, 64)"),
@@ -68,30 +70,17 @@ otcurrent_pi::otcurrent_pi(void *ppimgr) : opencpn_plugin_118(ppimgr) {
   // Create the PlugIn icons
   initialize_images();
 
-  wxFileName fn;
-  wxString tmp_path;
-
-  tmp_path = GetPluginDataDir("otcurrent_pi");
-  fn.SetPath(tmp_path);
-  fn.AppendDir(_T("data"));
-  fn.SetFullName("otcurrent_panel_icon.png");
-
-  wxString shareLocn = fn.GetFullPath();
-
-  wxInitAllImageHandlers();
-
-  wxLogDebug(wxString("Using icon path: ") + shareLocn);
-  if (!wxImage::CanRead(shareLocn)) {
-    wxLogDebug("Initiating image handlers.");
-    wxInitAllImageHandlers();
-  }
-
-  wxImage panelIcon(shareLocn);
-
-  if (panelIcon.IsOk())
-    m_panelBitmap = wxBitmap(panelIcon);
+  auto icon_path = GetPluginIcon("otcurrent_panel_icon", PKG_NAME);
+  if (icon_path.type == IconPath::Type::Svg)
+    m_panel_bitmap = LoadSvgIcon(icon_path.path.c_str());
+  else if (icon_path.type == IconPath::Type::Png)
+    m_panel_bitmap = LoadPngIcon(icon_path.path.c_str());
+  else  // icon_path.type == NotFound
+    wxLogWarning("Cannot find icon for basename: %s", "otcurrent_panel_icon");
+  if (m_panel_bitmap.IsOk())
+    wxLogDebug("otcurrent_pi::, bitmap OK");
   else
-    wxLogMessage(_("    otcurrent panel icon has NOT been loaded"));
+    wxLogDebug("otcurrent_pi::, bitmap fail");
 
   m_bShowotcurrent = false;
 }

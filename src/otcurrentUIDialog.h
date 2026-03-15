@@ -45,6 +45,7 @@
 
 #include "wx/dateevt.h"
 #include "wx/stattext.h"
+#include <cstdint>
 #include "ocpn_plugin.h"
 #include "wx/dialog.h"
 #include <wx/calctrl.h>
