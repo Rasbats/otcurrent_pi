@@ -27,8 +27,6 @@ set(OCPN_RELEASE_REPO
     "Default repository for tagged builds not matching 'beta'"
 )
 
-option(OTCURRENT_USE_SVG "Use SVG graphics" ON)
-
 #
 #
 # -------  Plugin setup --------
@@ -93,14 +91,8 @@ set(PKG_API_LIB api-18)  #  A directory in libs/ e. g., api-17 or api-16
 macro(late_init)
   # Perform initialization after the PACKAGE_NAME library, compilers
   # and ocpn::api is available.
-  if (OTCURRENT_USE_SVG)
-    target_compile_definitions(${PACKAGE_NAME} PUBLIC OTCURRENT_USE_SVG)
-  endif ()
-
-  add_definitions(-DocpnUSE_GL)
-
-  if (QT_ANDROID)
-    add_definitions(-DUSE_ANDROID_GLES2)
+  if (APPLE)
+    target_compile_definitions(${PACKAGE_NAME} PUBLIC OCPN_GHC_FILESYSTEM)
   endif ()
 
 endmacro ()
@@ -113,5 +105,8 @@ macro(add_plugin_libraries)
   add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/plugin_dc")
   target_link_libraries(${PACKAGE_NAME} ocpn::plugin-dc)
 
+  # The wxsvg library enables SVG overall in the plugin
+  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/wxsvg")
+  target_link_libraries(${PACKAGE_NAME} ocpn::wxsvg)
 
 endmacro ()
