@@ -182,10 +182,10 @@ int otcurrent_pi::GetPlugInVersionMinor() { return PLUGIN_VERSION_MINOR; }
 
 
 
-int GetPlugInVersionPatch() { return PLUGIN_VERSION_PATCH; }
-int GetPlugInVersionPost() { return PLUGIN_VERSION_TWEAK; }
-const char *GetPlugInVersionPre() { return PKG_PRERELEASE; }
-const char *GetPlugInVersionBuild() { return PKG_BUILD_INFO; }
+int otcurrent_pi::GetPlugInVersionPatch() { return PLUGIN_VERSION_PATCH; }
+int otcurrent_pi::GetPlugInVersionPost() { return PLUGIN_VERSION_TWEAK; }
+const char* otcurrent_pi::GetPlugInVersionPre() { return PKG_PRERELEASE; }
+const char* otcurrent_pi::GetPlugInVersionBuild() { return PKG_BUILD_INFO; }
 wxBitmap *otcurrent_pi::GetPlugInBitmap() { return &m_panel_bitmap; }
 
 wxString otcurrent_pi::GetCommonName() { return PLUGIN_API_NAME; }

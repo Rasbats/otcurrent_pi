@@ -33,7 +33,7 @@
 #include "wx/wx.h"
 #include <wx/glcanvas.h>
 #endif  // precompiled headers
-
+#include <cstdint>
 #include "ocpn_plugin.h"
 #include "otcurrentOverlayFactory.h"
 #include "otcurrentUIDialog.h"
@@ -80,7 +80,6 @@ public:
   bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
   bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
   void SetCursorLatLon(double lat, double lon);
-  void SendTimelineMessage(wxDateTime time);
   void SetDefaults(void);
   int GetToolbarToolCount(void);
   void ShowPreferencesDialog(wxWindow *parent);
