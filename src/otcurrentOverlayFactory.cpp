@@ -413,15 +413,10 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
   wxDateTime yn = m_dlg.m_dtNow;
   time_t myTimeNow = yn.GetTicks();
 
- wxFont *font = GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
 
-#ifdef __WXMSW__
-  double factor = (double)(GetOCPNCanvasWindow()->ToDIP(100)) / 100.;
-  font->Scale(1. / factor);
-#endif
-
-  m_dc->SetFont(*font);
   wxRect myRect = BBox->rv_rect;
+
+
 
   for (int i = 1; i < ctcmgr->Get_max_IDX() + 1; i++) {
     const IDX_entry *pIDX = ctcmgr->GetIDX_entry(i);

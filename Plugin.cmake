@@ -32,7 +32,7 @@ set(OCPN_RELEASE_REPO
 # -------  Plugin setup --------
 #
 set(PKG_NAME otcurrent_pi)
-set(PKG_VERSION  4.6.2)
+set(PKG_VERSION  4.6.3)
 set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME otcurrent)    # Dialogs, installer artifacts, ...
