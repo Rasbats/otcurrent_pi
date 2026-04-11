@@ -31,82 +31,89 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
-
 ///////////////////////////////////////////////////////////////////////////////
 /// Class otcurrentUIDialogBase
 ///////////////////////////////////////////////////////////////////////////////
-class otcurrentUIDialogBase : public wxDialog
-{
-	private:
-		wxButton* m_button1;
+class otcurrentUIDialogBase : public wxDialog {
+private:
+  wxButton* m_button1;
 
-	protected:
-		wxBitmapButton* m_bpPrev;
-		wxBitmapButton* m_bpNext;
-		wxButton* m_button33;
-		wxStaticText* m_staticText10;
-		wxBitmapButton* m_bpNow;
-		wxButton* m_button2;
+protected:
+  wxBitmapButton* m_bpPrev;
+  wxBitmapButton* m_bpNext;
+  wxButton* m_button33;
+  wxStaticText* m_staticText10;
+  wxBitmapButton* m_bpNow;
+  wxButton* m_button2;
 
-		// Virtual event handlers, override them in your derived class
-		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
-		virtual void OnSize( wxSizeEvent& event ) { event.Skip(); }
-		virtual void OnPrev( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnNext( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnCalendarShow( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnNow( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnSelectData( wxCommandEvent& event ) { event.Skip(); }
-		virtual void About( wxCommandEvent& event ) { event.Skip(); }
+  // Virtual event handlers, override them in your derived class
+  virtual void OnClose(wxCloseEvent& event) { event.Skip(); }
+  virtual void OnSize(wxSizeEvent& event) { event.Skip(); }
+  virtual void OnPrev(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnNext(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnCalendarShow(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnNow(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnSelectData(wxCommandEvent& event) { event.Skip(); }
+  virtual void About(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnPreferences(wxCommandEvent& event) { event.Skip(); }
 
+public:
+  wxTextCtrl* m_textCtrl1;
+  wxChoice* m_choice1;
+  wxTextCtrl* m_dirPicker1;
+  wxButton* m_button8;
 
-	public:
-		wxTextCtrl* m_textCtrl1;
-		wxChoice* m_choice1;
-		wxTextCtrl* m_dirPicker1;
+  otcurrentUIDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
+                        const wxString& title = _("               otcurrent"),
+                        const wxPoint& pos = wxDefaultPosition,
+                        const wxSize& size = wxSize(-1, -1),
+                        long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 
-		otcurrentUIDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("               otcurrent"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
-
-		~otcurrentUIDialogBase();
-
+  ~otcurrentUIDialogBase();
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class otcurrentPreferencesDialogBase
 ///////////////////////////////////////////////////////////////////////////////
-class otcurrentPreferencesDialogBase : public wxDialog
-{
-	private:
-		wxStaticText* staticTextLess05;
-		wxStaticText* staticText0515;
-		wxStaticText* staticText1525 ;
-		wxStaticText* staticText2535;
-		wxStaticText* m_staticTextMore35;
+class otcurrentPreferencesDialogBase : public wxDialog {
+private:
+  wxStaticText* staticTextLess05;
+  wxStaticText* staticText0515;
+  wxStaticText* staticText1525;
+  wxStaticText* staticText2535;
+  wxStaticText* m_staticTextMore35;
 
-	protected:
-		wxStaticText* m_staticText8;
-		wxStdDialogButtonSizer* m_sdbSizerButtons;
-		wxButton* m_sdbSizerButtonsOK;
-		wxButton* m_sdbSizerButtonsCancel;
-
-		// Virtual event handlers, override them in your derived class
-		virtual void OnChoice( wxCommandEvent& event ) { event.Skip(); }
+protected:
+  wxStaticText* m_staticText8;
+  wxStdDialogButtonSizer* m_sdbSizerButtons;
+  wxButton* m_sdbSizerButtonsOK;
+  wxButton* m_sdbSizerButtonsCancel;
 
 
-	public:
-		wxCheckBox* m_cbUseRate;
-		wxCheckBox* m_cbUseDirection;
-		wxCheckBox* m_cbFillColour;
-		wxCheckBox* m_cbUseHighRes;
-		wxColourPickerCtrl* myColourPicker0;
-		wxColourPickerCtrl* myColourPicker1;
-		wxColourPickerCtrl* myColourPicker2;
-		wxColourPickerCtrl* myColourPicker3;
-		wxColourPickerCtrl* myColourPicker4;
-		wxChoice* m_cScale;
+  // Virtual event handlers, override them in your derived class
+  virtual void OnChoice(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnIconsSlidersChange(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnFontSlidersChange(wxCommandEvent& event) { event.Skip(); }
 
-		otcurrentPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 410,440 ), long style = wxCAPTION|wxRESIZE_BORDER );
+public:
+  wxCheckBox* m_cbUseRate;
+  wxCheckBox* m_cbUseDirection;
+  wxCheckBox* m_cbFillColour;
+  wxCheckBox* m_cbUseHighRes;
+  wxColourPickerCtrl* myColourPicker0;
+  wxColourPickerCtrl* myColourPicker1;
+  wxColourPickerCtrl* myColourPicker2;
+  wxColourPickerCtrl* myColourPicker3;
+  wxColourPickerCtrl* myColourPicker4;
+  wxChoice* m_cScale;
+  wxSlider* m_sIconSizeFactor;
+  wxSlider* m_sFontSizeFactor;
 
-		~otcurrentPreferencesDialogBase();
+  otcurrentPreferencesDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
+                                 const wxString& title = _("Preferences"),
+                                 const wxPoint& pos = wxDefaultPosition,
+                                 const wxSize& size = wxSize(410, 440),
+                                 long style = wxCAPTION | wxRESIZE_BORDER);
 
+  ~otcurrentPreferencesDialogBase();
 };
-

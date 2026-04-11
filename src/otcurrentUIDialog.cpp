@@ -259,6 +259,35 @@ void otcurrentUIDialog::SetCursorLatLon(double lat, double lon) {
   m_cursor_lat = lat;
 }
 
+void otcurrentUIDialog::SetScaledBitmaps(double scalefactor) {
+  //  Round to the nearest "quarter", to avoid rendering artifacts
+  double myscaledFactor = wxRound(scalefactor * 4.0) / 4.0;
+  int w, h;
+  w = 32 * scalefactor;  // 32x32 is the standard bitmap's size
+  h = 32 * scalefactor;
+
+#ifdef ocpnUSE_SVG
+  wxBitmap bitmap = GetBitmapFromSVGFile(_svg_otcurrent_prefs, w, h);
+  m_button8->SetBitmap(bitmap);
+
+#else
+  wxImage im0 =
+      wxBitmap(prev_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  m_bpPrev->SetBitmap(wxBitmap(im0));
+  wxImage im1 =
+      wxBitmap(next_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  m_bpNext->SetBitmap(wxBitmap(im1));
+  wxImage im2 =
+      wxBitmap(info_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  m_button8->SetBitmap(wxBitmap(im2));
+  wxImage im3 =
+      wxBitmap(now_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  m_bpNow->SetBitmap(wxBitmap(im3));
+#endif
+
+  this->Refresh();
+}
+
 void otcurrentUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
   if (m_vp == vp) return;
 
@@ -305,6 +334,10 @@ void otcurrentUIDialog::OpenFile(bool newestFile) {
   }
 
   LoadTCMFile();
+}
+
+void otcurrentUIDialog::OnPreferences(wxCommandEvent& event) {
+  pPlugIn->ShowPreferencesDialog(pParent);
 }
 
 void otcurrentUIDialog::OnSelectData(wxCommandEvent& event) {

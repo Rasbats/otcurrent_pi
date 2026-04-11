@@ -144,6 +144,8 @@ public:
 
   time_t myCurrentTime;
 
+  void SetScaledBitmaps(double scalefactor);
+  void OnPreferences(wxCommandEvent& event);
   void OnCalendarShow(wxCommandEvent& event);
   void OnSelectData(wxCommandEvent& event);
   void OnSelectInterval(wxCommandEvent& event);

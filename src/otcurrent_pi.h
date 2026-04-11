@@ -92,6 +92,11 @@ public:
   void SetotcurrentDialogSizeY(int x) { m_otcurrent_dialog_sy = x; }
   void SetColorScheme(PI_ColorScheme cs);
 
+  // ------------------------------------------------------------------------
+  //                 Preferences Dialog Implementation
+  // ------------------------------------------------------------------------
+
+  ///////////////////////////////////////////////////////////////////////////
   void OnotcurrentDialogClose();
 
   bool GetCopyRate() { return m_bCopyUseRate; }
@@ -112,6 +117,12 @@ public:
   int m_otcurrent_dialog_sx, m_otcurrent_dialog_sy;
 
   wxBitmap m_panel_bitmap;
+  //void OnIconsSlidersChange(wxCommandEvent &event);
+  //void OnFontSlidersChange(wxCommandEvent &event);
+  void SetDialogFont(wxWindow *dialog, wxFont *font);
+  double my_IconsScaleFactor;
+  int my_FontpointSizeFactor;
+  otcurrentUIDialog *m_potcurrentDialog;
 
 private:
   bool LoadConfig(void);
@@ -120,7 +131,6 @@ private:
   wxFileConfig *m_pconfig;
   wxWindow *m_parent_window;
 
-  otcurrentUIDialog *m_potcurrentDialog;
   otcurrentOverlayFactory *m_potcurrentOverlayFactory;
 
   int m_display_width, m_display_height;
@@ -159,5 +169,7 @@ public:
   ~otcurrentPreferencesDialog() {}
 
 private:
+  void OnIconsSlidersChange(wxCommandEvent &event);
+  void OnFontSlidersChange(wxCommandEvent &event);
 };
 #endif

@@ -59,6 +59,7 @@ extern "C" DECL_EXP void destroy_pi(opencpn_plugin *p) { delete p; }
 //---------------------------------------------------------------------------------------------------------
 
 #include "icons.h"
+otcurrent_pi *g_pi;
 
 //---------------------------------------------------------------------------------------------------------
 //
@@ -83,7 +84,13 @@ otcurrent_pi::otcurrent_pi(void *ppimgr) : opencpn_plugin_118(ppimgr) {
     wxLogDebug("otcurrent_pi::, bitmap fail");
 
   m_bShowotcurrent = false;
+
+  
+  g_pi = this;
+  
 }
+
+
 
 otcurrent_pi::~otcurrent_pi(void) {
   delete _img_otcurrent_pi;
@@ -117,7 +124,7 @@ int otcurrent_pi::Init(void) {
   //    This PlugIn needs a toolbar icon, so request its insertion if enabled
   //    locally
   if (m_botcurrentShowIcon) {
-#ifdef OTCURRENT_USE_SVG
+#ifdef ocpnUSE_SVG
     m_leftclick_tool_id = InsertPlugInToolSVG(
         _T( "otcurrent" ), _svg_otcurrent, _svg_otcurrent_rollover,
         _svg_otcurrent_toggled, wxITEM_CHECK, _("otcurrent"), _T( "" ), NULL,
@@ -276,7 +283,35 @@ void otcurrent_pi::ShowPreferencesDialog(wxWindow *parent) {
   }
 }
 
+#ifdef __WXMSW__
+void otcurrent_pi::SetDialogFont(wxWindow *dialog, wxFont *font) {
+  // We have to go down to all necessary windows levels. In this case
+  //+  two levels are enough
+  dialog->SetFont(*font);  // dialog level
+  wxFont &ft = dialog->GetFont();
+  ft.SetNumericWeight(wxFONTWEIGHT_BOLD);
+  wxWindowList list = dialog->GetChildren();  // first level
+  for (wxWindowList::iterator it = list.begin(); it != list.end(); ++it) {
+    wxWindow *win = *it;
+    win->GetId() == wxID_FIND ? win->SetFont(ft) : win->SetFont(*font);
+    wxWindowList list1 = win->GetChildren();  // second level
+    for (wxWindowList::iterator it = list1.begin(); it != list1.end(); ++it) {
+      wxWindow *win1 = *it;
+      win1->GetId() == wxID_FIND ? win1->SetFont(ft) : win1->SetFont(*font);
+    }
+  }
+}
+#endif
+
 void otcurrent_pi::OnToolbarToolCallback(int id) {
+  //  get icons scale factor
+  double scalefactor = GetOCPNGUIToolScaleFactor_PlugIn();
+  scalefactor *=
+      OCPN_GetWinDIPScaleFactor() * (1. + (my_IconsScaleFactor / 10.));
+  //  get font scale factor
+  wxFont f = *OCPNGetFont(_("Dialog"), 10);
+  f.SetPointSize(f.GetPointSize() + my_FontpointSizeFactor);
+  wxFont *font = &f;
   if (NULL == m_potcurrentDialog) {
     m_potcurrentDialog = new otcurrentUIDialog(m_parent_window, this);
     wxPoint p = wxPoint(m_otcurrent_dialog_x, m_otcurrent_dialog_y);
@@ -292,8 +327,28 @@ void otcurrent_pi::OnToolbarToolCallback(int id) {
 
   m_bShowotcurrent = !m_bShowotcurrent;
 
+   //    Toggle dialog?
+  if (m_bShowotcurrent) {
+    m_potcurrentDialog->SetScaledBitmaps(scalefactor);
+
+#ifdef __WXMSW__
+    wxFont f = *OCPNGetFont(_("Dialog"), 10);
+    f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
+    SetDialogFont(g_pi->m_potcurrentDialog, &f);
+/*                                                        \
+#else                                                     \
+wxFont f = m_pfrcurrentsDialog->m_staticText1->GetFont(); \
+f.SetNumericWeight(wxFONTWEIGHT_BOLD);                    \
+m_pfrcurrentsDialog->m_staticText1->SetFont(f);           \
+m_pfrcurrentsDialog->m_staticText2->SetFont(f);           \
+m_pfrcurrentsDialog->m_staticText211->SetFont(f);         \
+*/                                                        \
+#endif
+  }
+
   //    Toggle dialog?
   if (m_bShowotcurrent) {
+    m_potcurrentDialog->SetScaledBitmaps(scalefactor);
     m_potcurrentDialog->Move(m_otcurrent_dialog_x, m_otcurrent_dialog_y);
     m_potcurrentDialog->SetSize(m_otcurrent_dialog_sx, m_otcurrent_dialog_sy);
     m_potcurrentDialog->Show();
@@ -350,6 +405,9 @@ bool otcurrent_pi::LoadConfig(void) {
   m_botcurrentUseHiDef = pConf->Read(_T( "otcurrentUseFillColour" ), 1);
   m_CopyArrowScale = pConf->Read("otcurrentArrowScale", 1L);
 
+  my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
+  my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
+
   m_CopyFolderSelected = pConf->Read(_T( "otcurrentFolder" ), "");
   m_CopyIntervalSelected = pConf->Read(_T ( "otcurrentInterval"), 1L);
 
@@ -382,6 +440,9 @@ bool otcurrent_pi::SaveConfig(void) {
     pConf->Write(_T("otcurrentUseHighResolution"), m_bCopyUseHighRes);
     pConf->Write(_T( "otcurrentUseFillColour" ), m_botcurrentUseHiDef);
     pConf->Write("otcurrentArrowScale", m_CopyArrowScale);
+
+    pConf->Write("frcurrentsIconscalefactor", my_IconsScaleFactor);
+    pConf->Write("frcurrentsFontpointsizefactor", my_FontpointSizeFactor);
 
     pConf->Write(_T( "otcurrentFolder" ), m_CopyFolderSelected);
     pConf->Write(_T( "otcurrentInterval" ), m_CopyIntervalSelected);
@@ -427,4 +488,34 @@ bool otcurrent_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp) {
 
   m_potcurrentOverlayFactory->RenderOverlay(piDC, *vp);
   return true;
+}
+
+// ------------------------------------------------------------------------
+//                 Preferences Dialog Implementation
+// ------------------------------------------------------------------------
+void otcurrentPreferencesDialog::OnIconsSlidersChange(wxCommandEvent &event) {
+  if (g_pi) {
+    g_pi->my_IconsScaleFactor = (double)event.GetInt();
+    if (g_pi->m_potcurrentDialog) {
+      double scalefactor = GetOCPNGUIToolScaleFactor_PlugIn() *
+                           OCPN_GetWinDIPScaleFactor() *
+                           (1. + ((double)event.GetInt() / 10.));
+      g_pi->m_potcurrentDialog->SetScaledBitmaps(scalefactor);
+      g_pi->m_potcurrentDialog->Fit();
+    }
+  }
+}
+void otcurrentPreferencesDialog::OnFontSlidersChange(wxCommandEvent &event) {
+  if (g_pi) {
+    g_pi->my_FontpointSizeFactor = event.GetInt();
+    if (g_pi->m_potcurrentDialog) {
+      wxFont f = *OCPNGetFont(_("Dialog"), 10);
+      f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
+      wxFont *font = &f;
+#ifdef __WXMSW__
+      g_pi->SetDialogFont(g_pi->m_potcurrentDialog, font);
+#endif
+      g_pi->m_potcurrentDialog->Fit();
+    }
+  }
 }

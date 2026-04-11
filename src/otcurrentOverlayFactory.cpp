@@ -146,7 +146,7 @@ bool otcurrentOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
     glEnable(GL_BLEND);
   }
 
-  wxFont *font = GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
+  wxFont *font = GetOCPNScaledFont_PlugIn(_("CurrentValue"), 0);
   m_dc->SetFont(*font);
 
   wxColour myColour = wxColour("RED");
@@ -301,77 +301,8 @@ bool otcurrentOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
   return true;
 }
 
-wxImage &otcurrentOverlayFactory::DrawGLText(double value, int precision) {
-  wxString labels;
 
-  labels.Printf(_T("%.*f"), precision, value);
-  return DrawGLTextString(labels);
-}
 
-wxImage &otcurrentOverlayFactory::DrawGLTextDir(double value, int precision) {
-  wxString labels;
-
-  labels.Printf(_T("%03.*f"), precision, value);
-  return DrawGLTextString(labels);
-}
-
-wxImage &otcurrentOverlayFactory::DrawGLTextString(wxString myText) {
-  wxString labels;
-  labels = myText;
-  std::map<wxString, wxImage>::iterator it;
-
-  it = m_labelCacheText.find(labels);
-  if (it != m_labelCacheText.end()) return it->second;
-
-  wxMemoryDC mdc(wxNullBitmap);
-
-  mdc.SetFont(*pTCFont);
-
-  int w, h;
-  mdc.GetTextExtent(labels, &w, &h);
-
-  int label_offset = 10;  // 5
-
-  wxBitmap bm(w + label_offset * 2, h + 1);
-  mdc.SelectObject(bm);
-  mdc.Clear();
-
-  wxPen penText(m_text_color);
-  mdc.SetPen(penText);
-
-  mdc.SetBrush(*wxTRANSPARENT_BRUSH);
-  mdc.SetTextForeground(m_text_color);
-  mdc.SetTextBackground(wxTRANSPARENT);
-
-  int xd = 0;
-  int yd = 0;
-
-  mdc.DrawText(labels, label_offset + xd, yd + 1);
-  mdc.SelectObject(wxNullBitmap);
-
-  m_labelCacheText[myText] = bm.ConvertToImage();
-
-  m_labelCacheText[myText].InitAlpha();
-
-  wxImage &image = m_labelCacheText[myText];
-
-  unsigned char *d = image.GetData();
-  unsigned char *a = image.GetAlpha();
-
-  w = image.GetWidth(), h = image.GetHeight();
-  for (int y = 0; y < h; y++) {
-    for (int x = 0; x < w; x++) {
-      int r, g, b;
-      int ioff = (y * w + x);
-      r = d[ioff * 3 + 0];
-      g = d[ioff * 3 + 1];
-      b = d[ioff * 3 + 2];
-
-      a[ioff] = 255 - (r + g + b) / 3;
-    }
-  }
-  return image;
-}
 
 void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
     PlugIn_ViewPort *BBox, bool bRebuildSelList, bool bforce_redraw_currents,
@@ -461,7 +392,7 @@ void otcurrentOverlayFactory::DrawAllCurrentsInViewPort(
               if (!m_bHighResolution) {
                 shift = 13;
               } else {
-                shift = 35;
+                shift = 26;
               }
             }
 

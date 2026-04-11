@@ -90,9 +90,6 @@ public:
                                  bool bdraw_mono_for_mask, wxDateTime myTime);
 
   void Reset();
-  wxImage &DrawGLText(double value, int precision);
-  wxImage &DrawGLTextDir(double value, int precision);
-  wxImage &DrawGLTextString(wxString myText);
 
   // void DrawLine(double x1, double y1, double x2, double y2, const wxColour
   // &color, double width);
