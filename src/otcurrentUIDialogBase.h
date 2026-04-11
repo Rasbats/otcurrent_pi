@@ -28,6 +28,7 @@
 #include <wx/dialog.h>
 #include <wx/checkbox.h>
 #include <wx/clrpicker.h>
+#include <wx/slider.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
