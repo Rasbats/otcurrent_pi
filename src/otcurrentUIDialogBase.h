@@ -55,6 +55,7 @@ protected:
   virtual void OnCalendarShow(wxCommandEvent& event) { event.Skip(); }
   virtual void OnNow(wxCommandEvent& event) { event.Skip(); }
   virtual void OnSelectData(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnSourceMode(wxCommandEvent& event) { event.Skip(); }
   virtual void About(wxCommandEvent& event) { event.Skip(); }
   virtual void OnPreferences(wxCommandEvent& event) { event.Skip(); }
 
@@ -63,6 +64,7 @@ public:
   wxChoice* m_choice1;
   wxTextCtrl* m_dirPicker1;
   wxButton* m_button8;
+  wxChoice* m_sourceModeChoice;
 
   otcurrentUIDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
                         const wxString& title = _("               otcurrent"),

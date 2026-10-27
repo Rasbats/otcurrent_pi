@@ -57,6 +57,7 @@
 #include <wx/sizer.h>
 #include <wx/event.h>
 #include <wx/menu.h>
+#include <wx/tokenzr.h>
 
 
 using namespace std;
@@ -139,6 +140,7 @@ public:
   bool onPrev;
 
   wxString m_FolderSelected;
+  int source_mode;
   TCMgr* ptcmgr;
   int m_IntervalSelected;
 
@@ -153,7 +155,8 @@ public:
   wxString MakeDateTimeLabel(wxDateTime myDateTime);
 
   wxArrayString TideCurrentDataSet;
-
+  wxString GetSingleTCFile(wxArrayString tc_files);
+  void OnSourceMode(wxCommandEvent& event);
   void LoadTCMFile();
   void LoadHarmonics();
 

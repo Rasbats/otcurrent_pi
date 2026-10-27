@@ -106,12 +106,14 @@ public:
   int GetCopyArrowScale() { return m_CopyArrowScale; }
 
   wxString GetFolderSelected() { return m_CopyFolderSelected; }
+  int GetSourceModeSelected() { return m_CopySourceModeSelected; }
   int GetIntervalSelected() { return m_CopyIntervalSelected; }
 
   otcurrentOverlayFactory *GetotcurrentOverlayFactory() {
     return m_potcurrentOverlayFactory;
   }
   wxString m_CopyFolderSelected;
+  int m_CopySourceModeSelected;
   int m_CopyIntervalSelected;
   int m_otcurrent_dialog_x, m_otcurrent_dialog_y;
   int m_otcurrent_dialog_sx, m_otcurrent_dialog_sy;

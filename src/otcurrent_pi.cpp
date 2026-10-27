@@ -39,7 +39,6 @@
 #include "otcurrentUIDialog.h"
 #include "plug_utils.h"
 
-
 wxString myVColour[] = {_T("rgb(127, 0, 255)"), _T("rgb(0, 166, 80)"),
                         _T("rgb(253, 184, 19)"), _T("rgb(248, 128, 64)"),
                         _T("rgb(248, 0, 0)")};
@@ -85,12 +84,8 @@ otcurrent_pi::otcurrent_pi(void *ppimgr) : opencpn_plugin_118(ppimgr) {
 
   m_bShowotcurrent = false;
 
-  
   g_pi = this;
-  
 }
-
-
 
 otcurrent_pi::~otcurrent_pi(void) {
   delete _img_otcurrent_pi;
@@ -138,7 +133,6 @@ int otcurrent_pi::Init(void) {
   return (WANTS_OVERLAY_CALLBACK | WANTS_OPENGL_OVERLAY_CALLBACK |
           WANTS_CURSOR_LATLON | WANTS_TOOLBAR_CALLBACK | INSTALLS_TOOLBAR_TOOL |
           WANTS_CONFIG | WANTS_PREFERENCES
-          // WANTS_PLUGIN_MESSAGING
   );
 }
 
@@ -147,10 +141,6 @@ bool otcurrent_pi::DeInit(void) {
     m_potcurrentDialog->Close();
     delete m_potcurrentDialog;
     m_potcurrentDialog = NULL;
-
-    // m_CopyFolderSelected = m_potcurrentDialog->m_FolderSelected;
-    // m_CopyIntervalSelected = m_potcurrentDialog->m_IntervalSelected;
-
     m_botcurrentShowIcon = false;
     SetToolbarItemState(m_leftclick_tool_id, m_botcurrentShowIcon);
   }
@@ -176,12 +166,10 @@ int otcurrent_pi::GetPlugInVersionMajor() { return PLUGIN_VERSION_MAJOR; }
 
 int otcurrent_pi::GetPlugInVersionMinor() { return PLUGIN_VERSION_MINOR; }
 
-
-
 int otcurrent_pi::GetPlugInVersionPatch() { return PLUGIN_VERSION_PATCH; }
 int otcurrent_pi::GetPlugInVersionPost() { return PLUGIN_VERSION_TWEAK; }
-const char* otcurrent_pi::GetPlugInVersionPre() { return PKG_PRERELEASE; }
-const char* otcurrent_pi::GetPlugInVersionBuild() { return PKG_BUILD_INFO; }
+const char *otcurrent_pi::GetPlugInVersionPre() { return PKG_PRERELEASE; }
+const char *otcurrent_pi::GetPlugInVersionBuild() { return PKG_BUILD_INFO; }
 wxBitmap *otcurrent_pi::GetPlugInBitmap() { return &m_panel_bitmap; }
 
 wxString otcurrent_pi::GetCommonName() { return PLUGIN_API_NAME; }
@@ -219,7 +207,6 @@ void otcurrent_pi::ShowPreferencesDialog(wxWindow *parent) {
   Pref->myColourPicker4->SetColour(myC4);
 
   if (Pref->ShowModal() == wxID_OK) {
-    // bool copyFillColour = true;
 
     myVColour[0] = Pref->myColourPicker0->GetColour().GetAsString();
     myVColour[1] = Pref->myColourPicker1->GetColour().GetAsString();
@@ -327,24 +314,12 @@ void otcurrent_pi::OnToolbarToolCallback(int id) {
 
   m_bShowotcurrent = !m_bShowotcurrent;
 
-   //    Toggle dialog?
-  if (m_bShowotcurrent) {
-    m_potcurrentDialog->SetScaledBitmaps(scalefactor);
-
 #ifdef __WXMSW__
-    wxFont f = *OCPNGetFont(_("Dialog"), 10);
-    f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
-    SetDialogFont(g_pi->m_potcurrentDialog, &f);
-/*                                                        \
-#else                                                     \
-wxFont f = m_pfrcurrentsDialog->m_staticText1->GetFont(); \
-f.SetNumericWeight(wxFONTWEIGHT_BOLD);                    \
-m_pfrcurrentsDialog->m_staticText1->SetFont(f);           \
-m_pfrcurrentsDialog->m_staticText2->SetFont(f);           \
-m_pfrcurrentsDialog->m_staticText211->SetFont(f);         \
-*/                                                        \
+  f = *OCPNGetFont(_("Dialog"), 10);
+  f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
+  SetDialogFont(g_pi->m_potcurrentDialog, &f);
+
 #endif
-  }
 
   //    Toggle dialog?
   if (m_bShowotcurrent) {
@@ -409,6 +384,7 @@ bool otcurrent_pi::LoadConfig(void) {
   my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
 
   m_CopyFolderSelected = pConf->Read(_T( "otcurrentFolder" ), "");
+  m_CopySourceModeSelected = pConf->Read(_T( "otcurrentSourceMode" ), 1L);
   m_CopyIntervalSelected = pConf->Read(_T ( "otcurrentInterval"), 1L);
 
   m_otcurrent_dialog_sx = pConf->Read("otcurrentDialogSizeX", 500L);
@@ -445,6 +421,8 @@ bool otcurrent_pi::SaveConfig(void) {
     pConf->Write("frcurrentsFontpointsizefactor", my_FontpointSizeFactor);
 
     pConf->Write(_T( "otcurrentFolder" ), m_CopyFolderSelected);
+    pConf->Write(_T( "otcurrentSourceMode" ), m_CopySourceModeSelected);
+
     pConf->Write(_T( "otcurrentInterval" ), m_CopyIntervalSelected);
 
     pConf->Write("otcurrentDialogSizeX", m_otcurrent_dialog_sx);

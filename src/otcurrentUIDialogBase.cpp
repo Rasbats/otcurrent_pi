@@ -78,7 +78,21 @@ otcurrentUIDialogBase::otcurrentUIDialogBase(wxWindow* parent, wxWindowID id,
 
   wxStaticBoxSizer* sbSizerFolder;
   sbSizerFolder = new wxStaticBoxSizer(
-      new wxStaticBox(this, wxID_ANY, _("Tidal Data Folder")), wxVERTICAL);
+      new wxStaticBox(this, wxID_ANY, _("Tidal Current Data Source")),
+      wxVERTICAL);
+
+  wxBoxSizer* sourceModeSizer = new wxBoxSizer(wxHORIZONTAL);
+  wxStaticText* sourceModeLabel =
+      new wxStaticText(sbSizerFolder->GetStaticBox(), wxID_ANY, _("Source"));
+  sourceModeSizer->Add(sourceModeLabel, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+  wxString sourceModeChoices[] = {_("IDX files"), _("TCD files")};
+
+  m_sourceModeChoice = new wxChoice(
+      sbSizerFolder->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize,
+      WXSIZEOF(sourceModeChoices), sourceModeChoices, 0);
+  m_sourceModeChoice->SetSelection(0);
+  sourceModeSizer->Add(m_sourceModeChoice, 1, wxALL | wxEXPAND, 5);
+  sbSizerFolder->Add(sourceModeSizer, 0, wxEXPAND, 5);
 
   m_dirPicker1 =
       new wxTextCtrl(sbSizerFolder->GetStaticBox(), wxID_ANY, wxEmptyString,
@@ -91,19 +105,25 @@ otcurrentUIDialogBase::otcurrentUIDialogBase(wxWindow* parent, wxWindowID id,
   m_button2 = new wxButton(sbSizerFolder->GetStaticBox(), wxID_ANY,
                            _("Select tidal current data"), wxDefaultPosition,
                            wxDefaultSize, 0);
-  bSizer5->Add(m_button2, 0, wxALL, 5);
+  m_button2->SetBackgroundColour(wxColour(255, 255, 0));
 
-  m_button8 =
-      new wxBitmapButton(sbSizerFolder->GetStaticBox(), wxID_ANY, wxNullBitmap,
-                         wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW | 0);
-  m_button8->SetToolTip(_("Preferences"));
-  sbSizerFolder->Add(m_button8, 0, wxALIGN_RIGHT | wxALL, 5);
+  bSizer5->Add(m_button2, 0, wxALIGN_LEFT | wxALL, 5);
 
   bSizer5->Add(0, 0, 1, wxEXPAND, 5);
 
   m_button1 = new wxButton(sbSizerFolder->GetStaticBox(), wxID_ANY, _("Help"),
                            wxDefaultPosition, wxDefaultSize, 0);
-  bSizer5->Add(m_button1, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+  bSizer5->Add(m_button1, 0, wxALIGN_CENTER | wxALL, 5);
+
+  bSizer5->Add( 0, 0, 1, wxEXPAND, 5 );
+
+  m_button8 =
+      new wxBitmapButton(sbSizerFolder->GetStaticBox(), wxID_ANY, wxNullBitmap,
+                         wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW | 0);
+  m_button8->SetToolTip(_("Preferences"));
+  bSizer5->Add(m_button8, 0, wxALIGN_RIGHT | wxALL, 5);
+
+  // bSizer5->Add(0, 0, 1, wxEXPAND, 5);
 
   sbSizerFolder->Add(bSizer5, 0, wxEXPAND, 5);
 
@@ -134,6 +154,11 @@ otcurrentUIDialogBase::otcurrentUIDialogBase(wxWindow* parent, wxWindowID id,
   m_button2->Connect(wxEVT_COMMAND_BUTTON_CLICKED,
                      wxCommandEventHandler(otcurrentUIDialogBase::OnSelectData),
                      NULL, this);
+
+  m_sourceModeChoice->Connect(
+      wxEVT_COMMAND_CHOICE_SELECTED,
+      wxCommandEventHandler(otcurrentUIDialogBase::OnSourceMode), NULL, this);
+
   m_button1->Connect(wxEVT_COMMAND_BUTTON_CLICKED,
                      wxCommandEventHandler(otcurrentUIDialogBase::About), NULL,
                      this);
@@ -163,6 +188,11 @@ otcurrentUIDialogBase::~otcurrentUIDialogBase() {
   m_button2->Disconnect(
       wxEVT_COMMAND_BUTTON_CLICKED,
       wxCommandEventHandler(otcurrentUIDialogBase::OnSelectData), NULL, this);
+
+  m_sourceModeChoice->Disconnect(
+      wxEVT_COMMAND_CHOICE_SELECTED,
+      wxCommandEventHandler(otcurrentUIDialogBase::OnSourceMode), NULL, this);
+
   m_button1->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED,
                         wxCommandEventHandler(otcurrentUIDialogBase::About),
                         NULL, this);

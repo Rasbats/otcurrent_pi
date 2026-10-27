@@ -92,7 +92,7 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi)
 
   g_Window = this;
   GetHandle()->setStyleSheet(qtStyleSheet);
-  
+
   Connect(wxEVT_MOTION, wxMouseEventHandler(otcurrentUIDialog::OnMouseEvent));
 
 #endif
@@ -122,16 +122,15 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi)
   m_bpPrev->SetBitmap(wxBitmap(prev1));
   m_bpNext->SetBitmap(wxBitmap(next1));
   m_bpNow->SetBitmap(*_img_Clock);
-
-  // this->Connect( wxEVT_MOVE, wxMoveEventHandler( otcurrentUIDialog::OnMove )
-  // );
   m_dtNow = wxDateTime::Now();
   MakeDateTimeLabel(m_dtNow);
 
   m_IntervalSelected = pPlugIn->GetIntervalSelected();
   m_FolderSelected = pPlugIn->GetFolderSelected();
+  source_mode = pPlugIn->GetSourceModeSelected();
 
-  m_dirPicker1->SetValue(m_FolderSelected);
+  m_dirPicker1->SetValue(m_FolderSelected); 
+  m_sourceModeChoice->SetSelection(source_mode);
   m_choice1->SetSelection(m_IntervalSelected);
 
   LoadTCMFile();
@@ -142,8 +141,6 @@ otcurrentUIDialog::otcurrentUIDialog(wxWindow* parent, otcurrent_pi* ppi)
   double value;
   c.ToDouble(&value);
   m_dInterval = value;
-
-
 }
 
 #ifdef __ANDROID__
@@ -166,8 +163,6 @@ void otcurrentUIDialog::OnMouseEvent(wxMouseEvent& event) {
   }
 }
 #endif  // End of Android functions for move/resize
-
-
 
 void otcurrentUIDialog::LoadHarmonics() {
   if (!ptcmgr) {
@@ -210,18 +205,125 @@ void otcurrentUIDialog::LoadHarmonics() {
     if (b_newdataset) ptcmgr->LoadDataSources(TideCurrentDataSet);
   }
 }
+wxString otcurrentUIDialog::GetSingleTCFile(wxArrayString tc_files) {
+  if (tc_files.GetCount() == 1) {
+    return tc_files[0];
+  }
+
+  if (tc_files.GetCount() > 1) {
+    wxSingleChoiceDialog file_dialog(this, _("Select one file. "),
+                                     _("otcurrent_pi - TC files"), tc_files);
+
+    int current_selection;
+    for (unsigned int i = 0; i < tc_files.GetCount(); i++) {
+      current_selection = i;
+    }
+    // file_dialog.SetSelection(current_selection);
+
+    if (file_dialog.ShowModal() != wxID_OK) return wxEmptyString;
+
+    int selection = file_dialog.GetSelection();
+
+    return tc_files[selection];
+
+  } else {
+    wxMessageBox(_("No TC files were found in the selected directory"),
+                 _("otcurrent_pi"), wxOK | wxICON_INFORMATION, this);
+  }
+  return wxEmptyString;
+}
+
+void otcurrentUIDialog::OnSourceMode(wxCommandEvent& event) {
+  source_mode = m_sourceModeChoice->GetSelection();  
+   wxFileConfig* config = GetOCPNConfigObject();
+  if (config) {
+    config->SetPath(_T("/PlugIns/otcurrent_pi"));
+    config->Write(_T("otcurrentSourceMode"), source_mode);
+    config->Flush();
+  }
+}
 
 void otcurrentUIDialog::LoadTCMFile() {
-  wxString TCDir = m_FolderSelected;
-  TCDir.Append(wxFileName::GetPathSeparator());
-  wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
+  TideCurrentDataSet.Clear();
 
-  wxString default_tcdata0 = TCDir + _T("harmonics-dwf-20210110-free.tcd");
-  wxString default_tcdata1 = TCDir + _T("HARMONIC.IDX");
+  wxDir data_dir(m_FolderSelected);
 
-  // if (!TideCurrentDataSet.GetCount()) {
-  TideCurrentDataSet.Add(default_tcdata0);
-  TideCurrentDataSet.Add(default_tcdata1);
+  wxString harmonic_idx;
+  wxString harmonic_tcd;
+  wxString file_name;
+  bool found;
+
+  source_mode = m_sourceModeChoice->GetSelection();  
+
+  switch (source_mode) {
+    case 0: {
+      found = data_dir.GetFirst(&file_name, wxEmptyString, wxDIR_FILES);
+
+      while (found) {
+        wxFileName file_path(m_FolderSelected, file_name);
+
+        if (file_path.GetExt().CmpNoCase(_T("idx")) == 0) {
+          harmonic_idx = file_path.GetFullPath();
+          TideCurrentDataSet.Add(harmonic_idx);
+        }
+
+        found = data_dir.GetNext(&file_name);
+      }
+
+      harmonic_idx = GetSingleTCFile(TideCurrentDataSet);
+      TideCurrentDataSet.Add(harmonic_idx);
+      wxMessageBox(harmonic_idx);
+
+      if (!harmonic_idx.IsEmpty()) {
+        wxLogMessage(_("Using legacy Tide/Current data:  ") + harmonic_idx);
+      }
+
+      if (TideCurrentDataSet.IsEmpty()) {
+        wxLogWarning(_("No HARMONIC.IDX Tide/Current data found in:  ") +
+                     m_FolderSelected);
+      } else {
+        wxLogMessage(
+            wxString::Format(
+                _("Loaded %u Tide/Current data source from:  "),
+                static_cast<unsigned int>(TideCurrentDataSet.GetCount())) +
+            m_FolderSelected);
+      }
+      break;
+
+      case 1: {
+        found = data_dir.GetFirst(&file_name, wxEmptyString, wxDIR_FILES);
+
+        while (found) {
+          wxFileName file_path(m_FolderSelected, file_name);
+
+          if (file_path.GetExt().CmpNoCase(_T("tcd")) == 0) {
+            harmonic_tcd = file_path.GetFullPath();
+            TideCurrentDataSet.Add(harmonic_tcd);
+          }
+
+          found = data_dir.GetNext(&file_name);
+        }
+
+        harmonic_tcd = GetSingleTCFile(TideCurrentDataSet);
+        TideCurrentDataSet.Add(harmonic_tcd);
+
+        if (!harmonic_tcd.IsEmpty()) {
+          wxLogMessage(_("Using Tide/Current data:  ") + harmonic_tcd);
+        }
+
+        if (TideCurrentDataSet.IsEmpty()) {
+          wxLogWarning(_("No .tcd Tide/Current data found in:  ") +
+                       m_FolderSelected);
+        } else {
+          wxLogMessage(
+              wxString::Format(
+                  _("Loaded %u Tide/Current data source(s) from:  "),
+                  static_cast<unsigned int>(TideCurrentDataSet.GetCount())) +
+              m_FolderSelected);
+        }
+      } break;
+    }
+  }
   //}
 }
 
@@ -298,6 +400,10 @@ void otcurrentUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
 void otcurrentUIDialog::OnClose(wxCloseEvent& event) {
   m_FolderSelected = m_dirPicker1->GetValue();
   pPlugIn->m_CopyFolderSelected = m_FolderSelected;
+
+  int m = m_sourceModeChoice->GetSelection();
+  source_mode = m;
+  pPlugIn->m_CopySourceModeSelected = source_mode;
 
   int i = m_choice1->GetSelection();
   m_IntervalSelected = i;
